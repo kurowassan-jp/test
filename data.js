@@ -261,11 +261,12 @@ const countries = [
     {title:"香港旅行🇭🇰1泊2日で大満喫！初めての香港は異世界でした…", url:"https://youtu.be/uzCC1Gbu4wo?si=8Q3PyIgwh7B9OKHz", thumb:""}
   ]},
   {name:"中国", continent:"asia", videos:[]},
-  {name:"タイ", continent:"asia", videos:[
+　{name:"タイ（特設サイト）", continent:"asia", videos:[], link:"thailand.html"},
+ /* {name:"タイ", continent:"asia", videos:[
     {title:"タイ旅行🇹🇭人生で一度は行きたい！タイで最も美しい島、クート島", url:"https://youtu.be/SgFnGfHiTT0?si=gMN7hirD3DJyRvSI", thumb:""},
     {title:"タイ旅行🇹🇭これだけは食べたい！バンコク絶品グルメ6選", url:"https://youtu.be/SzN9Ak-KKag?si=GXoG3Xbin2E6fPho", thumb:""},
     {title:"最強のタイ旅行🇹🇭３泊４日でバンコクを120%楽しむ完全版｜ワットアルン｜カオサン", url:"https://youtu.be/DTLO-113PB0?si=xHS2U-Vz9pTXRxLs", thumb:""}
-  ]},
+  ]},*/
   {name:"ベトナム", continent:"asia", videos:[]},
   {name:"インドネシア", continent:"asia", videos:[]},
   {name:"フィリピン", continent:"asia", videos:[]},
