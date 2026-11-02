@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中部・東部｜タイコレクション｜MAIBARU TRAVEL 非公式ファンサイト</title>
+<meta name="description" content="Maibaru Travel のタイ中部と東部の旅動画を、アユタヤ・カンチャナブリ・ホアヒン・パタヤ・クート島など場所ごとに地図でまとめた非公式ファンページです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Mochiy+Pop+P+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD23F;
+    --yellow-soft:#FFE07A;
+    --cream:#FFF7E6;
+    --ink:#17142B;
+    --navy:#16206B;
+    --indigo:#2438B8;
+    --pink:#FF4F9A;
+    --orange:#FF6B2C;
+    --green:#11A36C;
+    --teal:#13B5C6;
+    --purple:#8A4FE0;
+    --blue:#2F63F0;
+    --red:#E0213E;
+    --white:#fff;
+    --pop:'Mochiy Pop P One','Zen Kaku Gothic New',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+    overflow-x:hidden;
+  }
+  .en{font-family:'Archivo',sans-serif;}
+  a{color:inherit;}
+  img{display:block;}
+  button{font:inherit;color:inherit;}
+  .wrap{width:min(1240px,100% - 32px);margin-inline:auto;}
+
+  /* ---------- 上部：戻る・Home / 国内 / 海外（タイページと同じ） ---------- */
+  .topbar{
+    position:absolute;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:22px 30px;
+  }
+  .back-link,.top-nav{
+    background:var(--cream);border:3px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);
+  }
+  .back-link{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:6px 18px 6px 14px;}
+  .bl-arrow{font-size:1.5rem;line-height:1;transition:transform .2s ease;}
+  .bl-kicker{display:block;font-family:'Archivo',sans-serif;font-size:.66rem;letter-spacing:.18em;opacity:.7;margin-bottom:3px;}
+  .bl-main{display:block;font-size:1.15rem;font-weight:900;letter-spacing:.04em;}
+  .back-link:hover .bl-arrow{transform:translateX(-5px);}
+  .top-nav{display:flex;gap:22px;padding:10px 22px 8px;}
+  .top-nav a{
+    font-size:1rem;font-weight:900;letter-spacing:.06em;text-decoration:none;
+    padding-bottom:3px;border-bottom:3px solid transparent;
+  }
+  .top-nav a:hover{color:var(--indigo);}
+  .top-nav a.current{border-bottom-color:var(--ink);}
+
+  /* ---------- 見出しの帯（ピンク系の幾何学タイル＋走るトゥクトゥク） ---------- */
+  .bk-hero{position:relative;overflow:hidden;background:var(--theme);}
+  .mosaic{
+    position:absolute;inset:0;z-index:0;
+    display:grid;grid-template-columns:repeat(var(--cols,12),var(--t,110px));grid-auto-rows:var(--t,110px);
+  }
+  .tile{position:relative;overflow:hidden;background:var(--bg);}
+  .tile-in{
+    position:absolute;inset:0;
+    transform:rotate(var(--rot,0deg)) scale(var(--sc,1));
+    transition:transform .5s cubic-bezier(.3,1.5,.5,1);
+  }
+  .tile-in::before{content:"";position:absolute;}
+  .s-circle  .tile-in::before{inset:14%;border-radius:50%;background:var(--fg);}
+  .s-half    .tile-in::before{left:0;right:0;bottom:0;height:50%;border-radius:50% 50% 0 0 / 100% 100% 0 0;background:var(--fg);}
+  .s-quarter .tile-in::before{inset:0;border-top-left-radius:100%;background:var(--fg);}
+  .s-tri     .tile-in::before{inset:0;clip-path:polygon(0 0,100% 100%,0 100%);background:var(--fg);}
+  .s-diamond .tile-in::before{inset:8%;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--fg);}
+  .s-stripes .tile-in::before{inset:0;background:repeating-linear-gradient(45deg,var(--fg) 0 9%,transparent 9% 18%);}
+  .s-dots    .tile-in::before{inset:0;background:radial-gradient(circle,var(--fg) 0 26%,transparent 27%) 0 0/33.34% 33.34%;}
+  .s-ring    .tile-in::before{inset:14%;border-radius:50%;border:calc(var(--t,110px) * .12) solid var(--fg);}
+  .s-arch    .tile-in::before{left:16%;right:16%;top:14%;bottom:0;border-radius:999px 999px 0 0;background:var(--fg);}
+  .s-leaf    .tile-in::before{inset:12%;border-radius:0 100% 0 100%;background:var(--fg);}
+  .s-flower  .tile-in::before{inset:6%;background:
+      radial-gradient(circle at 50% 50%,var(--cream) 0 12%,transparent 13%),
+      radial-gradient(circle at 50% 26%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 50% 74%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 26% 50%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 74% 50%,var(--fg) 0 21%,transparent 22%);}
+
+  .bk-hero-inner{
+    position:relative;z-index:2;
+    width:min(1240px,100% - 32px);margin:0 auto;padding:108px 0 40px;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;
+  }
+  .bk-panel{
+    max-width:720px;
+    background:var(--cream);border:4px solid var(--ink);border-radius:26px;box-shadow:9px 9px 0 var(--ink);
+    padding:22px clamp(20px,3vw,36px) 26px;
+    animation:panelIn .8s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  @keyframes panelIn{from{opacity:0;transform:translateY(30px) rotate(-2deg);}to{opacity:1;transform:none;}}
+  .crumb{margin:0 0 14px;font-weight:900;font-size:.9rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .crumb .flag{  /* タイ国旗（赤・白・青・白・赤） */
+    display:inline-block;width:22px;height:15px;margin-right:6px;vertical-align:-2px;border:2px solid var(--ink);border-radius:3px;
+    background:linear-gradient(180deg,#E0213E 0 16.6%,#fff 16.6% 33.3%,#2438B8 33.3% 66.6%,#fff 66.6% 83.3%,#E0213E 83.3%);
+  }
+  .crumb a{text-decoration:none;padding:3px 12px;border:2.5px solid var(--ink);border-radius:999px;background:var(--white);}
+  .crumb a:hover{background:var(--yellow);}
+  .crumb .sep{opacity:.5;}
+  .bk-lead{margin:16px 0 0;font-weight:700;line-height:1.9;font-size:clamp(.92rem,1.3vw,1.05rem);max-width:34em;}
+
+  /* 荷札（タグ）形の見出し（タイページと同じ形） */
+  .area-title{
+    position:relative;justify-self:start;display:inline-block;padding:14px 34px 12px 50px;
+    transform:rotate(-2deg);filter:drop-shadow(5px 5px 0 var(--ink));
+  }
+  .area-title::before{
+    content:"";position:absolute;inset:0;z-index:0;background:var(--c);
+    clip-path:polygon(24px 0,100% 0,100% 100%,24px 100%,0 calc(100% - 24px),0 24px);
+  }
+  .area-title::after{
+    content:"";position:absolute;left:16px;top:50%;z-index:1;width:16px;height:16px;margin-top:-8px;
+    border-radius:50%;background:var(--hole,var(--cream));border:3px solid var(--ink);
+  }
+  .area-title > *{position:relative;z-index:1;}
+  .area-en{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:.82rem;letter-spacing:.22em;color:var(--white);}
+  .area-title h1,.area-title h2{font-family:var(--pop);font-weight:400;line-height:1.15;margin:2px 0 0;color:var(--white);text-shadow:3px 3px 0 var(--ink);}
+  .area-title h1{font-size:clamp(2.4rem,6vw,4.2rem);}
+  .area-title h2{font-size:clamp(1.6rem,3.4vw,2.4rem);}
+  .area-title.ink-text .area-en,.area-title.ink-text h2{color:var(--ink);text-shadow:2px 2px 0 var(--white);}
+  .area-count{
+    position:absolute;right:-18px;top:-12px;z-index:2;
+    background:var(--white);border:3px solid var(--ink);border-radius:999px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;padding:3px 10px;transform:rotate(8deg);
+  }
+
+  /* 右側：小さなタイの地図（このページの地域が光る） */
+  .mini-map{
+    position:relative;display:block;width:clamp(150px,15vw,200px);text-decoration:none;
+    background:
+      radial-gradient(rgba(255,255,255,.1) 1.4px, transparent 1.5px) 0 0/16px 16px,
+      var(--navy);
+    border:4px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--ink);
+    padding:16px 14px 10px;transform:rotate(2.5deg);
+    animation:panelIn .8s .2s cubic-bezier(.2,1.2,.4,1) both;
+    transition:transform .2s ease;
+  }
+  .mini-map:hover{transform:rotate(0deg) scale(1.03);}
+  .mini-map svg{display:block;width:100%;height:auto;overflow:visible;}
+  .mini-map .map-shadow{fill:var(--ink);transform:translate(7px,8px);}
+  .mini-map .map-thai{fill:var(--yellow);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;}
+  .mini-map .here{fill:var(--theme);stroke:var(--ink);stroke-width:5;}
+  .mini-map .ring{fill:none;stroke:var(--theme);stroke-width:7;transform-box:fill-box;transform-origin:center;animation:ring 1.8s ease-out infinite;}
+  @keyframes ring{from{transform:scale(.4);opacity:1;}to{transform:scale(2.6);opacity:0;}}
+  .mini-tag{
+    position:absolute;left:50%;top:-16px;transform:translateX(-50%) rotate(-4deg);white-space:nowrap;
+    background:var(--theme);color:var(--theme-text,var(--white));border:3px solid var(--ink);border-radius:999px;
+    padding:2px 12px;font-family:'Archivo',sans-serif;font-weight:900;font-size:.76rem;letter-spacing:.14em;
+  }
+  .mini-cap{margin:6px 0 0;text-align:center;color:var(--white);font-weight:900;font-size:.72rem;opacity:.85;}
+
+  /* 帯のいちばん下の道路を、トゥクトゥクが走る */
+  .road{
+    position:relative;z-index:1;height:74px;
+    background:var(--ink);border-top:4px solid var(--ink);
+  }
+  .road::before{  /* 道路のまん中の点線 */
+    content:"";position:absolute;left:0;right:0;top:50%;height:5px;margin-top:-2px;
+    background:repeating-linear-gradient(90deg,var(--yellow) 0 34px,transparent 34px 64px);
+    animation:roadMove 1.2s linear infinite;
+  }
+  @keyframes roadMove{to{background-position:64px 0;}}
+  .tt-run{
+    position:absolute;left:0;bottom:6px;z-index:2;width:150px;
+    animation:drive 16s linear infinite;will-change:transform;
+  }
+  @keyframes drive{from{transform:translateX(100vw);}to{transform:translateX(-180px);}}
+  .tuktuk{display:block;width:100%;height:auto;overflow:visible;}
+  .tt-body{animation:ttBob .32s ease-in-out infinite alternate;}
+  @keyframes ttBob{from{transform:translateY(0);}to{transform:translateY(-2.5px);}}
+  .wheel{transform-box:fill-box;transform-origin:center;animation:wheelSpin .9s linear infinite;}
+  @keyframes wheelSpin{to{transform:rotate(-360deg);}}
+  .puff{transform-box:fill-box;transform-origin:center;animation:puff 1.6s ease-out infinite;}
+  .puff.p2{animation-delay:-.55s;}
+  .puff.p3{animation-delay:-1.1s;}
+  @keyframes puff{
+    0%{transform:translate(0,0) scale(.4);opacity:0;}
+    20%{opacity:1;}
+    100%{transform:translate(22px,-20px) scale(1.5);opacity:0;}
+  }
+
+  /* ---------- エリア切り替え（6ページ） ---------- */
+  .area-nav{background:var(--cream);border-bottom:3px solid var(--ink);}
+  .area-nav-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 16px;justify-content:safe center;}
+  .area-nav-inner::-webkit-scrollbar{display:none;}
+  .area-nav a{
+    flex:none;display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.92rem;text-decoration:none;
+    transition:transform .15s ease;
+  }
+  .area-nav a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);border:2px solid var(--ink);}
+  .area-nav a:hover{transform:translateY(-2px);}
+  .area-nav a.current{background:var(--c);color:var(--white);box-shadow:3px 3px 0 var(--ink);}
+
+  /* ---------- 地図と動画（PCは左に地図を固定、右に動画） ---------- */
+  .explore{
+    display:grid;grid-template-columns:minmax(0,500px) minmax(0,1fr);gap:20px 36px;align-items:start;
+    padding:40px 0 70px;
+  }
+  .side{position:sticky;top:16px;}
+  .map-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px;}
+  .map-head h2{margin:0;font-family:var(--pop);font-weight:400;font-size:1.35rem;}
+  .map-head p{margin:0;font-size:.8rem;font-weight:700;color:#5a566e;}
+
+  .map-box{
+    position:relative;aspect-ratio:600.0/552.7;overflow:hidden;
+    background:#FFE9F2;
+    border:4px solid var(--ink);border-radius:24px;box-shadow:7px 7px 0 var(--ink);
+    --z:1;
+  }
+  .map-layer{
+    position:absolute;inset:0;transform-origin:0 0;
+    transform:translate(var(--tx,0%),var(--ty,0%)) scale(var(--z));
+    transition:transform .7s cubic-bezier(.3,1,.35,1);
+  }
+  .map-layer svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  /* パステル地図（地区の境目・運河・細い道の線は、拡大しても太さが変わらない） */
+  .map-layer svg *{vector-effect:non-scaling-stroke;}
+  .bm-sea{fill:#CFEAF6;}
+  .bm-land path{stroke:#fff;stroke-width:1.6;stroke-linejoin:round;}
+  .bm-park{fill:#BDE8C8;}
+  .bm-canal{fill:none;stroke:#8FD0EE;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-water{fill:#A9DCF2;stroke:#8FCDEB;stroke-width:.8;}
+  /* チャオプラヤー川は、拡大すると川幅も広がる */
+  .map-layer svg #bm-river{vector-effect:none;}
+  .bm-river-c{fill:none;stroke:#5FB6E2;stroke-width:8.5;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-river{fill:none;stroke:#86CDEF;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-minor{fill:none;stroke:#fff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
+  .bm-road-c{fill:none;stroke:#EBDCD2;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-road{fill:none;stroke:#fff;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-hwy-c{fill:none;stroke:#F2CFA8;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-hwy{fill:none;stroke:#FFE8C8;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail-c{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail-c.srt{stroke-width:1.8;}
+  .bm-rail{fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail.bts{stroke:#5DBB63;}
+  .bm-rail.mrt{stroke:#4F7FE0;}
+  .bm-rail.arl{stroke:#E85A6E;}
+  .bm-rail.red{stroke:#D9534F;}
+  .bm-rail.srt{stroke:#B7AFC6;stroke-width:1;stroke-dasharray:3 2;}
+  /* 目じるしの名前（王宮・川など） */
+  .mark{
+    position:absolute;transform:translate(-50%,-50%) scale(calc(1 / var(--z)));pointer-events:none;white-space:nowrap;
+    font-weight:900;font-size:.68rem;color:#5a566e;
+    text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;
+  }
+  .mark.river{color:#2C8DBA;font-size:.74rem;letter-spacing:.18em;}
+  .map-box:not(.zoomed) .mark:not(.river){display:none;}
+  /* 郊外（地図全体）を見ている時は、都心の番号ピン・凡例・郊外ボタンを隠して、場所の点を見やすく */
+  .map-box.wide .pin,.map-box.wide .map-legend,.map-box.wide .map-sub{opacity:0 !important;pointer-events:none;}   /* 全体の時は番号ピンと重なるので、目じるしは拡大した時だけ */
+  .mark i{font-style:normal;margin-right:2px;}
+  .map-legend{
+    position:absolute;left:10px;top:10px;z-index:3;display:flex;gap:8px;align-items:center;
+    padding:4px 10px;border-radius:999px;border:2px solid var(--ink);background:rgba(255,255,255,.92);
+    font-weight:900;font-size:.66rem;
+  }
+  .map-legend span{display:inline-flex;align-items:center;gap:4px;}
+  .map-legend span::before{content:"";width:16px;height:4px;border-radius:2px;background:var(--c);}
+
+  /* ゾーンの番号ピン（地図の上のボタン） */
+  .pin{
+    position:absolute;width:34px;height:34px;padding:0;margin:0;cursor:pointer;
+    border:3px solid var(--ink);border-radius:50%;background:var(--c);color:var(--white);
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;line-height:1;
+    transform:translate(-50%,-50%) scale(calc(1 / var(--z)));
+    transition:opacity .3s ease, filter .3s ease;
+  }
+  .pin.ink{color:var(--ink);}
+  .pin:hover{filter:brightness(1.08);}
+  .pin .lbl{
+    position:absolute;white-space:nowrap;pointer-events:none;
+    background:var(--white);color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;
+    padding:2px 10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:.78rem;
+    box-shadow:2px 2px 0 var(--ink);
+    transition:opacity .25s ease;
+  }
+  .pin .lbl small{font-family:'Archivo',sans-serif;font-size:.85em;color:var(--c);margin-left:4px;filter:brightness(.85);}
+  .pin.ink .lbl small{color:#9a7400;}
+  .pin.d-right .lbl{left:calc(100% + 6px);top:50%;transform:translateY(-50%);}
+  .pin.d-left .lbl{right:calc(100% + 6px);top:50%;transform:translateY(-50%);}
+  .pin.d-up .lbl{bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);}
+  .pin.d-down .lbl{top:calc(100% + 6px);left:50%;transform:translateX(-50%);}
+  .pin::after{  /* 押せることが分かるよう、ゆっくり波紋を出す */
+    content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--c);opacity:0;
+    animation:pinPulse 2.6s ease-out infinite;animation-delay:var(--dl,0s);
+  }
+  @keyframes pinPulse{0%{transform:scale(.7);opacity:.9;}70%,100%{transform:scale(1.5);opacity:0;}}
+  /* ゾーンを選んでいる時：選んだゾーンのピンは場所の点に入れかわり、ほかのピンは小さく控えめに */
+  .map-box.zoomed .pin .lbl{opacity:0;}
+  .map-box.zoomed .pin{opacity:.55;}
+  .map-box.zoomed .pin::after{display:none;}
+  .map-box.zoomed .pin:hover{opacity:1;}
+  .map-box.zoomed .pin:hover .lbl{opacity:1;}
+  .pin.active{opacity:0 !important;pointer-events:none;}
+
+  /* 選んだゾーンの中の「場所」の点（押すとその場所の動画だけになる） */
+  .spot{
+    position:absolute;width:18px;height:18px;padding:0;margin:0;cursor:pointer;
+    border:3px solid var(--ink);border-radius:50%;background:var(--white);
+    transform:translate(-50%,-50%) scale(calc(1 / var(--z)));
+    animation:spotIn .45s cubic-bezier(.2,1.6,.4,1) both;animation-delay:var(--dl,0s);
+  }
+  @keyframes spotIn{from{transform:translate(-50%,-50%) scale(0);}}
+  .spot .lbl{
+    position:absolute;left:calc(100% + 4px);top:50%;transform:translateY(-50%);white-space:nowrap;
+    background:var(--white);border:2px solid var(--ink);border-radius:999px;padding:1px 8px;
+    font-weight:900;font-size:.74rem;
+  }
+  .spot.l .lbl{left:auto;right:calc(100% + 4px);}
+  .spot .lbl small{font-family:'Archivo',sans-serif;color:#6b6780;margin-left:3px;}
+  .spot:hover .lbl,.spot:focus-visible .lbl{background:var(--yellow);}
+  .spot.on{background:var(--c);}
+  .spot.on .lbl{background:var(--c);color:var(--white);}
+  .spot.on .lbl small{color:var(--white);}
+
+  .map-back{
+    position:absolute;right:10px;top:10px;z-index:3;
+    padding:6px 14px;border-radius:999px;border:3px solid var(--ink);background:var(--yellow);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.8rem;cursor:pointer;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .map-box:not(.zoomed) .map-back{opacity:0;transform:translateY(-8px);pointer-events:none;}
+  .map-any{  /* 地図に載らない「あちこち」のボタン */
+    position:absolute;left:10px;bottom:10px;z-index:3;
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 12px 5px 6px;border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.8rem;cursor:pointer;
+  }
+  .map-any i{
+    font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+    background:var(--c);color:var(--white);border:2px solid var(--ink);font-family:'Archivo',sans-serif;font-size:.8rem;
+  }
+  .map-any.on{background:var(--c);color:var(--white);}
+  .map-sub{left:auto;right:10px;}
+  .map-sub.ink i{color:var(--ink);}
+  .map-sub.on{color:var(--ink);}
+  .map-note{margin:8px 2px 0;font-size:.72rem;color:#6b6780;}
+
+  /* ゾーンのボタン（PCは地図の下、スマホは画面の上に貼りつく） */
+  .zone-bar{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .zb{
+    flex:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+    padding:4px 11px 4px 4px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.8rem;
+    transition:transform .15s ease;
+  }
+  .zb:hover{transform:translateY(-2px);}
+  .zb i{
+    font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+    background:var(--c);color:var(--white);border:2px solid var(--ink);font-family:'Archivo',sans-serif;font-size:.74rem;
+  }
+  .zb.ink i{color:var(--ink);}
+  .zb.all{padding:4px 12px;}
+  .zb.on{background:var(--ink);color:var(--white);}
+
+  /* 右側：選んだゾーンの見出しと動画 */
+  .list-col{min-width:0;}
+  .zone-head{display:grid;gap:14px;margin:6px 0 18px;}
+  .zone-desc{margin:0;font-size:.98rem;line-height:1.95;font-weight:500;}
+  .intro h2{margin:0 0 6px;font-family:var(--pop);font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);}
+  .intro p{margin:0;font-weight:700;line-height:1.8;}
+  .place-pill{
+    display:inline-flex;align-items:center;gap:8px;justify-self:start;margin:0;
+    padding:5px 6px 5px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);font-weight:900;font-size:.88rem;
+  }
+  .place-pill button{border:2px solid var(--ink);border-radius:999px;background:var(--white);padding:2px 10px;font-weight:900;font-size:.78rem;cursor:pointer;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .chip{
+    font-weight:700;font-size:.86rem;cursor:pointer;
+    padding:5px 13px;border-radius:999px;border:2px solid var(--ink);background:transparent;
+    transition:background .2s ease,color .2s ease;
+  }
+  .chip:hover{background:rgba(23,20,43,.06);}
+  .chip.on{background:var(--ink);color:var(--white);}
+
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 18px;}
+  .card{
+    display:flex;flex-direction:column;text-decoration:none;
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;overflow:hidden;
+    box-shadow:5px 5px 0 var(--c,var(--ink));
+    transition:transform .2s ease, box-shadow .2s ease;
+    animation:cardIn .4s ease both;
+  }
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px);}}
+  .card:hover{transform:translate(-2px,-4px);box-shadow:8px 9px 0 var(--c,var(--ink));}
+  .card:focus-visible{outline:3px solid var(--indigo);outline-offset:4px;}
+  .thumb{position:relative;aspect-ratio:16/9;background:var(--yellow-soft);border-bottom:3px solid var(--ink);overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease;}
+  .card:hover .thumb img{transform:scale(1.05);}
+  .lock{
+    position:absolute;left:8px;top:8px;
+    background:var(--ink);color:var(--yellow);border-radius:999px;padding:3px 10px;
+    font-size:.72rem;font-weight:900;letter-spacing:.04em;
+  }
+  .card-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.74rem;font-weight:700;color:var(--c,#5a566e);filter:brightness(.85);}
+  .card-title{
+    margin:0;font-size:.88rem;font-weight:700;line-height:1.6;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .more{
+    display:block;margin:26px auto 0;padding:12px 28px;cursor:pointer;
+    border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:4px 4px 0 var(--ink);
+    font-weight:900;font-size:.95rem;
+    transition:transform .15s ease;
+  }
+  .more:hover{transform:translateY(-2px);background:var(--yellow);}
+
+  /* 「すべて」のとき：ゾーンごとに数本ずつ見せる */
+  .preview{margin-bottom:34px;}
+  .preview-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:8px;border-bottom:3px dashed rgba(23,20,43,.25);}
+  .preview-head i{
+    font-style:normal;flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;
+    background:var(--c);color:var(--white);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);font-family:'Archivo',sans-serif;font-weight:900;
+  }
+  .preview-head.ink i{color:var(--ink);}
+  .preview-head h3{margin:0;font-family:var(--pop);font-weight:400;font-size:1.2rem;}
+  .preview-head span{font-family:'Archivo',sans-serif;font-weight:900;font-size:.85rem;color:#6b6780;}
+  .preview-head button{
+    margin-left:auto;cursor:pointer;padding:5px 14px;border-radius:999px;border:2.5px solid var(--ink);
+    background:var(--c);color:var(--white);font-weight:900;font-size:.8rem;box-shadow:2px 2px 0 var(--ink);
+  }
+  .preview-head.ink button{color:var(--ink);}
+  .preview-head button:hover{transform:translateY(-1px);}
+
+  /* ---------- 前後のエリアへ ---------- */
+  .pager{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:10px 0 80px;}
+  .pg{
+    display:flex;flex-direction:column;gap:4px;text-decoration:none;
+    padding:22px 26px;border-radius:22px;border:4px solid var(--ink);background:var(--white);box-shadow:6px 6px 0 var(--ink);
+    transition:transform .2s ease;
+  }
+  .pg:hover{transform:translate(-2px,-3px);}
+  .pg small{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:.2em;font-size:.75rem;opacity:.75;}
+  .pg b{font-family:var(--pop);font-weight:400;font-size:clamp(1.2rem,2.6vw,1.8rem);}
+  .pg.next{text-align:right;background:var(--c);color:var(--white);}
+  .pg.next b{text-shadow:2px 2px 0 var(--ink);}
+
+  /* ---------- 動画プレーヤー（タイページと同じ） ---------- */
+  .player{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;padding:16px;
+    background:rgba(23,20,43,.82);
+  }
+  .player[hidden]{display:none;}
+  .player-box{
+    position:relative;width:min(960px,100%);
+    background:var(--cream);border:4px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);
+    padding:14px;animation:panelIn .4s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  .player-frame{aspect-ratio:16/9;min-height:200px;border-radius:12px;overflow:hidden;background:#000;border:3px solid var(--ink);}
+  .player-frame iframe{display:block;width:100%;height:100%;border:0;}
+  .player-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 4px 2px;}
+  .player-title{margin:0;font-weight:900;font-size:.95rem;line-height:1.6;flex:1 1 300px;}
+  .player-link{
+    flex:none;padding:8px 16px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.85rem;text-decoration:none;
+  }
+  .player-close{
+    position:absolute;top:-20px;right:-20px;width:48px;height:48px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-size:1.5rem;font-weight:900;line-height:1;cursor:pointer;
+  }
+
+  /* ---------- フッター ---------- */
+  .site-footer{background:var(--ink);color:#e9e6f5;padding:70px 0 40px;}
+  .footer-brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.6rem;margin:0 0 4px;color:var(--yellow);}
+  .footer-sub{font-family:'Archivo',sans-serif;font-size:.75rem;letter-spacing:.2em;opacity:.6;margin:0 0 26px;}
+  .site-footer ul{margin:0 0 26px;padding-left:1.2em;font-size:.85rem;line-height:2;opacity:.85;max-width:62em;}
+  .footer-links{display:flex;flex-wrap:wrap;gap:12px;}
+  .footer-links a{
+    display:inline-block;padding:10px 18px;border-radius:999px;border:2px solid rgba(255,255,255,.4);
+    text-decoration:none;font-weight:700;font-size:.9rem;
+  }
+  .footer-links a:hover{background:rgba(255,255,255,.1);}
+
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:40;
+    width:56px;height:56px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.72rem;text-decoration:none;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1.1;
+    opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s ease, transform .3s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+
+  /* ---------- PC（広い画面）：「すべて」では各ゾーン1段（3本）だけ見せる ---------- */
+  @media (min-width:1101px){
+    .preview .card:nth-child(n+4){display:none;}
+  }
+  /* ---------- タブレット ---------- */
+  @media (max-width:1100px){
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .explore{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:20px 26px;}
+  }
+  @media (max-width:900px){
+    .bk-hero-inner{grid-template-columns:1fr;padding-top:96px;}
+    .mini-map{position:absolute;right:4px;top:96px;width:104px;padding:10px 8px 6px;border-radius:16px;box-shadow:5px 5px 0 var(--ink);}
+    .mini-tag{font-size:.62rem;padding:1px 8px;top:-13px;}
+    .mini-cap{display:none;}
+    .bk-panel{margin-right:96px;}
+    /* 1列にして、地図 → ゾーンのボタン（上に貼りつく） → 動画 の順に */
+    .explore{grid-template-columns:minmax(0,1fr);padding-top:26px;}
+    .side{display:contents;}
+    .map-wrap{max-width:560px;width:100%;justify-self:center;}
+    .zone-bar{
+      position:sticky;top:0;z-index:30;margin:0 -16px;
+      flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+      padding:10px 16px;background:rgba(255,247,230,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      border-block:3px solid var(--ink);
+    }
+    .zone-bar::-webkit-scrollbar{display:none;}
+  }
+  /* ---------- スマホ ---------- */
+  @media (max-width:600px){
+    .topbar{padding:14px 16px;}
+    .bl-arrow{font-size:1.2rem;}
+    .bl-kicker{font-size:.56rem;}
+    .bl-main{font-size:.95rem;}
+    .top-nav{gap:12px;padding:8px 14px 6px;}
+    .back-link{padding:4px 12px 4px 10px;gap:8px;}
+    .top-nav a{font-size:.9rem;}
+    .bk-hero-inner{padding:84px 0 30px;}
+    .mini-map{top:92px;right:10px;width:64px;padding:8px 6px 5px;border-width:3px;border-radius:12px;box-shadow:4px 4px 0 var(--ink);}
+    .mini-tag{font-size:.5rem;letter-spacing:.06em;padding:0 6px;top:-11px;border-width:2px;}
+    .bk-panel{margin-right:0;padding:18px 16px 20px;border-radius:20px;box-shadow:6px 6px 0 var(--ink);}
+    .bk-panel .area-title{margin-right:60px;}
+    /* 狭い画面では地図の上の名前を出さない（下のゾーンのボタンに名前がある） */
+    .pin .lbl{display:none;}
+    .crumb{margin-bottom:10px;padding-right:80px;}
+    .area-title{padding:12px 26px 10px 42px;}
+    .area-title::after{left:13px;width:13px;height:13px;margin-top:-6.5px;}
+    .bk-lead{font-size:.9rem;line-height:1.8;}
+    .road{height:62px;}
+    .tt-run{width:118px;}
+    .map-box{border-radius:18px;box-shadow:5px 5px 0 var(--ink);}
+    .pin{width:28px;height:28px;font-size:.85rem;border-width:2.5px;}
+    .pin .lbl{font-size:.66rem;padding:1px 7px;border-width:2px;}
+    .spot{width:15px;height:15px;border-width:2.5px;}
+    .spot .lbl{font-size:.64rem;padding:0 6px;}
+    .map-any{font-size:.7rem;padding:3px 10px 3px 4px;}
+    .map-any i{width:20px;height:20px;}
+    .map-back{font-size:.7rem;padding:4px 10px;}
+    .grid{gap:14px 10px;}
+    .card{border-radius:12px;box-shadow:4px 4px 0 var(--c,var(--ink));}
+    .card-body{padding:8px 9px 10px;gap:4px;}
+    .card-tags{font-size:.64rem;}
+    .card-title{font-size:.78rem;line-height:1.5;}
+    .lock{font-size:.6rem;padding:2px 7px;left:5px;top:5px;}
+    .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;}
+    .chips::-webkit-scrollbar{display:none;}
+    .chip{flex:none;}
+    .preview-head h3{font-size:1.02rem;}
+    .pager{grid-template-columns:1fr;gap:14px;}
+    .pg{padding:16px 20px;}
+    .player-close{top:-14px;right:-8px;}
+    .to-top{width:50px;height:50px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .tt-run{left:auto;right:8%;}
+  }
+  .ep{
+    position:absolute;right:8px;bottom:8px;
+    background:var(--yellow);color:var(--ink);border:2.5px solid var(--ink);border-radius:10px;padding:2px 9px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;
+  }
+
+  /* ---------- 乗り物（ページごとに違う） ---------- */
+  .tt-run.long{width:300px;animation-name:driveLong;animation-duration:22s;}
+  .tt-run.mid{width:220px;animation-name:driveMid;animation-duration:18s;}
+  .tt-run.cart{width:140px;animation-name:driveMid;animation-duration:17s;}
+  .area-nav a.current[style*="yellow"]{color:var(--ink);}
+  .tt-run.herd{width:auto;animation-name:driveLong;animation-duration:30s;}
+  @keyframes driveLong{from{transform:translateX(100vw);}to{transform:translateX(-340px);}}
+  @keyframes driveMid{from{transform:translateX(100vw);}to{transform:translateX(-250px);}}
+  .parade-run{display:flex;align-items:flex-end;gap:2px;}
+  .elephant{display:block;width:120px;height:auto;overflow:visible;}
+  .elephant.baby{width:76px;}
+  .road.grass::before,.road.sea::before,.road.rail::before{animation:none;}
+  .el-top{animation:elBob .45s ease-in-out infinite alternate;}
+  .leg{transform-box:fill-box;transform-origin:50% 8%;animation:step .9s ease-in-out infinite alternate;}
+  .leg.b{animation-delay:-.9s;}
+  @keyframes elBob{from{transform:translateY(0);}to{transform:translateY(-3px);}}
+  @keyframes step{from{transform:rotate(13deg);}to{transform:rotate(-13deg);}}
+  .train,.boat,.cart,.plane{display:block;width:100%;height:auto;overflow:visible;}
+  .tr-body,.ct-body{animation:ttBob .3s ease-in-out infinite alternate;}
+  .bt-body{transform-box:fill-box;transform-origin:50% 80%;animation:rock 1.6s ease-in-out infinite alternate;}
+  @keyframes rock{from{transform:rotate(-2deg) translateY(0);}to{transform:rotate(2deg) translateY(-3px);}}
+  .prop{transform-box:fill-box;transform-origin:center;animation:wheelSpin .3s linear infinite;}
+  .splash{transform-box:fill-box;transform-origin:center;animation:puff 1s ease-out infinite;}
+  .splash.s2{animation-delay:-.5s;}
+  .pl-body{animation:fly 2.4s ease-in-out infinite alternate;}
+  @keyframes fly{from{transform:translateY(2px);}to{transform:translateY(-6px);}}
+  /* 道のかわり：草の道・線路・海 */
+  .road.grass{background:#3E9B57;}
+  .road.grass::before{top:0;bottom:0;height:auto;margin:0;
+    background:radial-gradient(circle,#FFD23F 0 3px,transparent 4px) 0 8px/46px 30px,radial-gradient(circle,#FF9EC4 0 3px,transparent 4px) 23px 22px/46px 30px;}
+  .road.rail{background:#5B5568;}
+  .road.rail::before{top:auto;bottom:10px;height:12px;margin:0;
+    background:repeating-linear-gradient(90deg,#8B5E3C 0 12px,transparent 12px 30px);}
+  .road.rail::after{content:"";position:absolute;left:0;right:0;bottom:16px;height:5px;background:#C9C3D6;border-block:1px solid var(--ink);}
+  .road.sea{background:#2F9FD8;}
+  .road.sea::before{top:0;bottom:0;height:auto;margin:0;
+    background:radial-gradient(circle at 50% 0,transparent 9px,rgba(255,255,255,.75) 10px 12px,transparent 13px) 0 10px/40px 22px;}
+  .road.sea .tt-run{bottom:2px;}
+  /* 地図の上の国名・海の名前 */
+  .mark.land{color:#8d86a0;letter-spacing:.2em;font-size:.72rem;}
+  .map-box:not(.zoomed) .mark.land{display:block;}
+  .rm-other path{fill:#ECE7E1;stroke:#fff;stroke-width:1.2;}
+  .area-title.ink-text h1{color:var(--ink);text-shadow:3px 3px 0 var(--white);}
+  .area-title.ink-text .area-en{color:var(--ink);text-shadow:none;}
+
+  @media (max-width:600px){
+    .tt-run.long{width:230px;} .tt-run.mid{width:160px;}
+    .elephant{width:88px;} .elephant.baby{width:56px;}
+    .map-head p{display:none;}
+  }
+</style>
+</head>
+<body style="--theme:var(--orange);--theme-text:var(--white)">
+
+<header class="topbar">
+  <a class="back-link" href="thailand.html">
+    <span class="bl-arrow">←</span>
+    <span>
+      <span class="bl-kicker en">BACK TO</span>
+      <span class="bl-main">タイのトップへ</span>
+    </span>
+  </a>
+  <nav class="top-nav" aria-label="サイト">
+    <a href="index.html">Home</a>
+    <a href="japan.html">国内</a>
+    <a href="world.html" class="current">海外</a>
+  </nav>
+</header>
+
+<!-- ===== 見出しの帯 ===== -->
+<!-- イラスト（タイル・乗り物など）はすべてこのサイト用に描いたオリジナルです -->
+<section class="bk-hero" id="top">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="bk-hero-inner">
+    <div class="bk-panel">
+      <p class="crumb"><a href="thailand.html"><span class="flag" aria-hidden="true"></span>タイ</a><span class="sep">＞</span><span>中部・東部</span></p>
+      <div class="area-title" style="--c:var(--theme)">
+        <span class="area-en">CENTRAL & EAST</span>
+        <h1>中部・東部</h1>
+        <span class="area-count" id="heroCount">0本</span>
+      </div>
+      <p class="bk-lead">世界遺産の古都アユタヤ、鉄道で向かうカンチャナブリ、王室の避暑地ホアヒン。東へ向かえば、パタヤやシラチャの海、そして透明な海のクート島。バンコクから足をのばす旅をどうぞ。</p>
+    </div>
+    <a class="mini-map" href="thailand.html#map" aria-label="タイの地図（タイのトップページへ）">
+      <span class="mini-tag">YOU ARE HERE</span>
+      <svg viewBox="0 0 493 764" aria-hidden="true">
+        <path class="map-shadow" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+        <path class="map-thai" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+        <circle class="ring" cx="204.9" cy="315.1" r="16"/>
+        <circle class="here" cx="204.9" cy="315.1" r="16"/>
+        <circle class="ring" cx="177.6" cy="397.0" r="16"/>
+        <circle class="here" cx="177.6" cy="397.0" r="16"/>
+        <circle class="ring" cx="273.5" cy="395.1" r="16"/>
+        <circle class="here" cx="273.5" cy="395.1" r="16"/>
+      </svg>
+      <p class="mini-cap">タイ全体の地図へ</p>
+    </a>
+  </div>
+  <div class="road rail" aria-hidden="true">
+    <div class="tt-run long">
+      <svg class="train" viewBox="0 0 430 130">
+        <g class="tr-body">
+          <!-- 機関車 -->
+          <path d="M14,98 V52 C14,40 22,30 36,28 H128 V98 Z" fill="#E8533A" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M14,70 H128" stroke="#FFF1C9" stroke-width="9"/>
+          <rect x="24" y="38" width="26" height="20" rx="4" fill="#CFF3F7" stroke="#17142B" stroke-width="3.5"/>
+          <rect x="58" y="38" width="22" height="20" rx="4" fill="#CFF3F7" stroke="#17142B" stroke-width="3.5"/>
+          <rect x="92" y="36" width="26" height="54" rx="3" fill="#C9432E" stroke="#17142B" stroke-width="3.5"/>
+          <circle cx="20" cy="84" r="6" fill="#FFD23F" stroke="#17142B" stroke-width="3"/>
+          <rect x="40" y="16" width="16" height="14" fill="#17142B"/>
+          <circle class="puff p1" cx="48" cy="12" r="6" fill="#E4E0F0" stroke="#17142B" stroke-width="2.5"/>
+          <circle class="puff p2" cx="48" cy="12" r="6" fill="#E4E0F0" stroke="#17142B" stroke-width="2.5"/>
+          <!-- 連結器 -->
+          <rect x="126" y="80" width="18" height="8" fill="#17142B"/>
+          <!-- 客車 -->
+          <path d="M142,98 V40 C142,32 148,26 156,26 H410 C418,26 424,32 424,40 V98 Z" fill="#FFF1C9" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M144,76 H422 V96 H144 Z" fill="#E8533A"/>
+          <path d="M142,76 H424" stroke="#17142B" stroke-width="3"/>
+          <path d="M150,30 H416" stroke="#C9B48A" stroke-width="4" stroke-linecap="round"/>
+          <g fill="#CFF3F7" stroke="#17142B" stroke-width="3.5">
+            <rect x="156" y="40" width="28" height="24" rx="3"/><rect x="194" y="40" width="28" height="24" rx="3"/>
+            <rect x="268" y="40" width="28" height="24" rx="3"/><rect x="306" y="40" width="28" height="24" rx="3"/>
+            <rect x="344" y="40" width="28" height="24" rx="3"/><rect x="382" y="40" width="28" height="24" rx="3"/>
+          </g>
+          <rect x="232" y="36" width="26" height="60" rx="3" fill="#C9432E" stroke="#17142B" stroke-width="3.5"/>
+        </g>
+        <g fill="#17142B">
+          <rect x="22" y="98" width="96" height="8" rx="3"/><rect x="152" y="98" width="262" height="8" rx="3"/>
+        </g>
+        <g class="wheel"><circle cx="38" cy="110" r="11" fill="#17142B"/><circle cx="38" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="66" cy="110" r="11" fill="#17142B"/><circle cx="66" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="102" cy="110" r="11" fill="#17142B"/><circle cx="102" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="172" cy="110" r="11" fill="#17142B"/><circle cx="172" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="198" cy="110" r="11" fill="#17142B"/><circle cx="198" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="368" cy="110" r="11" fill="#17142B"/><circle cx="368" cy="110" r="4" fill="#FFF7E6"/></g>
+        <g class="wheel"><circle cx="394" cy="110" r="11" fill="#17142B"/><circle cx="394" cy="110" r="4" fill="#FFF7E6"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== エリア切り替え ===== -->
+<nav class="area-nav" aria-label="タイのエリア">
+  <div class="area-nav-inner" id="areaNav"></div>
+</nav>
+
+<!-- ===== 地図と動画 ===== -->
+<section class="explore wrap" id="explore">
+  <div class="side">
+    <div class="map-wrap">
+      <div class="map-head">
+        <h2>中部・東部地図</h2>
+        <p>番号を押すと、その場所の動画へ</p>
+      </div>
+      <div class="map-box" id="mapBox">
+        <div class="map-layer" id="mapLayer">
+          <svg viewBox="0 0 600.0 552.7" role="img" aria-label="タイ中部と東部の地図（県の境目）">
+<rect class="bm-sea" width="600" height="553"/>
+<g class="rm-other"><path d="M668.4,148.6L671.4,150.4L671.5,154.8L672.8,156.3L686.8,158.7L690.5,158.3L698.1,161.9L700.3,161.6L702.5,158.8L709.2,158.4L712.7,161.3L718.1,159.8L718.7,165.8L722.9,171.0L721.7,174.2L693.8,186.6L689.1,189.6L671.6,207.4L662.3,211.1L654.9,216.7L645.1,218.5L641.7,220.1L641.3,216.1L639.6,213.2L630.4,205.5L628.8,197.5L625.8,199.4L620.5,205.5L614.0,198.7L610.5,198.7L611.6,190.3L603.2,188.4L599.9,181.8L589.6,174.9L598.1,167.6L602.3,165.4L612.3,163.4L621.7,160.5L632.9,160.2L640.3,156.2L643.7,157.9L654.2,151.8L656.3,151.4L662.0,153.7L664.6,152.4L665.9,149.4L668.4,148.6Z"/><path d="M519.0,261.9L526.7,261.3L537.2,256.3L530.1,250.8L530.3,248.1L534.3,245.0L546.9,238.8L549.8,236.3L550.8,231.1L553.6,227.2L556.8,218.0L559.1,213.9L571.2,203.0L572.0,196.5L576.4,188.7L577.3,181.8L579.3,179.8L586.0,177.5L589.6,174.9L591.3,175.7L599.9,181.8L603.2,188.4L611.6,190.3L610.5,198.0L611.2,198.8L614.0,198.7L620.5,205.5L625.8,199.4L628.8,197.5L630.4,205.5L638.7,212.3L641.3,216.1L641.7,220.1L640.1,222.1L639.7,224.9L639.6,234.7L641.5,242.2L641.2,244.6L637.9,250.8L638.2,279.1L619.0,279.8L615.3,279.1L607.6,275.3L601.3,276.0L583.0,281.7L574.7,281.0L563.9,278.2L559.9,276.2L557.8,274.1L552.0,280.6L551.0,280.5L546.1,279.6L542.6,274.9L503.7,271.9L503.7,269.3L501.7,264.6L504.0,261.6L508.9,261.0L519.0,261.9Z"/><path d="M576.7,508.2L578.6,505.3L578.1,497.9L576.7,492.8L567.9,479.9L562.1,468.7L560.9,462.4L558.1,457.0L587.6,459.0L598.2,463.9L605.8,465.3L610.5,462.9L624.2,459.0L629.2,456.2L638.0,445.5L648.9,444.4L653.3,445.9L659.6,449.9L668.7,460.0L673.4,462.6L685.4,467.5L695.4,474.5L686.6,475.8L685.5,477.0L685.9,483.4L684.6,488.9L687.2,500.4L687.5,505.8L688.2,506.9L690.8,507.9L693.4,510.3L702.2,516.1L704.9,519.2L713.6,519.7L719.3,522.2L721.6,524.5L721.6,526.0L719.5,529.6L719.7,531.8L722.0,536.3L724.8,539.7L727.2,546.0L725.1,549.1L724.1,555.8L726.7,559.0L730.6,570.5L725.1,572.3L724.2,575.6L718.8,584.2L716.9,585.0L713.2,583.9L711.9,584.4L705.3,592.6L694.5,601.9L691.6,603.6L686.6,604.1L684.6,608.1L684.0,612.1L680.5,618.8L677.0,622.3L673.6,624.2L671.5,622.3L672.3,616.8L673.7,614.8L676.7,613.0L678.0,609.7L677.8,604.7L669.9,587.4L671.8,583.0L668.2,580.6L663.0,579.6L661.9,578.6L660.4,574.0L657.7,571.6L654.1,570.3L650.3,569.9L651.3,570.7L649.6,573.4L646.1,571.7L646.8,574.0L643.5,579.6L646.0,578.5L646.3,579.8L641.4,590.4L639.3,598.1L640.2,602.9L639.5,604.8L637.8,606.1L634.1,606.0L631.5,607.7L630.5,604.7L622.2,599.9L614.9,605.0L615.3,606.9L612.1,607.1L610.1,608.6L603.3,606.5L605.0,604.2L599.4,599.7L601.6,595.0L599.8,580.9L602.0,576.6L602.2,572.1L598.6,563.2L594.7,562.8L594.9,561.4L597.4,559.7L596.4,558.4L597.4,556.1L604.3,550.6L606.6,552.3L606.5,550.3L605.0,545.2L601.6,547.0L600.0,545.5L599.0,540.0L595.6,533.7L597.0,534.1L597.3,535.6L598.1,535.6L600.2,533.0L603.7,532.0L605.4,532.8L607.4,535.8L609.3,536.4L604.2,527.7L605.0,525.8L604.2,525.8L603.3,527.7L603.6,529.8L601.6,531.1L598.9,528.2L595.6,526.5L594.7,523.7L594.7,517.9L593.8,518.8L594.7,515.2L592.9,514.8L592.1,513.5L592.2,517.9L591.3,521.4L587.3,521.4L584.4,523.2L581.8,519.6L584.4,517.9L586.9,520.6L587.9,520.6L585.3,516.2L585.3,510.9L586.7,509.5L590.6,511.1L592.9,510.9L592.9,510.0L591.4,510.1L589.2,509.0L588.6,507.3L589.6,507.3L589.6,506.4L586.9,507.3L586.2,504.7L585.3,504.7L585.3,507.3L584.4,506.4L584.4,509.2L583.6,509.2L584.5,502.9L585.8,500.9L590.2,498.6L594.1,500.5L595.8,500.2L598.1,497.7L597.3,497.7L596.2,499.3L594.5,499.2L590.4,496.8L585.3,499.4L582.0,492.6L579.1,491.1L574.9,484.5L574.1,484.5L576.0,488.7L582.1,495.2L583.6,499.4L581.9,505.4L583.1,512.8L581.8,517.9L580.1,512.1L576.7,508.2ZM592.1,545.2L593.6,548.7L592.9,549.6L593.5,553.8L592.1,557.6L590.4,558.4L587.3,557.8L587.9,556.6L586.5,555.2L586.1,552.5L585.2,539.2L586.2,536.4L586.9,538.2L588.3,537.0L590.5,537.6L592.1,540.8L592.1,545.2ZM591.3,526.7L593.8,532.0L591.3,536.4L590.0,536.3L590.4,532.0L587.0,525.2L588.6,523.2L591.3,525.0L591.3,526.7Z"/><path d="M558.1,457.0L550.0,444.9L549.0,439.8L552.5,416.3L553.8,413.8L557.1,411.0L558.1,409.2L558.0,408.0L562.0,409.9L563.8,410.0L567.9,407.2L572.2,406.0L582.2,401.3L586.6,396.4L591.4,399.3L595.3,399.3L599.0,396.8L606.4,395.9L611.4,392.7L616.9,390.4L627.4,387.5L630.0,387.2L642.0,388.7L650.7,390.9L655.1,390.4L660.8,388.0L662.8,386.0L667.7,376.7L665.3,366.2L667.9,358.5L665.3,355.0L666.6,351.3L670.3,349.4L672.2,347.6L672.6,342.1L675.4,337.8L675.4,335.4L672.7,332.9L672.6,330.7L688.6,315.5L732.0,360.1L742.6,373.9L763.1,391.8L761.8,403.0L762.3,407.0L757.4,413.0L755.3,418.5L745.8,425.1L740.4,426.6L736.4,431.9L735.0,439.1L737.3,448.8L733.5,452.1L730.3,451.5L726.5,452.3L724.8,454.6L723.4,458.5L719.9,462.9L721.7,465.5L714.7,469.3L711.1,469.4L708.1,466.1L705.6,465.0L695.4,474.5L685.4,467.5L673.4,462.6L668.7,460.0L659.6,449.9L653.3,445.9L648.9,444.4L638.0,445.5L629.2,456.2L624.2,459.0L610.5,462.9L605.8,465.3L598.2,463.9L587.6,459.0L558.1,457.0Z"/><path d="M558.0,408.0L556.3,405.0L552.3,402.8L550.6,401.0L549.6,396.7L545.6,394.0L536.1,384.3L532.3,381.6L524.5,378.6L545.0,373.4L554.9,367.4L556.7,364.0L557.3,358.7L557.3,342.0L556.6,334.2L555.1,328.6L552.7,324.4L549.7,321.2L546.8,319.6L543.7,319.3L538.6,321.9L536.9,324.3L535.8,331.7L534.6,333.3L530.8,334.4L523.8,334.8L521.6,333.4L518.4,327.6L512.7,320.9L510.3,316.6L503.5,298.8L503.4,289.8L504.2,282.0L503.7,271.9L542.6,274.9L546.1,279.6L551.0,280.5L552.0,280.6L557.8,274.1L559.9,276.2L563.9,278.2L574.7,281.0L583.0,281.7L601.3,276.0L607.6,275.3L615.3,279.1L619.0,279.8L638.2,279.1L642.6,283.5L648.6,283.1L655.4,285.4L659.3,289.3L671.2,291.9L673.0,293.5L681.1,307.4L688.6,315.5L678.8,325.4L673.2,329.9L672.4,331.7L673.4,333.8L675.4,335.4L675.4,337.8L672.6,342.1L672.2,347.6L670.3,349.4L666.6,351.3L665.3,355.0L667.9,358.5L665.3,366.2L667.7,376.7L662.8,386.0L660.8,388.0L655.1,390.4L650.7,390.9L642.0,388.7L630.0,387.2L627.4,387.5L616.9,390.4L611.4,392.7L606.4,395.9L599.0,396.8L595.3,399.3L591.4,399.3L586.6,396.4L582.2,401.3L572.2,406.0L567.9,407.2L563.8,410.0L562.0,409.9L558.0,408.0Z"/><path d="M524.5,378.6L522.4,375.7L522.2,370.2L522.8,368.2L524.4,366.8L525.8,361.5L522.9,354.2L522.4,349.3L520.6,343.5L522.4,340.1L520.9,338.1L522.7,336.7L523.8,334.8L530.8,334.4L534.6,333.3L535.8,331.7L536.9,324.3L538.6,321.9L543.7,319.3L546.8,319.6L549.7,321.2L552.7,324.4L555.1,328.6L556.6,334.2L557.3,342.0L557.3,358.7L556.7,364.0L554.9,367.4L545.0,373.4L524.5,378.6Z"/><path d="M-115.9,-379.0L-118.6,-379.3L-115.1,-375.4L-110.3,-365.2L-107.1,-360.3L-105.9,-351.3L-101.7,-346.0L-96.5,-342.6L-94.8,-344.5L-92.4,-350.6L-90.8,-351.3L-82.8,-347.8L-82.1,-343.5L-85.3,-339.5L-77.0,-327.2L-75.1,-320.1L-75.7,-316.4L-72.5,-315.3L-68.2,-304.5L-72.5,-301.2L-76.8,-293.1L-75.1,-287.0L-78.0,-286.7L-74.2,-282.1L-72.9,-278.9L-68.8,-275.0L-67.6,-268.8L-45.8,-248.3L-39.7,-244.9L-35.2,-237.4L-33.1,-232.0L-31.4,-230.3L-26.4,-227.8L-25.7,-226.0L-25.9,-220.1L-14.2,-208.8L-9.9,-205.7L-5.5,-199.4L-2.6,-197.5L-4.2,-194.9L-4.0,-193.8L-0.7,-193.8L-1.7,-191.2L-0.0,-188.3L1.7,-186.6L10.0,-185.8L14.7,-183.7L17.0,-181.4L21.8,-173.6L23.1,-167.8L26.2,-166.1L28.1,-160.7L25.1,-162.2L24.1,-161.6L23.8,-159.8L24.3,-158.2L27.6,-156.0L27.2,-154.6L25.7,-153.0L21.8,-151.2L19.3,-146.6L19.6,-144.4L23.3,-141.5L24.8,-136.5L26.5,-134.1L30.9,-131.1L32.7,-128.7L33.5,-126.3L33.0,-122.4L41.5,-110.9L42.5,-108.6L41.2,-103.2L42.8,-99.4L45.4,-88.3L47.8,-86.6L49.8,-88.0L53.5,-93.6L61.1,-99.5L62.8,-102.6L64.8,-110.0L67.4,-112.1L67.9,-107.8L73.2,-103.6L75.3,-100.5L73.0,-84.7L67.9,-78.2L67.1,-75.7L66.9,-70.0L63.4,-65.6L60.4,-64.6L57.3,-66.7L47.4,-67.6L44.8,-66.4L43.0,-61.6L39.9,-58.0L36.3,-57.3L32.0,-58.5L30.9,-57.5L35.5,-48.4L33.6,-41.1L34.3,-30.3L30.0,-14.4L30.5,-0.2L33.4,19.0L33.6,25.4L32.5,31.4L29.2,35.2L28.8,32.4L26.9,30.4L21.8,27.8L17.4,29.9L12.9,30.8L12.1,31.4L12.4,35.8L10.5,37.2L9.7,39.0L11.8,41.1L11.5,43.9L10.7,44.2L4.5,40.8L-0.6,39.5L-2.1,39.8L-8.4,48.0L-11.5,48.9L-11.7,43.5L-13.8,38.3L-18.1,35.2L-21.6,30.9L-25.5,23.5L-28.0,21.2L-32.2,12.6L-35.7,8.8L-37.7,4.5L-43.5,-0.8L-44.3,-5.1L-49.4,-8.6L-52.9,-9.5L-53.7,-10.7L-53.3,-14.8L-51.7,-17.6L-54.4,-24.6L-54.5,-27.3L-57.3,-32.8L-58.1,-38.2L-57.7,-47.2L-54.5,-56.6L-56.8,-62.6L-59.8,-67.5L-59.6,-68.6L-36.8,-71.1L-28.1,-67.4L-26.1,-69.7L-21.0,-72.3L-20.4,-73.5L-20.6,-76.2L-27.0,-82.8L-26.8,-85.4L-27.9,-87.9L-32.5,-92.7L-36.8,-95.0L-39.3,-106.2L-42.1,-105.6L-47.6,-106.6L-49.9,-111.3L-55.1,-114.0L-56.2,-117.3L-55.7,-120.2L-56.9,-120.6L-64.3,-118.0L-71.3,-125.0L-73.4,-125.9L-74.6,-125.1L-75.6,-128.8L-78.0,-128.3L-80.5,-129.0L-82.9,-131.7L-83.2,-134.9L-85.7,-136.1L-92.8,-144.9L-93.4,-153.1L-95.5,-155.6L-95.7,-159.2L-98.2,-161.4L-100.5,-165.2L-100.1,-172.8L-103.4,-177.4L-104.0,-181.7L-103.7,-183.5L-101.8,-183.6L-101.0,-185.0L-101.7,-189.4L-99.8,-190.5L-96.1,-196.0L-98.9,-203.7L-97.3,-207.0L-99.5,-214.6L-97.4,-218.6L-98.9,-222.2L-103.4,-228.9L-106.9,-239.6L-105.5,-248.5L-111.0,-252.6L-114.5,-261.2L-113.6,-265.0L-109.7,-268.8L-109.8,-270.6L-110.4,-271.2L-111.8,-269.9L-113.8,-270.6L-115.3,-270.1L-115.5,-266.8L-117.8,-264.9L-119.5,-261.9L-120.0,-258.5L-121.7,-255.8L-127.0,-256.9L-131.0,-253.1L-131.8,-250.0L-133.3,-250.1L-135.9,-251.8L-135.3,-259.8L-139.4,-270.2L-140.3,-274.8L-138.0,-278.4L-137.1,-285.2L-140.2,-288.5L-140.5,-291.6L-146.2,-304.0L-145.6,-306.5L-143.1,-309.4L-139.2,-316.8L-138.6,-321.5L-136.8,-325.9L-137.1,-328.1L-145.0,-335.0L-144.8,-342.0L-147.2,-348.8L-148.1,-349.3L-149.6,-348.7L-151.5,-345.7L-153.5,-346.1L-154.5,-347.6L-154.9,-352.0L-157.4,-354.3L-161.7,-356.4L-165.4,-361.9L-166.2,-364.9L-164.9,-368.2L-163.8,-377.7L-164.7,-384.0L-165.7,-386.2L-167.9,-388.0L-168.8,-390.5L-171.2,-391.4L-177.3,-389.5L-184.8,-385.6L-191.2,-386.8L-194.9,-388.7L-196.5,-388.4L-199.7,-386.1L-201.3,-386.7L-202.6,-389.9L-204.8,-392.4L-210.5,-404.6L-210.4,-406.7L-207.1,-410.5L-210.6,-418.6L-209.1,-421.0L-202.6,-425.4L-201.9,-426.9L-206.0,-432.9L-218.6,-443.7L-222.0,-448.6L-223.3,-452.6L-224.3,-453.0L-224.7,-455.2L-220.2,-459.2L-220.2,-460.1L-222.7,-462.2L-225.0,-468.7L-229.7,-475.9L-229.5,-482.5L-234.6,-488.4L-234.5,-493.3L-237.6,-497.4L-224.4,-498.7L-221.9,-498.3L-214.5,-496.1L-214.6,-493.5L-213.5,-492.4L-208.2,-494.9L-203.3,-500.7L-199.6,-494.4L-194.4,-492.5L-184.8,-486.2L-181.6,-480.1L-182.4,-478.1L-183.0,-470.4L-179.5,-459.3L-174.2,-456.1L-171.0,-452.1L-167.8,-445.9L-166.9,-435.3L-165.5,-431.3L-160.9,-425.6L-161.0,-420.9L-158.6,-419.1L-155.8,-414.8L-155.4,-412.2L-148.2,-398.5L-146.7,-396.9L-135.9,-396.0L-124.9,-396.2L-123.0,-395.6L-119.0,-388.7L-115.9,-379.0Z"/><path d="M-11.5,48.9L-15.4,48.8L-13.7,54.1L-17.4,63.4L-16.5,66.5L-12.6,70.5L-12.0,73.3L-13.6,78.0L-20.4,78.2L-24.9,77.2L-28.1,73.9L-32.9,65.9L-34.9,64.4L-41.4,66.2L-49.7,67.0L-51.0,68.9L-52.5,77.0L-55.6,84.2L-59.9,90.2L-63.2,92.5L-62.2,89.8L-61.9,85.3L-60.5,82.4L-60.9,79.3L-62.0,77.3L-65.7,74.9L-64.1,73.2L-61.5,73.1L-63.2,69.6L-61.6,67.4L-61.2,64.9L-61.6,54.6L-59.7,50.2L-65.0,49.9L-66.3,48.4L-69.6,42.8L-69.7,36.3L-71.7,33.5L-70.7,31.5L-68.7,30.8L-67.4,26.4L-66.6,27.1L-63.2,24.7L-67.3,14.1L-65.7,8.8L-69.6,-0.6L-69.1,-2.3L-70.0,-5.3L-69.5,-8.3L-71.8,-13.0L-70.8,-16.2L-73.4,-20.2L-71.7,-22.9L-71.6,-31.3L-72.3,-32.9L-74.2,-33.5L-73.5,-37.0L-76.1,-40.1L-82.8,-44.9L-90.5,-53.6L-91.3,-60.7L-90.4,-62.3L-87.4,-63.3L-85.0,-67.5L-82.6,-82.0L-81.1,-86.3L-84.2,-96.6L-84.2,-107.6L-81.0,-116.6L-78.3,-120.0L-74.6,-122.4L-70.0,-123.3L-64.3,-118.0L-56.9,-120.6L-55.7,-120.2L-56.2,-117.3L-54.8,-113.6L-49.9,-111.3L-47.2,-106.4L-41.2,-105.8L-39.6,-106.4L-39.1,-105.9L-36.8,-95.0L-32.5,-92.7L-27.7,-87.5L-26.8,-85.4L-27.0,-82.8L-20.8,-76.6L-20.4,-73.5L-21.0,-72.3L-26.1,-69.7L-28.1,-67.4L-36.8,-71.1L-59.6,-68.6L-59.8,-67.5L-56.8,-62.6L-54.5,-56.6L-57.7,-47.2L-58.1,-38.2L-57.3,-32.8L-54.5,-27.3L-54.4,-24.6L-51.7,-17.6L-53.3,-14.8L-53.9,-11.8L-52.9,-9.5L-49.4,-8.6L-44.3,-5.1L-43.5,-0.8L-37.7,4.5L-35.7,8.8L-32.2,12.6L-28.0,21.2L-25.5,23.5L-21.6,30.9L-18.1,35.2L-13.8,38.3L-11.7,43.5L-11.5,48.9Z"/><path d="M-13.6,78.0L-9.8,87.2L-9.7,94.6L-7.6,97.2L-8.1,99.7L-7.1,102.2L-0.3,112.9L14.8,127.6L16.4,130.1L19.1,137.8L22.3,139.3L31.0,157.1L37.7,165.3L43.0,167.6L46.3,171.2L50.9,170.9L53.9,176.9L56.7,179.9L71.5,191.2L79.4,194.7L80.7,196.8L81.6,202.0L85.6,206.8L88.4,212.1L93.5,216.6L95.1,220.0L97.5,220.9L98.8,222.3L98.7,227.9L100.1,234.1L101.1,236.1L106.6,242.3L106.5,259.4L111.0,279.3L110.9,291.9L109.1,295.5L111.3,304.7L110.9,306.9L109.1,308.5L101.8,310.0L100.3,312.1L100.3,320.7L98.5,326.7L99.2,329.2L106.4,334.8L108.1,337.3L108.4,339.8L106.6,345.3L108.6,350.3L109.4,355.6L113.8,360.9L114.3,368.3L115.6,370.5L120.8,372.4L122.1,377.1L126.2,378.7L129.2,382.3L136.7,386.9L137.9,388.7L138.0,397.4L135.9,402.8L140.1,413.4L140.8,423.0L144.3,428.3L144.4,433.4L146.7,438.6L146.5,440.4L143.6,443.8L144.0,446.1L145.8,446.5L152.8,444.2L155.2,444.6L155.7,445.7L152.3,459.4L154.3,461.2L156.7,462.0L158.4,463.5L159.3,465.7L156.8,476.2L157.7,479.0L161.5,483.0L166.0,485.1L166.3,486.4L163.4,497.9L155.3,508.9L153.8,510.1L145.8,511.0L143.7,512.3L142.6,514.4L142.6,522.7L141.0,527.4L135.9,533.2L134.7,535.2L133.0,542.8L127.0,550.0L123.6,558.0L117.9,565.8L114.1,577.3L113.3,578.4L109.4,580.0L106.5,585.1L99.2,589.5L97.1,591.7L94.4,598.3L88.2,596.5L86.5,597.9L85.0,603.1L86.2,609.2L85.8,611.7L84.3,613.8L79.3,615.9L75.7,615.1L74.0,615.8L71.0,620.8L66.3,621.6L58.3,631.2L56.0,639.7L56.4,641.3L59.7,644.8L61.4,652.9L61.3,655.4L55.9,674.7L54.4,675.6L52.4,679.6L49.5,691.0L43.0,699.8L36.2,714.3L30.4,721.4L27.6,716.0L26.7,700.9L24.2,696.7L23.7,694.3L26.5,686.1L28.6,672.9L26.5,665.4L24.3,661.6L25.1,653.5L24.4,648.2L20.4,638.8L19.9,627.8L20.4,626.0L22.1,625.3L24.8,625.7L26.4,626.8L28.6,630.7L29.8,629.2L29.8,627.4L27.6,624.5L30.5,624.0L32.9,626.3L34.7,620.7L37.5,616.2L37.8,614.4L37.1,612.1L39.5,612.0L41.4,610.4L35.8,609.1L34.9,607.3L35.2,606.4L39.2,605.3L41.8,602.3L43.5,601.6L46.6,603.4L48.7,602.3L50.8,602.4L51.6,600.9L52.2,596.3L51.6,594.5L52.5,593.7L49.1,590.1L49.4,588.6L52.1,587.1L52.8,585.4L50.8,578.6L48.6,579.3L47.0,578.3L44.8,574.3L50.3,572.8L53.0,571.1L54.1,568.6L54.1,564.6L57.4,556.6L55.8,554.5L52.7,546.2L53.4,541.7L50.3,542.5L49.8,541.3L51.9,534.3L59.4,532.9L58.2,531.1L57.9,526.1L56.8,524.1L55.7,523.8L53.6,524.7L52.2,522.9L53.2,520.7L52.5,519.6L54.2,517.5L54.5,515.5L54.5,508.7L56.5,503.6L58.5,503.8L60.0,503.0L63.2,504.7L64.6,504.2L65.3,500.2L69.3,500.3L74.0,502.1L72.1,498.3L63.1,496.6L60.4,494.2L61.3,491.0L65.7,485.1L63.6,481.8L64.5,484.0L58.5,493.3L55.5,493.2L51.5,496.6L51.0,500.0L49.1,503.0L46.8,503.1L43.5,501.2L38.8,497.2L37.9,494.4L39.7,489.8L41.5,489.3L41.4,487.9L37.9,487.9L40.5,484.5L43.9,484.5L47.6,478.5L50.8,478.3L49.3,476.5L41.4,478.3L31.1,478.3L32.3,475.7L34.8,474.7L40.9,474.8L45.5,472.9L47.4,471.3L48.9,468.6L52.5,467.3L52.7,463.0L50.4,456.5L51.6,454.5L45.6,454.9L41.7,451.1L42.6,448.1L41.2,445.7L41.4,443.9L46.6,442.2L46.6,441.3L44.8,441.3L51.2,436.4L51.7,435.0L50.4,432.1L49.5,431.6L45.4,432.3L37.1,437.8L32.9,436.0L30.9,434.0L29.9,431.6L30.0,429.1L31.5,426.8L33.5,425.3L47.1,422.2L49.7,420.5L50.8,418.0L50.0,415.9L43.9,413.1L40.9,410.0L38.4,408.9L38.1,407.6L39.5,400.3L41.1,399.4L50.2,398.6L51.2,396.8L46.6,394.6L42.5,394.3L41.4,393.6L40.4,391.0L43.9,382.7L46.6,382.3L45.6,379.6L46.0,376.0L48.9,371.4L49.1,369.5L43.6,369.7L42.7,369.1L43.1,367.3L46.6,366.7L47.3,365.5L46.3,364.9L41.0,365.5L39.7,364.2L39.7,362.8L42.7,362.1L43.9,360.2L41.8,349.8L36.2,344.5L37.5,341.7L39.3,340.0L35.5,330.7L35.1,325.8L36.2,323.3L34.8,310.2L25.1,302.1L23.7,295.9L22.5,297.7L21.6,292.4L20.1,288.4L20.0,286.7L21.6,285.4L21.6,281.1L19.9,282.8L19.1,285.4L18.2,279.6L14.8,275.7L16.5,272.6L15.8,271.2L11.8,264.4L7.1,261.7L7.6,260.1L7.1,259.0L4.5,257.2L4.6,254.5L-1.5,244.9L-0.5,245.7L0.3,244.1L-5.3,243.4L-6.9,242.4L-7.4,238.3L-5.7,231.6L-6.5,226.5L-5.7,224.7L-8.3,216.3L-9.1,207.1L-8.3,205.3L-11.4,201.8L-13.5,197.3L-14.3,197.3L-15.1,203.1L-12.6,206.6L-12.7,210.1L-15.0,215.3L-12.6,222.5L-15.1,240.0L-13.0,248.3L-16.4,259.1L-16.1,261.7L-14.1,264.3L-16.1,265.0L-18.6,262.5L-19.5,265.1L-19.8,260.5L-21.3,259.3L-18.6,256.3L-20.3,253.6L-18.5,253.1L-17.7,251.6L-18.6,247.6L-16.5,247.6L-16.4,246.7L-19.0,244.9L-22.0,245.0L-24.6,244.1L-22.9,240.5L-26.0,239.1L-27.2,235.2L-26.4,232.0L-23.7,232.6L-24.6,221.5L-23.6,218.2L-27.2,215.3L-29.8,204.3L-29.2,201.4L-25.4,195.6L-24.0,191.5L-23.9,188.6L-25.4,184.1L-23.7,184.1L-24.9,181.0L-25.6,180.7L-26.3,182.3L-32.3,174.4L-38.3,163.2L-40.0,154.6L-37.5,145.4L-40.4,148.6L-41.7,148.0L-43.5,141.0L-47.3,134.0L-48.3,130.2L-46.9,126.9L-50.0,124.6L-51.8,121.3L-51.8,117.7L-49.5,114.5L-44.6,113.1L-38.4,120.3L-34.1,122.4L-39.7,113.7L-37.5,112.8L-41.1,111.1L-41.9,109.6L-40.9,107.5L-43.8,103.0L-45.2,104.8L-44.3,107.5L-46.1,109.0L-47.9,108.1L-49.2,105.9L-49.5,103.1L-50.3,103.1L-50.7,105.4L-49.7,110.8L-53.1,113.5L-54.6,113.6L-56.2,112.6L-57.2,111.0L-60.6,96.3L-63.1,92.5L-59.9,90.2L-55.6,84.2L-52.5,77.0L-51.0,68.9L-49.7,67.0L-41.4,66.2L-34.9,64.4L-32.9,65.9L-28.1,73.9L-24.9,77.2L-20.4,78.2L-13.6,78.0ZM28.6,594.5L26.5,595.7L26.0,598.1L23.2,596.9L22.1,594.6L22.3,592.1L23.4,590.1L26.8,586.6L26.7,583.1L28.1,580.1L29.0,580.4L30.6,587.2L30.2,597.2L29.2,597.5L28.6,594.5ZM-3.1,559.3L-0.2,559.3L0.3,560.2L-0.6,561.5L-6.6,563.6L-7.1,560.0L-9.8,557.6L-10.0,556.6L-8.5,556.0L-2.3,555.7L-3.1,559.3ZM-2.7,488.4L-1.0,488.5L0.8,491.3L2.9,497.2L2.5,498.4L0.3,499.4L0.0,500.6L0.3,504.7L-1.5,512.7L-0.5,515.2L-2.2,518.4L-2.1,525.7L-3.1,529.4L-4.0,528.5L-4.9,531.1L-8.3,526.7L-9.6,528.4L-9.1,530.3L-12.3,531.3L-11.9,532.3L-10.0,532.9L-12.6,533.8L-16.8,532.9L-16.8,530.3L-14.5,530.5L-12.6,528.5L-14.1,522.5L-10.9,520.1L-12.3,518.1L-12.2,515.5L-10.4,514.2L-9.6,511.8L-7.4,510.9L-8.3,505.6L-7.7,502.9L-4.0,495.9L-2.7,488.4ZM29.4,487.9L31.1,489.5L32.1,493.7L31.9,497.6L30.8,501.3L31.1,511.3L28.6,516.6L29.4,523.2L25.1,518.8L20.6,517.3L19.9,516.2L17.7,518.7L16.5,518.4L16.5,513.5L14.9,514.2L14.0,512.6L14.8,510.0L13.8,508.2L11.4,506.0L9.9,502.4L10.3,500.7L13.2,500.2L9.7,496.4L10.0,494.7L14.1,491.8L10.3,491.5L8.8,489.8L11.7,489.2L17.3,490.1L19.1,489.8L18.2,487.9L23.4,488.9L29.4,487.9ZM-30.6,501.1L-29.0,502.4L-29.8,504.7L-26.3,510.0L-30.3,507.3L-33.2,502.9L-35.4,501.6L-36.0,500.6L-34.4,500.2L-33.9,496.5L-34.7,494.1L-36.6,493.3L-36.0,490.0L-37.5,483.0L-35.8,480.0L-35.8,486.3L-31.0,491.5L-30.3,497.5L-27.2,496.8L-28.2,499.5L-30.6,501.1ZM-5.7,480.9L-5.4,475.2L-4.3,474.4L-1.9,476.0L-1.4,477.8L-3.3,481.5L-5.7,480.9ZM-4.0,471.2L-5.8,472.6L-6.7,472.3L-9.1,468.6L-8.0,466.8L-6.0,465.9L-4.9,466.4L-4.0,471.2ZM37.9,466.9L44.9,469.3L44.8,471.2L44.8,470.4L41.4,471.4L34.1,471.5L31.5,472.5L27.0,476.1L24.5,477.0L22.3,476.7L20.0,471.2L19.9,469.4L21.6,465.5L20.7,463.6L17.5,460.7L16.4,449.8L17.4,448.3L21.6,452.8L27.5,461.8L30.2,463.3L32.4,462.6L37.9,466.9ZM-25.4,438.6L-21.0,437.2L-20.3,438.2L-20.3,444.9L-22.9,441.4L-25.0,441.0L-27.2,442.2L-27.9,441.9L-32.6,436.0L-33.2,434.3L-31.7,429.0L-30.1,426.5L-28.4,425.5L-24.0,426.1L-22.6,427.3L-22.1,430.6L-22.9,434.3L-25.2,437.1L-25.4,438.6ZM-29.3,415.7L-31.5,420.2L-36.2,422.8L-37.5,428.1L-39.7,423.3L-44.3,422.8L-43.9,421.1L-41.1,418.4L-41.7,416.6L-44.3,419.3L-45.2,419.3L-45.0,415.6L-36.6,411.1L-34.6,411.4L-37.1,414.7L-36.8,415.5L-35.8,416.6L-32.3,416.6L-31.8,412.7L-29.5,411.6L-28.0,407.8L-26.2,408.4L-24.8,410.7L-24.4,413.5L-26.5,416.4L-29.3,415.7ZM26.8,399.0L26.8,408.2L26.1,410.0L24.5,410.5L22.8,409.9L21.8,408.1L23.6,399.3L25.0,396.7L26.8,399.0ZM-5.7,389.7L-5.4,388.9L-4.7,389.6L-1.3,395.0L-2.1,397.9L-4.9,399.0L-7.9,397.6L-8.7,396.2L-8.3,391.5L-6.1,390.7L-5.7,389.7ZM20.8,387.7L21.3,396.2L19.5,403.9L11.4,416.2L6.2,420.8L0.3,419.3L2.0,415.7L4.5,404.7L2.1,399.7L2.4,398.2L4.2,396.8L4.1,396.0L1.8,391.6L0.3,385.8L0.3,379.6L2.0,374.3L4.1,376.4L10.9,378.2L13.2,380.6L12.3,387.2L15.7,394.6L17.3,387.2L18.9,385.1L20.8,387.7ZM-0.5,323.3L2.3,322.4L4.6,324.7L0.8,329.0L0.1,331.6L1.8,343.7L0.3,345.3L-4.0,326.8L-7.4,316.3L-7.2,308.0L-6.6,306.5L-4.8,306.6L-0.5,323.3Z"/></g>
+<g class="bm-land"><path fill="#FFE3EC" d="M686.8,158.7L671.9,156.0L671.4,150.4L668.4,148.6L665.9,149.4L664.6,152.4L662.0,153.7L656.3,151.4L654.2,151.8L643.7,157.9L642.4,157.7L640.3,156.2L638.5,156.7L632.9,160.2L621.7,160.5L617.9,161.7L617.5,159.0L618.3,155.7L617.9,153.0L619.7,147.8L617.2,141.4L616.4,137.0L616.6,128.8L618.6,126.5L619.3,123.1L621.8,118.4L623.6,110.8L623.5,106.7L626.8,102.2L637.0,94.2L639.9,88.7L641.8,87.3L642.9,85.7L642.5,76.8L643.1,75.5L645.4,73.9L645.8,72.9L644.0,69.3L645.0,66.5L643.7,63.1L643.1,53.2L645.3,46.5L647.5,45.0L650.0,38.6L649.6,37.0L647.7,36.6L646.1,34.3L644.3,33.5L641.8,32.7L641.8,33.5L642.7,33.5L641.2,35.7L639.1,35.7L637.9,34.7L639.3,33.5L638.4,33.2L638.4,32.7L636.5,33.3L633.4,31.8L627.0,34.8L625.5,36.6L624.3,37.0L621.2,35.7L619.6,37.0L619.0,35.5L616.7,34.3L616.1,32.7L614.0,32.9L611.4,29.4L608.5,30.0L606.2,24.9L605.9,22.9L605.1,22.9L605.1,23.8L604.2,23.8L604.2,22.9L602.4,23.8L600.3,22.0L600.0,20.8L601.2,19.1L602.0,15.1L616.4,19.3L620.9,21.2L623.8,23.1L630.4,25.5L632.6,25.1L639.7,22.1L643.9,19.8L645.9,19.7L653.2,21.2L655.0,20.5L657.7,18.3L659.4,17.6L662.2,17.4L667.5,19.4L685.8,20.8L689.6,19.6L693.2,17.6L696.8,17.6L698.4,16.6L699.3,16.8L699.7,18.8L701.2,20.1L705.3,20.4L704.5,22.3L705.7,22.9L709.6,22.0L709.7,23.6L710.8,24.4L718.7,24.7L720.1,25.4L721.0,28.8L722.1,30.3L721.7,32.6L716.6,35.6L713.8,40.5L712.6,41.2L711.7,42.6L709.8,43.4L711.2,47.0L709.7,51.1L709.1,56.0L711.7,59.4L713.3,67.9L714.5,69.3L714.4,73.8L712.6,76.0L711.9,78.8L709.9,80.4L708.9,83.0L705.3,87.6L702.1,95.3L702.2,96.6L703.6,98.6L708.0,100.9L711.5,101.6L712.5,102.3L713.5,104.7L713.5,111.8L720.3,121.5L720.3,125.3L718.2,135.7L720.3,147.3L718.2,159.7L712.7,161.3L709.2,158.4L702.5,158.8L700.3,161.6L698.1,161.9L696.3,161.5L690.5,158.3L686.8,158.7Z"><title>Surin</title></path><path fill="#FFE3EC" d="M576.7,184.4L576.4,188.7L572.0,196.5L571.2,203.0L569.4,205.1L562.2,210.8L559.1,213.9L556.8,218.0L553.6,227.2L550.8,231.1L549.8,236.3L546.9,238.8L534.3,245.0L530.3,248.1L530.1,250.8L532.8,253.4L537.2,256.3L534.9,257.0L526.7,261.3L519.0,261.9L508.9,261.0L504.0,261.6L501.7,264.6L503.8,270.4L504.2,282.0L503.4,289.8L503.6,299.1L502.5,300.8L498.2,303.5L496.5,307.8L494.8,309.0L490.7,308.1L488.1,305.9L486.7,303.1L484.3,302.7L483.0,303.8L480.4,308.3L479.1,309.4L476.7,310.4L472.8,311.1L468.9,313.7L467.4,313.4L466.3,305.9L466.7,300.4L463.6,296.2L459.6,281.9L456.6,278.3L455.7,275.7L455.6,273.0L456.2,271.6L460.8,270.8L461.7,269.2L462.0,266.2L461.6,261.0L460.5,258.5L455.1,259.4L452.2,258.5L451.8,257.5L452.6,254.9L452.5,252.8L449.6,250.0L448.3,247.7L447.0,241.2L450.6,237.1L450.8,230.2L450.2,229.2L448.9,228.6L445.4,227.8L444.5,226.6L444.4,224.9L445.6,221.4L445.5,216.1L446.2,214.2L451.4,210.1L450.8,202.9L451.6,201.0L455.4,198.9L458.5,198.9L460.0,198.4L461.4,197.1L462.6,194.0L468.1,188.8L469.1,181.8L473.3,185.3L481.8,188.2L483.8,187.4L483.9,183.7L486.5,181.8L487.7,182.0L489.9,183.9L490.3,186.1L491.2,187.4L496.5,187.8L498.8,189.2L500.7,189.0L502.3,186.9L507.7,185.6L512.1,186.9L516.2,185.7L519.6,187.6L523.9,187.2L525.1,188.6L525.3,193.0L526.1,194.1L527.2,194.5L531.2,193.8L531.5,192.9L529.6,191.9L530.0,190.2L533.5,189.1L536.8,186.5L538.7,188.1L541.2,186.1L544.1,188.2L551.7,188.7L558.2,187.2L561.8,185.3L564.9,184.4L571.9,185.7L576.7,184.4Z"><title>Sa Kaeo</title></path><path fill="#E2F4E4" d="M589.6,174.9L586.0,177.5L579.3,179.8L577.3,181.8L576.7,184.4L573.0,185.5L571.2,185.7L564.9,184.4L561.8,185.3L558.2,187.2L551.7,188.7L544.1,188.2L541.2,186.1L538.7,188.1L536.8,186.5L535.7,178.5L539.0,171.9L539.6,168.9L537.7,167.4L536.7,160.8L534.5,158.1L535.1,153.4L534.0,149.7L532.4,147.2L526.9,142.7L523.3,134.0L523.1,132.1L525.9,124.6L526.2,121.7L522.8,113.6L522.8,109.1L520.6,106.2L517.8,96.6L517.8,95.9L519.7,97.5L522.9,98.6L525.6,101.8L528.8,102.0L533.5,100.9L534.6,99.1L534.4,98.0L531.8,93.4L531.0,90.3L532.4,85.4L528.3,82.6L527.9,81.3L529.4,81.2L534.0,82.6L540.1,84.9L546.6,84.6L550.9,83.2L556.7,79.0L558.8,73.5L560.4,71.1L560.1,67.5L569.2,57.3L577.3,53.8L580.2,54.6L583.5,53.8L585.4,52.2L585.6,51.1L584.5,49.2L584.3,43.9L584.9,40.0L584.3,37.8L584.3,34.7L584.8,33.5L587.3,32.2L587.7,31.3L586.4,30.1L582.4,29.2L581.6,27.6L584.4,22.0L587.0,22.9L589.8,19.9L587.8,16.7L586.0,16.1L583.1,16.4L582.1,14.9L580.7,14.0L580.2,12.4L577.8,11.4L574.3,11.1L571.8,12.0L568.9,11.5L567.2,11.8L565.1,10.5L562.3,6.8L561.2,-5.1L562.6,-3.6L564.7,-2.7L566.8,-2.9L571.1,-4.7L572.4,-6.8L573.6,-10.8L574.0,-19.3L574.6,-21.0L576.2,-22.7L580.8,-24.3L583.6,-21.1L585.9,-19.6L588.6,-16.2L588.8,-12.8L585.0,-9.8L584.8,-8.6L590.6,-2.3L593.4,-0.4L594.4,3.2L598.6,6.6L598.7,9.0L597.6,10.1L597.5,11.4L598.3,12.5L602.0,15.1L601.2,19.1L600.0,20.8L600.3,22.0L602.4,23.8L604.2,22.9L604.2,23.8L605.1,23.8L605.1,22.9L605.9,22.9L606.2,24.9L608.5,30.0L611.4,29.4L614.0,32.9L616.1,32.7L616.7,34.3L619.0,35.5L619.6,37.0L621.2,35.7L624.3,37.0L625.5,36.6L627.0,34.8L633.4,31.8L636.5,33.3L638.4,32.7L638.4,33.2L639.3,33.5L637.9,34.7L639.1,35.7L641.2,35.7L642.7,33.5L641.8,33.5L641.8,32.7L644.3,33.5L646.1,34.3L647.7,36.6L649.6,37.0L650.0,38.6L647.5,45.0L645.3,46.5L643.1,53.2L643.7,63.1L645.0,66.5L644.0,69.3L645.8,72.9L645.4,73.9L643.1,75.5L642.5,76.8L642.9,85.7L641.8,87.3L639.9,88.7L637.0,94.2L626.8,102.2L623.5,106.7L623.6,110.8L621.8,118.4L619.3,123.1L618.6,126.5L616.6,128.8L616.4,137.0L617.2,141.4L619.7,147.8L617.9,153.0L618.3,155.7L617.5,159.0L617.9,161.7L612.3,163.4L602.3,165.4L598.1,167.6L589.6,174.9Z"><title>Buri Ram</title></path><path fill="#FFE3EC" d="M558.1,457.0L560.9,462.4L562.1,468.7L567.9,479.9L576.7,492.8L578.1,497.9L578.6,505.3L576.7,508.2L575.8,505.6L575.8,495.9L574.2,492.3L565.7,480.9L560.4,476.5L559.6,475.2L559.6,466.9L558.4,461.2L556.2,457.5L541.5,443.1L541.3,442.0L544.2,442.2L542.7,440.1L538.1,436.5L538.2,434.3L532.7,436.7L532.2,439.1L534.0,451.0L535.7,454.9L535.3,456.4L531.7,455.4L531.3,454.8L531.3,451.0L529.0,448.1L521.7,443.5L508.3,438.8L506.3,437.5L504.5,437.3L503.1,439.5L498.8,437.8L498.3,436.7L498.8,434.3L495.7,427.8L495.4,425.5L498.8,426.3L501.9,425.3L504.5,423.2L506.5,421.1L507.5,418.1L506.9,416.6L509.3,412.5L509.4,411.1L506.2,409.0L504.1,405.0L504.1,404.0L505.5,402.2L505.9,399.0L504.5,396.3L503.6,392.0L503.7,391.1L506.5,387.4L508.4,386.5L512.6,390.0L513.5,390.2L514.2,389.5L511.9,385.4L512.7,383.7L512.0,381.9L512.2,375.8L517.7,369.1L521.5,368.4L524.4,366.8L522.8,368.2L522.2,370.2L522.4,375.7L523.3,377.7L525.2,379.2L532.3,381.6L536.1,384.3L545.6,394.0L549.6,396.7L550.6,401.0L552.3,402.8L556.3,405.0L557.8,406.6L558.1,409.2L557.1,411.0L553.8,413.8L552.5,416.3L549.0,439.8L550.0,444.9L558.1,457.0ZM533.0,500.2L536.2,500.0L538.2,503.2L538.5,507.9L536.4,511.7L536.4,512.6L538.2,512.6L536.8,515.5L537.3,518.8L535.6,518.1L534.0,515.2L528.8,513.5L530.5,510.8L528.8,503.8L531.2,494.5L531.9,493.6L533.0,494.2L533.5,495.6L533.7,498.6L533.0,500.2ZM512.5,457.1L517.9,464.8L517.6,466.9L515.9,467.7L513.9,466.4L509.9,462.3L509.5,466.4L506.1,466.7L501.4,465.1L502.3,467.7L498.8,465.9L499.3,463.4L499.3,455.4L498.1,454.1L494.5,445.7L496.3,445.7L495.2,444.1L493.7,443.0L501.4,443.9L505.3,446.8L508.3,450.1L509.8,453.5L510.8,455.2L512.5,456.4L512.5,457.1Z"><title>Trat</title></path><path fill="#E2F4E4" d="M523.8,334.8L523.3,336.1L520.9,338.1L522.4,340.1L520.8,342.1L520.6,343.5L522.4,349.3L522.9,354.2L523.7,356.9L525.5,359.9L525.7,362.7L524.4,366.8L521.5,368.4L517.7,369.1L512.2,375.8L512.0,381.9L512.7,383.7L511.9,385.4L514.0,388.6L514.0,390.0L512.6,390.0L509.2,386.9L508.0,386.5L506.5,387.4L503.7,391.1L503.7,393.5L506.0,399.7L505.5,402.2L504.1,404.0L504.1,405.0L506.2,409.0L509.4,411.1L509.3,412.5L506.9,416.6L506.5,415.5L504.7,414.3L503.1,415.7L504.8,416.8L505.6,418.4L503.8,420.6L501.3,422.0L499.0,421.8L497.9,418.8L498.3,413.1L500.5,407.8L499.7,407.8L498.9,408.8L497.1,412.2L496.3,412.2L495.4,409.1L496.3,406.1L492.8,407.9L491.0,407.7L490.3,406.1L487.6,407.0L488.8,407.7L489.3,408.8L488.6,411.4L489.3,411.4L492.0,409.5L492.8,410.9L493.5,413.4L492.8,414.9L495.4,416.8L496.7,420.8L495.6,423.3L491.0,421.1L483.4,413.1L478.0,409.9L478.2,408.7L473.4,403.0L471.5,399.9L472.3,397.2L473.2,398.6L474.8,399.0L473.2,397.9L475.7,395.5L476.5,393.6L475.6,393.6L474.1,395.4L472.3,394.6L474.8,392.8L468.5,393.0L467.9,391.9L470.6,389.3L463.7,390.1L463.7,391.1L467.9,395.4L470.6,395.5L469.7,398.8L469.6,402.5L463.6,394.0L459.2,393.1L457.6,393.6L457.6,388.1L456.2,384.8L455.7,386.1L454.6,387.0L454.3,387.7L456.0,394.6L449.9,389.5L449.1,387.7L451.6,388.5L451.2,386.3L448.2,385.8L443.6,378.6L441.3,376.2L436.1,373.0L436.9,370.0L437.9,368.6L437.9,366.3L439.9,364.6L441.3,355.0L440.7,348.3L438.4,347.4L436.2,341.6L434.3,340.4L431.7,341.0L430.4,339.7L430.0,336.5L431.4,333.3L430.1,331.3L427.1,330.4L424.2,323.2L423.4,319.5L424.6,314.9L427.2,312.1L430.7,310.9L434.6,310.4L439.4,307.3L442.0,304.6L443.7,303.9L445.8,303.8L447.1,305.9L448.3,305.9L451.0,299.2L456.9,295.8L461.9,291.0L464.3,297.8L466.7,300.4L466.3,305.9L466.7,311.3L467.4,313.4L467.9,313.7L469.3,313.5L472.8,311.1L476.7,310.4L479.1,309.4L480.4,308.3L483.0,303.8L484.3,302.7L486.7,303.1L488.1,305.9L490.7,308.1L493.4,309.0L495.7,308.7L496.5,307.8L498.2,303.5L502.5,300.8L503.6,299.1L510.3,316.6L512.7,320.9L518.4,327.6L521.6,333.4L523.8,334.8Z"><title>Chanthaburi</title></path><path fill="#FFE3EC" d="M28.1,-160.7L26.2,-166.1L23.1,-167.8L22.6,-171.9L21.8,-173.6L17.0,-181.4L12.5,-185.1L10.0,-185.8L3.8,-186.0L1.7,-186.6L-0.0,-188.3L-1.7,-191.2L-0.6,-192.8L-0.7,-193.8L-4.0,-193.8L-4.2,-194.9L-2.6,-197.5L-5.5,-199.4L-9.9,-205.7L-14.2,-208.8L-25.9,-220.1L-25.7,-226.0L-26.4,-227.8L-31.4,-230.3L-33.1,-232.0L-35.2,-237.4L-38.0,-241.7L-38.5,-243.6L-39.7,-244.9L-45.8,-248.3L-49.0,-251.2L-47.0,-253.1L-41.6,-253.3L-40.1,-253.8L-37.9,-255.5L-22.6,-262.7L-12.7,-262.9L-9.2,-266.4L-7.1,-267.7L0.3,-269.4L-0.7,-267.1L-4.0,-264.7L-4.9,-263.3L-5.2,-256.2L-4.5,-253.6L-1.7,-254.0L0.7,-253.0L2.8,-247.1L3.1,-245.1L1.8,-237.0L3.8,-235.6L4.4,-234.4L1.7,-230.9L3.8,-228.2L4.9,-223.8L4.5,-219.0L5.9,-217.5L8.4,-216.4L13.4,-212.5L16.0,-212.1L20.9,-214.5L28.9,-215.6L33.4,-217.6L34.1,-220.4L33.9,-224.2L31.4,-225.8L31.2,-226.6L33.0,-230.7L33.3,-234.3L32.3,-236.2L29.3,-239.3L29.0,-242.4L29.5,-246.1L31.9,-251.3L34.8,-252.7L38.6,-253.4L40.6,-256.3L40.7,-258.7L39.3,-260.9L38.7,-264.6L39.5,-266.1L43.6,-269.7L43.6,-272.3L44.2,-273.6L45.5,-274.7L51.3,-277.1L55.7,-269.6L55.7,-267.9L54.7,-266.5L50.6,-265.3L49.9,-263.7L50.0,-261.9L50.9,-260.6L50.0,-258.3L51.6,-252.4L51.6,-244.4L52.7,-242.3L59.1,-242.1L65.3,-244.3L70.8,-248.7L71.9,-252.4L73.7,-254.8L74.0,-258.9L75.9,-261.6L79.1,-262.7L83.2,-262.4L84.9,-261.6L89.0,-258.4L89.0,-255.4L90.6,-252.4L91.6,-244.6L89.6,-238.2L89.1,-234.2L89.5,-232.4L91.2,-231.5L92.7,-229.3L96.0,-227.5L98.7,-227.3L101.1,-225.7L103.8,-225.7L109.1,-223.0L112.6,-226.6L113.4,-229.3L114.8,-230.8L116.4,-231.5L119.3,-231.3L121.2,-230.4L121.2,-225.8L122.2,-221.6L127.2,-213.4L126.8,-199.4L127.1,-197.3L127.9,-196.1L127.6,-194.3L124.8,-191.7L122.5,-187.6L122.9,-181.7L121.2,-174.4L122.4,-170.9L126.0,-169.7L129.1,-166.3L130.8,-165.5L128.7,-160.6L128.3,-156.0L127.2,-154.0L124.9,-152.3L124.5,-149.6L125.0,-146.0L124.6,-144.4L122.7,-141.8L121.2,-138.0L118.7,-135.4L118.4,-131.5L119.5,-125.4L118.4,-122.2L115.7,-119.8L109.6,-118.9L108.0,-116.3L101.7,-112.5L97.8,-111.9L94.1,-113.1L90.7,-112.6L87.9,-113.1L86.0,-110.6L86.0,-108.6L87.1,-105.4L89.2,-102.5L88.4,-93.0L87.1,-86.0L88.1,-79.6L90.5,-76.5L90.6,-73.3L88.8,-67.6L90.8,-55.3L92.0,-53.4L94.7,-52.5L96.1,-51.0L95.5,-45.5L97.5,-41.9L96.9,-39.0L98.0,-30.6L98.5,-29.1L102.4,-25.9L103.1,-15.8L101.2,-10.6L100.4,-3.3L96.5,3.5L92.9,6.4L93.0,11.2L95.8,14.2L94.4,18.5L94.0,23.9L94.6,26.7L92.6,30.2L89.5,42.9L87.0,47.1L85.0,48.8L79.7,44.6L74.2,41.7L71.9,37.0L66.7,30.6L63.1,24.5L59.4,21.4L58.1,17.1L53.2,13.8L52.7,12.9L54.0,12.1L53.8,10.8L45.5,-2.3L44.7,-3.1L42.7,-3.3L41.1,-4.4L38.5,-5.2L35.6,-7.6L30.5,-9.7L30.0,-14.4L30.4,-17.4L34.3,-30.3L34.6,-32.7L33.6,-41.1L35.5,-48.4L34.6,-51.0L31.3,-55.8L30.9,-57.5L32.0,-58.5L36.3,-57.3L39.9,-58.0L43.0,-61.6L44.8,-66.4L47.4,-67.6L57.3,-66.7L60.4,-64.6L62.3,-64.8L63.4,-65.6L66.9,-70.0L67.1,-75.7L67.9,-78.2L73.0,-84.7L75.4,-98.1L75.3,-100.5L73.2,-103.6L67.9,-107.8L67.4,-112.1L64.8,-110.0L63.8,-107.9L62.8,-102.6L61.1,-99.5L53.5,-93.6L49.8,-88.0L47.8,-86.6L45.4,-88.3L42.8,-99.4L41.2,-103.2L41.0,-104.6L42.5,-108.6L41.5,-110.9L33.0,-122.4L33.5,-126.3L32.7,-128.7L30.9,-131.1L26.5,-134.1L24.8,-136.5L23.3,-141.5L19.6,-144.4L19.3,-146.6L20.3,-149.1L21.8,-151.2L25.7,-153.0L27.2,-154.6L27.6,-156.0L24.3,-158.2L23.8,-159.8L24.1,-161.6L25.1,-162.2L28.1,-160.7Z"><title>Tak</title></path><path fill="#E2F4E4" d="M29.2,35.2L32.5,31.4L33.6,25.4L33.4,19.0L30.5,-0.2L30.5,-9.7L35.6,-7.6L39.3,-4.8L41.1,-4.4L42.7,-3.3L44.7,-3.1L53.8,10.8L54.0,12.1L52.7,12.9L53.2,13.8L58.1,17.1L59.4,21.4L63.1,24.5L66.7,30.6L71.9,37.0L74.2,41.7L79.7,44.6L85.0,48.8L86.6,59.2L86.4,64.0L87.2,66.6L94.6,72.8L96.1,75.3L97.5,75.6L104.3,74.2L107.8,75.8L110.9,75.5L117.2,77.9L118.6,78.1L122.5,77.1L124.6,80.3L125.6,83.5L126.2,88.4L125.8,90.9L122.8,94.4L123.7,97.9L124.7,98.7L126.5,98.2L127.9,98.5L133.0,105.1L135.4,107.2L139.3,106.0L142.2,107.3L143.1,110.0L142.0,112.8L145.2,117.0L150.6,115.6L152.0,113.4L153.6,112.1L155.1,106.5L154.9,104.5L155.6,103.3L157.8,104.2L162.5,104.7L167.1,102.4L170.3,102.6L172.0,103.3L179.5,112.2L183.4,115.4L185.6,118.5L190.0,120.6L193.0,121.1L195.9,123.6L195.5,125.6L193.5,127.0L193.3,127.8L194.2,129.3L198.5,132.7L198.8,133.5L198.1,134.8L190.6,139.0L189.8,162.3L190.5,167.3L190.3,173.8L188.8,178.6L183.1,184.3L184.1,192.4L184.6,193.1L186.3,193.3L187.9,194.9L188.9,197.7L188.5,201.1L189.1,202.7L190.8,205.3L193.6,206.5L194.7,209.5L197.1,211.2L197.5,212.8L195.7,214.4L192.3,222.7L189.8,224.4L188.4,228.4L187.1,229.4L182.9,229.6L173.7,228.5L171.7,228.8L164.7,231.7L160.1,232.6L156.0,236.6L154.6,237.1L149.9,235.2L147.7,232.1L146.6,231.5L143.5,233.7L130.3,237.8L127.9,237.3L124.7,235.4L122.1,236.5L118.9,235.6L116.6,238.0L112.9,240.3L105.8,241.2L101.1,236.1L100.1,234.1L98.7,227.9L98.8,222.3L97.5,220.9L95.1,220.0L93.5,216.6L89.5,213.6L88.4,212.1L85.6,206.8L81.6,202.0L80.7,196.8L79.4,194.7L77.2,193.3L71.5,191.2L56.7,179.9L53.9,176.9L50.9,170.9L46.3,171.2L43.0,167.6L39.3,166.4L36.6,164.3L31.0,157.1L22.3,139.3L19.1,137.8L16.4,130.1L14.8,127.6L-0.3,112.9L-7.1,102.2L-8.1,99.7L-7.6,97.2L-9.7,94.6L-9.8,87.2L-10.6,84.4L-13.6,78.6L-13.6,77.0L-12.0,73.3L-12.6,70.5L-16.5,66.5L-17.4,63.4L-16.9,60.9L-14.3,56.5L-13.7,54.1L-15.3,50.3L-15.4,48.8L-10.6,49.0L-8.4,48.0L-6.5,46.1L-2.1,39.8L-0.6,39.5L4.5,40.8L10.7,44.2L11.5,43.9L11.8,41.1L9.7,39.0L10.5,37.2L12.4,35.8L12.1,31.4L17.4,29.9L21.8,27.8L26.9,30.4L28.8,32.4L29.2,35.2Z"><title>Kanchanaburi</title></path><path fill="#FFE3EC" d="M145.8,446.5L144.0,446.1L143.6,443.8L146.5,440.4L146.7,438.6L144.4,433.4L144.3,428.3L140.8,423.0L140.1,413.4L139.3,410.6L136.4,405.5L135.9,402.8L138.0,397.4L138.1,389.8L146.8,387.4L152.0,387.4L159.4,389.2L162.0,391.8L165.6,392.6L166.9,391.0L171.8,388.6L176.9,387.6L182.3,388.1L190.7,382.1L202.4,382.0L207.6,380.9L210.1,393.2L209.6,401.4L210.1,404.3L213.9,413.4L214.0,415.3L213.0,417.2L210.2,426.7L210.3,427.9L213.7,431.7L214.2,433.0L215.0,437.9L214.5,439.5L211.0,443.0L210.2,447.6L206.9,453.4L194.4,466.8L191.4,472.4L190.4,478.3L192.1,482.8L191.7,483.5L189.1,484.3L188.7,485.2L189.6,491.5L188.9,494.4L189.6,495.9L185.1,496.5L181.5,500.0L171.3,516.9L170.2,520.4L167.7,524.0L166.5,532.0L161.6,544.4L158.7,548.3L158.3,555.7L158.7,558.4L160.8,563.7L160.8,566.1L158.7,568.2L157.8,565.6L155.8,565.7L153.6,567.2L151.0,570.4L149.5,574.1L149.7,579.3L151.9,586.2L150.4,591.6L145.1,592.6L143.3,594.3L140.4,595.4L138.9,596.8L129.9,596.8L126.3,595.7L120.7,596.6L115.8,595.2L106.8,590.6L106.0,589.6L105.1,586.1L106.5,585.1L109.4,580.0L113.3,578.4L114.1,577.3L117.9,565.8L119.5,562.9L123.6,558.0L127.0,550.0L133.0,542.8L134.7,535.2L135.9,533.2L141.0,527.4L142.2,524.8L142.6,522.7L142.6,514.4L143.7,512.3L145.8,511.0L153.8,510.1L155.3,508.9L163.4,497.9L164.4,494.9L166.3,486.4L166.0,485.1L163.9,484.5L161.5,483.0L157.7,479.0L156.8,476.2L157.2,473.5L159.1,468.4L159.3,465.7L158.4,463.5L156.7,462.0L154.3,461.2L152.3,459.4L152.7,455.8L155.7,445.7L155.2,444.6L152.8,444.2L145.8,446.5Z"><title>Prachuap Khiri Khan</title></path><path fill="#E2F4E4" d="M138.1,389.8L136.7,386.9L130.6,383.4L126.2,378.7L122.1,377.1L120.8,372.4L119.5,371.5L115.6,370.5L114.3,368.3L113.8,360.9L109.4,355.6L108.6,350.3L106.6,345.3L106.8,343.6L108.4,339.8L108.1,337.3L106.4,334.8L99.2,329.2L98.5,326.7L100.3,320.7L100.7,317.5L100.3,312.1L101.8,310.0L104.2,309.1L109.1,308.5L110.8,307.0L119.3,311.5L121.2,315.3L122.3,315.8L127.5,312.8L128.0,311.6L127.9,308.0L130.8,304.9L133.2,305.4L135.1,307.0L137.8,307.7L139.5,309.2L144.8,311.0L147.3,309.9L150.5,311.1L153.7,308.7L160.4,309.5L167.0,308.5L169.4,307.5L170.6,306.4L171.1,299.2L175.5,294.1L183.2,291.4L194.8,292.0L195.5,294.5L194.8,299.5L196.7,302.4L199.4,303.4L200.4,298.9L203.6,299.0L205.8,297.1L207.6,296.7L208.4,300.9L212.3,306.1L221.7,314.5L223.5,321.8L225.5,326.8L225.2,329.0L219.1,338.5L215.5,353.8L211.0,361.1L208.1,371.4L207.6,380.9L202.4,382.0L190.7,382.1L182.3,388.1L176.9,387.6L171.8,388.6L166.9,391.0L165.6,392.6L162.0,391.8L159.4,389.2L152.0,387.4L146.8,387.4L138.1,389.8Z"><title>Phetchaburi</title></path><path fill="#FFE3EC" d="M110.8,307.0L111.3,304.7L109.1,295.5L110.9,291.9L110.5,288.2L111.0,279.3L106.5,259.4L106.2,248.6L106.6,242.3L105.8,241.2L112.9,240.3L116.6,238.0L118.9,235.6L122.1,236.5L124.7,235.4L127.9,237.3L130.3,237.8L143.5,233.7L146.6,231.5L147.7,232.1L149.9,235.2L154.6,237.1L156.0,236.6L160.1,232.6L164.7,231.7L171.7,228.8L173.7,228.5L182.9,229.6L187.1,229.4L188.4,228.4L190.1,223.9L192.3,222.7L195.7,214.4L197.5,212.8L203.9,214.3L206.0,216.4L206.4,221.2L207.7,225.7L206.4,231.4L206.9,234.7L206.0,238.4L206.5,239.5L208.3,241.9L209.6,242.5L211.2,242.1L214.5,239.4L215.7,239.0L217.3,241.4L217.5,244.6L221.5,245.3L222.3,246.3L221.9,253.2L218.7,257.2L217.2,269.3L213.7,269.1L209.3,271.0L203.3,268.5L202.3,268.7L199.2,275.1L199.0,280.2L196.6,285.3L194.8,292.0L183.2,291.4L175.5,294.1L171.1,299.2L170.9,305.5L169.4,307.5L167.0,308.5L160.4,309.5L153.7,308.7L150.5,311.1L147.3,309.9L144.8,311.0L139.5,309.2L137.8,307.7L135.5,307.2L133.2,305.4L131.3,304.8L128.1,307.6L127.5,312.8L122.3,315.8L121.2,315.3L119.3,311.5L110.8,307.0Z"><title>Ratchaburi</title></path><path fill="#FFF1C9" d="M223.6,279.4L219.1,281.1L217.4,282.4L215.2,287.0L212.7,286.4L214.5,287.1L214.2,289.4L213.3,291.4L211.7,292.8L207.8,294.3L207.6,296.7L205.8,297.1L204.0,298.9L200.4,298.9L199.4,303.4L196.7,302.4L195.8,300.8L194.8,299.5L195.5,294.5L194.8,292.0L196.6,285.3L199.0,280.2L199.2,275.1L202.3,268.7L203.3,268.5L209.3,271.0L213.7,269.1L217.2,269.3L222.1,275.7L223.6,279.4Z"><title>Samut Songkhram</title></path><path fill="#E2F4E4" d="M262.6,271.1L257.1,271.2L254.6,272.2L248.7,269.3L246.9,267.8L245.6,270.2L242.1,272.8L231.3,277.1L226.6,278.1L223.6,279.4L222.1,275.7L217.2,269.3L218.7,257.2L221.9,253.2L222.3,246.3L226.4,247.0L236.3,247.4L239.7,249.7L244.9,249.2L245.9,248.5L245.5,247.1L246.8,245.3L246.6,243.7L252.7,241.4L254.0,240.3L256.1,250.7L256.7,251.9L258.6,252.4L260.6,254.4L263.1,262.2L263.9,268.8L262.6,271.1Z"><title>Samut Sakhon</title></path><path fill="#FFE3EC" d="M270.9,270.5L266.2,271.3L262.6,271.1L263.9,268.4L263.1,262.2L261.2,255.5L259.1,252.8L256.7,251.9L255.7,249.7L253.4,237.6L254.5,231.5L266.4,231.3L272.2,232.0L273.5,231.6L274.7,228.3L277.7,225.2L281.4,212.3L297.3,216.2L317.1,213.8L325.6,212.1L324.6,225.3L325.2,226.5L327.7,228.6L327.9,229.6L324.2,234.2L318.7,243.0L319.4,245.2L315.9,245.3L310.2,242.7L301.7,242.7L300.1,244.2L298.2,249.3L295.5,250.2L287.3,249.5L285.7,248.5L287.1,246.1L287.0,244.6L285.0,243.0L282.7,243.7L281.1,246.6L279.7,246.6L277.4,249.0L274.9,248.6L275.1,251.9L274.2,257.1L272.7,258.5L270.4,259.2L270.0,261.4L270.9,270.5Z"><title>Bangkok</title></path><path fill="#E2F4E4" d="M317.6,272.7L314.2,271.7L308.9,271.0L306.2,269.9L297.5,268.7L293.7,267.3L288.8,263.8L286.5,262.9L286.2,261.9L287.1,259.3L287.2,255.5L285.9,258.1L285.4,260.1L285.5,265.6L284.5,267.4L282.0,268.5L270.9,270.5L270.0,261.4L270.4,259.2L272.7,258.5L274.2,257.1L275.1,251.9L275.1,248.4L277.4,249.0L279.7,246.6L281.1,246.6L282.7,243.7L285.0,243.0L287.3,245.3L285.7,248.5L287.3,249.5L295.5,250.2L297.3,250.0L298.5,248.9L300.6,243.3L301.7,242.7L307.0,242.4L310.2,242.7L315.9,245.3L319.4,245.2L330.0,249.6L330.8,253.2L327.4,257.6L325.3,258.6L325.0,262.0L322.0,263.3L320.7,266.3L320.0,270.0L317.6,272.7Z"><title>Samut Prakan</title></path><path fill="#FFF1C9" d="M335.1,274.7L337.0,271.3L337.0,270.4L332.9,273.6L331.3,274.0L323.6,274.0L317.6,272.7L320.0,270.0L320.7,266.3L322.0,263.3L325.0,262.0L325.3,258.6L327.4,257.6L330.9,252.8L330.0,249.6L319.4,245.2L318.6,243.7L324.2,234.2L327.9,229.6L327.7,228.6L325.2,226.5L324.6,225.3L325.7,211.4L330.6,209.7L345.7,208.9L355.1,209.7L357.1,215.6L355.4,221.4L356.7,223.4L356.6,224.8L358.1,224.7L360.1,223.1L363.9,221.7L367.7,223.0L370.5,222.2L379.5,223.8L381.8,223.6L406.1,235.1L407.5,237.5L408.2,237.8L409.9,234.3L411.2,233.6L419.7,236.9L421.8,237.4L423.7,237.0L424.6,236.3L424.7,233.7L425.4,232.5L432.0,231.2L436.0,234.9L437.8,239.4L439.7,241.4L441.5,242.0L447.0,241.2L448.8,248.9L452.5,252.8L452.1,256.7L452.2,258.5L453.4,259.2L456.3,259.4L460.0,258.5L460.9,258.8L461.2,259.6L462.0,264.2L461.7,269.2L460.8,270.8L456.2,271.6L455.6,273.9L456.6,278.3L459.6,281.9L461.9,291.0L456.9,295.8L451.0,299.2L448.3,305.9L447.1,305.9L445.8,303.8L443.7,303.9L442.0,304.6L439.4,307.3L434.6,310.4L430.7,310.9L427.2,312.1L426.9,309.7L422.5,302.0L417.0,296.4L413.2,294.9L407.6,291.1L405.8,287.1L402.6,282.6L398.7,280.6L395.8,281.7L394.2,281.4L390.5,278.8L387.9,275.2L384.4,275.6L383.1,275.3L377.1,270.1L374.9,266.1L372.1,263.3L362.4,261.0L356.7,258.4L355.1,258.3L352.1,261.8L350.2,262.0L348.1,263.5L344.2,263.9L343.7,265.0L344.3,267.3L344.1,268.6L342.4,270.5L340.8,271.3L339.8,273.2L337.5,274.4L335.1,274.7Z"><title>Chachoengsao</title></path><path fill="#FFE3EC" d="M334.8,380.5L334.3,385.8L328.3,383.1L328.3,382.3L330.1,380.9L329.3,378.8L327.2,377.5L324.9,378.8L323.6,378.0L319.7,378.8L320.9,377.8L321.4,376.1L318.9,376.1L320.6,372.6L317.2,371.7L319.4,366.0L321.0,363.6L324.0,364.7L327.0,360.7L327.5,358.5L326.7,354.7L321.1,346.2L320.6,344.5L321.0,343.3L324.0,340.8L324.9,336.4L326.0,337.1L328.5,335.1L329.2,333.8L329.1,330.8L326.4,326.8L325.2,323.8L322.9,322.9L322.3,321.5L324.9,318.0L330.6,308.3L330.6,305.9L329.2,301.3L326.6,296.4L329.0,290.7L333.2,289.4L335.2,288.0L335.9,283.3L335.6,280.5L333.9,278.0L335.1,274.7L337.5,274.4L339.8,273.2L340.8,271.3L342.4,270.5L344.1,268.6L344.3,267.3L343.7,265.0L344.2,263.9L348.1,263.5L350.2,262.0L352.1,261.8L354.4,258.8L356.1,258.3L362.4,261.0L372.1,263.3L374.9,266.1L377.1,270.1L383.1,275.3L384.4,275.6L387.9,275.2L390.5,278.8L394.2,281.4L395.8,281.7L398.7,280.6L403.3,283.3L407.6,291.1L413.2,294.9L417.0,296.4L422.5,302.0L426.9,309.7L427.2,312.1L424.6,314.9L424.1,316.9L420.0,315.1L417.2,314.8L414.9,316.3L411.2,317.5L410.0,318.5L409.5,322.0L408.1,323.8L404.6,325.9L400.0,325.3L397.7,328.3L395.4,330.1L391.5,329.2L388.2,331.5L386.7,332.0L385.6,331.3L382.6,327.9L378.9,325.5L376.0,325.2L372.6,328.0L371.7,328.1L364.5,325.3L360.3,324.3L359.0,324.9L357.7,326.4L357.8,327.8L359.6,330.1L358.7,331.4L357.0,331.9L349.8,330.7L348.3,331.3L346.2,333.3L346.0,334.1L347.6,335.4L348.8,337.2L349.1,338.5L348.7,341.5L349.5,344.1L349.4,345.6L348.2,347.8L345.0,350.6L344.7,354.1L343.8,355.6L337.8,360.7L337.4,365.9L336.0,368.8L334.2,376.6L334.8,380.5Z"><title>Chon Buri</title></path><path fill="#FFF1C9" d="M436.1,373.0L433.3,372.0L425.6,371.7L423.3,372.4L420.0,377.9L417.8,379.0L410.1,378.8L409.2,379.2L408.9,381.4L408.3,381.6L404.9,381.5L401.1,380.6L395.6,381.4L392.9,382.4L391.7,383.6L391.1,386.0L389.8,386.1L386.6,384.1L377.9,380.2L368.6,377.9L348.5,375.2L345.8,375.8L341.5,378.3L336.1,379.2L334.4,380.3L334.2,376.6L336.0,368.8L337.4,365.9L337.8,360.7L343.8,355.6L344.7,354.1L345.0,350.6L348.2,347.8L349.4,345.6L349.5,344.1L348.7,341.5L349.1,338.5L348.8,337.2L347.6,335.4L346.0,334.1L346.2,333.3L348.3,331.3L349.8,330.7L357.0,331.9L358.7,331.4L359.6,330.1L358.0,328.2L357.6,326.9L358.1,325.7L359.7,324.4L364.5,325.3L371.7,328.1L373.2,327.5L376.0,325.2L378.9,325.5L382.6,327.9L385.6,331.3L387.4,331.9L391.5,329.2L394.8,330.2L396.1,329.8L400.3,325.1L404.6,325.9L406.3,325.1L409.3,322.5L410.4,317.9L414.9,316.3L416.6,315.0L420.0,315.1L424.1,316.9L423.4,320.0L426.7,329.7L427.4,330.6L430.1,331.3L431.4,333.3L430.0,336.5L430.4,339.7L431.7,341.0L434.3,340.4L436.2,341.6L438.4,347.4L440.7,348.3L441.3,355.0L439.9,364.6L437.9,366.3L437.9,368.6L436.9,370.0L436.1,373.0Z"><title>Rayong</title></path><path fill="#FFE3EC" d="M460.7,-159.8L464.7,-162.1L468.2,-162.7L471.4,-165.2L480.0,-164.1L482.8,-162.6L486.9,-161.6L488.2,-161.9L493.2,-165.7L495.4,-165.9L496.9,-165.7L499.4,-164.3L501.3,-161.6L502.6,-160.9L504.6,-156.8L509.4,-155.4L513.8,-153.3L516.3,-152.8L521.4,-154.0L525.8,-153.5L529.3,-152.3L532.4,-149.3L538.7,-150.3L541.0,-158.2L548.0,-174.9L549.1,-184.8L552.1,-189.5L552.9,-188.7L553.8,-185.4L560.9,-181.7L566.5,-176.8L566.6,-176.0L565.3,-174.5L566.3,-172.2L566.1,-168.5L566.6,-164.0L567.2,-163.7L573.6,-164.2L576.4,-162.8L579.0,-160.0L581.9,-159.5L601.6,-168.7L604.3,-165.2L603.0,-161.2L603.5,-157.6L604.8,-157.8L606.4,-159.1L607.2,-162.1L608.2,-162.4L610.1,-161.8L611.5,-158.7L611.6,-154.9L610.7,-151.5L608.6,-148.4L607.9,-130.6L606.4,-128.6L604.0,-126.8L600.7,-119.8L597.6,-116.3L595.7,-115.3L592.9,-114.9L589.7,-111.5L580.1,-108.7L581.9,-105.7L581.7,-103.2L580.1,-100.4L577.6,-97.4L574.9,-91.8L570.5,-88.4L569.1,-86.7L568.9,-79.0L570.6,-72.9L571.0,-65.4L569.9,-62.6L570.0,-60.8L571.5,-57.3L574.3,-55.6L576.4,-51.0L576.6,-47.7L575.9,-42.4L579.7,-34.0L579.6,-28.4L580.8,-24.3L576.2,-22.7L574.6,-21.0L574.0,-19.3L573.6,-10.8L572.4,-6.8L571.1,-4.7L566.8,-2.9L563.3,-3.1L557.6,-7.8L553.0,-9.0L550.5,-12.5L550.0,-14.9L549.1,-15.4L545.7,-14.0L538.9,-15.1L537.0,-13.5L526.0,-15.0L520.2,-13.9L516.1,-12.2L515.1,-12.5L512.5,-15.1L509.2,-16.9L508.8,-17.4L508.7,-21.0L506.1,-23.2L504.0,-26.5L504.6,-27.9L504.0,-32.1L504.4,-33.9L506.1,-36.0L509.0,-41.4L508.7,-42.2L510.3,-48.4L511.6,-49.3L510.8,-50.7L509.0,-51.2L505.8,-53.9L497.5,-57.7L495.9,-60.8L499.1,-63.2L503.7,-68.1L506.4,-73.2L513.0,-82.1L519.0,-100.7L519.1,-103.7L515.0,-106.3L513.9,-109.6L513.2,-110.4L511.7,-110.1L511.5,-108.3L509.1,-107.7L506.2,-109.5L502.9,-108.8L500.1,-109.3L498.5,-110.6L494.9,-111.9L492.6,-114.3L488.0,-116.3L484.8,-115.7L472.1,-116.2L469.3,-118.0L465.0,-123.5L460.8,-125.6L458.7,-130.7L457.0,-132.8L451.3,-133.0L444.0,-136.0L441.9,-136.3L440.4,-136.1L436.1,-134.0L431.4,-137.6L434.3,-141.4L435.9,-144.6L436.3,-149.9L446.4,-153.8L457.0,-160.4L460.7,-159.8Z"><title>Khon Kaen</title></path><path fill="#FFE3EC" d="M238.9,82.9L236.7,87.1L238.1,89.1L240.4,88.7L240.6,89.5L240.4,96.7L239.0,99.6L239.2,100.9L241.5,104.1L239.5,106.3L238.8,108.8L240.0,114.3L239.5,117.6L240.6,121.5L240.0,124.2L238.1,127.0L239.6,129.6L237.3,132.1L237.1,133.2L239.6,139.9L242.8,142.9L244.3,143.1L244.8,148.6L247.5,153.0L247.7,156.4L246.8,163.7L244.3,173.5L244.4,176.5L243.6,178.2L240.1,182.9L233.9,185.8L232.3,187.5L228.6,187.2L215.4,187.5L210.8,186.9L203.4,191.5L197.4,197.2L195.5,197.6L188.9,197.7L187.9,194.9L186.3,193.3L184.2,192.8L183.1,184.3L188.8,178.6L190.5,172.1L189.8,162.3L190.6,139.0L197.6,135.2L198.7,134.1L198.7,133.1L194.2,129.3L193.3,127.8L193.5,127.0L195.5,125.6L195.9,123.6L193.0,121.1L190.0,120.6L185.6,118.5L183.4,115.4L179.5,112.2L172.0,103.3L170.3,102.6L167.1,102.4L165.7,102.8L163.4,104.5L157.8,104.2L155.6,103.3L154.9,104.5L155.1,106.5L153.6,112.1L152.0,113.4L150.6,115.6L145.2,117.0L142.0,112.8L143.1,110.0L142.2,107.3L139.3,106.0L135.4,107.2L133.0,105.1L127.9,98.5L124.0,98.4L123.2,96.8L122.8,94.4L125.8,90.9L126.2,88.4L125.6,83.5L124.6,80.3L123.8,78.6L122.4,77.4L124.4,70.4L127.3,67.9L128.7,68.2L131.2,70.6L138.5,72.7L139.8,77.0L152.1,79.6L155.3,81.7L164.5,84.3L166.7,83.9L166.0,79.0L168.9,78.0L178.2,82.1L187.2,83.3L196.4,87.2L205.9,88.1L208.7,88.8L211.8,88.2L217.4,85.9L218.1,85.2L217.6,82.9L218.1,81.9L227.1,84.0L230.0,86.9L232.0,86.5L238.9,82.9Z"><title>Suphan Buri</title></path><path fill="#E2F4E4" d="M238.7,89.1L237.5,88.7L236.7,87.1L238.9,82.9L245.9,83.1L247.9,81.5L250.7,77.2L249.5,75.0L246.3,74.0L245.9,72.9L247.2,70.1L249.6,69.4L250.4,67.0L248.6,67.8L246.5,62.7L248.8,61.2L249.5,59.5L249.3,56.8L251.2,55.6L255.1,56.5L256.0,57.3L256.8,59.3L256.4,61.4L258.1,64.9L267.9,69.4L267.1,71.3L268.6,73.0L269.7,78.8L270.0,80.2L269.6,82.4L266.7,86.6L269.0,94.2L271.5,96.8L272.1,98.2L273.1,105.6L274.1,109.1L272.1,112.5L266.5,111.8L264.5,109.2L261.1,109.2L256.8,106.4L254.7,103.6L250.4,104.6L246.0,103.3L241.5,104.1L239.2,100.9L239.0,99.6L240.4,96.7L240.6,89.5L240.4,88.7L238.7,89.1Z"><title>Sing Buri</title></path><path fill="#FFF1C9" d="M230.0,86.9L227.1,84.0L219.1,81.9L217.7,82.5L218.1,85.2L217.4,85.9L211.8,88.2L208.7,88.8L205.9,88.1L196.4,87.2L187.2,83.3L178.2,82.1L178.8,80.6L178.0,78.5L178.1,77.2L179.7,75.1L181.6,74.5L184.0,72.3L186.2,71.0L188.4,67.1L188.6,65.8L187.0,64.4L181.8,56.1L179.5,51.3L178.7,45.6L177.3,42.3L177.3,40.7L178.0,39.5L182.6,36.3L195.3,38.4L198.5,40.5L204.2,39.3L210.9,39.4L214.5,39.8L217.7,40.9L219.3,43.3L221.8,42.3L220.0,42.2L219.8,40.2L221.5,36.4L221.4,33.4L219.2,29.8L216.6,27.8L216.2,26.3L217.2,25.6L219.4,25.8L219.7,23.2L227.2,22.9L233.6,29.1L238.9,31.6L241.4,34.1L245.3,40.0L251.2,55.6L249.3,56.8L249.5,59.5L248.8,61.2L246.5,62.7L248.6,67.8L250.4,67.0L249.6,69.4L246.8,70.6L245.9,73.6L249.5,75.0L250.7,77.2L247.9,81.5L245.9,83.1L238.9,82.9L232.0,86.5L230.0,86.9Z"><title>Chai Nat</title></path><path fill="#FFF1C9" d="M244.3,143.1L242.8,142.9L239.6,139.9L237.1,133.2L237.3,132.1L239.6,129.6L238.1,127.0L240.0,124.2L240.6,121.5L239.5,117.6L240.0,114.3L238.8,108.8L239.5,106.3L241.5,104.1L246.0,103.3L250.4,104.6L254.7,103.6L256.8,106.4L261.1,109.2L262.7,109.4L264.6,109.2L266.5,111.8L272.1,112.5L273.4,114.7L277.0,117.5L276.6,124.3L275.0,131.2L274.1,132.7L274.8,135.6L274.9,147.1L271.5,149.1L268.5,148.2L266.0,148.4L265.5,147.2L265.4,141.4L264.3,140.2L261.5,140.6L258.9,141.9L254.1,142.5L250.1,141.7L247.3,142.8L244.3,143.1Z"><title>Ang Thong</title></path><path fill="#FFE3EC" d="M361.6,108.5L363.4,130.8L361.4,134.2L360.9,136.0L361.3,136.9L363.6,138.6L365.1,141.1L367.9,144.0L366.7,145.3L366.0,149.2L364.3,151.5L363.1,154.7L363.3,157.6L360.1,160.5L357.7,160.9L355.9,158.6L352.7,156.5L348.1,156.4L344.9,153.2L344.5,157.4L342.2,160.9L342.5,162.2L342.1,163.7L340.8,165.3L336.0,168.7L333.6,167.0L331.1,167.7L331.4,171.5L330.7,173.5L326.6,178.1L324.4,174.0L322.1,172.2L320.7,172.1L315.3,174.6L315.0,165.6L313.6,164.4L310.5,164.4L309.9,163.7L311.5,157.3L311.2,156.1L307.9,152.5L307.4,148.1L308.4,143.4L306.9,139.3L308.5,138.0L308.9,134.1L307.8,132.9L300.3,132.5L293.7,135.1L289.4,135.3L287.1,134.1L286.1,131.6L284.3,129.9L284.4,128.0L288.8,116.7L289.8,115.5L302.5,107.7L306.8,100.5L307.0,98.2L309.7,97.0L310.2,94.4L310.9,93.6L313.4,93.5L316.2,92.2L317.9,92.3L318.0,94.7L320.6,96.9L321.4,98.4L321.9,105.0L322.7,105.9L325.3,106.8L327.1,109.3L331.8,109.3L335.7,105.0L336.3,101.1L342.4,97.4L348.1,96.0L354.1,97.8L356.2,102.2L359.2,103.3L360.4,104.5L361.6,108.5Z"><title>Saraburi</title></path><path fill="#FFF1C9" d="M367.9,144.0L365.1,141.1L363.6,138.6L361.3,136.9L360.9,136.0L361.4,134.2L363.4,130.8L361.6,108.5L364.8,109.2L366.7,110.5L372.3,111.8L373.2,110.4L374.8,109.9L376.3,108.4L379.0,107.0L381.1,102.0L384.7,100.4L386.2,99.0L393.0,95.2L394.3,93.0L394.1,88.2L385.7,70.1L384.4,68.9L382.4,68.9L379.6,68.1L376.4,66.0L372.6,65.8L372.3,46.3L374.8,41.7L375.1,38.3L383.7,42.6L387.8,49.3L390.8,49.4L408.2,44.5L412.5,41.8L417.3,37.2L423.2,35.5L428.2,33.4L437.8,28.2L442.1,27.1L447.4,28.3L448.1,27.6L450.1,21.8L451.4,20.1L458.0,16.2L458.1,14.8L456.5,9.5L457.0,6.1L457.8,4.5L463.0,0.9L467.5,-7.5L472.2,-4.1L473.1,-2.5L477.4,-6.1L479.1,-9.6L480.8,-10.6L480.8,-13.1L482.8,-16.2L482.5,-17.6L484.5,-18.7L488.0,-18.6L489.4,-19.4L488.6,-20.2L489.3,-20.3L489.4,-21.1L490.3,-19.4L492.6,-19.6L497.1,-23.7L502.9,-26.6L504.0,-26.5L506.1,-23.2L508.7,-21.0L508.8,-17.4L509.2,-16.9L512.5,-15.1L515.5,-12.3L517.8,-12.6L520.2,-13.9L526.0,-15.0L537.0,-13.5L538.9,-15.1L545.7,-14.0L549.5,-15.2L550.5,-12.5L552.6,-9.3L553.7,-8.6L557.6,-7.8L561.2,-5.1L562.3,6.8L566.0,11.4L570.8,12.0L573.9,11.1L577.3,11.2L580.2,12.4L580.7,14.0L582.1,14.9L583.1,16.4L586.0,16.1L588.0,17.0L589.8,19.9L589.5,20.6L587.7,21.8L587.0,22.9L584.4,22.0L581.6,27.6L582.4,29.2L586.4,30.1L587.7,31.3L587.3,32.2L584.8,33.5L584.3,34.7L584.3,37.8L584.9,40.0L584.3,43.9L584.5,49.2L585.6,51.1L585.4,52.2L583.5,53.8L580.2,54.6L577.3,53.8L569.9,56.9L566.2,60.3L560.1,67.5L560.4,71.1L558.8,73.5L556.7,79.0L550.9,83.2L546.6,84.6L540.1,84.9L534.0,82.6L529.4,81.2L527.9,81.3L528.3,82.6L532.4,85.4L531.0,90.3L531.8,93.4L534.4,98.0L534.6,99.1L533.5,100.9L528.8,102.0L525.6,101.8L522.9,98.6L519.7,97.5L517.8,95.9L520.6,106.2L522.8,109.1L522.8,113.6L526.2,121.7L525.9,124.6L523.1,132.1L523.3,134.0L526.9,142.7L532.4,147.2L534.0,149.7L535.1,153.4L534.5,158.1L536.7,160.8L537.7,167.4L539.6,168.9L539.0,171.9L535.7,178.5L536.8,186.5L533.5,189.1L530.0,190.2L529.6,191.9L531.6,193.2L530.8,194.0L527.8,194.5L526.1,194.1L525.1,192.6L525.1,188.6L524.4,187.4L519.6,187.6L516.2,185.7L512.8,186.9L507.7,185.6L502.3,186.9L500.7,189.0L499.3,189.3L496.5,187.8L491.2,187.4L490.3,186.1L490.1,184.2L487.2,181.8L484.4,183.0L483.7,184.5L484.0,186.9L482.8,188.1L479.7,187.8L473.3,185.3L457.8,173.0L456.0,168.6L460.7,160.3L460.2,158.6L458.1,157.1L457.2,157.0L454.7,159.1L453.4,159.3L449.9,155.4L448.7,155.1L446.8,158.1L445.8,158.8L441.5,159.8L437.3,159.5L435.5,160.6L433.1,161.0L432.5,162.0L432.5,164.1L431.7,165.0L429.2,163.4L426.7,160.1L420.8,155.4L419.6,153.6L415.0,150.1L411.6,149.8L405.2,150.7L402.2,149.8L399.2,146.9L397.8,146.4L394.1,148.7L392.4,150.9L388.7,151.0L377.8,144.4L376.1,142.4L372.9,141.0L371.9,141.3L370.1,144.5L367.9,144.0Z"><title>Nakhon Ratchasima</title></path><path fill="#E2F4E4" d="M358.2,161.0L360.1,160.5L363.3,157.6L363.1,154.7L364.3,151.5L366.0,149.2L366.7,145.3L367.9,144.0L370.1,144.5L371.9,141.3L372.9,141.0L376.1,142.4L377.8,144.4L388.7,151.0L391.5,155.6L397.2,158.2L398.8,161.3L399.9,162.0L401.9,165.8L401.5,169.9L399.5,171.1L396.8,171.4L392.4,172.8L390.4,172.6L387.9,170.9L387.1,171.2L386.7,175.7L386.0,177.3L376.7,184.2L375.7,185.6L375.1,188.5L376.5,190.6L376.6,191.9L378.2,195.4L378.3,197.0L377.7,197.8L373.9,199.0L370.7,197.9L365.2,199.0L360.2,204.1L354.7,206.1L354.4,206.8L355.1,209.7L345.7,208.9L330.6,209.7L325.7,211.4L326.8,203.0L326.6,178.1L330.7,173.5L331.4,171.5L331.1,167.7L333.6,167.0L336.0,168.7L340.8,165.3L342.5,162.8L342.2,160.9L344.5,157.4L344.9,153.2L348.1,156.4L353.2,156.6L355.9,158.6L358.2,161.0Z"><title>Nakhon Nayok</title></path><path fill="#E4E0FF" d="M321.3,172.1L324.4,174.0L326.6,178.1L326.8,203.0L325.6,212.1L317.1,213.8L297.3,216.2L285.7,213.0L281.4,212.3L275.8,212.5L263.6,207.4L260.0,206.7L257.8,205.6L255.0,200.0L254.6,197.8L254.8,195.1L256.3,191.0L274.6,191.4L278.5,189.8L281.8,191.1L287.9,189.8L289.9,189.1L294.6,184.4L321.3,172.1Z"><title>Pathum Thani</title></path><path fill="#E4E0FF" d="M164.5,84.3L155.3,81.7L152.1,79.6L139.8,77.0L138.5,72.7L131.2,70.6L127.9,67.8L126.5,68.4L124.4,70.4L122.5,77.1L118.6,78.1L110.9,75.5L107.8,75.8L104.3,74.2L97.5,75.6L96.1,75.3L94.6,72.8L87.2,66.6L86.4,64.0L86.6,59.2L85.0,48.8L87.0,47.1L89.5,42.9L92.6,30.2L94.6,26.7L94.0,23.9L94.4,18.5L95.8,14.2L93.0,11.2L92.7,7.2L93.2,5.9L96.5,3.5L100.4,-3.3L101.2,-10.6L103.1,-15.8L102.7,-21.8L107.7,-22.3L112.7,-19.9L115.9,-17.5L117.7,-14.9L122.4,-12.1L133.2,-6.9L134.7,-3.1L140.9,0.1L146.5,4.7L151.4,5.1L152.7,4.7L157.1,2.0L160.1,-2.1L165.5,-4.3L170.3,-8.4L175.0,-10.1L179.2,-9.8L184.4,-5.0L188.6,-3.3L190.0,-3.1L192.2,-4.4L194.4,-4.5L195.3,-2.4L196.3,4.4L200.9,10.1L204.5,11.9L206.7,11.1L208.0,11.4L218.3,19.8L219.7,23.2L219.6,25.5L216.8,25.7L216.2,27.0L219.2,29.8L221.5,33.8L221.5,36.4L219.8,40.2L220.0,42.2L221.8,42.3L219.8,43.3L218.8,43.1L217.7,40.9L212.5,39.4L204.2,39.3L198.5,40.5L195.3,38.4L183.0,36.4L178.4,39.1L177.3,40.7L177.3,42.3L178.7,45.6L179.5,51.3L181.8,56.1L187.0,64.4L188.6,65.8L188.4,67.1L186.2,71.0L184.0,72.3L181.6,74.5L179.7,75.1L178.1,77.2L178.0,78.5L178.8,80.6L178.2,82.1L169.6,78.0L168.1,78.1L166.0,79.0L166.7,83.9L164.5,84.3Z"><title>Uthai Thani</title></path><path fill="#E2F4E4" d="M696.0,-111.6L699.5,-109.8L701.5,-109.6L703.7,-108.3L708.7,-107.9L713.6,-108.6L717.5,-108.1L718.2,-103.3L719.9,-102.3L733.1,-108.6L734.6,-108.6L736.4,-107.3L743.8,-107.3L747.8,-108.9L749.3,-111.6L750.5,-112.1L751.6,-109.7L753.7,-96.9L753.6,-94.8L754.1,-93.8L757.0,-93.0L753.2,-84.6L751.6,-83.8L749.2,-83.9L747.1,-82.4L744.8,-79.3L743.0,-75.0L741.6,-72.9L734.9,-69.7L731.4,-66.1L727.8,-65.0L725.6,-63.1L725.1,-61.1L727.2,-56.4L726.0,-49.2L724.3,-48.6L718.5,-49.4L714.9,-48.4L714.8,-41.9L713.8,-40.1L714.2,-38.4L717.2,-34.4L714.8,-32.8L714.2,-31.7L714.7,-30.0L713.6,-29.4L713.0,-28.4L713.8,-25.5L719.5,-26.9L721.7,-28.3L721.5,-31.7L726.5,-28.7L729.0,-24.1L729.5,-18.7L728.4,-13.1L730.6,-13.9L732.0,-13.1L738.9,-0.8L731.5,2.1L725.1,7.4L723.0,8.2L718.5,14.7L715.9,16.7L711.5,22.3L710.8,24.4L709.7,23.6L709.6,22.0L705.7,22.9L704.5,22.3L705.3,20.4L701.2,20.1L699.7,18.8L699.3,16.8L698.4,16.6L696.8,17.6L693.2,17.6L689.6,19.6L685.8,20.8L667.5,19.4L661.4,17.3L658.1,18.1L655.0,20.5L653.2,21.2L645.0,19.7L639.7,22.1L642.6,12.6L642.1,9.8L640.6,8.7L639.1,8.5L635.2,9.5L633.4,7.8L628.5,5.4L627.5,4.1L627.1,1.8L624.7,0.1L624.9,-1.0L626.9,-3.6L629.9,-10.8L631.8,-13.0L634.6,-14.2L640.4,-13.6L641.9,-14.4L646.1,-34.1L647.4,-38.3L649.5,-41.7L647.8,-48.7L647.6,-56.8L646.0,-61.5L646.1,-64.9L647.0,-68.2L653.2,-78.4L657.3,-80.1L658.4,-77.8L661.0,-77.2L663.3,-77.8L663.3,-80.1L664.7,-79.3L666.8,-76.6L668.3,-76.5L670.1,-77.3L671.0,-76.6L671.9,-77.4L670.1,-79.3L670.1,-80.1L674.4,-79.3L674.4,-81.0L675.3,-81.0L678.3,-79.9L679.4,-83.5L680.9,-85.7L681.4,-90.4L678.2,-93.7L677.7,-96.5L675.7,-99.2L675.7,-100.5L688.2,-110.2L690.6,-111.3L696.0,-111.6Z"><title>Roi Et</title></path><path fill="#FFF1C9" d="M607.8,-134.1L612.0,-133.2L612.5,-131.8L610.2,-128.7L610.7,-124.3L611.8,-121.6L609.6,-115.6L609.5,-113.9L609.8,-111.9L612.2,-107.4L609.8,-102.6L610.3,-99.4L611.4,-98.5L614.7,-98.1L622.4,-100.2L624.8,-103.1L625.7,-101.8L626.3,-99.0L630.2,-98.1L632.1,-95.5L633.9,-91.1L636.1,-89.1L639.6,-87.5L640.5,-84.3L640.2,-82.8L643.5,-78.3L644.1,-76.1L645.4,-76.1L647.0,-78.3L653.2,-78.4L647.0,-68.2L646.1,-64.9L646.0,-61.5L647.6,-56.8L647.8,-48.7L649.5,-41.7L647.4,-38.3L646.1,-34.1L641.9,-14.4L640.4,-13.6L634.6,-14.2L631.8,-13.0L629.9,-10.8L626.9,-3.6L624.6,-0.4L624.9,0.5L627.1,1.8L627.5,4.1L628.5,5.4L633.4,7.8L635.2,9.5L638.0,8.6L641.0,8.9L642.4,10.4L642.6,12.6L639.7,22.1L632.6,25.1L630.4,25.5L623.8,23.1L620.9,21.2L616.4,19.3L602.0,15.1L598.3,12.5L597.4,10.9L598.7,9.0L598.6,6.6L594.4,3.2L593.4,-0.4L590.6,-2.3L584.8,-8.6L585.0,-9.8L588.8,-12.8L588.6,-16.2L585.9,-19.6L583.6,-21.1L580.8,-24.3L579.6,-28.4L579.7,-34.0L575.9,-42.4L576.6,-47.7L576.4,-51.0L574.3,-55.6L571.5,-57.3L570.0,-60.8L569.9,-62.6L571.0,-66.5L570.6,-72.9L568.9,-79.0L568.9,-86.0L570.5,-88.4L574.9,-91.8L577.6,-97.4L580.1,-100.4L581.7,-103.2L581.9,-105.7L580.1,-108.7L589.7,-111.5L592.9,-114.9L595.7,-115.3L598.9,-117.4L602.6,-123.2L604.0,-126.8L606.4,-128.6L607.9,-130.6L607.8,-134.1Z"><title>Maha Sarakham</title></path><path fill="#E4E0FF" d="M375.1,38.3L374.8,41.7L372.3,46.3L372.6,65.8L376.4,66.0L379.6,68.1L382.4,68.9L384.4,68.9L385.7,70.1L394.1,88.2L394.3,93.0L393.4,94.9L386.2,99.0L384.7,100.4L381.1,102.0L379.0,107.0L376.3,108.4L374.8,109.9L373.2,110.4L372.6,111.6L371.9,111.9L361.6,108.5L360.4,104.5L359.2,103.3L356.2,102.2L354.1,97.8L348.1,96.0L342.4,97.4L336.3,101.1L335.7,105.0L331.8,109.3L327.1,109.3L325.3,106.8L322.7,105.9L321.9,105.0L321.4,98.4L320.6,96.9L318.0,94.7L317.9,92.3L316.9,92.1L313.4,93.5L310.5,93.9L309.7,97.0L307.0,98.2L306.8,100.5L302.5,107.7L289.8,115.5L286.8,121.3L282.1,120.2L280.3,118.6L278.4,118.5L274.5,115.7L272.1,112.5L274.1,109.1L273.1,105.6L272.1,98.2L271.5,96.8L269.0,94.2L266.8,87.7L266.9,86.2L269.0,83.6L270.0,80.2L268.6,73.0L267.1,71.3L267.1,70.4L269.2,66.7L272.4,63.1L273.7,59.8L273.8,55.7L278.5,52.0L279.3,47.7L283.2,42.4L286.2,40.4L289.7,36.2L304.8,22.0L306.3,19.2L305.0,13.2L322.0,17.2L328.5,15.6L334.7,15.2L341.6,20.1L343.3,22.0L345.2,22.5L347.9,22.2L353.5,26.3L356.7,26.6L362.0,25.0L366.5,25.9L367.8,27.1L368.7,29.2L369.3,32.9L370.4,34.5L375.1,38.3Z"><title>Lopburi</title></path><path fill="#E2F4E4" d="M240.1,182.9L244.4,176.5L244.3,173.5L246.8,163.7L247.7,156.4L247.5,153.0L244.8,148.6L244.3,143.1L247.3,142.8L250.1,141.7L254.1,142.5L258.9,141.9L261.5,140.6L264.3,140.2L265.4,141.4L265.5,147.2L266.0,148.4L268.5,148.2L271.5,149.1L274.9,147.1L274.8,135.6L274.1,132.7L275.0,131.2L276.6,124.3L277.0,117.5L278.4,118.5L280.3,118.6L282.9,120.5L286.8,121.3L284.4,128.0L284.3,129.9L286.1,131.6L287.1,134.1L288.3,135.0L290.5,135.4L293.7,135.1L300.3,132.5L306.2,132.5L308.8,133.5L308.7,137.5L306.9,139.3L308.4,143.4L307.4,148.1L307.9,152.5L311.5,156.8L311.3,159.4L310.0,163.0L310.1,164.1L313.6,164.4L314.7,165.1L315.2,166.2L315.3,174.6L294.6,184.4L289.9,189.1L281.8,191.1L278.5,189.8L274.6,191.4L256.3,191.0L254.2,188.9L251.1,188.1L249.8,188.4L247.9,190.7L247.9,185.5L247.1,184.2L240.1,182.9Z"><title>Phra Nakhon Si Ayutthaya</title></path><path fill="#FFF1C9" d="M251.1,188.1L254.2,188.9L256.3,191.0L254.8,195.1L254.6,197.8L255.0,200.0L257.8,205.6L271.8,210.6L274.2,212.2L281.4,212.3L277.7,225.2L274.7,228.3L273.9,231.3L271.2,232.0L266.4,231.3L254.5,231.5L248.9,219.6L248.3,214.8L249.3,208.2L248.5,206.3L246.1,203.2L245.4,201.0L247.3,196.0L247.9,190.7L249.8,188.4L251.1,188.1Z"><title>Nonthaburi</title></path><path fill="#E4E0FF" d="M240.1,182.9L247.1,184.2L247.9,185.5L247.5,195.3L245.6,200.0L245.5,201.9L249.3,208.2L248.3,214.8L248.7,219.2L254.5,231.5L253.4,237.6L254.0,240.3L252.7,241.4L246.6,243.7L246.8,245.3L245.6,246.7L245.6,248.9L239.7,249.7L236.3,247.4L226.4,247.0L222.3,246.3L221.5,245.3L218.1,244.9L217.2,244.1L217.5,242.1L216.2,239.3L215.2,238.9L211.7,241.8L209.6,242.5L208.3,241.9L206.5,239.5L206.0,238.4L206.9,234.7L206.4,231.4L207.7,225.7L206.4,221.2L206.0,216.4L203.9,214.3L197.5,212.8L197.1,211.2L195.1,210.2L193.6,206.5L190.8,205.3L189.1,202.7L188.5,201.1L188.9,197.7L197.4,197.2L203.4,191.5L210.8,186.9L215.4,187.5L228.6,187.2L232.3,187.5L233.9,185.8L240.1,182.9Z"><title>Nakhon Pathom</title></path><path fill="#E2F4E4" d="M200.6,-139.9L199.1,-132.6L202.2,-126.8L203.1,-126.1L205.1,-126.1L212.5,-122.8L215.1,-120.0L216.5,-115.2L211.7,-102.1L209.8,-98.6L209.9,-97.5L211.8,-94.8L205.4,-87.1L205.5,-81.7L204.1,-76.7L199.6,-66.7L199.0,-61.2L191.0,-54.3L188.0,-49.9L185.8,-45.5L182.9,-41.3L182.2,-37.7L178.2,-28.6L176.3,-28.0L172.0,-24.2L170.6,-23.7L167.5,-27.2L166.1,-32.7L164.2,-36.1L162.4,-37.3L158.1,-38.7L155.3,-40.6L151.2,-41.0L147.6,-40.6L145.1,-38.0L139.8,-39.7L137.7,-39.4L131.5,-40.5L128.2,-39.4L125.8,-39.6L122.2,-37.0L120.6,-38.7L114.9,-42.6L113.0,-43.0L109.8,-42.1L107.3,-41.9L104.1,-39.0L101.0,-38.4L97.3,-34.6L96.9,-39.0L97.5,-41.9L95.6,-44.9L95.9,-47.3L96.2,-50.3L95.7,-51.8L94.7,-52.5L92.6,-52.9L90.8,-55.3L88.8,-67.1L89.0,-69.2L90.6,-73.3L90.6,-75.5L90.3,-77.2L88.9,-78.2L88.1,-79.6L87.1,-86.0L88.4,-93.0L89.2,-101.4L89.0,-103.2L87.1,-105.4L86.0,-108.6L86.0,-110.6L87.9,-113.1L90.7,-112.6L94.1,-113.1L97.8,-111.9L101.7,-112.5L108.0,-116.3L109.9,-119.1L115.7,-119.8L117.9,-121.5L119.5,-125.4L118.4,-131.5L118.7,-135.4L121.2,-138.0L122.7,-141.8L124.6,-144.4L125.0,-146.0L124.5,-149.6L124.9,-152.3L127.2,-154.0L128.3,-156.0L128.7,-160.6L130.8,-165.5L134.4,-163.1L135.9,-162.7L142.4,-164.5L149.3,-165.0L152.3,-164.7L155.3,-162.0L156.1,-157.6L157.0,-156.1L174.1,-145.5L193.8,-146.0L195.0,-145.5L200.6,-139.9Z"><title>Kamphaeng Phet</title></path><path fill="#DDF1FF" d="M267.9,69.4L258.1,64.9L256.4,61.4L256.8,59.3L256.0,57.3L255.1,56.5L251.2,55.6L245.3,40.0L241.4,34.1L237.9,30.8L233.6,29.1L227.2,22.9L219.7,23.2L218.3,19.8L209.1,12.0L206.7,11.1L204.5,11.9L200.9,10.1L196.3,4.4L195.3,-2.4L194.8,-4.1L194.1,-4.6L192.2,-4.4L190.0,-3.1L188.6,-3.3L184.4,-5.0L179.2,-9.8L178.4,-10.2L174.5,-10.1L169.9,-8.2L165.5,-4.3L160.8,-2.6L157.1,2.0L152.7,4.7L151.4,5.1L147.3,4.9L146.0,4.5L140.9,0.1L134.7,-3.1L133.2,-6.9L122.4,-12.1L117.7,-14.9L115.9,-17.5L112.7,-19.9L107.7,-22.3L102.7,-21.8L102.4,-25.9L98.5,-29.1L97.3,-34.6L101.0,-38.4L104.1,-39.0L107.3,-41.9L109.8,-42.1L113.0,-43.0L114.9,-42.6L120.6,-38.7L122.2,-37.0L125.8,-39.6L128.2,-39.4L131.5,-40.5L137.7,-39.4L139.8,-39.7L144.6,-37.9L145.6,-38.1L147.6,-40.6L150.0,-41.0L154.9,-40.7L158.1,-38.7L163.2,-36.9L164.5,-35.8L166.1,-32.7L167.2,-28.0L169.8,-24.2L170.6,-23.7L172.0,-24.2L176.0,-27.8L178.2,-28.6L178.7,-29.3L182.2,-37.7L182.9,-41.3L190.2,-53.3L199.0,-61.2L199.6,-66.7L204.1,-76.7L205.5,-81.7L205.4,-87.1L211.8,-94.8L213.8,-93.3L215.5,-90.4L216.7,-84.6L216.1,-83.5L216.3,-81.0L218.1,-74.0L222.3,-71.3L223.9,-69.6L224.0,-66.1L227.3,-61.2L229.8,-53.2L233.6,-45.9L236.8,-44.2L239.5,-42.0L240.6,-41.7L242.3,-42.3L245.3,-40.0L247.6,-39.8L249.7,-40.3L250.1,-43.7L251.6,-44.3L256.6,-43.0L259.5,-43.3L265.0,-41.5L270.0,-42.2L275.8,-41.9L277.6,-42.9L280.4,-42.7L282.8,-44.0L287.8,-45.2L295.6,-44.4L302.2,-42.6L306.9,-42.5L307.2,-38.7L307.8,-37.5L310.5,-36.3L312.3,-33.8L311.7,-29.8L312.0,-26.2L313.5,-18.4L316.3,-10.9L315.0,-8.0L316.6,-3.3L313.0,1.0L312.0,5.7L311.1,7.3L309.3,9.0L305.9,10.8L305.0,13.2L306.2,17.5L306.3,19.2L305.5,21.0L303.5,23.5L289.7,36.2L286.2,40.4L284.3,41.5L282.3,43.4L279.3,47.7L278.5,52.0L273.8,55.7L273.7,59.8L272.4,63.1L269.2,66.7L267.9,69.4Z"><title>Nakhon Sawan</title></path><path fill="#E2F4E4" d="M436.3,-149.9L435.9,-144.6L434.3,-141.4L431.4,-137.6L428.6,-135.6L426.7,-136.6L424.0,-139.3L420.0,-139.9L416.1,-139.3L412.4,-141.9L409.4,-140.2L407.1,-137.8L403.3,-139.0L401.3,-138.2L401.1,-135.5L402.2,-133.1L401.5,-131.4L400.0,-130.4L399.6,-126.1L399.9,-124.3L401.5,-122.8L401.5,-121.9L395.6,-117.6L396.0,-114.0L395.5,-112.4L392.8,-108.2L387.8,-103.6L387.8,-100.7L384.8,-97.4L382.8,-87.6L381.0,-84.7L383.0,-82.6L383.2,-81.5L380.5,-77.3L380.7,-74.1L378.0,-60.0L378.6,-53.4L380.1,-49.0L381.5,-48.0L384.9,-47.2L385.6,-46.1L382.7,-37.0L378.8,-33.3L378.3,-31.0L379.2,-18.2L382.6,-15.2L385.9,-14.7L387.0,-12.7L384.6,-4.6L383.2,5.5L384.3,12.8L384.1,23.8L380.3,32.5L379.2,34.0L375.1,38.3L370.4,34.5L369.3,32.9L368.7,29.2L367.8,27.1L366.5,25.9L362.0,25.0L356.7,26.6L353.5,26.3L347.9,22.2L345.2,22.5L343.3,22.0L341.6,20.1L334.7,15.2L328.5,15.6L322.0,17.2L305.0,13.2L305.9,10.8L309.3,9.0L311.1,7.3L312.0,5.7L313.0,1.0L316.6,-3.3L315.0,-8.0L316.3,-10.9L313.5,-18.4L312.0,-26.2L311.7,-29.8L312.3,-33.8L311.6,-35.2L309.8,-36.8L307.8,-37.5L307.2,-38.7L306.9,-42.5L308.7,-47.8L308.8,-49.6L306.4,-51.9L300.8,-55.3L291.5,-58.0L291.3,-58.8L292.2,-63.9L291.7,-69.7L293.1,-73.2L298.3,-79.9L299.6,-82.6L299.7,-85.1L296.0,-96.0L299.1,-100.1L300.3,-104.4L303.2,-105.2L308.8,-108.9L311.8,-110.0L313.1,-113.6L317.9,-121.6L318.1,-123.1L317.2,-127.9L319.5,-134.1L321.7,-136.5L326.0,-137.5L328.3,-139.8L326.8,-142.3L326.9,-144.8L325.8,-148.3L324.2,-150.4L324.8,-153.5L328.7,-154.6L334.5,-160.5L337.2,-162.0L341.9,-167.7L349.8,-168.2L350.9,-169.9L352.5,-170.6L353.9,-178.7L353.0,-181.8L353.3,-183.9L354.2,-184.7L357.2,-184.9L358.7,-185.8L361.6,-190.6L361.7,-193.9L363.7,-194.8L375.5,-190.1L377.6,-188.3L380.6,-189.4L385.7,-188.9L387.2,-189.7L391.4,-188.5L393.7,-189.8L395.0,-189.8L402.5,-185.9L405.2,-180.1L407.7,-179.1L410.3,-179.4L412.8,-180.5L415.5,-185.0L416.9,-185.9L417.8,-185.9L422.8,-174.8L426.1,-171.2L426.7,-169.6L427.3,-165.6L426.9,-158.5L428.0,-154.9L427.3,-151.4L427.7,-149.8L429.0,-148.9L436.3,-149.9Z"><title>Phetchabun</title></path><path fill="#E4E0FF" d="M504.0,-26.5L500.9,-25.9L497.1,-23.7L492.6,-19.6L490.3,-19.4L489.4,-21.1L489.3,-20.3L488.6,-20.2L489.4,-19.4L488.0,-18.6L484.5,-18.7L482.5,-17.6L482.8,-16.2L480.8,-13.1L480.8,-10.6L479.1,-9.6L477.4,-6.1L473.1,-2.5L472.2,-4.1L467.5,-7.5L463.0,0.9L457.8,4.5L457.0,6.1L456.5,9.5L458.1,14.8L458.0,16.2L451.4,20.1L450.1,21.8L448.1,27.6L447.4,28.3L442.1,27.1L437.8,28.2L428.2,33.4L423.2,35.5L417.3,37.2L412.5,41.8L408.2,44.5L390.8,49.4L387.8,49.3L383.7,42.6L375.1,38.3L380.3,32.5L384.1,23.8L384.3,12.8L383.2,5.5L384.6,-4.6L387.0,-12.7L385.9,-14.7L382.2,-15.4L379.4,-17.9L378.7,-19.7L378.4,-32.4L382.7,-37.0L385.6,-46.1L384.9,-47.2L380.4,-48.7L378.6,-53.4L378.0,-61.1L380.7,-74.1L380.5,-77.3L383.2,-81.5L383.0,-82.6L381.0,-84.7L382.8,-87.6L384.8,-97.4L387.8,-100.7L387.8,-103.6L392.8,-108.2L395.5,-112.4L396.0,-114.0L395.6,-117.6L401.5,-121.9L401.5,-122.8L399.7,-125.0L399.8,-129.7L400.0,-130.4L401.5,-131.4L402.2,-133.1L401.1,-135.5L401.3,-138.2L403.3,-139.0L407.1,-137.8L409.4,-140.2L412.8,-141.9L414.8,-139.8L416.1,-139.3L420.0,-139.9L424.0,-139.3L428.1,-135.6L431.4,-137.6L436.1,-134.0L440.4,-136.1L441.9,-136.3L444.0,-136.0L451.3,-133.0L457.0,-132.8L458.7,-130.7L460.8,-125.6L465.0,-123.5L469.3,-118.0L472.1,-116.2L484.8,-115.7L488.0,-116.3L492.6,-114.3L494.9,-111.9L498.5,-110.6L500.1,-109.3L502.9,-108.8L506.2,-109.5L509.1,-107.7L511.5,-108.3L511.9,-110.3L513.6,-110.1L514.8,-106.5L519.1,-103.7L519.2,-102.5L516.6,-92.7L515.0,-89.0L513.3,-82.7L509.4,-76.7L506.4,-73.2L503.7,-68.1L499.1,-63.2L495.9,-60.8L497.5,-57.7L505.8,-53.9L509.0,-51.2L510.8,-50.7L511.6,-49.3L510.3,-48.4L508.7,-42.2L509.0,-41.4L508.2,-39.6L504.4,-33.9L504.0,-32.1L504.6,-27.9L504.0,-26.5Z"><title>Chaiyaphum</title></path><path fill="#E4E0FF" d="M356.9,224.9L356.4,224.6L356.7,223.4L355.4,221.4L357.1,215.6L354.4,206.8L354.7,206.1L360.2,204.1L365.9,198.7L371.1,198.0L373.9,199.0L378.1,197.4L378.2,195.4L376.7,192.8L376.5,190.6L375.1,188.5L375.1,187.1L376.7,184.2L386.5,176.7L387.1,171.2L387.9,170.9L390.4,172.6L392.4,172.8L396.8,171.4L399.5,171.1L401.5,169.9L401.9,165.8L399.9,162.0L398.8,161.3L397.8,158.8L396.5,157.7L391.5,155.6L388.7,151.0L392.4,150.9L394.1,148.7L397.8,146.4L399.2,146.9L402.2,149.8L405.2,150.7L411.6,149.8L415.0,150.1L419.6,153.6L420.8,155.4L426.7,160.1L429.2,163.4L431.7,165.0L432.5,164.1L432.5,162.0L433.1,161.0L435.5,160.6L437.3,159.5L441.0,159.8L445.3,158.9L446.5,158.4L448.1,155.6L449.2,155.0L453.4,159.3L454.7,159.1L457.2,157.0L460.2,158.6L460.5,161.3L456.3,167.7L456.1,169.5L458.1,173.3L469.1,181.8L468.1,188.8L462.6,194.0L461.4,197.1L460.0,198.4L458.5,198.9L455.4,198.9L451.6,201.0L450.8,202.9L451.4,210.1L446.2,214.2L445.5,216.1L445.6,221.4L444.4,224.9L444.5,226.6L445.4,227.8L450.2,229.2L450.8,230.2L451.0,235.3L450.6,237.1L447.0,241.2L441.5,242.0L439.7,241.4L437.8,239.4L436.0,234.9L432.0,231.2L425.4,232.5L424.7,233.7L424.6,236.3L423.7,237.0L421.8,237.4L419.7,236.9L411.2,233.6L409.9,234.3L408.2,237.8L407.5,237.5L406.1,235.1L381.8,223.6L379.5,223.8L370.5,222.2L367.7,223.0L363.9,221.7L356.9,224.9Z"><title>Prachin Buri</title></path></g>
+          </svg>
+          <div id="marks"></div>
+          <div id="pins"></div>
+          <div id="spots"></div>
+        </div>
+        <button type="button" class="map-back" id="mapBack">↩ 全体の地図</button>
+        
+      </div>
+      <p class="map-note">地図データ：Natural Earth（パブリックドメイン）</p>
+    </div>
+    <div class="zone-bar" id="zoneBar" role="group" aria-label="ゾーンをえらぶ"></div>
+  </div>
+
+  <div class="list-col" id="listCol">
+    <div class="zone-head" id="zoneHead"></div>
+    <div class="chips" id="chips" role="group" aria-label="ジャンルで絞り込む"></div>
+    <div id="list"></div>
+  </div>
+</section>
+
+<!-- ===== 前後のエリアへ ===== -->
+<nav class="pager wrap" aria-label="ほかのエリアへ">
+  <a class="pg prev" href="thailand-north.html"><small>← PREV</small><b>北部・イサーン</b></a>
+  <a class="pg next" href="thailand-south.html" style="--c:var(--blue)"><small>NEXT →</small><b>南部・島</b></a>
+</nav>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">MAIBARU TRAVEL</p>
+    <p class="footer-sub">THAILAND COLLECTION / CENTRAL & EAST / UNOFFICIAL FAN SITE</p>
+    <ul>
+      <li>本サイトは Maibaru Travel の非公式ファンサイトです。ご本人・運営とは関係ありません。</li>
+      <li>動画・サムネイル・タイトルの著作権は Maibaru Travel に帰属します。サムネイルとタイトルは公式YouTubeチャンネルのものを、各動画へのリンクとして表示しています。</li>
+      <li>メンバー限定の動画は、タイトルとリンクのみを掲載しています。視聴にはYouTubeのメンバーシップ登録が必要です。</li>
+      <li>本サイトは YouTube および Google LLC とは関係がなく、承認も受けていません。YouTube は Google LLC の商標です。</li>
+      <li>地図は Natural Earth（パブリックドメイン）のデータをもとに、このサイト用に色をつけて作成しています。</li>
+    </ul>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">▶ 公式YouTubeチャンネル</a>
+      <a href="thailand.html">← タイのトップへ</a>
+      <a href="world.html">海外の旅マップへ</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+</footer>
+
+<div class="player" id="player" role="dialog" aria-modal="true" aria-labelledby="playerTitle" hidden>
+  <div class="player-box">
+    <button type="button" class="player-close" id="playerClose" aria-label="閉じる">×</button>
+    <div class="player-frame"><iframe id="playerFrame" title="YouTube動画" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="player-foot">
+      <p class="player-title" id="playerTitle"></p>
+      <a class="player-link" id="playerLink" href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+    </div>
+  </div>
+</div>
+
+<a class="to-top en" id="toTop" href="#top" aria-label="ページの先頭へ">▲<br>TOP</a>
+
+<script>
+/* ===================================================================
+   編集ガイド
+   - 動画は VIDEOS に1本1行で入れます（タイページと同じ書き方＋ zone）
+   - zone ：下の ZONES の key
+   - tags ：["場所","ジャンル"]。場所が SPOTS にあると、地図に点が出て、押すとその場所だけ表示されます
+   - member ：メンバー限定の動画には member:true を付けます（🔒マークが付きます）
+   - ゾーンの名前・色・説明文・地図の位置は ZONES、場所の点の位置は SPOTS で編集できます
+     （位置は [緯度, 経度]。Googleマップで場所を右クリックすると出る数字をそのまま使えます）
+=================================================================== */
+const GENRES = ["グルメ","市場","街歩き","ホテル","島・海","絶景・自然","お祭り"];
+
+// pos：番号ピンの位置　dir：名前を出す向き　focus・zoom：選んだ時に寄る場所と倍率（位置はすべて [緯度, 経度]）
+const ZONES = [
+  { key:"ayutthaya", no:1, name:"アユタヤ・ロッブリー", en:"AYUTTHAYA & LOPBURI", color:"var(--orange)",
+    pos:[14.55,100.70], dir:"up", focus:[14.55,100.70], zoom:3,
+    desc:"かつての都アユタヤの遺跡と、遺跡を舞台にした歴史ショー。サルがあふれる街ロッブリー、のびのびした牧場のあるサラブリー。バンコクから北へ、日帰りでも行ける古都めぐり。" },
+  { key:"west", no:2, name:"カンチャナブリ・西部", short:"カンチャナブリ", en:"KANCHANABURI & WEST", color:"var(--green)",
+    pos:[14.10,99.45], dir:"down", focus:[14.20,99.40], zoom:2.2,
+    desc:"鉄道で向かうジャングルと川の町カンチャナブリ、ミャンマー国境のモン族の村サンクラブリー、カレン族が暮らすラチャブリー、レトロな町ナコンパトム。鉄道旅と自然が好きな人に。" },
+  { key:"huahin", no:3, name:"ホアヒン・海辺の町", short:"ホアヒン", en:"HUA HIN & GULF COAST", color:"var(--blue)",
+    pos:[12.75,99.90], dir:"left", focus:[13.05,100.00], zoom:2.6,
+    desc:"王室の避暑地ホアヒンのリゾートと夜市、洞窟の寺院があるペッチャブリー、水上マーケットのアンパワー、魚介があふれる港町マハーチャイ。バンコクから西と南の海辺へ。" },
+  { key:"pattaya", no:4, name:"パタヤ・シラチャ・バンセン", short:"パタヤ・シラチャ", en:"PATTAYA & SRIRACHA", color:"var(--pink)",
+    pos:[13.05,101.00], dir:"right", focus:[13.15,100.95], zoom:3.4,
+    desc:"バンコクから一番近い海バンセン、日本人が多く住む港町シラチャ、にぎやかなリゾートのパタヤ。週末に気軽に行ける東の海辺の町です。" },
+  { key:"chanthaburi", no:5, name:"チャンタブリー・東の島", short:"チャンタブリー・島", en:"CHANTHABURI & ISLANDS", color:"var(--teal)",
+    pos:[12.40,102.25], dir:"left", focus:[12.20,102.30], zoom:2.6,
+    desc:"宝石と果物の町チャンタブリーの古い街並み、静かな海と魚の集まる滝。さらに南のトラートから船で渡るクート島・マック島は、透明な海が広がる秘密の楽園です。" },
+];
+const DEFAULT_VIEW = { focus:[13.45,100.70], zoom:1 };
+const CORNERS = [];
+
+// 場所の点の位置（[緯度, 経度, 名前を左に出すなら "l"]）
+const SPOTS = {
+  "アユタヤ":[14.35,100.57,"l"], "ロッブリー":[14.80,100.65], "サラブリー":[14.53,100.91],
+  "カンチャナブリ":[14.02,99.53], "ラチャブリー":[13.53,99.81,"l"], "ナコンパトム":[13.80,100.18],
+  "ホアヒン":[12.57,99.96], "ペッチャブリー":[13.11,99.94,"l"], "アンパワー":[13.43,99.96,"l"], "マハーチャイ":[13.55,100.27],
+  "パタヤ":[12.92,100.88], "シラチャ":[13.17,100.93], "バンセン":[13.28,100.92,"l"],
+  "チャンタブリー":[12.61,102.10,"l"], "トラート":[12.24,102.52], "クート島":[11.66,102.56], "マック島":[11.82,102.48,"l"],
+};
+
+// 地図の目じるし（[名前, 緯度, 経度, 種類]）
+const MARKS = [
+  ["★ バンコク", 13.75, 100.50, "land"],
+  ["タイランド湾", 12.20, 100.75, "river"],
+  ["カンボジア", 13.30, 102.55, "land"],
+  ["ミャンマー", 12.90, 98.72, "land"],
+];
+
+const VIDEOS = [
+  {title:"少数民族カレン族が住むタイ中部、ラチャブリーへの旅｜タイ旅行", url:"https://youtu.be/eS6iHWfpTuM", tags:["ラチャブリー","街歩き"], zone:"west"},
+  {title:"こんなアユタヤ知らなかった✨歴史と美食の街を歩く｜タイ旅行", url:"https://youtu.be/xknw7bGlWgs", tags:["アユタヤ","グルメ"], zone:"ayutthaya"},
+  {title:"橋の向こうはモン族の村🏵️タイとミャンマーの国境の街サンクラブリーを旅する｜สังขละบุรี", url:"https://youtu.be/UPhc-1YhgDo", tags:["カンチャナブリ","街歩き"], zone:"west"},
+  {title:"タイの百年市場まで百年鉄道でレトロに行こう｜鉄道旅行｜タイ旅行｜VLOG", url:"https://youtu.be/qE4kABqdZgo", tags:["鉄道旅","市場"], zone:"pattaya"},
+  {title:"バンコク近郊の古い街へ、1泊2日の鉄道旅行。｜ナコンパトム県ナコンチャイシー", url:"https://youtu.be/kGfGfo0KHAM", tags:["ナコンパトム","街歩き"], zone:"west"},
+  {title:"撮影禁止！？アジア初の究極スパリゾートが「本物」でした…｜タイ・ホアヒン", url:"https://youtu.be/UKoGq-0dsQQ", tags:["ホアヒン","ホテル"], zone:"huahin"},
+  {title:"アユタヤ世界遺産祭りが凄い！本物の遺跡を舞台にした壮大な歴史ショー｜タイ・アユタヤ旅行 Ayutthaya", url:"https://youtu.be/qBcIZzP4BmE", tags:["アユタヤ","お祭り"], zone:"ayutthaya"},
+  {title:"初めてのアユタヤ旅行。悠久の歴史の中で過ごす、２日間の旅｜タイ旅行", url:"https://youtu.be/Nkai3tjkH1A", tags:["アユタヤ","街歩き"], zone:"ayutthaya"},
+  {title:"タイ・ペッチャブリー県に日帰り旅行！カオルアン洞窟とタイ宮廷料理を求めて…｜เพชรบุรี", url:"https://youtu.be/73txclZRWrY", tags:["ペッチャブリー","絶景・自然"], zone:"huahin"},
+  {title:"日帰りじゃもったいない！？アンパワー水上マーケットに止まるべき理由｜タイ旅行", url:"https://youtu.be/BvzI3fS9cs8", tags:["アンパワー","市場"], zone:"huahin"},
+  {title:"自由すぎるタイの牧場に泊まってみた！ローカル旅｜สระบุรี", url:"https://youtu.be/PsRx4nu6U8o", tags:["サラブリー","ホテル"], zone:"ayutthaya"},
+  {title:"サルに占拠された街が予想以上だった…｜ลพบุรี", url:"https://youtu.be/gaZQHBP1UGU", tags:["ロッブリー","街歩き"], zone:"ayutthaya"},
+  {title:"タイ鉄道でジャングルの秘境を目指す🏞カンチャナブリ旅行│กาญจนบุรี", url:"https://youtu.be/5fYjLRb9t50", tags:["カンチャナブリ","絶景・自然"], zone:"west"},
+  {title:"カンチャナブリ鉄道旅行のすすめ！日本と異なる絶景の連続に感動│タイ旅行", url:"https://youtu.be/GO9RyCc20z0", tags:["カンチャナブリ","絶景・自然"], zone:"west"},
+  {title:"ホアヒンのナイトマーケットで爆買い！シカダマーケット | หัวหิน", url:"https://youtu.be/avxceyaMOPM", tags:["ホアヒン","市場"], zone:"huahin"},
+  {title:"超過酷！タイ、ホアヒンの神の洞窟を目指す！| หัว​หิน​", url:"https://youtu.be/MY3UFyxRJ6g", tags:["ホアヒン","絶景・自然"], zone:"huahin"},
+  {title:"タイの王室リゾートで優雅な休日のはずが…！ホアヒン旅行 | หัวหิน", url:"https://youtu.be/dNe5FvWdSA0", tags:["ホアヒン","ホテル"], zone:"huahin"},
+  {title:"バンコクから国鉄で35円！魚介溢れる港町で最高の料理と出会う！【タイ・マハーチャイ】[มหาชัย]", url:"https://youtu.be/Ny3nOh0nF2g", tags:["マハーチャイ","グルメ"], zone:"huahin"},
+  {title:"タイ旅行🇹🇭人生で一度は行きたい！タイで最も美しい島、クート島", url:"https://youtu.be/SgFnGfHiTT0", tags:["クート島","島・海"], zone:"chanthaburi"},
+  {title:"海の綺麗な離島の漁村で最高の休日を過ごそう！穴場の美食コテージのすすめ｜タイ・クート島🌴", url:"https://youtu.be/Qv5y4nrJzOk", tags:["クート島","島・海"], zone:"chanthaburi"},
+  {title:"日本人が知らない秘密の楽園！世界で1番好きな秘島リゾートに週末トリップ｜タイ・クート島", url:"https://youtu.be/Gf0R6iX-Nfg", tags:["クート島","島・海"], zone:"chanthaburi"},
+  {title:"本当は秘密にしたい…1泊1700円の最強ゲストハウス🏝｜タイ・クート島｜เกาะกูด", url:"https://youtu.be/tN7hO9iqu54", tags:["クート島","ホテル"], zone:"chanthaburi"},
+  {title:"海の日本人街シラチャで過ごす週末 | ศรีราชา", url:"https://youtu.be/eMer2Jvj5i4", tags:["シラチャ","街歩き"], zone:"pattaya"},
+  {title:"タイの秘島で過ごす最高の休日。人生で一番美しい海を見つけました｜マック島", url:"https://youtu.be/FVlTOZMPj-s", tags:["マック島","島・海"], zone:"chanthaburi"},
+  {title:"タイの古民家に初めて泊まった結果…│ตราด", url:"https://youtu.be/RAoFZmeIVXk", tags:["トラート","ホテル"], zone:"chanthaburi"},
+  {title:"バンコクから一番近い海バンセン！バンセンのおすすめ観光スポットを紹介│บางแสน", url:"https://youtu.be/rYSZPFp8jMQ", tags:["バンセン","島・海"], zone:"pattaya"},
+  {title:"タイ・クート島🏝マングローブの森に浮かぶ秘密のリゾート│ เกาะกูด Koh Kood", url:"https://youtu.be/90DK7oWNij8", tags:["クート島","ホテル"], zone:"chanthaburi"},
+  {title:"タイ・クート島のコスパ最強の箱庭リゾートを紹介！飯・海・雰囲気全てが最高✨│เกาะกูด", url:"https://youtu.be/IOJ59AM5jj0", tags:["クート島","ホテル"], zone:"chanthaburi"},
+  {title:"日本人が知らないタイ・チャオラオで過ごす週末│เจ้าหลาว", url:"https://youtu.be/wHwZzw0O1uw", tags:["チャンタブリー","島・海"], zone:"chanthaburi"},
+  {title:"タイにある日本人の街シーラチャ旅行のススメ★世界最大級の動物園がド迫力［ศิริราช​า］", url:"https://youtu.be/Viuy6gzUJvc", tags:["シラチャ","街歩き"], zone:"pattaya"},
+  {title:"神秘的な世界！タイのサグラダファミリアは想像を遥かに超えていた！パタヤ行くなら必見！", url:"https://youtu.be/d3Q4k28ks68", tags:["パタヤ","街歩き"], zone:"pattaya"},
+  {title:"【タイ・パタヤ】バンコクから2時間のリゾート！絶景カフェ・ターミナル21、昼のパタヤ観光スポット【EP1】", url:"https://youtu.be/5LMDg_2Yhsk", tags:["パタヤ","島・海"], zone:"pattaya"},
+  {title:"タイにある大量に魚が寄ってくる不思議な滝【チャンタブリー PART 2】", url:"https://youtu.be/1B2BwoyaS-s", tags:["チャンタブリー","絶景・自然"], zone:"chanthaburi"},
+  {title:"タイの穴場観光地チャンタブリーのオールドタウンが楽しすぎる!!【チャンタブリー PART 1】", url:"https://youtu.be/0AuJt9vA-K4", tags:["チャンタブリー","街歩き"], zone:"chanthaburi"},
+  {title:"[ซับไทย]タイの湘南？バンセンにバンコクから日帰り旅行 คนญี่ปุ่นไปเที่ยวที่บางแสน", url:"https://youtu.be/1u57-Cwo3sQ", tags:["バンセン","島・海"], zone:"pattaya"},
+];
+
+// 6ページの切り替え（まだ作っていないページは、今はタイページの該当エリアへ）
+// 6ページの切り替え
+const AREA_LINKS = [
+  { name:"バンコク", color:"var(--pink)", href:"thailand-bangkok.html" },
+  { name:"北部・イサーン", color:"var(--green)", href:"thailand-north.html" },
+  { name:"中部・東部", color:"var(--orange)", href:"thailand-central-east.html", current:true },
+  { name:"南部・島", color:"var(--blue)", href:"thailand-south.html" },
+  { name:"タイ暮らし", color:"var(--indigo)", href:"thailand-life.html" },
+  { name:"シリーズ", color:"var(--yellow)", href:"thailand-series.html" },
+];
+
+const TILE_COLORS = ["var(--orange)","#FFB27A","#FFE1C9","var(--yellow)","var(--pink)","var(--cream)","var(--teal)","var(--red)"];
+const TILE_SHAPES = ["s-circle","s-half","s-quarter","s-tri","s-diamond","s-stripes","s-dots","s-ring","s-arch","s-leaf","s-flower"];
+
+/* ------------------------------------------------------------------ */
+
+function extractYouTubeId(url){
+  if(!url) return null;
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/|youtube\.com\/embed\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const zoneByKey = Object.fromEntries(ZONES.map(z => [z.key, z]));
+const pick = list => list[Math.floor(Math.random() * list.length)];
+const zoneVideos = key => VIDEOS.filter(v => v.zone === key);
+const placeOf = v => (v.tags || [])[0];
+const genreOf = v => (v.tags || [])[1];
+
+document.getElementById("heroCount").textContent = VIDEOS.length + "本";
+
+
+/* ---------- 見出しの帯：幾何学タイル ---------- */
+const heroEl = document.getElementById("top");
+const mosaicEl = document.getElementById("mosaic");
+let plainTiles = [], mosaicKey = "";
+
+function paintTile(tile){
+  tile.className = "tile " + pick(TILE_SHAPES);
+  const bg = pick(TILE_COLORS);
+  let fg = pick(TILE_COLORS);
+  while(fg === bg) fg = pick(TILE_COLORS);
+  tile.style.setProperty("--bg", bg);
+  tile.style.setProperty("--fg", fg);
+}
+function buildMosaic(){
+  const w = heroEl.clientWidth, h = heroEl.clientHeight;
+  const t = w < 600 ? Math.ceil(w / 5) : w < 900 ? Math.ceil(w / 7) : Math.max(100, Math.ceil(w / 13));
+  const cols = Math.ceil(w / t), rows = Math.ceil(h / t) + 1;
+  const key = `${t}x${cols}x${rows}`;
+  if(key === mosaicKey) return;
+  mosaicKey = key;
+  heroEl.style.setProperty("--t", t + "px");
+  mosaicEl.style.setProperty("--cols", cols);
+  mosaicEl.innerHTML = "";
+  plainTiles = [];
+  for(let i = 0; i < cols * rows; i++){
+    const tile = document.createElement("div");
+    tile.setAttribute("aria-hidden", "true");
+    const inner = document.createElement("div");
+    inner.className = "tile-in";
+    inner.dataset.rot = Math.floor(Math.random() * 4) * 90;
+    inner.style.setProperty("--rot", inner.dataset.rot + "deg");
+    tile.appendChild(inner);
+    paintTile(tile);
+    mosaicEl.appendChild(tile);
+    plainTiles.push(tile);
+  }
+}
+buildMosaic();
+window.addEventListener("load", buildMosaic);
+let mosaicTimer = null;
+window.addEventListener("resize", () => { clearTimeout(mosaicTimer); mosaicTimer = setTimeout(buildMosaic, 200); });
+if(!reduceMotion){
+  setInterval(() => {
+    if(document.hidden || !plainTiles.length) return;
+    const tile = pick(plainTiles);
+    const inner = tile.firstChild;
+    const rot = Number(inner.dataset.rot) + 90;
+    inner.dataset.rot = rot;
+    inner.style.setProperty("--sc", ".15");
+    inner.style.setProperty("--rot", rot + "deg");
+    setTimeout(() => { paintTile(tile); inner.style.setProperty("--sc", "1"); }, 260);
+  }, 650);
+}
+
+/* ---------- エリア切り替え ---------- */
+const areaNav = document.getElementById("areaNav");
+AREA_LINKS.forEach(a => {
+  const link = document.createElement("a");
+  link.href = a.href;
+  link.textContent = a.name;
+  link.style.setProperty("--c", a.color);
+  if(a.current){ link.className = "current"; link.setAttribute("aria-current", "page"); }
+  areaNav.appendChild(link);
+});
+
+/* ---------- 動画プレーヤー ---------- */
+const player = document.getElementById("player");
+const playerFrame = document.getElementById("playerFrame");
+const playerTitle = document.getElementById("playerTitle");
+const playerLink = document.getElementById("playerLink");
+const playerClose = document.getElementById("playerClose");
+let playerReturnFocus = null;
+
+function openPlayer(id, title, url){
+  if(!id) return;
+  playerReturnFocus = document.activeElement;
+  playerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+  playerTitle.textContent = title || "";
+  playerLink.href = url || `https://www.youtube.com/watch?v=${id}`;
+  player.hidden = false;
+  document.body.style.overflow = "hidden";
+  playerClose.focus();
+}
+function closePlayer(){
+  if(player.hidden) return;
+  player.hidden = true;
+  playerFrame.src = "about:blank";
+  document.body.style.overflow = "";
+  if(playerReturnFocus) playerReturnFocus.focus();
+}
+playerClose.addEventListener("click", closePlayer);
+player.addEventListener("click", e => { if(e.target === player) closePlayer(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closePlayer(); });
+
+/* ---------- 動画カード ---------- */
+function createCard(v, delay){
+  const id = extractYouTubeId(v.url);
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = v.url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  if(id && !v.member){
+    a.addEventListener("click", e => {
+      if(e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      openPlayer(id, v.title, v.url);
+    });
+  }
+  a.style.setProperty("--c", zoneByKey[v.zone].color);
+  if(delay) a.style.animationDelay = delay + "s";
+
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
+  if(id){
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "";
+    img.onerror = () => {
+      if(!img.dataset.retry){ img.dataset.retry = "1"; img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+      else img.remove();
+    };
+    img.src = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+    thumb.appendChild(img);
+  }
+  if(v.ep){
+    const ep = document.createElement("span");
+    ep.className = "ep";
+    ep.textContent = v.ep;
+    thumb.appendChild(ep);
+  }
+  if(v.member){
+    const lock = document.createElement("span");
+    lock.className = "lock";
+    lock.textContent = "🔒 メンバー限定";
+    thumb.appendChild(lock);
+  }
+  const body = document.createElement("div");
+  body.className = "card-body";
+  const tags = document.createElement("div");
+  tags.className = "card-tags";
+  (v.tags || []).filter(Boolean).forEach(t => {
+    const s = document.createElement("span");
+    s.textContent = "#" + t;
+    tags.appendChild(s);
+  });
+  const title = document.createElement("p");
+  title.className = "card-title";
+  title.textContent = v.title;
+  body.append(tags, title);
+  a.append(thumb, body);
+  return a;
+}
+
+/* ---------- 地図のピン ---------- */
+const mapBox = document.getElementById("mapBox");
+const mapLayer = document.getElementById("mapLayer");
+const pinsEl = document.getElementById("pins");
+const spotsEl = document.getElementById("spots");
+// [緯度, 経度] → 地図の上の位置（%）。数字は地図を作った時の決まり（make_bkk_map.py と同じ）
+const MAP = {"W": 600.0, "H": 552.7, "LON0": 98.3, "LAT1": 15.6, "COS": 0.972573269631963, "K": 128.52502109923506};
+const pct = ([lat, lon]) => [(lon - MAP.LON0) * MAP.COS * MAP.K / MAP.W * 100, (MAP.LAT1 - lat) * MAP.K / MAP.H * 100];
+
+// 目じるしの名前
+const marksEl = document.getElementById("marks");
+MARKS.forEach(([name, lat, lon, kind]) => {
+  const m = document.createElement("span");
+  m.className = "mark" + (kind ? " " + kind : "");
+  const [l, t] = pct([lat, lon]);
+  m.style.left = l + "%";
+  m.style.top = t + "%";
+  m.textContent = name;
+  marksEl.appendChild(m);
+});
+
+const pinEls = {};
+ZONES.filter(z => z.pos).forEach((z, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = `pin d-${z.dir}` + (z.ink ? " ink" : "");
+  const [l, t] = pct(z.pos);
+  b.style.left = l + "%";
+  b.style.top = t + "%";
+  b.style.setProperty("--c", z.color);
+  b.style.setProperty("--dl", (i * .3) + "s");
+  b.innerHTML = `${z.no}<span class="lbl">${z.short || z.name}<small>${zoneVideos(z.key).length}</small></span>`;
+  b.setAttribute("aria-label", `${z.no} ${z.name}（${zoneVideos(z.key).length}本）`);
+  b.addEventListener("click", () => setZone(z.key));
+  pinsEl.appendChild(b);
+  pinEls[z.key] = b;
+});
+// 地図の角のボタン（地図の上に置きにくいゾーン用。CORNERS で決める）
+const cornerEls = {};
+CORNERS.forEach(c => {
+  const z = zoneByKey[c.key];
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "map-any" + (c.side === "right" ? " map-sub" : "") + (z.ink ? " ink" : "");
+  b.style.setProperty("--c", z.color);
+  b.innerHTML = `<i>${z.no}</i>${z.short || z.name}` + (c.arrow ? " →" : ` <small>${zoneVideos(z.key).length}</small>`);
+  b.addEventListener("click", () => setZone(z.key));
+  mapBox.appendChild(b);
+  cornerEls[z.key] = b;
+});
+document.getElementById("mapBack").addEventListener("click", () => setZone(null));
+
+/* ---------- ゾーンのボタン ---------- */
+const zoneBar = document.getElementById("zoneBar");
+const zbEls = {};
+{
+  const all = document.createElement("button");
+  all.type = "button";
+  all.className = "zb all";
+  all.textContent = `すべて ${VIDEOS.length}`;
+  all.addEventListener("click", () => setZone(null));
+  zoneBar.appendChild(all);
+  zbEls.all = all;
+}
+ZONES.forEach(z => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "zb" + (z.ink ? " ink" : "");
+  b.style.setProperty("--c", z.color);
+  b.innerHTML = `<i>${z.no}</i>${z.short || z.name}`;
+  b.addEventListener("click", () => setZone(z.key));
+  zoneBar.appendChild(b);
+  zbEls[z.key] = b;
+});
+
+/* ---------- 表示の切り替え ---------- */
+const zoneHead = document.getElementById("zoneHead");
+const chipsEl = document.getElementById("chips");
+const listEl = document.getElementById("list");
+const PAGE = 12;
+const state = { zone:null, place:null, genre:null, shown:PAGE };
+
+function setZone(key, opts = {}){
+  state.zone = key;
+  state.place = null;
+  state.genre = null;
+  state.shown = PAGE;
+  render();
+  if(opts.scroll){
+    const target = window.innerWidth <= 900 && mapBox.offsetParent ? mapBox : document.getElementById("explore");
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block:"start" });
+  }
+}
+
+function renderMap(){
+  const z = state.zone ? zoneByKey[state.zone] : null;
+  const view = z && z.focus ? z : DEFAULT_VIEW;
+  const zoom = view.zoom;
+  let tx = 0, ty = 0;
+  if(zoom > 1){
+    const [fx, fy] = pct(view.focus);
+    tx = Math.min(0, Math.max(100 - 100 * zoom, 50 - zoom * fx));
+    ty = Math.min(0, Math.max(100 - 100 * zoom, 50 - zoom * fy));
+  }
+  mapBox.style.setProperty("--z", zoom);
+  mapLayer.style.setProperty("--tx", tx + "%");
+  mapLayer.style.setProperty("--ty", ty + "%");
+  mapBox.classList.toggle("zoomed", !!z);
+  mapBox.classList.toggle("wide", !!z && zoom < 1.5);
+  Object.entries(pinEls).forEach(([k, el]) => el.classList.toggle("active", k === state.zone));
+  Object.entries(cornerEls).forEach(([k, el]) => el.classList.toggle("on", k === state.zone));
+
+  // 選んだゾーンの「場所」の点（同じゾーンのままなら作り直さず、選んだ点の色だけ変える）
+  if(spotsEl.dataset.zone === (state.zone || "")){
+    spotsEl.querySelectorAll(".spot").forEach(b => {
+      const on = b.dataset.place === state.place;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    return;
+  }
+  spotsEl.dataset.zone = state.zone || "";
+  spotsEl.innerHTML = "";
+  if(!z) return;
+  const counts = {};
+  zoneVideos(z.key).forEach(v => { const p = placeOf(v); if(SPOTS[p]) counts[p] = (counts[p] || 0) + 1; });
+  Object.keys(counts).forEach((p, i) => {
+    const [x, y, side] = SPOTS[p];
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "spot" + (side === "l" ? " l" : "") + (state.place === p ? " on" : "");
+    b.dataset.place = p;
+    const [l, t] = pct([x, y]);
+    b.style.left = l + "%";
+    b.style.top = t + "%";
+    b.style.setProperty("--c", z.color);
+    b.style.setProperty("--dl", (.35 + i * .06) + "s");
+    b.innerHTML = `<span class="lbl">${p}<small>${counts[p]}</small></span>`;
+    b.setAttribute("aria-pressed", state.place === p ? "true" : "false");
+    b.addEventListener("click", () => {
+      state.place = state.place === p ? null : p;
+      state.genre = null;
+      state.shown = PAGE;
+      render();
+    });
+    spotsEl.appendChild(b);
+  });
+}
+
+function renderBar(){
+  Object.entries(zbEls).forEach(([k, el]) => {
+    const on = (k === "all" && !state.zone) || k === state.zone;
+    el.classList.toggle("on", on);
+    el.setAttribute("aria-pressed", on ? "true" : "false");
+    if(on && el.scrollIntoView && zoneBar.scrollWidth > zoneBar.clientWidth){
+      zoneBar.scrollTo({ left: el.offsetLeft - 16, behavior: reduceMotion ? "auto" : "smooth" });
+    }
+  });
+}
+
+function renderAll(){
+  zoneHead.innerHTML = `
+    <div class="intro">
+      <h2>どこへ行く？</h2>
+      <p>中部と東部を5つのゾーンに分けました。地図の番号か、下の「見る」を押すと、そのゾーンの動画がぜんぶ見られます。</p>
+    </div>`;
+  chipsEl.innerHTML = "";
+  chipsEl.hidden = true;
+  listEl.innerHTML = "";
+  ZONES.forEach(z => {
+    const list = zoneVideos(z.key);
+    if(!list.length) return;
+    const box = document.createElement("div");
+    box.className = "preview";
+    box.style.setProperty("--c", z.color);
+    box.innerHTML = `
+      <div class="preview-head${z.ink ? " ink" : ""}">
+        <i>${z.no}</i><h3>${z.name}</h3><span>${list.length}本</span>
+        <button type="button">見る →</button>
+      </div>`;
+    box.querySelector("button").addEventListener("click", () => setZone(z.key, { scroll:true }));
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    list.slice(0, 4).forEach(v => grid.appendChild(createCard(v)));
+    box.appendChild(grid);
+    listEl.appendChild(box);
+  });
+}
+
+function renderZone(){
+  const z = zoneByKey[state.zone];
+  const all = zoneVideos(z.key);
+  const inPlace = state.place ? all.filter(v => placeOf(v) === state.place) : all;
+  const list = state.genre ? inPlace.filter(v => genreOf(v) === state.genre) : inPlace;
+
+  zoneHead.innerHTML = `
+    <div class="area-title${z.ink ? " ink-text" : ""}" style="--c:${z.color}">
+      <span class="area-en">ZONE ${z.no} · ${z.en}</span>
+      <h2>${z.name}</h2>
+      <span class="area-count">${all.length}本</span>
+    </div>
+    <p class="zone-desc">${z.desc}</p>`;
+  if(state.place){
+    const pill = document.createElement("p");
+    pill.className = "place-pill";
+    pill.innerHTML = `📍 ${state.place} の動画 ${inPlace.length}本 <button type="button">× 解除</button>`;
+    pill.querySelector("button").addEventListener("click", () => { state.place = null; state.shown = PAGE; render(); });
+    zoneHead.appendChild(pill);
+  } else if(Object.keys(SPOTS).some(p => all.some(v => placeOf(v) === p))){
+    const hint = document.createElement("p");
+    hint.className = "zone-desc";
+    hint.style.cssText = "font-size:.85rem;font-weight:700;color:#6b6780;margin-top:-6px";
+    hint.textContent = "📍 地図の白い点を押すと、その場所の動画だけになります。";
+    zoneHead.appendChild(hint);
+  }
+
+  // ジャンルの絞り込み（今の一覧にあるジャンルだけ）
+  chipsEl.innerHTML = "";
+  const genres = GENRES.filter(g => inPlace.some(v => genreOf(v) === g));
+  chipsEl.hidden = genres.length < 2;
+  [null, ...genres].forEach(g => {
+    const b = document.createElement("button");
+    b.type = "button";
+    const on = state.genre === g;
+    b.className = "chip" + (on ? " on" : "");
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    const n = g ? inPlace.filter(v => genreOf(v) === g).length : inPlace.length;
+    b.textContent = `${g || "すべて"} ${n}`;
+    b.addEventListener("click", () => { state.genre = g; state.shown = PAGE; render(); });
+    chipsEl.appendChild(b);
+  });
+
+  listEl.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  list.slice(0, state.shown).forEach((v, i) => grid.appendChild(createCard(v, Math.min(i, 12) * .03)));
+  listEl.appendChild(grid);
+  const rest = list.length - state.shown;
+  if(rest > 0){
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "more";
+    more.textContent = `もっと見る（あと${rest}本）`;
+    more.addEventListener("click", () => { state.shown += PAGE; render(); });
+    listEl.appendChild(more);
+  }
+}
+
+function render(){
+  renderMap();
+  renderBar();
+  if(state.zone) renderZone(); else renderAll();
+  if(typeof afterRender === "function") afterRender();
+}
+render();
+
+/* ---------- TOPボタン ---------- */
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", () => {
+  toTop.classList.toggle("show", window.scrollY > heroEl.offsetHeight);
+}, { passive:true });
+
+</script>
+</body>
+</html>

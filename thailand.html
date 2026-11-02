@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>タイコレクション｜MAIBARU TRAVEL 非公式ファンサイト</title>
+<meta name="description" content="Maibaru Travel がタイで暮らした4年間の旅動画を、エリア別にまとめた非公式ファンページです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Mochiy+Pop+P+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD23F;
+    --yellow-soft:#FFE07A;
+    --cream:#FFF7E6;
+    --ink:#17142B;
+    --navy:#16206B;
+    --indigo:#2438B8;
+    --pink:#FF4F9A;
+    --orange:#FF6B2C;
+    --green:#11A36C;
+    --teal:#13B5C6;
+    --purple:#8A4FE0;
+    --blue:#2F63F0;
+    --white:#fff;
+    --pop:'Mochiy Pop P One','Zen Kaku Gothic New',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+    overflow-x:hidden;
+  }
+  .en{font-family:'Archivo',sans-serif;}
+  a{color:inherit;}
+  img{display:block;}
+  .wrap{width:min(1200px,100% - 32px);margin-inline:auto;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* ---------- 上部：戻る・Home / 国内 / 海外 ---------- */
+  .topbar{
+    position:absolute;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:22px 30px;
+  }
+  .back-link,.top-nav{  /* カラフルな背景の上でも読めるよう、白いふちどりのバッジにする */
+    background:var(--cream);border:3px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);
+  }
+  .back-link{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:6px 18px 6px 14px;}
+  .bl-arrow{font-size:1.5rem;line-height:1;transition:transform .2s ease;}
+  .bl-kicker{display:block;font-family:'Archivo',sans-serif;font-size:.66rem;letter-spacing:.18em;opacity:.7;margin-bottom:3px;}
+  .bl-main{display:block;font-size:1.15rem;font-weight:900;letter-spacing:.04em;}
+  .back-link:hover .bl-arrow{transform:translateX(-5px);}
+  .top-nav{display:flex;gap:22px;padding:10px 22px 8px;}
+  .top-nav a{
+    font-size:1rem;font-weight:900;letter-spacing:.06em;text-decoration:none;
+    padding-bottom:3px;border-bottom:3px solid transparent;
+  }
+  .top-nav a:hover{color:var(--indigo);}
+  .top-nav a.current{border-bottom-color:var(--ink);}
+
+  /* ---------- メインビジュアル ---------- */
+  /* カラフルな幾何学タイルの上に、パネルと搭乗券。後ろをゾウが歩き、タイ料理がふわふわ浮かぶ
+     （タイル・ゾウ・料理のイラストはすべてこのページ用に描いたオリジナルです） */
+  .hero{
+    position:relative;overflow:hidden;
+    min-height:100vh;min-height:100svh;
+    display:flex;align-items:center;
+    background:#fff;
+  }
+
+  /* 背景はタイ国旗と同じ比率の横じま（赤1・白1・紺2・白1・赤1）。
+     赤と白の帯には、色数をしぼった図形（スイス・スタイル風）。紺の帯はタイパンツ柄 */
+  .mosaic{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;}
+  .band{
+    flex:1;min-height:0;overflow:hidden;background:var(--bg);
+    display:grid;grid-template-columns:repeat(var(--cols,12),var(--t,120px));grid-auto-rows:var(--t,120px);
+  }
+  .band.pants{flex:2;}
+  .tile{position:relative;overflow:hidden;}
+  .tile-in{
+    position:absolute;inset:0;
+    transform:rotate(var(--rot,0deg)) scale(var(--sc,1));
+    transition:transform .5s cubic-bezier(.3,1.5,.5,1);
+  }
+  .tile-in::before{content:"";position:absolute;}
+  .s-circle  .tile-in::before{inset:14%;border-radius:50%;background:var(--fg);}
+  .s-half    .tile-in::before{left:0;right:0;bottom:0;height:50%;border-radius:50% 50% 0 0 / 100% 100% 0 0;background:var(--fg);}
+  .s-quarter .tile-in::before{inset:0;border-top-left-radius:100%;background:var(--fg);}
+  .s-tri     .tile-in::before{inset:0;clip-path:polygon(0 0,100% 100%,0 100%);background:var(--fg);}
+  .s-diamond .tile-in::before{inset:8%;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--fg);}
+  .s-stripes .tile-in::before{inset:0;background:repeating-linear-gradient(45deg,var(--fg) 0 9%,transparent 9% 18%);}
+  .s-dots    .tile-in::before{inset:10%;background:radial-gradient(circle,var(--fg) 0 18%,transparent 19%) 0 0/25% 25%;}
+  .s-ring    .tile-in::before{inset:14%;border-radius:50%;border:calc(var(--t,120px) * .12) solid var(--fg);}
+  .s-arch    .tile-in::before{left:16%;right:16%;top:14%;bottom:0;border-radius:999px 999px 0 0;background:var(--fg);}
+  .s-square  .tile-in::before{inset:16%;background:var(--fg);}
+  .s-bar     .tile-in::before{left:0;right:0;top:36%;bottom:36%;background:var(--fg);}
+  .s-blank   .tile-in::before{display:none;}
+  /* 再生ボタンの丸 */
+  .ph-play{
+    position:absolute;right:10%;bottom:10%;z-index:1;
+    width:clamp(34px,3.4vw,46px);aspect-ratio:1;border-radius:50%;
+    background:var(--pink);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ph-play::after{content:"";margin-left:3px;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--white);}
+
+  /* 紺の帯：タイパンツ柄（白いゾウが1列になって行進する） */
+  .band.pants{
+    display:flex;flex-direction:column;justify-content:space-between;
+    --el:#fff;--orn:#E0213E;
+  }
+  .band.pants .pt-b{
+    flex:none;height:calc(var(--bh,240px) * .07);
+    background-color:var(--b);background-size:calc(var(--bh,240px) * .07) calc(var(--bh,240px) * .07);
+  }
+  .band.pants .pants-track{flex:1;align-items:center;}
+  .band.pants .p-el{width:calc(var(--bh,240px) * .6);margin-right:calc(var(--bh,240px) * .2);}
+  @keyframes elBob{from{transform:translateY(0);}to{transform:translateY(-3px);}}
+  @keyframes step{from{transform:rotate(13deg);}to{transform:rotate(-13deg);}}
+
+  /* 帯の上を、右から左へ歩くゾウの親子 */
+  .parade{
+    position:absolute;left:0;bottom:clamp(14px,2vh,22px);z-index:2;pointer-events:none;
+    display:flex;align-items:flex-end;gap:4px;
+    animation:walk 34s linear infinite;will-change:transform;
+  }
+  @keyframes walk{from{transform:translateX(100vw);}to{transform:translateX(-110%);}}
+  .elephant{display:block;width:clamp(130px,12.5vw,190px);height:auto;}
+  .elephant.baby{width:clamp(78px,7.5vw,112px);}
+  .el-top{animation:elBob .45s ease-in-out infinite alternate;}
+  .leg{transform-box:fill-box;transform-origin:50% 8%;animation:step .9s ease-in-out infinite alternate;}
+  .leg.b{animation-delay:-.9s;}
+
+  /* 見出しのパネル（右側にトゥクトゥク）と、その右の「きょうの1本」 */
+  .hero-inner{
+    position:relative;z-index:3;
+    width:min(1240px,100% - 32px);margin:0 auto;
+    padding:96px 0 70px;
+    display:grid;grid-template-columns:minmax(0,760px) 1fr;column-gap:24px;align-items:center;
+    pointer-events:none;   /* パネルやカードのない所は、後ろのタイルが見えるだけ */
+  }
+  .hero-main{min-width:0;}
+  .hero-panel,.hero-actions > *,.pick{pointer-events:auto;}
+  .hero-panel{
+    display:grid;grid-template-columns:auto 1fr;column-gap:clamp(8px,2vw,24px);align-items:end;
+    max-width:700px;
+    background:var(--cream);border:4px solid var(--ink);border-radius:28px;
+    box-shadow:10px 10px 0 var(--ink);
+    padding:clamp(22px,3vw,38px) clamp(22px,3.4vw,44px) clamp(40px,4.4vw,56px);
+    animation:panelIn .9s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  @keyframes panelIn{from{opacity:0;transform:translateY(40px) rotate(-3deg);}to{opacity:1;transform:none;}}
+  .hero-kicker{
+    display:flex;align-items:center;gap:12px;margin:0 0 18px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(.9rem,1.4vw,1.05rem);letter-spacing:.16em;
+    animation:rise .8s .15s ease both;
+  }
+  .hero-kicker .flag{  /* タイ国旗（赤・白・青・白・赤） */
+    flex:none;width:36px;height:24px;border:2.5px solid var(--ink);border-radius:4px;
+    background:linear-gradient(180deg,#E0213E 0 16.6%,#fff 16.6% 33.3%,#2438B8 33.3% 66.6%,#fff 66.6% 83.3%,#E0213E 83.3%);
+  }
+  .hero-kicker [lang="th"]{font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:.04em;color:var(--pink);}
+  .hero h1{margin:0;font-family:var(--pop);font-weight:400;line-height:1.12;font-size:clamp(2.4rem,5vw,4.4rem);}
+  .hero h1 > span{display:block;animation:rise .8s ease both;}
+  .hero h1 > span:nth-child(1){animation-delay:.3s;}
+  .hero h1 > span:nth-child(2){animation-delay:.45s;padding-left:.8em;}
+  .hero h1 > span:nth-child(3){animation-delay:.6s;}
+  .h-thai{  /* 「タイ」の文字をタイ国旗のしま模様でぬる */
+    display:inline-block;font-size:1.5em;line-height:1.05;
+    color:transparent;
+    background:linear-gradient(180deg,#E0213E 0 17%,#fff 17% 33%,#2438B8 33% 67%,#fff 67% 83%,#E0213E 83%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-stroke:3px var(--ink);paint-order:stroke fill;
+    filter:drop-shadow(6px 6px 0 var(--ink));
+  }
+  .hero-lead{
+    margin:16px 0 0;max-width:30em;
+    font-weight:700;font-size:clamp(.95rem,1.4vw,1.1rem);line-height:1.9;
+    animation:rise .8s .75s ease both;
+  }
+  .hero-actions{
+    display:flex;flex-wrap:wrap;align-items:center;gap:22px 30px;
+    margin:-28px 0 0 clamp(16px,4vw,48px);max-width:780px;position:relative;
+  }
+
+  .hero-kicker,.hero-lead{grid-column:1 / -1;}
+  .hero h1{grid-column:1;}
+
+  /* パネル右側のトゥクトゥク（このページ用に描いたオリジナル） */
+  .panel-art{
+    grid-column:2;grid-row:2;position:relative;justify-self:center;align-self:end;
+    width:clamp(120px,19vw,250px);margin-bottom:6px;
+    animation:rise .8s .7s ease both;
+  }
+  .tuktuk{display:block;width:100%;height:auto;overflow:visible;}
+  .tt-body{animation:ttBob .32s ease-in-out infinite alternate;}
+  @keyframes ttBob{from{transform:translateY(0);}to{transform:translateY(-2.5px);}}
+  .wheel{transform-box:fill-box;transform-origin:center;animation:wheelSpin .9s linear infinite;}
+  @keyframes wheelSpin{to{transform:rotate(-360deg);}}
+  .puff{transform-box:fill-box;transform-origin:center;animation:puff 1.6s ease-out infinite;}
+  .puff.p2{animation-delay:-.55s;}
+  .puff.p3{animation-delay:-1.1s;}
+  @keyframes puff{
+    0%{transform:translate(0,0) scale(.4);opacity:0;}
+    20%{opacity:1;}
+    100%{transform:translate(22px,-20px) scale(1.5);opacity:0;}
+  }
+  .bubble{  /* 吹き出し */
+    position:absolute;left:0;top:-34px;z-index:1;
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;box-shadow:3px 3px 0 var(--ink);
+    padding:4px 14px;white-space:nowrap;
+    font-family:var(--pop);font-size:clamp(.8rem,1.2vw,1rem);
+    animation:wiggle 2.4s ease-in-out infinite;transform-origin:20% 100%;
+  }
+  .bubble::after{
+    content:"";position:absolute;left:22px;bottom:-11px;width:14px;height:14px;
+    background:var(--white);border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);
+    transform:rotate(45deg) skew(10deg,10deg);
+  }
+  @keyframes wiggle{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(3deg);}}
+
+  /* 右側：「きょうの1本」（ランダムに選んだ動画。押すと再生、↻で引き直し） */
+  .pick{
+    grid-column:2;position:relative;justify-self:center;
+    width:clamp(240px,24vw,340px);
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--pink);
+    padding:22px 12px 12px;transform:rotate(2deg);
+    animation:rise .8s .7s ease both;
+  }
+  .pick.flip{animation:pickFlip .45s ease;}
+  @keyframes pickFlip{0%{transform:rotate(2deg) rotateY(0);}50%{transform:rotate(2deg) rotateY(90deg);}100%{transform:rotate(2deg) rotateY(0);}}
+  .pick-label{
+    position:absolute;left:12px;top:-15px;margin:0;
+    background:var(--ink);color:var(--yellow);border-radius:999px;padding:3px 12px;
+    font-weight:900;font-size:.78rem;letter-spacing:.08em;white-space:nowrap;
+  }
+  .pick-thumb{
+    position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;margin:0;cursor:pointer;
+    border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--yellow-soft);
+  }
+  .pick-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease;}
+  .pick-thumb:hover img{transform:scale(1.05);}
+  .pick-thumb .ph-play{right:8px;bottom:8px;width:36px;}
+  .pick-title{
+    margin:10px 2px 8px;font-weight:700;font-size:.88rem;line-height:1.55;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .pick-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0;}
+  .pick-area{
+    display:inline-flex;align-items:center;gap:5px;font-weight:900;font-size:.74rem;
+  }
+  .pick-area::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c,var(--pink));border:2px solid var(--ink);}
+  .pick-shuffle{
+    flex:none;padding:5px 12px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);
+    font:inherit;font-weight:900;font-size:.74rem;cursor:pointer;color:var(--ink);
+    transition:transform .15s ease;
+  }
+  .pick-shuffle:hover{transform:rotate(-4deg) scale(1.05);}
+
+  /* 動画プレーヤー（サムネイルを押すと、このページの上で再生） */
+  .player{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;padding:16px;
+    background:rgba(23,20,43,.82);
+  }
+  .player[hidden]{display:none;}
+  .player-box{
+    position:relative;width:min(960px,100%);
+    background:var(--cream);border:4px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);
+    padding:14px;animation:panelIn .4s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  .player-frame{aspect-ratio:16/9;min-height:200px;border-radius:12px;  /* YouTubeの規定：プレーヤーは200×200px以上 */overflow:hidden;background:#000;border:3px solid var(--ink);}
+  .player-frame iframe{display:block;width:100%;height:100%;border:0;}
+  .player-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 4px 2px;}
+  .player-title{margin:0;font-weight:900;font-size:.95rem;line-height:1.6;flex:1 1 300px;}
+  .player-link{
+    flex:none;padding:8px 16px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.85rem;text-decoration:none;
+  }
+  .player-close{
+    position:absolute;top:-20px;right:-20px;width:48px;height:48px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-size:1.5rem;font-weight:900;line-height:1;cursor:pointer;color:var(--ink);
+  }
+
+  /* 搭乗券（チケット）風のブロック */
+  .ticket{
+    display:flex;flex:0 1 520px;
+    filter:drop-shadow(6px 6px 0 var(--ink));
+    transform:rotate(-1.5deg);
+    animation:ticketIn .9s .9s cubic-bezier(.2,1.3,.4,1) both;
+  }
+  @keyframes ticketIn{from{opacity:0;transform:translateX(-40px) rotate(-8deg);}to{opacity:1;transform:rotate(-1.5deg);}}
+  .ticket-main{
+    flex:1;min-width:0;background:var(--white);
+    border:3px solid var(--ink);border-right:0;border-radius:16px 0 0 16px;
+    padding:14px 20px 12px;
+  }
+  .ticket-label{margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.2em;color:#6b6780;}
+  .ticket-route{display:flex;align-items:center;gap:16px;}
+  .ticket-route div{display:flex;flex-direction:column;line-height:1.1;}
+  .ticket-route small{font-family:'Archivo',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.16em;color:#6b6780;}
+  .ticket-route b{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.9rem,3vw,2.5rem);letter-spacing:.02em;}
+  .ticket-route span{font-weight:700;font-size:.8rem;}
+  .ticket-route .plane{font-size:1.5rem;color:var(--pink);animation:fly 2.4s ease-in-out infinite alternate;}
+  @keyframes fly{from{transform:translateX(-6px);}to{transform:translateX(6px);}}
+  .ticket-meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px;font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:.14em;color:#6b6780;}
+  .ticket-meta b{color:var(--ink);font-weight:900;}
+  .ticket-stub{
+    position:relative;flex:none;width:clamp(110px,11vw,136px);
+    background:var(--pink);color:var(--white);
+    border:3px solid var(--ink);border-left:3px dashed var(--ink);border-radius:0 16px 16px 0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;
+  }
+  .ticket-stub::before,.ticket-stub::after{  /* 切り取り線の上下の丸い切り欠き */
+    content:"";position:absolute;left:-14px;width:22px;height:22px;border-radius:50%;
+    background:var(--cream);border:3px solid var(--ink);
+  }
+  .ticket-stub::before{top:-14px;}
+  .ticket-stub::after{bottom:-14px;}
+  .ticket-stub small{font-family:'Archivo',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.2em;}
+  .ticket-stub b{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2rem,3.2vw,2.6rem);line-height:1.1;}
+  .barcode{
+    display:block;width:80%;height:24px;margin-top:6px;
+    background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 4px,#fff 4px 5px,transparent 5px 8px,#fff 8px 11px,transparent 11px 13px);
+  }
+  .hero-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;border-radius:999px;background:var(--ink);color:var(--yellow);
+    border:3px solid var(--cream);box-shadow:4px 4px 0 var(--ink);
+    font-weight:900;letter-spacing:.12em;text-decoration:none;
+    transition:transform .2s ease;
+    animation:rise .8s 1.1s ease both;
+  }
+  .hero-cta:hover{transform:translateY(-3px);}
+  .hero-cta span{display:inline-block;animation:bounce 1.6s ease-in-out infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(-2px);}50%{transform:translateY(4px);}}
+  @keyframes rise{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+  /* ---------- 流れる帯 ---------- */
+  .marquee{
+    background:var(--pink);color:var(--white);
+    border-block:4px solid var(--ink);
+    overflow:hidden;white-space:nowrap;
+    transform:rotate(-1.6deg);margin:-14px -20px 0;position:relative;z-index:5;
+  }
+  .marquee-track{display:inline-flex;animation:marquee 34s linear infinite;}
+  .marquee-track span{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:.06em;padding:12px 0;}
+  .marquee-track i{font-style:normal;color:var(--yellow);margin:0 .7em;}
+  @keyframes marquee{to{transform:translateX(-50%);}}
+
+  /* ---------- タイパンツ柄のゾウと飾り模様（メインビジュアルのタイルで使う） ---------- */
+  .pants-track{display:flex;width:max-content;animation:pantsLeft var(--speed,44s) linear infinite;}
+  @keyframes pantsLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .p-el{flex:none;display:block;height:auto;overflow:visible;}
+  .pe-b{fill:var(--el);}
+  .pe-o{fill:var(--orn);}
+  .pe-line{fill:none;stroke:var(--el);stroke-linecap:round;}
+  .pe-ear{fill:var(--el);stroke:var(--orn);stroke-width:2.5;}
+  .p-el .p-top{animation:elBob .45s ease-in-out infinite alternate;}
+  .p-el .pl{
+    transform-box:fill-box;transform-origin:50% 6%;
+    animation:step .9s ease-in-out infinite alternate;
+    animation-delay:calc(var(--ph,0) * -1.8s);
+  }
+  .p-el .pl.b{animation-delay:calc(var(--ph,0) * -1.8s - .9s);}
+  .p-el .pl.far{opacity:.72;}
+  /* 段のふちの飾り模様 */
+  .b-zigzag{background-image:
+      linear-gradient(135deg,var(--a) 25%,transparent 25%),
+      linear-gradient(225deg,var(--a) 25%,transparent 25%);
+    background-size:22px 22px;background-position:-11px 0;}
+  .b-dots{background-image:radial-gradient(circle,var(--a) 0 4.5px,transparent 5.5px);background-size:22px 22px;}
+  .b-diamond{background-image:
+      linear-gradient(45deg,transparent 35%,var(--a) 35% 65%,transparent 65%),
+      linear-gradient(-45deg,transparent 35%,var(--a) 35% 65%,transparent 65%);
+    background-size:22px 22px;}
+  .b-tri{background-image:
+      linear-gradient(45deg,var(--a) 50%,transparent 50%),
+      linear-gradient(-45deg,var(--a) 50%,transparent 50%);
+    background-size:22px 22px;}
+
+  /* ---------- スクロールで大きくなる地図 ---------- */
+  .map-scroll{position:relative;height:320vh;background:var(--navy);margin-top:-10px;}
+  .map-sticky{
+    position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+    display:grid;grid-template-columns:minmax(260px,1fr) 1.2fr;align-items:center;
+    background:
+      radial-gradient(rgba(255,255,255,.08) 1.4px, transparent 1.5px) 0 0/22px 22px,
+      var(--navy);
+    color:var(--white);
+  }
+  .map-glow{
+    position:absolute;left:62%;top:50%;width:120vmin;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle, rgba(36,56,184,.95) 0%, rgba(36,56,184,0) 65%);
+    transform:translate(-50%,-50%) scale(calc(.4 + var(--p,0) * .9));
+  }
+  .map-text{position:relative;z-index:2;padding:0 6vw 0 max(32px,6vw);}
+  .kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.28em;margin:0 0 12px;}
+  .map-text .kicker{color:var(--yellow);}
+  .map-text h2{
+    font-family:var(--pop);font-weight:400;font-size:clamp(1.9rem,4vw,3.4rem);line-height:1.25;margin:0 0 18px;
+  }
+  .map-text p.lead{font-size:clamp(1rem,1.5vw,1.15rem);line-height:2;font-weight:500;margin:0;max-width:30em;opacity:.92;}
+  .map-steps{display:flex;gap:8px;margin-top:26px;}
+  .map-steps i{width:34px;height:6px;border-radius:6px;background:rgba(255,255,255,.25);transition:background .3s ease, width .3s ease;}
+  .map-steps i.on{background:var(--yellow);width:54px;}
+  .map-text .swap{transition:opacity .35s ease, transform .35s ease;}
+  .map-text .swap.out{opacity:0;transform:translateY(12px);}
+
+  .map-stage{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;}
+  .map-inner{
+    position:relative;height:min(88vh,860px);aspect-ratio:493/764;
+    transform-origin:50% 50%;will-change:transform;
+  }
+  .map-inner svg{width:100%;height:100%;overflow:visible;}
+  .map-neighbors{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.18);stroke-width:1.2;stroke-linejoin:round;}
+  .map-shadow{fill:var(--ink);transform:translate(7px,8px);}
+  .map-thai{fill:var(--yellow);stroke:var(--ink);stroke-width:3;stroke-linejoin:round;}
+  .map-dot{
+    fill:var(--white);stroke:var(--ink);stroke-width:2.5;
+    transform-box:fill-box;transform-origin:center;transform:scale(0);
+    transition:transform .45s cubic-bezier(.2,1.6,.4,1);
+  }
+  .map-dot.on{transform:scale(1);}
+  .map-labels{position:absolute;inset:0;}
+  .map-label{
+    position:absolute;transform:translate(-50%,-50%) scale(0);
+    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+    background:var(--c);color:var(--white);
+    border:3px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--ink);
+    padding:6px 14px 6px 12px;
+    font-weight:900;font-size:clamp(.82rem,1.25vw,1rem);letter-spacing:.04em;text-decoration:none;
+    transition:transform .5s cubic-bezier(.2,1.6,.4,1);
+  }
+  .map-label small{font-family:'Archivo',sans-serif;font-weight:700;font-size:.78em;opacity:.9;}
+  .map-label.on{transform:translate(-50%,-50%) scale(1);}
+  .map-label.on:hover{transform:translate(-50%,-50%) scale(1.08) rotate(-3deg);}
+
+  /* ---------- タイってこんな国 ---------- */
+  .facts{position:relative;padding:110px 0 90px;overflow:hidden;}
+  .section-title{text-align:center;margin:0 0 48px;}
+  .section-title .kicker{color:var(--pink);}
+  .section-title h2{font-family:var(--pop);font-weight:400;font-size:clamp(1.8rem,4vw,3rem);margin:0;line-height:1.3;}
+  .fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .fact{
+    position:relative;background:var(--white);border:3px solid var(--ink);border-radius:22px;
+    box-shadow:6px 6px 0 var(--c,var(--ink));
+    padding:22px 22px 20px;
+  }
+  .fact:nth-child(odd){transform:rotate(-1.2deg);}
+  .fact:nth-child(even){transform:rotate(1deg);}
+  .fact .ic{
+    display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;
+    background:var(--c);font-size:1.6rem;border:3px solid var(--ink);margin-bottom:10px;
+  }
+  .fact h3{margin:0 0 4px;font-size:.85rem;letter-spacing:.14em;color:#5a566e;}
+  .fact p{margin:0;font-weight:900;font-size:1.35rem;line-height:1.45;}
+  .fact p small{display:block;font-weight:500;font-size:.85rem;color:#5a566e;margin-top:4px;line-height:1.6;}
+
+  /* ---------- エリアナビ（画面上に貼りつく） ---------- */
+  .area-nav{
+    position:sticky;top:0;z-index:30;
+    background:rgba(255,247,230,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-block:3px solid var(--ink);
+  }
+  .area-nav-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 16px;justify-content:safe center;}
+  .area-nav-inner::-webkit-scrollbar{display:none;}
+  .area-nav a{
+    flex:none;display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.92rem;text-decoration:none;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .area-nav a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);border:2px solid var(--ink);}
+  .area-nav a:hover{transform:translateY(-2px);}
+  .area-nav a.active{background:var(--c);color:var(--white);}
+
+  /* ---------- エリア ---------- */
+  .area{position:relative;padding:80px 0 70px;scroll-margin-top:60px;}
+  .area:nth-of-type(even){background:var(--white);--hole:var(--white);}
+  .area-head{display:grid;grid-template-columns:auto 1fr;gap:16px 48px;align-items:end;margin-bottom:22px;}
+  /* 見出しは旅行かばんの荷札（タグ）の形 */
+  .area-title{
+    position:relative;justify-self:start;padding:16px 34px 14px 50px;
+    transform:rotate(-2deg);filter:drop-shadow(5px 5px 0 var(--ink));
+  }
+  .area-title::before{
+    content:"";position:absolute;inset:0;z-index:0;background:var(--c);
+    clip-path:polygon(24px 0,100% 0,100% 100%,24px 100%,0 calc(100% - 24px),0 24px);
+  }
+  .area-title::after{  /* 荷札のひも穴 */
+    content:"";position:absolute;left:16px;top:50%;z-index:1;width:16px;height:16px;margin-top:-8px;
+    border-radius:50%;background:var(--hole,var(--cream));border:3px solid var(--ink);
+  }
+  .area-title > *{position:relative;z-index:1;}
+  .area-en{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:.85rem;letter-spacing:.24em;color:var(--white);}
+  .area-title h2{font-family:var(--pop);font-weight:400;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.15;margin:2px 0 0;color:var(--white);
+    text-shadow:3px 3px 0 var(--ink);}
+  .area-count{
+    position:absolute;right:-18px;top:-12px;z-index:2;
+    background:var(--white);border:3px solid var(--ink);border-radius:999px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;padding:3px 10px;transform:rotate(8deg);
+  }
+  .area-desc{margin:0;font-size:1.02rem;line-height:2;font-weight:500;max-width:40em;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .chip{
+    font:inherit;font-weight:700;font-size:.88rem;cursor:pointer;
+    padding:6px 14px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);
+    transition:background .2s ease,color .2s ease;
+  }
+  .chip:hover{background:rgba(23,20,43,.06);}
+  .chip.on{background:var(--ink);color:var(--white);}
+
+  /* 横スクロールの動画カード列（PCは矢印ボタンでも送れる） */
+  .shelf-wrap{position:relative;}
+  .shelf{
+    display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,24vw,290px);
+    gap:22px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;scroll-padding-inline:max(16px,(100vw - 1200px)/2);
+    padding:18px max(16px,(100vw - 1200px)/2) 26px;
+    scrollbar-width:none;
+  }
+  .shelf::-webkit-scrollbar{display:none;}
+  .shelf.two-rows{grid-template-rows:auto auto;}
+  .shelf-btn{
+    position:absolute;top:calc(50% - 26px);z-index:3;
+    width:52px;height:52px;border-radius:50%;
+    border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);
+    font-size:1.3rem;font-weight:900;cursor:pointer;color:var(--ink);
+    transition:transform .15s ease, opacity .2s ease;
+  }
+  .shelf-btn:hover{transform:scale(1.08);}
+  .shelf-btn:active{transform:scale(.94);}
+  .shelf-btn[disabled]{opacity:0;pointer-events:none;}
+  .shelf-btn.prev{left:max(8px,(100vw - 1290px)/2);}
+  .shelf-btn.next{right:max(8px,(100vw - 1290px)/2);}
+
+  .card{
+    scroll-snap-align:start;
+    display:flex;flex-direction:column;text-decoration:none;
+    background:var(--white);border:3px solid var(--ink);border-radius:18px;overflow:hidden;
+    box-shadow:5px 5px 0 var(--c,var(--ink));
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translate(-2px,-4px);box-shadow:8px 9px 0 var(--c,var(--ink));}
+  .card:focus-visible{outline:3px solid var(--indigo);outline-offset:4px;}
+  .card.hide{display:none;}
+  .thumb{position:relative;aspect-ratio:16/9;background:var(--yellow-soft);border-bottom:3px solid var(--ink);overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease;}
+  .card:hover .thumb img{transform:scale(1.05);}
+  .lock{
+    position:absolute;left:8px;top:8px;
+    background:var(--ink);color:var(--yellow);border-radius:999px;padding:3px 10px;
+    font-size:.74rem;font-weight:900;letter-spacing:.04em;
+  }
+  .ep{
+    position:absolute;right:8px;bottom:8px;
+    background:var(--yellow);color:var(--ink);border:2.5px solid var(--ink);border-radius:10px;padding:2px 9px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem;
+  }
+  .card-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:.76rem;font-weight:700;color:var(--c,#5a566e);}
+  .card-title{
+    margin:0;font-size:.93rem;font-weight:700;line-height:1.6;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  /* ---------- シリーズ・暮らし ---------- */
+  .series{
+    background:
+      radial-gradient(rgba(255,255,255,.09) 1.4px, transparent 1.5px) 0 0/22px 22px,
+      var(--navy);
+    color:var(--white);padding:100px 0 60px;
+  }
+  .series .section-title .kicker{color:var(--yellow);}
+  .series-block{margin-bottom:46px;}
+  .series-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;}
+  .series-head h3{font-family:var(--pop);font-weight:400;font-size:clamp(1.4rem,3vw,2rem);margin:0;}
+  .series-head p{margin:0;font-size:.95rem;opacity:.8;}
+  .series .card{color:var(--ink);}
+
+  /* ---------- フッター ---------- */
+  .site-footer{background:var(--ink);color:#e9e6f5;padding:70px 0 40px;}
+  .footer-brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.6rem;margin:0 0 4px;color:var(--yellow);}
+  .footer-sub{font-family:'Archivo',sans-serif;font-size:.75rem;letter-spacing:.2em;opacity:.6;margin:0 0 26px;}
+  .site-footer ul{margin:0 0 26px;padding-left:1.2em;font-size:.85rem;line-height:2;opacity:.85;max-width:62em;}
+  .footer-links{display:flex;flex-wrap:wrap;gap:12px;}
+  .footer-links a{
+    display:inline-block;padding:10px 18px;border-radius:999px;border:2px solid rgba(255,255,255,.4);
+    text-decoration:none;font-weight:700;font-size:.9rem;
+  }
+  .footer-links a:hover{background:rgba(255,255,255,.1);}
+
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:40;
+    width:56px;height:56px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.72rem;text-decoration:none;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1.1;
+    opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s ease, transform .3s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+
+  /* スクロールで現れる */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .fact.reveal.in:nth-child(odd){transform:rotate(-1.2deg);}
+  .fact.reveal.in:nth-child(even){transform:rotate(1deg);}
+
+  /* ---------- タブレット ---------- */
+  @media (max-width:900px){
+    /* メインビジュアル：上のタイル（写真）を見せてから、パネル → チケット */
+    /* 下のタイパンツの段がボタンと重ならないよう、下に2マス分あける */
+    .hero-inner{display:flex;flex-direction:column;padding:96px 0 calc(var(--t,80px) * 2 + 110px);}
+    .hero-panel{border-radius:22px;box-shadow:7px 7px 0 var(--ink);}
+    .pick{order:-1;align-self:stretch;width:auto;margin:0 0 34px;
+      display:grid;grid-template-columns:40% 1fr;column-gap:12px;align-items:center;transform:rotate(-1deg);}
+    .pick-thumb{grid-row:1 / span 2;}
+    .pick-title{margin:0 0 6px;}
+    .pick-meta{flex-wrap:wrap;}
+    .hero-actions{margin:-22px 0 0 10px;gap:20px;}
+    .ticket{flex:1 1 300px;}
+    .map-sticky{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;}
+    .map-text{padding:84px 20px 0;text-align:center;}
+    .map-text h2{font-size:clamp(1.5rem,6vw,2.2rem);margin-bottom:8px;}
+    .map-text p.lead{font-size:.92rem;line-height:1.8;margin:0 auto;}
+    .map-steps{justify-content:center;margin-top:12px;}
+    .map-glow{left:50%;top:62%;}
+    .map-stage{align-items:center;}
+    .map-inner{height:min(64svh,620px);}
+    .area-head{grid-template-columns:1fr;gap:18px;}
+    .fact-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* ---------- スマホ ---------- */
+  @media (max-width:600px){
+    .topbar{padding:14px 16px;}
+    .bl-arrow{font-size:1.2rem;}
+    .bl-kicker{font-size:.56rem;}
+    .bl-main{font-size:.95rem;}
+    .top-nav{gap:12px;padding:8px 14px 6px;}
+    .back-link{padding:4px 12px 4px 10px;gap:8px;}
+    .top-nav a{font-size:.9rem;}
+    .hero-panel{padding:20px 16px 34px 18px;}
+    .pick{grid-template-columns:44% 1fr;}
+    .panel-art{width:84px;}
+    .elephant{width:120px;}
+    .elephant.baby{width:72px;}
+    .bubble{font-size:.7rem;padding:3px 8px;top:-26px;}
+    .hero h1{font-size:clamp(2.2rem,11vw,3.2rem);}
+    .h-thai{-webkit-text-stroke:2.5px var(--ink);filter:drop-shadow(4px 4px 0 var(--ink));}
+    .hero-lead{font-size:.92rem;}
+    .hero-actions{margin:-20px 6px 0;}
+    .ticket-main{padding:12px 14px 10px;}
+    .ticket-route{gap:10px;}
+    .ticket-route b{font-size:1.7rem;}
+    .ticket-meta{gap:2px 12px;font-size:.62rem;}
+    .ticket-stub{width:96px;}
+    .ticket-stub b{font-size:1.9rem;}
+    .hero-cta{margin:0 auto;}
+    .player-close{top:-14px;right:-8px;}
+    .facts{padding:80px 0 60px;}
+    .fact-grid{gap:14px;}
+    .fact{padding:14px 12px;border-radius:16px;box-shadow:4px 4px 0 var(--c,var(--ink));}
+    .fact .ic{width:40px;height:40px;font-size:1.2rem;margin-bottom:6px;}
+    .fact h3{font-size:.72rem;letter-spacing:.08em;}
+    .fact p{font-size:1rem;}
+    .fact p small{font-size:.74rem;line-height:1.5;}
+    .area{padding:60px 0 50px;}
+    .area-title{padding:12px 26px 10px 42px;}
+    .area-title::after{left:13px;width:13px;height:13px;margin-top:-6.5px;}
+    .area-desc{font-size:.95rem;line-height:1.9;}
+    .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%;padding-inline:16px;}
+    .chips::-webkit-scrollbar{display:none;}
+    .chip{flex:none;}
+    .shelf{grid-auto-columns:68vw;gap:16px;}
+    .shelf-btn{display:none;}
+    .card-title{font-size:.88rem;}
+    .to-top{width:50px;height:50px;}
+  }
+
+  /* 動きを減らす設定の人には、アニメーションを止める */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;}
+    .map-scroll{height:auto;}
+    .map-sticky{position:relative;height:auto;min-height:100vh;padding-bottom:40px;}
+    .map-dot{transform:scale(1);}
+    .map-label{transform:translate(-50%,-50%) scale(1);}
+    .ticket{transform:rotate(-1.5deg);}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="back-link" href="world.html">
+    <span class="bl-arrow">←</span>
+    <span>
+      <span class="bl-kicker en">BACK TO</span>
+      <span class="bl-main">海外に戻る</span>
+    </span>
+  </a>
+  <nav class="top-nav" aria-label="サイト">
+    <a href="index.html">Home</a>
+    <a href="japan.html">国内</a>
+    <a href="world.html" class="current">海外</a>
+  </nav>
+</header>
+
+<!-- ===== メインビジュアル（幾何学タイル＋ゾウ＋タイ料理＋チケット） ===== -->
+<!-- イラスト（タイル・ゾウ・トゥクトゥク）はすべてこのページ用に描いたオリジナルです -->
+<section class="hero" id="top">
+  <div class="mosaic" id="mosaic"></div>
+
+  <!-- ゾウの親子（JSで子ゾウを複製します） -->
+  <div class="parade" id="parade" aria-hidden="true">
+    <svg class="elephant" viewBox="0 0 220 160">
+      <!-- 奥の脚 -->
+      <rect class="leg b" x="116" y="98" width="22" height="50" rx="10" fill="#8B94AC" stroke="#17142B" stroke-width="5"/>
+      <rect class="leg a" x="180" y="98" width="22" height="50" rx="10" fill="#8B94AC" stroke="#17142B" stroke-width="5"/>
+      <g class="el-top">
+        <path d="M198,72 C210,82 212,96 206,106" fill="none" stroke="#17142B" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="146" cy="80" rx="62" ry="44" fill="#A9B2C8" stroke="#17142B" stroke-width="5"/>
+        <!-- 背中の飾り布 -->
+        <path d="M112,40 H182 C188,58 188,80 182,96 L174,90 L166,98 L158,90 L150,98 L142,90 L134,98 L126,90 L118,98 L110,92 C104,76 104,56 112,40 Z" fill="#E0213E" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M110,54 H184" stroke="#FFD23F" stroke-width="6"/>
+        <path d="M147,62 l9,11 -9,11 -9,-11 Z" fill="#FFD23F" stroke="#17142B" stroke-width="3" stroke-linejoin="round"/>
+        <!-- 鼻 -->
+        <path d="M46,72 C28,88 28,114 42,124 C48,128 54,122 50,116" fill="none" stroke="#17142B" stroke-width="21" stroke-linecap="round"/>
+        <path d="M46,72 C28,88 28,114 42,124 C48,128 54,122 50,116" fill="none" stroke="#A9B2C8" stroke-width="11" stroke-linecap="round"/>
+        <!-- 頭 -->
+        <circle cx="64" cy="62" r="36" fill="#A9B2C8" stroke="#17142B" stroke-width="5"/>
+        <!-- 耳 -->
+        <path d="M84,34 C112,30 120,62 108,86 C100,98 84,94 82,82 C80,66 78,50 84,34 Z" fill="#C4CBDC" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M90,46 C104,46 108,64 102,78 C98,84 92,82 91,76 C90,66 88,56 90,46 Z" fill="#FFB3CF"/>
+        <!-- 頭の飾り -->
+        <path d="M46,30 L64,18 L82,30 L64,42 Z" fill="#FFD23F" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="64" cy="30" r="5" fill="#E0213E" stroke="#17142B" stroke-width="2.5"/>
+        <!-- 目・ほっぺ -->
+        <circle cx="52" cy="58" r="5" fill="#17142B"/><circle cx="53.6" cy="56.4" r="1.7" fill="#fff"/>
+        <circle cx="47" cy="74" r="6" fill="#FF9EC4" opacity=".85"/>
+      </g>
+      <!-- 手前の脚 -->
+      <rect class="leg a" x="98" y="100" width="24" height="50" rx="10" fill="#A9B2C8" stroke="#17142B" stroke-width="5"/>
+      <rect class="leg b" x="162" y="100" width="24" height="50" rx="10" fill="#A9B2C8" stroke="#17142B" stroke-width="5"/>
+    </svg>
+  </div>
+
+
+  <div class="hero-inner">
+    <div class="hero-main">
+    <div class="hero-panel">
+      <p class="hero-kicker"><span class="flag" aria-hidden="true"></span>SAWASDEE! <span lang="th">สวัสดี</span></p>
+      <h1>
+        <span>暮らして、</span>
+        <span>巡った、</span>
+        <span><span class="h-thai">タイ</span>。</span>
+      </h1>
+      <!-- トゥクトゥク（このページ用に描いたオリジナル）：前輪1つ・スクーターのような鼻・斜めの窓・長い屋根とTAXIの看板 -->
+      <div class="panel-art" aria-hidden="true">
+        <span class="bubble">どこ行く？</span>
+        <svg class="tuktuk" viewBox="0 0 220 160">
+          <ellipse cx="112" cy="151" rx="92" ry="6" fill="rgba(23,20,43,.18)"/>
+          <g class="tt-body">
+            <circle class="puff p1" cx="214" cy="126" r="6" fill="#E4E0F0" stroke="#17142B" stroke-width="2.5"/>
+            <circle class="puff p2" cx="214" cy="126" r="6" fill="#E4E0F0" stroke="#17142B" stroke-width="2.5"/>
+            <circle class="puff p3" cx="214" cy="126" r="6" fill="#E4E0F0" stroke="#17142B" stroke-width="2.5"/>
+            <!-- 屋根を支える柱 -->
+            <rect x="110" y="44" width="6" height="46" fill="#17142B"/>
+            <rect x="198" y="44" width="7" height="42" fill="#17142B"/>
+            <!-- 斜めの窓ガラスとハンドル -->
+            <path d="M58,88 L48,50 H72 L82,88 Z" fill="#CFF3F7" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M80,90 L94,82" stroke="#17142B" stroke-width="4" stroke-linecap="round"/>
+            <!-- うしろの座席の背もたれ -->
+            <path d="M168,86 V62 C168,57 172,54 177,54 H192 C197,54 200,57 200,62 V86 Z" fill="#FF6B2C" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+            <!-- 床 -->
+            <rect x="60" y="112" width="70" height="12" fill="#17142B"/>
+            <!-- うしろの車体（後輪のアーチ付き） -->
+            <path d="M120,131 V96 C120,89 125,84 132,84 H198 C205,84 210,89 210,96 V120 C210,127 205,131 198,131 H192 C192,110 152,110 152,131 Z" fill="#11A36C" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+            <!-- 前の車体（スクーターのような鼻と前輪のアーチ） -->
+            <path d="M26,131 C18,113 22,97 34,91 C44,86 58,85 70,87 L86,97 V117 L76,131 H66 C66,110 30,110 30,131 Z" fill="#11A36C" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+            <!-- 飾り線 -->
+            <path d="M128,104 H204" stroke="#FFD23F" stroke-width="6" stroke-linecap="round"/>
+            <path d="M36,103 C44,97 58,95 70,97" fill="none" stroke="#FFD23F" stroke-width="5" stroke-linecap="round"/>
+            <!-- ライト -->
+            <circle cx="27" cy="106" r="7" fill="#FFF7E6" stroke="#17142B" stroke-width="3"/>
+            <circle cx="27" cy="106" r="3" fill="#FFD23F"/>
+            <!-- 長い屋根（前がカーブしてせり出す） -->
+            <path d="M38,52 C36,38 46,30 60,30 H198 C208,30 214,36 214,44 V48 C214,51 212,52 209,52 Z" fill="#2F63F0" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M46,45 H207" stroke="#FFD23F" stroke-width="4"/>
+            <!-- TAXIの看板 -->
+            <rect x="78" y="13" width="44" height="18" rx="4" fill="#FFD23F" stroke="#17142B" stroke-width="3.5"/>
+            <text x="100" y="26.5" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="11" fill="#17142B">TAXI</text>
+          </g>
+          <!-- タイヤ（前輪1つ・後輪1つが見える） -->
+          <g class="wheel"><circle cx="48" cy="131" r="17" fill="#17142B"/><circle cx="48" cy="131" r="8" fill="#FFF7E6"/><path d="M48,123 V139 M40,131 H56" stroke="#17142B" stroke-width="3"/></g>
+          <g class="wheel"><circle cx="172" cy="131" r="17" fill="#17142B"/><circle cx="172" cy="131" r="8" fill="#FFF7E6"/><path d="M172,123 V139 M164,131 H180" stroke="#17142B" stroke-width="3"/></g>
+        </svg>
+      </div>
+      <p class="hero-lead">バンコクで暮らした4年間に、北の山から南の島まで巡った旅。その動画を、エリア別にまとめました。</p>
+    </div>
+
+    <div class="hero-actions">
+      <div class="ticket" aria-label="タイコレクション：6エリア、動画の本数">
+        <div class="ticket-main">
+          <p class="ticket-label">BOARDING PASS ・ THAILAND COLLECTION</p>
+          <div class="ticket-route">
+            <div><small>FROM</small><b>BKK</b><span>バンコク</span></div>
+            <span class="plane" aria-hidden="true">✈</span>
+            <div><small>TO</small><b>ALL</b><span>タイ全土</span></div>
+          </div>
+          <div class="ticket-meta"><span>AREAS <b>6</b></span><span>YEARS <b>4</b></span><span>SEAT <b>FREE</b></span></div>
+        </div>
+        <div class="ticket-stub">
+          <small>VIDEOS</small>
+          <b id="heroCount">0</b>
+          <span class="barcode" aria-hidden="true"></span>
+        </div>
+      </div>
+      <a class="hero-cta" href="#map">旅をはじめる <span aria-hidden="true">↓</span></a>
+    </div>
+    </div>
+
+    <!-- きょうの1本（ランダムに選んだ動画） -->
+    <div class="pick" id="pick">
+      <p class="pick-label">🎲 きょうの1本</p>
+      <button type="button" class="pick-thumb" id="pickPlay"><img id="pickImg" alt=""><span class="ph-play" aria-hidden="true"></span></button>
+      <p class="pick-title" id="pickTitle"></p>
+      <p class="pick-meta"><span class="pick-area" id="pickArea"></span><button type="button" class="pick-shuffle" id="pickShuffle">ほかの旅 ↻</button></p>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+
+
+<!-- ===== スクロールで大きくなる地図 ===== -->
+<section class="map-scroll" id="map" aria-label="タイの地図">
+  <div class="map-sticky" id="mapSticky">
+    <div class="map-glow"></div>
+    <div class="map-text">
+      <p class="kicker">THAILAND MAP</p>
+      <div class="swap" id="mapSwap">
+        <h2 id="mapHeading">タイってどんな形？</h2>
+        <p class="lead" id="mapLead"></p>
+      </div>
+      <div class="map-steps" id="mapSteps"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="map-stage">
+      <div class="map-inner" id="mapInner">
+        <svg viewBox="0 0 493 764" role="img" aria-label="タイと周辺国の地図">
+          <path class="map-neighbors" d="M184.8,40.6L179.4,37.7L174.4,35.7L171.4,37.5L169.1,39.5L163.1,40.5L158.3,39.4L155.1,38.5L156.4,43.2L156.2,48.3L152.3,50.9L147.2,51.5L143.3,49.9L137.8,50.6L135.4,53.3L133.9,61.5L130.7,65.6L126.4,65.4L111.8,69.0L106.4,69.5L100.4,69.4L94.6,66.2L90.4,66.7L89.2,71.1L85.9,73.9L81.5,80.1L80.4,89.0L80.9,95.2L76.8,101.4L78.6,118.6L74.9,121.3L70.7,122.9L67.9,124.3L62.6,123.4L65.0,130.7L68.3,133.6L73.1,133.8L74.1,139.2L77.1,145.5L78.0,150.2L76.2,154.9L80.4,161.8L86.5,168.7L92.5,176.1L97.5,182.2L101.2,186.4L109.3,194.3L110.7,198.0L111.0,205.5L113.1,209.8L114.9,212.9L119.3,224.0L127.2,220.0L129.4,223.0L128.5,228.3L126.4,230.9L116.2,236.9L115.4,242.0L114.7,249.8L114.4,259.4L114.9,266.6L109.9,268.8L104.4,272.4L100.1,274.1L97.6,278.4L98.8,286.3L100.7,293.8L104.6,299.2L107.6,303.5L111.8,309.4L115.2,314.7L122.0,320.4L131.5,328.9L135.1,333.6L138.3,339.4L140.6,344.2L141.5,350.7L142.2,354.4L142.3,366.5L140.6,369.2L139.3,372.4L140.1,375.8L142.2,379.0L144.3,389.2L147.8,393.2L151.2,395.9L152.2,401.4L153.1,405.0L153.8,409.0L155.2,414.4L157.8,419.1L162.0,433.3L160.1,437.6L157.5,440.2L154.3,443.7L150.6,451.3L143.0,464.3L135.6,472.9L129.4,478.9L124.9,482.6L123.6,486.5L124.1,495.4L123.1,499.1L121.8,503.0L121.2,506.4L114.9,513.6L113.0,510.2L111.8,506.8L113.1,499.0L110.5,484.1L113.6,481.1L116.5,475.4L119.9,469.8L120.2,463.1L123.0,458.2L122.3,454.0L122.5,449.2L123.1,445.2L125.1,438.6L128.9,436.1L125.7,433.3L120.7,436.1L117.6,432.3L118.6,427.4L120.6,425.2L120.4,421.0L119.4,417.4L120.9,412.8L116.5,411.9L120.1,407.2L117.6,402.9L119.4,398.4L119.4,392.7L118.1,387.7L116.4,377.8L115.4,369.8L111.5,363.7L108.4,354.9L100.7,343.4L100.7,338.6L100.4,334.2L96.3,347.4L94.6,344.4L94.1,335.8L93.0,331.8L94.1,323.8L89.6,315.8L88.6,310.0L85.5,301.2L90.5,301.2L86.8,296.1L83.8,297.2L81.2,291.7L80.7,276.7L78.1,271.1L79.6,265.4L76.7,244.9L71.0,238.3L72.1,232.6L73.6,227.6L73.3,218.1L74.6,215.3L77.3,213.0L72.6,214.5L67.5,215.0L61.7,215.2L59.7,208.3L56.8,205.0L54.2,198.2L52.8,190.3L49.4,185.6L43.4,178.6L38.1,174.8L39.4,177.5L38.1,183.9L40.7,191.8L38.4,196.8L36.3,203.4L34.4,206.6L27.9,213.3L22.8,215.6L16.3,215.3L12.6,211.7L11.1,204.0L10.7,210.1L14.5,218.8L6.0,223.4L2.0,223.6L0.5,227.6L-10.6,231.4L-12.9,235.9L-14.3,240.3L-20.0,246.6L-27.4,251.9L-31.3,250.4L-31.0,244.7L-28.5,239.9L-29.4,234.7L-34.7,244.9L-36.9,247.2L-41.3,246.6L-47.4,247.5L-49.7,240.2L-50.2,235.1L-49.7,230.8L-51.1,234.5L-53.9,240.5L-60.0,243.6L-60.2,239.7L-59.2,233.1L-59.4,228.0L-57.4,220.8L-58.1,215.7L-59.2,219.7L-59.8,223.7L-63.2,225.9L-67.4,230.7L-69.9,234.8L-76.3,238.8L-80.0,233.4L-77.4,215.4L-75.0,212.9L-73.7,209.7L-71.8,199.3L-69.4,195.3L-68.4,187.0L-64.4,179.0L-63.2,167.0L-64.5,161.0L-67.4,155.3L-70.3,138.0L-77.8,123.9L-78.4,119.2L-82.0,113.5L-85.5,108.2L-87.9,94.4L-87.6,88.0L-89.5,92.8L-92.3,94.5L-91.2,101.5L-92.8,105.8L-98.6,103.0L-102.8,99.9L-107.6,92.5L-112.3,84.2L-108.6,82.8L-101.8,88.9L-97.4,90.2L-94.7,88.7L-91.3,86.1L-89.7,80.9L-94.7,78.0L-100.0,73.2L-101.3,69.1L-104.5,67.5L-107.1,65.5L-104.9,61.9L-102.8,59.2L-108.4,59.4L-114.7,54.7L-118.3,52.5L-123.3,52.0L-127.5,53.3L-125.5,59.9L-128.6,61.7L-134.4,51.8L-132.6,49.2L-130.2,46.8L-131.5,37.8L-134.9,42.0L-139.7,48.2L-143.8,45.5L-141.5,42.2L-139.4,39.6L-141.2,36.1L-144.1,33.6L-146.3,29.4L-146.5,34.3L-146.8,41.6L-152.0,33.6L-162.3,22.2L-164.7,18.8L-166.5,12.3L-167.3,9.0L-169.7,4.0L-170.7,-0.1L-171.2,-4.3L-169.9,-7.3L-166.8,-10.5L-162.6,-9.6L-158.1,-7.5L-155.0,-5.5L-152.5,-3.2L-151.3,-6.9L-152.6,-12.3L-153.1,-18.8L-153.1,-34.1L-151.0,-37.3L-149.1,-41.6L-144.7,-41.6L-141.0,-37.2L-136.0,-37.0L-133.4,-43.5L-131.3,-46.4L-127.6,-47.4L-127.1,-53.4L-129.7,-62.0L-130.5,-65.9L-131.0,-69.8L-129.4,-73.9L-127.1,-78.5L-127.6,-82.7L-125.4,-84.5L-120.7,-84.2L-118.7,-86.7L-117.0,-98.4L-116.2,-107.1L-115.8,-114.1L-117.8,-118.4L-120.7,-129.8L-118.6,-132.2L-114.2,-128.2L-109.2,-128.1L-106.2,-129.1L-100.5,-127.7L-96.2,-126.2L-89.2,-124.4L-86.3,-122.9L-82.0,-127.6L-79.9,-134.0L-76.5,-143.6L-72.8,-150.6L-67.6,-158.1L-63.4,-164.1L-59.8,-171.6L-57.9,-177.1L-59.4,-181.1L-64.2,-183.6L-63.7,-189.5L-61.8,-193.7L-59.7,-195.9L-54.4,-198.7L-51.0,-202.3L-47.3,-207.0L-45.2,-210.2L-44.2,-216.8L-40.6,-220.2L-38.9,-222.7L-41.8,-229.6L-42.6,-236.8L-42.1,-242.6L-39.0,-248.3L-35.8,-250.3L-31.1,-251.7L-24.0,-255.6L-11.8,-264.5L-7.2,-267.5L-4.2,-268.9L-1.3,-272.7L2.8,-276.8L8.6,-278.8L12.3,-279.6L29.9,-282.4L35.8,-280.4L39.4,-275.0L42.8,-272.9L46.5,-271.5L49.4,-274.3L40.4,-287.0L39.5,-290.5L40.4,-296.4L43.1,-298.9L47.0,-301.7L52.0,-305.3L54.9,-307.7L58.6,-308.5L60.2,-312.0L58.4,-316.7L59.2,-322.8L64.2,-329.1L66.2,-332.4L68.9,-336.3L74.4,-335.8L77.5,-331.5L79.2,-329.2L83.6,-329.5L86.7,-327.2L90.7,-322.5L94.1,-319.4L94.9,-315.3L95.5,-311.3L100.4,-297.3L102.0,-294.4L105.4,-291.6L107.2,-293.8L109.9,-297.0L116.5,-294.4L119.9,-286.2L120.2,-278.1L121.7,-268.8L122.3,-261.2L122.8,-256.9L122.5,-247.7L121.5,-240.6L119.7,-234.6L120.4,-229.5L115.2,-226.0L116.2,-221.0L118.9,-217.0L117.6,-212.8L110.5,-211.1L107.6,-206.0L104.6,-201.8L97.3,-202.1L94.1,-193.9L92.5,-190.9L90.1,-188.3L86.0,-185.7L81.5,-186.4L79.2,-182.1L76.8,-176.4L78.0,-168.8L74.9,-166.5L71.0,-164.5L68.6,-157.8L68.6,-151.4L72.8,-148.2L74.9,-143.2L76.5,-139.3L75.9,-134.8L70.4,-128.3L73.1,-123.6L78.8,-125.6L82.3,-128.2L90.4,-131.8L99.1,-133.9L106.0,-134.3L112.0,-134.1L115.9,-132.0L123.9,-134.1L127.0,-133.0L121.0,-127.2L120.2,-121.5L122.6,-118.9L124.9,-116.7L127.0,-111.5L125.4,-106.7L128.1,-103.0L129.3,-97.0L128.3,-91.6L137.0,-88.8L144.3,-87.6L149.8,-87.2L153.1,-86.0L156.7,-83.0L155.4,-79.5L151.7,-74.8L149.6,-68.5L149.9,-63.8L149.6,-59.7L145.4,-53.9L143.6,-49.8L142.2,-45.6L143.1,-42.6L148.0,-41.4L151.9,-41.9L161.1,-40.9L171.4,-39.1L175.6,-38.1L176.5,-32.3L175.9,-28.5L178.3,-23.1L183.6,-21.2L183.3,-16.5L185.9,-12.9L194.9,-13.8L199.3,-13.0L203.2,-11.9L209.6,-14.0L216.7,-21.0L224.9,-24.7L229.5,-25.1L230.8,-17.5L227.7,-12.3L220.9,-7.6L216.1,-5.2L210.7,-2.3L208.8,3.2L206.7,6.4L203.3,9.6L204.0,14.5L207.2,15.7L204.6,17.2L197.5,17.3L194.0,18.6L190.4,21.6L187.5,28.1L185.1,38.1ZM99.1,471.4L102.8,479.3L99.4,476.6L96.7,473.9L97.2,470.1ZM97.8,518.2L95.7,520.9L95.9,516.4L99.6,513.1L102.3,514.9L100.1,517.4ZM99.6,447.2L98.6,443.1L100.4,439.6L102.2,434.3L102.3,441.9L101.5,445.1L99.6,447.2ZM112.8,427.6L110.1,420.4L113.1,423.0L117.0,425.2L112.8,427.6ZM114.4,434.9L113.3,444.4L110.5,443.1L107.5,437.7L106.5,432.8L113.1,432.1L114.4,434.9ZM108.1,395.7L110.2,401.4L106.7,406.9L104.6,399.6L103.1,395.1L107.5,393.4ZM95.7,416.3L91.3,412.5L92.8,409.8L94.9,412.9L95.7,416.3ZM70.5,227.6L66.3,225.2L65.8,218.0L69.1,216.0L71.3,218.0L70.5,227.6ZM113.9,471.0L113.3,465.2L113.9,471.0ZM93.0,437.3L90.1,429.6L92.3,434.4ZM92.6,405.2L89.7,410.3L87.5,408.4L89.2,405.1ZM103.8,372.7L103.4,380.2L101.2,376.6L100.9,372.4L101.0,368.5L103.8,372.7ZM274.6,-54.3L277.1,-49.9L282.4,-45.0L288.8,-38.0L290.8,-34.8L295.0,-32.4L297.2,-26.3L298.5,-21.9L303.5,-23.4L304.7,-27.5L306.8,-24.6L310.0,-23.6L311.9,-19.6L309.7,-14.1L308.7,-11.1L308.0,-6.3L307.1,-3.1L308.5,-0.1L318.4,14.2L323.2,16.5L334.5,19.3L338.5,21.3L342.3,23.1L345.8,22.2L349.2,17.9L353.2,15.5L361.0,11.9L367.3,13.1L374.2,17.5L379.2,21.4L382.3,23.5L384.7,25.4L382.4,29.7L376.8,32.9L380.8,36.1L386.3,38.0L388.2,41.9L389.9,45.7L395.0,45.2L398.4,47.4L400.2,51.4L396.5,57.6L394.5,62.7L392.0,66.5L384.9,72.7L370.2,69.7L364.2,69.8L360.0,70.2L360.8,75.3L361.5,79.0L359.8,81.8L355.5,84.4L353.7,87.2L358.9,90.6L363.4,92.2L378.6,101.9L381.8,104.3L386.0,107.6L390.7,110.2L403.1,113.7L408.6,116.0L409.9,118.8L407.3,124.4L408.6,128.5L410.7,131.7L415.7,136.4L418.4,138.4L423.9,140.1L426.6,143.6L429.7,147.9L431.5,154.8L434.4,159.3L438.3,163.6L443.9,168.9L447.0,172.6L460.4,183.2L463.1,186.6L467.3,193.1L470.7,195.3L471.8,198.9L472.6,209.3L474.9,211.6L476.8,214.5L479.4,218.1L483.8,216.6L488.3,220.9L493.1,224.8L496.2,226.4L502.8,232.9L506.4,235.3L510.9,237.2L510.6,241.5L501.5,246.6L501.5,250.8L503.5,254.0L505.5,256.7L508.3,259.4L513.6,263.7L518.3,267.2L520.9,270.9L522.3,273.5L519.4,279.8L518.0,282.6L515.2,284.2L515.7,289.0L516.0,293.6L516.4,298.8L513.9,300.6L511.7,305.3L506.2,304.0L502.3,308.3L498.0,312.0L492.6,313.2L490.2,316.1L484.9,316.8L481.3,313.4L478.0,310.9L475.1,309.2L472.0,305.9L468.3,307.5L464.1,310.3L460.2,309.7L456.8,313.3L448.6,314.8L448.4,319.1L452.6,325.4L453.8,329.0L451.2,334.8L443.9,334.6L440.7,332.2L437.6,329.0L427.3,324.0L421.0,326.3L416.2,323.8L412.6,319.2L411.6,315.2L418.7,312.0L422.3,309.5L424.7,306.8L425.8,300.8L426.8,292.4L427.9,288.3L427.3,283.3L425.4,279.3L425.4,273.4L426.3,268.6L429.1,266.2L431.0,262.8L432.0,258.2L431.3,253.0L428.6,251.1L424.1,249.3L421.3,247.0L420.2,241.9L418.3,237.5L410.0,234.9L405.5,231.8L404.5,228.3L401.2,223.6L395.3,217.7L392.3,209.4L392.0,198.5L392.6,189.6L395.2,179.4L391.8,172.0L387.9,168.1L382.8,165.2L377.8,161.0L373.1,155.7L367.4,147.7L360.8,137.2L356.3,132.5L349.2,132.6L341.9,129.6L335.6,128.0L330.2,127.7L326.6,128.4L324.8,131.6L322.7,135.2L320.5,137.0L317.9,140.8L316.1,145.9L313.4,147.9L309.2,148.3L305.1,149.7L301.1,152.2L299.3,155.3L295.6,153.2L293.7,148.8L289.5,147.9L284.7,145.1L279.3,140.4L275.6,137.8L270.5,139.4L266.6,143.5L263.4,145.1L258.8,145.6L257.4,149.4L255.0,152.3L249.3,155.4L242.7,160.2L237.5,164.5L231.6,170.2L226.1,169.7L222.2,168.3L219.9,166.3L224.1,156.6L229.1,145.6L230.6,140.7L230.3,134.0L228.3,130.9L226.4,128.5L228.8,122.6L231.6,118.8L234.0,110.7L236.9,102.3L236.7,97.1L234.3,91.5L233.0,86.1L234.0,78.8L231.1,74.6L222.5,73.1L217.7,74.3L215.4,76.3L207.4,78.2L202.4,75.8L198.2,71.5L197.0,66.4L200.3,60.3L202.4,55.4L203.6,51.2L202.5,47.0L198.6,44.1L196.1,39.6L193.5,37.4L189.1,39.6L187.0,42.7L184.8,40.6L187.5,28.1L190.4,21.6L194.0,18.6L197.5,17.3L201.4,17.8L207.2,15.7L204.0,14.5L203.3,9.6L206.7,6.4L208.8,3.2L210.7,-2.3L213.2,-5.1L220.9,-7.6L227.7,-12.3L230.3,-16.9L232.9,-14.8L231.9,-9.5L234.0,-6.6L234.1,-1.1L236.7,0.8L244.0,-1.4L248.3,-1.5L251.9,0.7L255.8,2.3L259.2,-0.2L258.3,-3.6L256.6,-9.0L257.4,-15.4L257.4,-26.6L255.4,-31.4L251.1,-36.3L250.0,-39.3L249.3,-44.3L247.5,-48.5L251.9,-51.9L253.0,-55.5L255.8,-59.2L261.9,-54.7L266.4,-57.0L273.0,-55.8ZM315.8,456.1L313.5,453.2L315.8,456.1ZM328.1,482.1L323.7,480.2L328.1,482.1ZM516.4,298.8L515.1,306.1L513.1,310.4L509.4,314.2L507.8,325.4L509.3,330.3L513.8,339.7L516.7,347.1L519.6,353.2L520.2,357.1L517.5,366.8L514.3,375.8L514.6,380.2L516.0,384.8L517.3,390.7L518.0,398.4L517.2,403.3L515.7,406.4L513.0,409.6L507.8,408.5L502.5,409.2L495.4,415.1L489.9,419.6L482.5,420.8L479.6,424.2L470.5,424.8L466.8,425.6L466.7,435.3L463.4,437.8L458.9,436.6L452.8,434.6L448.4,434.3L446.2,437.8L443.3,439.3L441.0,441.6L441.7,446.8L442.0,452.0L443.4,457.9L452.6,465.6L455.4,467.5L454.1,472.8L455.5,478.6L447.8,476.0L442.6,475.7L439.7,472.6L437.3,469.7L429.2,470.6L423.7,471.4L417.4,476.3L410.5,473.9L405.5,473.3L405.0,478.0L406.2,481.4L402.6,484.8L398.9,488.0L396.6,490.6L389.5,491.2L383.9,491.5L381.6,493.9L379.5,495.8L370.3,490.3L355.8,488.2L354.2,485.6L351.5,488.5L343.4,491.8L340.0,489.8L337.6,487.4L340.3,482.1L344.2,480.3L346.1,474.2L343.1,466.5L340.5,464.3L337.6,462.4L334.7,465.4L332.3,470.2L329.7,472.8L326.0,473.4L320.6,473.2L318.5,465.8L317.9,459.5L318.5,452.3L319.3,448.0L314.2,442.1L313.9,436.5L311.4,433.6L301.9,419.1L300.6,411.5L301.9,405.6L300.5,400.5L297.1,397.0L291.3,392.4L290.9,385.1L289.7,376.5L287.9,373.6L285.1,368.3L283.7,364.0L283.2,352.4L288.2,351.1L293.4,350.3L296.8,344.2L301.6,338.5L305.3,332.5L308.0,328.7L309.7,324.9L315.1,319.6L322.7,315.9L327.7,315.0L333.1,313.8L338.2,312.0L346.9,314.0L350.5,314.5L357.7,314.8L368.7,313.0L376.9,314.2L384.4,313.2L393.4,311.5L397.9,312.6L402.0,314.4L402.6,317.9L404.9,320.7L409.1,318.3L411.0,315.7L412.6,319.2L414.4,321.9L419.1,326.2L427.3,324.0L436.5,327.3L440.7,332.2L443.9,334.6L451.2,334.8L453.8,329.0L452.6,325.4L448.4,319.1L447.3,315.4L455.7,314.0L458.3,309.3L464.1,310.3L468.3,307.5L470.7,304.6L473.4,308.0L478.0,310.9L481.3,313.4L483.3,315.8L489.1,316.0L492.6,313.2L495.9,312.0L502.3,308.3L504.7,304.9L510.1,305.7L513.9,300.6L516.4,298.8ZM184.6,678.9L186.5,669.7L189.0,667.6L194.8,673.9L204.6,677.7L211.4,677.1L214.8,679.6L215.9,683.9L218.5,687.9L223.7,687.4L227.5,691.5L228.0,697.7L223.8,706.3L225.3,711.9L227.7,714.1L230.8,715.6L234.5,711.5L242.2,706.1L249.0,703.4L253.2,708.6L256.4,709.7L263.2,707.3L265.3,703.3L271.4,694.7L272.1,690.7L273.5,688.1L281.3,689.8L284.2,691.3L292.9,705.5L304.3,715.6L309.2,719.2L312.9,721.1L318.1,726.4L322.6,733.1L332.4,752.1L334.0,760.4L334.8,773.1L332.6,792.3L330.0,801.8L330.5,806.4L334.0,813.2L333.1,819.8L333.7,825.2L333.4,840.3L335.5,844.7L337.9,847.6L350.2,856.5L351.1,859.8L357.1,871.2L368.4,896.0L371.5,907.1L369.8,911.3L366.5,912.4L363.7,910.2L363.1,906.7L359.4,902.6L358.2,908.3L350.3,907.3L344.8,908.5L338.4,913.9L332.9,909.4L331.6,906.3L329.7,904.1L309.2,892.8L301.6,889.8L293.5,881.3L275.5,871.8L264.0,862.5L259.2,856.8L247.4,851.7L242.4,845.8L237.4,842.5L240.0,836.7L238.8,830.6L237.5,825.5L229.3,815.5L225.3,808.4L217.4,801.5L214.3,797.4L211.4,792.8L214.9,790.1L213.3,786.7L209.0,780.8L206.9,774.0L206.9,761.2L200.6,743.2L195.1,718.2L196.1,709.4L194.6,699.9L191.1,690.8L186.4,684.3L184.6,678.9ZM192.2,731.6L187.8,732.2L188.5,724.7L193.2,725.1L192.2,731.6ZM172.5,677.8L175.6,682.7L173.3,685.5L169.6,686.7L166.1,683.7L163.5,679.9L168.0,680.3L171.2,678.7ZM361.5,497.2L361.9,504.8L360.2,510.1L359.4,513.8L356.5,504.0L352.6,499.8L357.9,495.6L361.5,497.2ZM536.7,-14.2L529.3,-13.7L524.8,-9.5L521.5,-7.7L516.7,-6.3L511.4,-3.9L509.9,0.3L508.9,6.7L500.4,11.5L496.4,9.2L492.2,10.5L488.0,11.5L482.3,9.6L478.8,9.2L481.2,18.1L482.0,21.4L473.0,31.0L473.9,37.2L471.5,41.9L466.0,45.7L455.7,55.5L451.0,55.8L447.5,58.0L439.9,74.2L439.7,79.7L438.6,83.7L438.9,87.6L435.5,95.3L432.0,98.6L431.3,102.7L436.2,111.4L439.6,117.5L441.0,120.8L443.3,124.1L451.2,132.6L454.7,135.2L458.9,137.1L466.7,144.7L470.5,149.7L468.8,153.0L469.7,160.1L464.1,158.0L471.3,162.7L481.2,176.3L489.7,183.0L498.4,190.7L501.2,197.9L508.9,202.7L517.7,209.7L519.6,213.1L525.6,216.8L529.1,220.7L530.4,224.4L535.1,224.0L539.1,224.0L541.9,228.0L545.4,231.7L547.2,235.0L550.1,237.9L555.6,245.0L557.8,250.1L563.8,258.3L568.0,262.9L571.2,265.6L574.6,267.8L578.2,276.9L579.9,285.1L583.6,294.2L586.5,298.2L586.5,305.8L588.8,313.6L591.2,318.8L592.0,324.1L593.6,328.7L596.2,337.8L595.6,342.0L593.8,337.9L594.0,350.1L595.6,356.4L594.8,364.4L596.6,367.1L599.6,376.0L601.7,379.2L601.6,390.1L602.7,395.7L599.8,392.4L597.7,388.6L594.9,390.6L592.5,393.5L596.4,405.2L591.9,404.1L592.4,419.9L594.1,423.5L593.8,427.4L592.4,422.7L590.1,427.3L591.2,433.6L590.4,438.6L588.6,441.6L584.5,442.0L583.5,447.6L582.0,453.7L574.6,454.7L569.3,460.0L562.5,462.0L556.5,467.4L550.1,472.2L545.7,472.9L542.2,473.9L538.0,482.1L530.9,483.0L518.3,489.6L514.1,492.8L510.2,494.1L504.7,496.9L501.7,493.5L497.0,492.3L494.6,489.6L493.9,486.2L491.5,494.9L488.6,497.6L484.6,495.2L480.9,490.5L475.4,493.8L479.6,494.0L483.1,497.9L482.2,501.6L477.0,501.9L470.2,501.2L475.2,504.6L480.9,506.3L483.4,508.3L480.2,512.4L477.8,515.6L477.6,519.8L474.9,521.7L468.3,518.0L454.4,505.0L456.5,508.7L471.0,523.4L473.4,528.3L472.3,533.4L469.9,535.5L465.2,535.6L457.3,530.1L444.9,517.0L440.7,515.2L453.3,530.2L455.4,533.9L457.5,538.1L455.7,543.0L425.8,556.9L421.3,563.0L417.8,570.4L412.0,574.5L408.6,578.3L398.6,580.4L393.1,579.7L398.7,572.9L395.2,570.3L395.0,552.7L396.5,533.3L399.1,523.7L402.8,521.3L407.6,519.8L407.1,515.4L404.7,512.1L401.8,510.6L397.8,509.9L394.5,505.9L388.2,507.4L386.0,505.6L381.6,499.5L377.8,496.3L381.6,493.9L383.9,491.5L389.5,491.2L395.2,491.2L398.9,488.0L402.6,484.8L405.5,482.9L405.0,478.0L404.4,474.4L410.5,473.9L416.2,475.6L420.7,471.9L429.2,470.6L434.7,469.4L439.7,472.6L441.7,475.5L445.4,474.5L452.6,478.5L454.1,472.8L455.7,468.6L452.6,465.6L443.4,457.9L442.0,452.0L441.7,446.8L440.8,443.5L441.5,440.0L444.9,439.2L448.4,434.3L452.8,434.6L458.9,436.6L463.4,437.8L466.7,435.3L467.0,427.3L470.5,424.8L476.5,424.6L482.5,420.8L489.9,419.6L495.4,415.1L500.2,410.4L505.5,408.4L510.7,411.2L515.7,406.4L517.2,403.3L518.0,398.4L517.3,390.7L516.0,384.8L514.6,380.2L514.3,375.8L517.5,366.8L520.2,357.1L519.6,353.2L516.7,347.1L513.8,339.7L510.6,331.5L508.5,328.0L509.3,317.1L513.1,310.4L515.1,306.1L517.0,301.3L516.0,293.6L515.7,289.0L514.6,286.1L518.0,282.6L519.4,279.8L521.4,276.4L520.9,270.9L518.3,267.2L513.6,263.7L508.3,259.4L505.5,256.7L503.5,254.0L501.5,250.8L501.5,246.6L509.3,242.8L511.4,239.3L508.8,236.1L502.8,232.9L496.2,226.4L493.1,224.8L489.9,222.9L486.3,215.5L481.3,218.4L477.6,216.5L474.9,211.6L472.6,209.3L472.1,201.4L470.7,195.3L467.3,193.1L463.1,186.6L460.4,183.2L448.4,174.1L443.9,168.9L438.3,163.6L434.4,159.3L431.5,154.8L430.2,151.0L426.6,143.6L423.9,140.1L418.4,138.4L415.7,136.4L410.7,131.7L408.6,128.5L407.3,124.4L408.4,120.9L410.0,117.3L403.1,113.7L390.7,110.2L386.0,107.6L381.8,104.3L378.6,101.9L363.4,92.2L358.9,90.6L354.8,88.8L353.9,85.6L359.8,81.8L361.5,79.0L360.8,75.3L359.2,71.4L364.2,69.8L370.2,69.7L383.1,73.1L392.0,66.5L394.5,62.7L396.5,57.6L400.2,54.3L398.4,47.4L395.0,45.2L389.9,45.7L388.2,41.9L386.3,38.0L380.8,36.1L376.1,35.7L380.0,30.9L384.4,27.6L382.3,23.5L379.2,21.4L374.2,17.5L367.3,13.1L363.1,11.7L353.2,15.5L349.2,17.9L345.8,22.2L342.3,23.1L338.5,21.3L334.5,19.3L323.2,16.5L318.4,14.2L308.5,-0.1L307.1,-3.1L308.0,-6.3L308.7,-11.1L309.7,-14.1L311.4,-17.0L311.4,-22.2L308.2,-24.0L305.5,-27.9L303.5,-23.4L300.1,-21.3L297.7,-23.5L296.3,-30.0L290.8,-34.8L288.8,-38.0L282.4,-45.0L277.1,-49.9L274.6,-54.3L279.5,-58.2L282.6,-61.9L285.8,-66.6L287.1,-69.3L290.0,-71.3L295.8,-69.0L301.3,-66.6L306.1,-63.8L308.0,-61.0L310.8,-58.2L317.1,-59.7L319.8,-61.8L322.4,-66.2L325.6,-69.6L327.2,-72.0L334.8,-64.3L339.4,-70.5L341.6,-72.8L354.7,-61.5L358.2,-63.8L359.2,-67.4L361.0,-71.4L365.0,-73.6L369.2,-72.1L371.9,-69.6L382.1,-73.8L387.0,-74.5L391.8,-76.4L394.2,-78.7L395.0,-83.3L395.7,-87.4L399.4,-90.2L403.2,-91.7L411.8,-95.7L414.1,-97.6L419.1,-97.0L423.1,-93.6L425.5,-91.1L427.1,-88.4L434.4,-84.2L438.4,-81.4L441.2,-79.2L446.5,-79.9L451.3,-81.6L456.5,-80.8L459.4,-76.8L463.4,-76.5L468.4,-77.9L472.5,-78.6L476.2,-77.0L483.1,-72.6L481.2,-69.5L479.7,-66.2L476.7,-63.8L473.0,-59.8L472.3,-55.0L474.7,-51.7L477.5,-47.9L477.8,-43.1L477.6,-37.6L480.9,-36.8L487.5,-34.5L491.7,-33.3L493.9,-29.2L501.0,-23.7L505.2,-23.5L508.8,-18.8L512.5,-20.3L521.7,-19.0L527.0,-21.0L533.8,-16.6L536.7,-14.2ZM475.9,575.8L477.8,572.0L475.9,575.8ZM500.5,496.9L496.8,499.7L499.7,495.9ZM487.0,17.7L484.2,16.4L483.9,12.5L486.5,15.7ZM520.1,-0.8L513.6,5.0L513.3,-1.6L518.3,-0.9ZM516.4,12.6L510.9,13.6L514.4,11.4L516.4,8.6ZM494.4,20.8L489.1,17.3L495.1,16.7L494.4,20.8Z"/>
+          <path class="map-shadow" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+          <path class="map-thai" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+          <g id="mapDots"></g>
+        </svg>
+        <div class="map-labels" id="mapLabels"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== タイってこんな国 ===== -->
+<section class="facts">
+  <div class="wrap">
+    <div class="section-title reveal">
+      <p class="kicker">ABOUT THAILAND</p>
+      <h2>タイってこんな国</h2>
+    </div>
+    <div class="fact-grid">
+      <div class="fact reveal" style="--c:var(--pink)"><span class="ic">🏙️</span><h3>首都</h3><p>バンコク<small>正式名はとても長く、世界一長い首都名ともいわれます。</small></p></div>
+      <div class="fact reveal" style="--c:var(--yellow)"><span class="ic">💰</span><h3>通貨</h3><p>バーツ（THB）<small>屋台ごはんなら1食50〜100バーツほど。</small></p></div>
+      <div class="fact reveal" style="--c:var(--teal)"><span class="ic">🕐</span><h3>時差</h3><p>日本より2時間遅い<small>日本が正午なら、タイは朝10時。</small></p></div>
+      <div class="fact reveal" style="--c:var(--green)"><span class="ic">✈️</span><h3>日本から</h3><p>直行便で約6〜7時間<small>東京・大阪などからバンコクへ。</small></p></div>
+      <div class="fact reveal" style="--c:var(--orange)"><span class="ic">☀️</span><h3>気候</h3><p>一年中あたたかい<small>暑季・雨季・乾季の3つの季節があります。</small></p></div>
+      <div class="fact reveal" style="--c:var(--purple)"><span class="ic">💬</span><h3>ひとことタイ語</h3><p>サワディー！<small>「こんにちは」。おいしい！は「アロイ！」。</small></p></div>
+    </div>
+  </div>
+</section>
+
+<nav class="area-nav" aria-label="エリアへ移動">
+  <div class="area-nav-inner" id="areaNav"></div>
+</nav>
+
+<main id="areas"></main>
+
+<!-- ===== シリーズ ===== -->
+<section class="series" id="series">
+  <div class="wrap section-title reveal">
+    <p class="kicker">SERIES</p>
+    <h2>シリーズで旅する</h2>
+  </div>
+  <div id="seriesList"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">MAIBARU TRAVEL</p>
+    <p class="footer-sub">THAILAND COLLECTION / UNOFFICIAL FAN SITE</p>
+    <ul>
+      <li>本サイトは Maibaru Travel の非公式ファンサイトです。ご本人・運営とは関係ありません。</li>
+      <li>動画・サムネイル・タイトルの著作権は Maibaru Travel に帰属します。サムネイルとタイトルは公式YouTubeチャンネルのものを、各動画へのリンクとして表示しています。</li>
+      <li>メンバー限定の動画は、タイトルとリンクのみを掲載しています。視聴にはYouTubeのメンバーシップ登録が必要です。</li>
+      <li>本サイトは YouTube および Google LLC とは関係がなく、承認も受けていません。YouTube は Google LLC の商標です。</li>
+      <li>地図は Natural Earth（パブリックドメイン）のデータをもとに作成しています。</li>
+    </ul>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">▶ 公式YouTubeチャンネル</a>
+      <a href="world.html">← 海外の旅マップへ</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 動画プレーヤー（サムネイルを押すと、このページの上で再生） -->
+<div class="player" id="player" role="dialog" aria-modal="true" aria-labelledby="playerTitle" hidden>
+  <div class="player-box">
+    <button type="button" class="player-close" id="playerClose" aria-label="閉じる">×</button>
+    <div class="player-frame"><iframe id="playerFrame" title="YouTube動画" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="player-foot">
+      <p class="player-title" id="playerTitle"></p>
+      <a class="player-link" id="playerLink" href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+    </div>
+  </div>
+</div>
+
+<a class="to-top en" id="toTop" href="#top" aria-label="ページの先頭へ">▲<br>TOP</a>
+
+<script>
+/* ===================================================================
+   編集ガイド（台湾ページと同じ書き方です）
+   - エリア（bangkok / central / north / isan / east / south / life）ごとに動画を入れてください
+   - title  ：カードに表示するタイトル
+   - url    ：YouTubeの動画URL（サムネイルは自動で表示されます）
+   - tags   ：["場所","ジャンル"] の順で書きます。
+              ジャンルは GENRES にある言葉を使うと、エリアの絞り込みボタンに自動で出ます
+   - member ：メンバー限定の動画には member:true を付けます（🔒マークが付きます）
+   - シリーズは下の SERIES に、動画のURLを話数の順に並べます
+   - エリアの説明文・色・地図の位置は AREAS で編集できます
+=================================================================== */
+const GENRES = ["グルメ","市場","街歩き","ホテル","島・海","絶景・自然","お祭り"];
+
+const AREAS = [
+  { key:"bangkok", name:"バンコク", en:"BANGKOK", color:"var(--pink)", map:[236,346],
+    desc:"王宮や寺院のすぐそばに屋台と最新モールが並ぶ首都。中華街ヤワラート、旧市街、チャオプラヤー川沿い…。実際に暮らした街だからこそ、ディープな動画がいちばん多いエリアです。" },
+  { key:"central", name:"中部", en:"CENTRAL", color:"var(--orange)", map:[146,268],
+    desc:"世界遺産アユタヤ、鉄道旅のカンチャナブリ、王室の避暑地ホアヒン。バンコクから日帰り〜1泊で行ける場所がそろいます。" },
+  { key:"north", name:"北部", en:"NORTH", color:"var(--green)", map:[150,126],
+    desc:"チェンマイ、チェンライ、パーイ。山あいの古都や少数民族の村、雲海やロイクラトンのコムローイ。のんびり涼しい北タイの旅。" },
+  { key:"isan", name:"イサーン", en:"ISAN / NORTHEAST", color:"var(--purple)", map:[334,226],
+    desc:"ラオスと接する東北部の高原地帯。素朴な田舎の風景、メコン川の絶景、そしてソムタムに代表される辛くておいしいイサーン料理。" },
+  { key:"east", name:"東部", en:"EAST", color:"var(--teal)", map:[300,408],
+    desc:"パタヤやバンセンなど、バンコクから近いビーチの街。カンボジア国境近くのクート島・マック島は、透明な海が広がる秘島です。" },
+  { key:"south", name:"南部・島", en:"SOUTH & ISLANDS", color:"var(--blue)", map:[150,566],
+    desc:"アンダマン海とタイランド湾にはさまれた細長いエリア。プーケット、ピピ島、サムイ島、タオ島…島とビーチの楽園がぎっしり。" },
+  { key:"life", name:"タイ暮らし", en:"LIFE IN THAILAND", color:"var(--indigo)",
+    desc:"生活費、珍料理への挑戦、記念の振り返り、そして帰国のごあいさつ。旅のあいだの「暮らし」の動画をまとめました。" },
+];
+
+const THAI_VIDEOS = {
+  bangkok: [
+    {title:"タイ旅行🇹🇭これだけは食べたい！バンコク絶品グルメ6選", url:"https://youtu.be/SzN9Ak-KKag", tags:["バンコク","グルメ"]},
+    {title:"最強のタイ旅行🇹🇭３泊４日でバンコクを120%楽しむ完全版｜ワットアルン｜カオサン", url:"https://youtu.be/DTLO-113PB0", tags:["バンコク","街歩き"]},
+    {title:"【メンバー限定】バンコクで最高のシーフードを食べられるのはココ！！", url:"https://youtu.be/Zp57qYldh-s", tags:["バンコク","グルメ"], member:true},
+    {title:"【バンコク飯】美食ストリートを食べ歩きしてたら最強のカレーに出会った！タイ・ジャルンクルン通り", url:"https://youtu.be/wBBXmNEi6ic", tags:["ジャルンクルン通り","グルメ"]},
+    {title:"チャオプラヤー川の癒し宿🍃魅惑のバンコクノイ地区１泊２日のノスタルジック旅行", url:"https://youtu.be/9zRV1wIk_Ks", tags:["バンコクノイ","ホテル"]},
+    {title:"【バンコク観光】チャトチャック市場を完全攻略🛍️アジア最大のマーケットで散財｜タイ旅行", url:"https://youtu.be/N-Qb-9-KX2E", tags:["チャトチャック","市場"]},
+    {title:"【バンコク観光】中華街ヤワラート🥟観光ガイド｜フカヒレから激安市場まで完全網羅｜タイ旅行", url:"https://youtu.be/CsOjxpWekso", tags:["ヤワラート","グルメ"]},
+    {title:"【バンコク観光】大復活のカオサン通り🌟旅人の町を完全紹介｜タイ旅行", url:"https://youtu.be/SsPvx1D_wRo", tags:["カオサン","街歩き"]},
+    {title:"カオサン近くのえんぴつ通りを散策⛩️ここは超穴場スポット｜バンコク｜VLOG", url:"https://youtu.be/8xa6T8jcwWI", tags:["カオサン","街歩き"]},
+    {title:"バンコクの最新建築のホテルで癒しの休日を過ごす｜Sindhorn Kempinski Hotel", url:"https://youtu.be/e2my6aFAhKI", tags:["ルンピニー","ホテル"]},
+    {title:"朝活におすすめ！バンコクのローカル水上マーケット｜クワンリアム水上マーケット｜VLOG", url:"https://youtu.be/TBabNles67A", tags:["クワンリアム","市場"]},
+    {title:"VIPバスで豪華コースディナー！バンコク最新バスレストランが凄い｜VLOG", url:"https://youtu.be/fopKi8n-3DI", tags:["バンコク","グルメ"]},
+    {title:"バンコクの新しい夜市がジブリの世界｜オンアン運河で食べ歩き｜タイ｜คลองโอ่งอ่าง", url:"https://youtu.be/6ayewFVQXhU", tags:["オンアン運河","市場"]},
+    {title:"古き良きバンコクが残る街バンランプーラン｜タイのおばあちゃん家で食べる伝統菓子｜タイ宮廷料理", url:"https://youtu.be/ElyCrlqI78M", tags:["バンランプー","グルメ"]},
+    {title:"バンコクの古き良き水上都市の遊び方！トンブリーに1泊2日の旅🛶ธนบุรี", url:"https://youtu.be/XcndBI4c96Q", tags:["トンブリー","街歩き"]},
+    {title:"バンコクの中華街は毎日夏祭り！夜の食べ歩き散歩が楽しすぎる🍜｜タイ｜ヤワラート", url:"https://youtu.be/Fm6VmRFWeIQ", tags:["ヤワラート","グルメ"]},
+    {title:"昭和の夏休みにタイムスリップできるバンコクのジョムトーン地区が最高だった🌿タイ国鉄・ジョムトーン駅", url:"https://youtu.be/lWk3_-OaCiE", tags:["ジョムトーン","街歩き"]},
+    {title:"【バンコク観光】 一室限定の森リゾートが一泊8000円｜バーンガジャオ｜Bang krachao", url:"https://youtu.be/qWZzkMjNf-o", tags:["バーンガジャオ","ホテル"]},
+    {title:"自力じゃ辿り着けない⁉︎水上の隠れ家ホテルが最高だった✨｜タイ・クレット島 | เกาะเกร็ด | Koh kret", url:"https://youtu.be/FiNvQesmvs0", tags:["クレット島","ホテル"]},
+    {title:"バンコク最古の市場・ナンルーン市場が美食の宝庫だった🤩【タイ料理・อาหารไทย】", url:"https://youtu.be/8MjedIBCh1M", tags:["ナンルーン","市場"]},
+    {title:"【バンコク観光】 エモい旧市街《タラートノイ》散策｜old town walk 🕊", url:"https://youtu.be/C8-GfnVCIJQ", tags:["タラートノイ","街歩き"]},
+    {title:"タイ屋台料理最高額！？ミシュラン1つ星のカニオムレツ🦀Jay Fai（ジェイファイ）｜เจ๊ไฝ", url:"https://youtu.be/Wkwpt1IecBs", tags:["旧市街","グルメ"]},
+    {title:"南ナンルーン地区で朝活！80年代のバンコクにタイムスリップ", url:"https://youtu.be/zncKUmcbsNM", tags:["ナンルーン","街歩き"]},
+    {title:"まるでベネチア!? バンコクの水上旧市街🛶テーウェート地区が完全に穴場だった…｜タイ", url:"https://youtu.be/wnduK90U8CI", tags:["テーウェート","街歩き"]},
+    {title:"１泊２日のカオサン旅行！バックパッカーごっこをするはずが…｜Khaosan", url:"https://youtu.be/Z9GgX_TB5kg", tags:["カオサン","ホテル"]},
+    {title:"バンコク・スクンビットに森の結界ホテル🌳これは別世界…｜AriyasomVilla（アリヤソムヴィラ）", url:"https://youtu.be/5V1noy4WXZI", tags:["スクンビット","ホテル"]},
+    {title:"バンコク在住日本人に今一番人気があるお店と言ったらココ🌟照TERRA", url:"https://youtu.be/Fol_wJbKSQk", tags:["スクンビット","グルメ"]},
+    {title:"バンコクから一番近い水上マーケットが超穴場🛶激安ボートツアーがボリューム満点で楽しい！クローンラットマヨム水上マーケット｜ตลาดน้ำคลองลัดมะยม", url:"https://youtu.be/3jfyX9YcXx4", tags:["クローンラットマヨム","市場"]},
+    {title:"チャオプラヤー川の向こう側は異国の街でした🏮｜タイ・トンブリー地区［ธนบุรี］", url:"https://youtu.be/qXhEFevakus", tags:["トンブリー","街歩き"]},
+    {title:"バンコク旧市街のグルメスポット、タナオ通りで食べ歩き😋最高のタイデザートを発見！", url:"https://youtu.be/WgPj16B8txE", tags:["旧市街","グルメ"]},
+    {title:"チャオプラヤー川の上に建つ隠れ家ホテルで過ごす休日/Loy La Long Hotel /バンコク・タイ旅行", url:"https://youtu.be/4BMXgev_Ce4", tags:["チャオプラヤー川","ホテル"]},
+    {title:"光に包まれたバンコクの旧市街、いつもと違う風景の中を夜散歩♪", url:"https://youtu.be/Pq_qttAB7WE", tags:["旧市街","街歩き"]},
+    {title:"悶絶！バンコクで一番新しいホテルの飯が美味しすぎた！｜hotel vlog", url:"https://youtu.be/vGoSV9m5iP4", tags:["バンコク","ホテル"]},
+    {title:"不思議な食べ物が集まるタイのお祭り｜กินเจ", url:"https://youtu.be/xs2KZ-LmRp8", tags:["キンジェー","お祭り"]},
+    {title:"タイのお洒落なお店が集まる小道・ソイナナ｜ซอยนานา", url:"https://youtu.be/3QP-sVpf7RM", tags:["ヤワラート","街歩き"]},
+    {title:"バンコクの5つ星ホテルで過ごすタイ正月｜Banyan Tree Bangkok", url:"https://youtu.be/QpB4xFPRR2Q", tags:["サトーン","ホテル"]},
+    {title:"バンコクの早起きした日曜日の過ごし方│タイ [ศรีนครินทร์]", url:"https://youtu.be/p8l_7ATb1C8", tags:["シーナカリン","市場"]},
+    {title:"大復活したバンコク中華街！ | เยาวราช]", url:"https://youtu.be/SbUby9p_Knk", tags:["ヤワラート","グルメ"]},
+    {title:"バンコクで１番人気のカニてんこもりチャーハンが泣くほど美味しい！", url:"https://youtu.be/zKAHELQpFug", tags:["バンコク","グルメ"]},
+    {title:"歴史とお洒落の融合、バンコクのファンナコン通りが今アツい！[ถนนเฟื่องนคร]", url:"https://youtu.be/-qEG3ygccsQ", tags:["旧市街","街歩き"]},
+    {title:"タイBTS延伸！スクンビット線の新終着駅が動物天国！[ワットプラシーマハタート駅・วัดพระศรีมหาธาตุวรมหาวิหาร]", url:"https://youtu.be/P_IKDndgfyA", tags:["BTS沿線","街歩き"]},
+    {title:"レトロ可愛いナイトマーケット！バンコクのシーナカリン鉄道市場が再開・タラートロットファイ・シーナカリン[ตลาดนัดรถไฟ ศรีนครินทร์]", url:"https://youtu.be/NWrGUnxa4gs", tags:["シーナカリン","市場"]},
+    {title:"バックパッカーの聖地、かつてない様子に唖然…│ข้าวสาร", url:"https://youtu.be/ntAxv532JjY", tags:["カオサン","街歩き"]},
+    {title:"初めて高級タイ料理を食べたらまさかの結果に...│อาหาร​ไทย​", url:"https://youtu.be/hIdAOAEEgzI", tags:["バンコク","グルメ"]},
+    {title:"バンコクのインド人街を散策│อินเดีย", url:"https://youtu.be/GhOhbGKBQ2o", tags:["パフラット","街歩き"]},
+    {title:"バンコクの高級エリアが別世界だった…", url:"https://youtu.be/9za3xshWSAE", tags:["バンコク","街歩き"]},
+    {title:"ワットパクナムにはBTSウッタカート駅から行くべき理由│วัดปากน้ำ", url:"https://youtu.be/UE0YomoD5aw", tags:["ワットパクナム","街歩き"]},
+    {title:"自転車でバンコクのローカルエリアを巡るツアーが超おすすめ！CO VAN KESSEL【タイ旅行】ปั่นจักรยาน", url:"https://youtu.be/JJ-YKNWpmvQ", tags:["バンコク","街歩き"]},
+    {title:"日本人が知らない、タイの小さな街のクリスマスパーティーに感動！真夏の夜のクリスマス！【バンコク】", url:"https://youtu.be/oqYvwJJphT0", tags:["バンコク","お祭り"]},
+    {title:"タイの代官山!?超オシャレな街アーリーに１泊２日│อารีย์", url:"https://youtu.be/Obek4vZ-nSU", tags:["アーリー","街歩き"]},
+    {title:"バンコク人気急上昇中の新旧が交差する街、プラカノンをぷらぷら散歩[พระโขนง]", url:"https://youtu.be/3ROAlxq4J3U", tags:["プラカノン","街歩き"]},
+    {title:"ワンランク上のお洒落フードコード│タイ・バンコク", url:"https://youtu.be/W2NCbFR_74E", tags:["バンコク","グルメ"]},
+    {title:"旅人の町カオサンに泊まるべき３つの理由【タイ・バンコク】[ข้าวสาร]", url:"https://youtu.be/iBEmevwc_2I", tags:["カオサン","ホテル"]},
+    {title:"神秘の夜の船旅！バンコクの川沿いでお祭りが一斉に開催【タイ・ロイクラトン】", url:"https://youtu.be/euDBE1zfdTI", tags:["チャオプラヤー川","お祭り"]},
+    {title:"バンコク・昼の中華街の歩き方。新駅ワットモンコン駅から始まる食べ歩き。[เยาวราช]", url:"https://youtu.be/d05wUsdMn5E", tags:["ヤワラート","グルメ"]},
+    {title:"日系ホテルが熱い！バンコクで受ける日本のおもてなしに癒された【Hotel Vlog】", url:"https://youtu.be/biKmGUmuqio", tags:["バンコク","ホテル"]},
+    {title:"小舟で夢の島に渡る幻想の夜│ปากน้ำ", url:"https://youtu.be/ZbpTp1kt1Dc", tags:["パクナム","街歩き"]},
+    {title:"バンコクの秘密のオアシス！旅行者がいない可愛い村をこっそり紹介【タイ】[รามคำแหง]", url:"https://youtu.be/k_eqeHfPU4E", tags:["ラムカムヘン","街歩き"]},
+    {title:"バンコク初のジョージア料理店オープン！異国の不思議な料理が激うま！", url:"https://youtu.be/axepazLDu38", tags:["バンコク","グルメ"]},
+    {title:"バンコクMRT新駅開通！電車で旧市街の朝食・サムヨート駅［สามยอด］", url:"https://youtu.be/xD2GsYfZEQM", tags:["旧市街","グルメ"]},
+    {title:"80年代のバンコクにタイムトラベル！非日常の世界への道", url:"https://youtu.be/ymRdS9t3Xkw", tags:["バンコク","街歩き"]},
+    {title:"【タイバスフードツアー】超VIPバスで人気タイ料理を食べながらバンコクナイトスポットを巡るツアー！", url:"https://youtu.be/3kSn9rj81Zo", tags:["バンコク","グルメ"]},
+    {title:"スワンナプーム空港近くの水辺に浮かぶお洒落なオールドマーケットが超おすすめ！【バンコク・フアタケー市場】", url:"https://youtu.be/xk4KJpKyvTM", tags:["フアタケー","市場"]},
+    {title:"バンコクの芸術エリアが超オシャレ！カフェやショップで西海岸を感じる", url:"https://youtu.be/C4GELEOg33Q", tags:["バンコク","街歩き"]},
+    {title:"今タイで一番話題の行列ができる黒糖餅タピオカミルクティーがコチラ！", url:"https://youtu.be/Vxau2oQzWHI", tags:["バンコク","グルメ"], member:true},
+    {title:"今タイで話題！可愛い店が集まるバンコクの小さな路地~和菓子からカフェまで~", url:"https://youtu.be/rl2kUFX3TFY", tags:["バンコク","街歩き"]},
+    {title:"バンコク、ナナ駅のすぐ横にワンランク上のナイトマーケットが登場！美味しいお店がズラリ！", url:"https://youtu.be/ZsT41kzsKYE", tags:["スクンビット","市場"]},
+    {title:"[ซับไทย]タイ、バンコクで食べる絶品北タイ料理！คนญี่ปุ่นกินอาหารเหนือ", url:"https://youtu.be/IaVkZ2mB4hE", tags:["バンコク","グルメ"]},
+    {title:"チャオプラヤ川を船で渡ったら100年前のタイに到着した！【バンコク】", url:"https://youtu.be/5jIz21CBH_M", tags:["チャオプラヤー川","街歩き"]},
+    {title:"[ซับไทย]サイアムパラゴンで食べるべきスイーツ5選แนะนำของหวานสำหรับนักเดินทาง[タイ・バンコク]", url:"https://youtu.be/fYImkjAWmC8", tags:["サイアム","グルメ"]},
+    {title:"【タイの水掛祭り】正装なら水掛けられない説を着物で検証!!【ソンクラーン】", url:"https://youtu.be/4OUBZsWCtj0", tags:["バンコク","お祭り"]},
+    {title:"[ซับไทย]キングパワーのソンクランフェスティバル！Songkran Festival KING POWER", url:"https://youtu.be/Ogr6Fd8oRVY", tags:["バンコク","お祭り"]},
+    {title:"【タイBTS途中下車の旅】バンコクの下町、サパーンクワーイ駅を散策！", url:"https://youtu.be/LQ5Q8fn8wd8", tags:["BTS沿線","街歩き"]},
+    {title:"バンコクの花園でタイ伝統菓子ティータイム＆激うまイサーン料理！", url:"https://youtu.be/xajD4CMTRUU", tags:["バンコク","グルメ"]},
+    {title:"[ซับไทย]タイ全土の名物がバンコクに集合！素敵な夏祭り！คนญี่ปุ่นไปเทศกาลที่พิพิธภัณฑสถานแห่งชาติ", url:"https://youtu.be/PXLqBf5vucY", tags:["バンコク","お祭り"]},
+    {title:"超癒し系の街を発見！新駅ロイヤルタイネーベルアカデミー駅を歩く", url:"https://youtu.be/gEzr2k3tCpA", tags:["BTS沿線","街歩き"]},
+    {title:"[ซับไทย]【タイBTSの旅】チャーンエラワン駅編คนญี่ปุ่นไปเที่ยวที่BTSช้างเอราวัณ", url:"https://youtu.be/O1kgLa_qm8U", tags:["BTS沿線","街歩き"]},
+    {title:"まるでジブリの世界!?タイのおかしなお菓子の島クレット島を巡る", url:"https://youtu.be/JnTggH7cbWg", tags:["クレット島","街歩き"]},
+    {title:"[ซับไทย]バンコク新スポットThe Marketで食べる殿堂入りカレー！แกงกะหรี่อร่อยที่สุดมาจากญี่ปุ่น", url:"https://youtu.be/WzrmdV8D2aY", tags:["サイアム","グルメ"]},
+    {title:"[ซับไทย]タイにドンキ初上陸！オープン初日 ดองดองดองกิเปิดร้านที่ทองหล่อ(ซุปเปอร์มาร์เกตญี่ปุ่น)คนญี่ปุ่นแนะนำ", url:"https://youtu.be/K34KKX3jv8s", tags:["トンロー","街歩き"], member:true},
+    {title:"[ซับไทย] タイ・バンコクで激ウマ巨大バーガー、チャックノリスに挑戦！คนญี่ปุ่นกินแฮมเบอร์เกอร์ใหญ่ที่กรุงเทพ", url:"https://youtu.be/IJXHWlvz8as", tags:["バンコク","グルメ"], member:true},
+    {title:"バンコクのポルトガル人移住区！街、学生、食べ物、全てが可愛すぎる！", url:"https://youtu.be/8jkbU3ajvDs", tags:["トンブリー","街歩き"]},
+    {title:"旧正月ムード漂うバンコクの中華街ヤワラートが美食の宝庫すぎた！", url:"https://youtu.be/p4O9YtFih6Q", tags:["ヤワラート","グルメ"]},
+    {title:"タイの大学の学園祭が超楽しい！でも巨大過ぎて回り切れないレベル！", url:"https://youtu.be/9_EEUrzqTO8", tags:["バンコク","お祭り"]},
+    {title:"[ซับไทย] タイのジャパンエキスポで日本の夏を感じる！Japan Expo Thailand 2019", url:"https://youtu.be/exDbzHVSyDw", tags:["バンコク","お祭り"]},
+    {title:"バンコクの宮殿で昔のタイにタイムスリップ！この夏祭り美しすぎ！", url:"https://youtu.be/klO2J-Jtk5Y", tags:["バンコク","お祭り"]},
+    {title:"チェンマイ発！タイと韓国のコラボスイーツが神的に美味い！", url:"https://youtu.be/Yon7PhOGAUI", tags:["バンコク","グルメ"]},
+    {title:"[ซับไทย]タイ・バンコクのちょっとリッチなフードコートを紹介！คนญี่ปุ่นไปเซ็นทรัล เอ็มบาสซี", url:"https://youtu.be/JJLTtWGC5kU", tags:["プルンチット","グルメ"]},
+    {title:"[ซับไทย]タイのバンコクにミニ豊洲市場！？คนญี่ปุ่นไปตลาดญี่ปุ่นที่ทองหล่อ", url:"https://youtu.be/9nbZOHwOMSc", tags:["トンロー","市場"], member:true},
+    {title:"バンコク都心からすぐ行ける！お洒落な島バーンガジャオが楽しすぎた", url:"https://youtu.be/cjPph0iCzOs", tags:["バーンガジャオ","絶景・自然"]},
+    {title:"[ซับไทย]タイの有名イタリアンのランチが安い美味い便利！คนญี่ปุ่นกินอาหารอิตาลีที่ศาลาแดง", url:"https://youtu.be/9tdrq7xBANo", tags:["シーロム","グルメ"]},
+    {title:"[ซับไทย]タイ・バンコクのお洒落レストランで虫を食す！ คนญี่ปุ่นกินแมลง", url:"https://youtu.be/WlQaE4r2vhs", tags:["バンコク","グルメ"], member:true},
+    {title:"タイ・バンコクの年越しの様子 Happy New Year in Bangkok  สวัสดีปีใหม่ 2019", url:"https://youtu.be/TkCrHjQ666E", tags:["バンコク","お祭り"]},
+    {title:"タイ旅行者必見！バンコクで1番オススメの絶景ルーフトップバー がコチラ！", url:"https://youtu.be/nNBgVX_Z0_U", tags:["バンコク","絶景・自然"]},
+    {title:"[ซับไทย]バンコクで見つけた激安小籠包がまさかの本家超え！คนญี่ปุ่นกินเสี่ยวหลงเปาที่รามคำแหง", url:"https://youtu.be/tgeZshvJDqU", tags:["ラムカムヘン","グルメ"]},
+    {title:"【タイBTS途中下車の旅】新駅パクナム駅周辺が想像以上にエンタメ！", url:"https://youtu.be/dXVuzf5hTnQ", tags:["BTS沿線","街歩き"]},
+    {title:"[ซับไทย]タイ・バンコクで一番人気スイーツはコレ！คนญี่ปุ่นกินที่AFTER YOU", url:"https://youtu.be/A6x9F4v23dE", tags:["バンコク","グルメ"]},
+    {title:"[ซับไทย]タイの駅構内にあるドリンクスタンドで飲み比べ！คนญี่ปุ่นแนะนำชาไทยให้ นักท่องเที่ยวญี่ปุ่น", url:"https://youtu.be/acl6kNMxbZ0", tags:["バンコク","グルメ"]},
+    {title:"[ซับไทย]バンコクのお洒落な街でタイ伝統スイーツを食す！คนญี่ปุ่นกินขนมไทยครั้งแรกที่อารีย์", url:"https://youtu.be/4IPXy95KEOg", tags:["アーリー","グルメ"]},
+    {title:"[ซับไทย]タイBTS延伸！新終点のケーハ駅(Kheha)に行ってみた！คนญี่ปุ่นไปเคหะฯ", url:"https://youtu.be/52erxZhOjY0", tags:["BTS沿線","街歩き"]},
+    {title:"[ซับไทย]【タイ】普通とは違う？カオマンガイオップが超オススメ！ คนญี่ปุ่นกินข้าวมันไก่อบ", url:"https://youtu.be/k9wVLIb24NU", tags:["バンコク","グルメ"]},
+    {title:"[ซับไทย]バンコク中華街で話題の朝食が可愛すぎる！คนญี่ปุ่นกินอาหารเช้าที่เยาวราช【タイ】", url:"https://youtu.be/hJDThKPeAoc", tags:["ヤワラート","グルメ"]},
+    {title:"[ซับไทย]タイ人に超人気のオーカジューって知ってる？คนญี่ปุ่นไปที่โอ้กะจู๋【バンコク】", url:"https://youtu.be/fJquABdjY5w", tags:["バンコク","グルメ"], member:true},
+    {title:"[ซับไทย]バンコクNo.1カフェのランチがコスパ最強すぎた！อาหารเที่ยงที่ทองหล่อ【タイ】", url:"https://youtu.be/lsuKpEwla2M", tags:["トンロー","グルメ"], member:true},
+    {title:"[ซับไทย]ルンピニー公園のロイクラトンがメルヘンすぎた！คนญี่ปุ่นไปลอยกระทงที่สวนลุมพินี", url:"https://youtu.be/mBj0JIUj94o", tags:["ルンピニー","お祭り"], member:true},
+    {title:"バンコクのチットロム駅周辺でスウィーツ三昧！กินขนมที่ชิดลม", url:"https://youtu.be/NVeNCVYclb8", tags:["チットロム","グルメ"], member:true},
+    {title:"カオサン通りのインド料理が安いし美味すぎた！ถนนข้าวสาร.วดสระเกศ", url:"https://youtu.be/DQhI7jQWNwk", tags:["カオサン","グルメ"], member:true},
+    {title:"バンコクの激安フレンチに驚愕！美味しすぎอาหารฝรั่งเศส", url:"https://youtu.be/hYA0ieoyELg", tags:["バンコク","グルメ"], member:true},
+    {title:"タイの新名所アイコンサイアムが激ヤバすぎた", url:"https://youtu.be/5l4whH9Q-_s", tags:["アイコンサイアム","街歩き"]},
+    {title:"非公開動画をメンバー限定で公開//タイの政治的集会", url:"https://youtu.be/fE50Hw39H4k", tags:["バンコク","街歩き"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//タイのカオサン通りでハロウィン！Khaosan road Bangkok Halloween", url:"https://youtu.be/N4M9OP7-oCU", tags:["カオサン","お祭り"], member:true},
+    {title:"バンコク新名所！チットロムにフードコートがNEWオープン！", url:"https://youtu.be/YwrSvcafebg", tags:["チットロム","グルメ"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//タイ限定のチキンアイスクリームが独創的すぎる！", url:"https://youtu.be/ZZOHfdl041o", tags:["バンコク","グルメ"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//タイのゲームショウに行ってきた！ゲーマー大集合！", url:"https://youtu.be/CcAehCSfCXY", tags:["バンコク","お祭り"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//今タイのバンコクで一番流行ってる飲み物はコレ！", url:"https://youtu.be/4P-ffdkuNnw", tags:["バンコク","グルメ"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//タイに来たら絶対食べて！世界一のパッタイうますぎ", url:"https://youtu.be/uDepg7Ear8A", tags:["バンコク","グルメ"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//バンコクでプロレス観戦", url:"https://youtu.be/tpu8lhQMi3M", tags:["バンコク","街歩き"], member:true},
+    {title:"過去の非公開動画をメンバー限定公開//人気スパブランド「PANPURI」の温泉が凄かった！", url:"https://youtu.be/JRwnf_mIu3o", tags:["バンコク","ホテル"], member:true},
+    {title:"バンコクの中目黒・アーリーにある伝説のカフェが異世界すぎた", url:"https://youtu.be/udEs0G5tTFI", tags:["アーリー","グルメ"], member:true},
+  ],
+  central: [
+    {title:"少数民族カレン族が住むタイ中部、ラチャブリーへの旅｜タイ旅行", url:"https://youtu.be/eS6iHWfpTuM", tags:["ラチャブリー","街歩き"]},
+    {title:"こんなアユタヤ知らなかった✨歴史と美食の街を歩く｜タイ旅行", url:"https://youtu.be/xknw7bGlWgs", tags:["アユタヤ","グルメ"]},
+    {title:"橋の向こうはモン族の村🏵️タイとミャンマーの国境の街サンクラブリーを旅する｜สังขละบุรี", url:"https://youtu.be/UPhc-1YhgDo", tags:["カンチャナブリ","街歩き"]},
+    {title:"タイの百年市場まで百年鉄道でレトロに行こう｜鉄道旅行｜タイ旅行｜VLOG", url:"https://youtu.be/qE4kABqdZgo", tags:["鉄道旅","市場"]},
+    {title:"バンコク近郊の古い街へ、1泊2日の鉄道旅行。｜ナコンパトム県ナコンチャイシー", url:"https://youtu.be/kGfGfo0KHAM", tags:["ナコンパトム","街歩き"]},
+    {title:"撮影禁止！？アジア初の究極スパリゾートが「本物」でした…｜タイ・ホアヒン", url:"https://youtu.be/UKoGq-0dsQQ", tags:["ホアヒン","ホテル"]},
+    {title:"アユタヤ世界遺産祭りが凄い！本物の遺跡を舞台にした壮大な歴史ショー｜タイ・アユタヤ旅行 Ayutthaya", url:"https://youtu.be/qBcIZzP4BmE", tags:["アユタヤ","お祭り"]},
+    {title:"初めてのアユタヤ旅行。悠久の歴史の中で過ごす、２日間の旅｜タイ旅行", url:"https://youtu.be/Nkai3tjkH1A", tags:["アユタヤ","街歩き"]},
+    {title:"タイ・ペッチャブリー県に日帰り旅行！カオルアン洞窟とタイ宮廷料理を求めて…｜เพชรบุรี", url:"https://youtu.be/73txclZRWrY", tags:["ペッチャブリー","絶景・自然"]},
+    {title:"日帰りじゃもったいない！？アンパワー水上マーケットに止まるべき理由｜タイ旅行", url:"https://youtu.be/BvzI3fS9cs8", tags:["アンパワー","市場"]},
+    {title:"自由すぎるタイの牧場に泊まってみた！ローカル旅｜สระบุรี", url:"https://youtu.be/PsRx4nu6U8o", tags:["サラブリー","ホテル"]},
+    {title:"サルに占拠された街が予想以上だった…｜ลพบุรี", url:"https://youtu.be/gaZQHBP1UGU", tags:["ロッブリー","街歩き"]},
+    {title:"タイ鉄道でジャングルの秘境を目指す🏞カンチャナブリ旅行│กาญจนบุรี", url:"https://youtu.be/5fYjLRb9t50", tags:["カンチャナブリ","絶景・自然"]},
+    {title:"カンチャナブリ鉄道旅行のすすめ！日本と異なる絶景の連続に感動│タイ旅行", url:"https://youtu.be/GO9RyCc20z0", tags:["カンチャナブリ","絶景・自然"]},
+    {title:"ホアヒンのナイトマーケットで爆買い！シカダマーケット | หัวหิน", url:"https://youtu.be/avxceyaMOPM", tags:["ホアヒン","市場"]},
+    {title:"超過酷！タイ、ホアヒンの神の洞窟を目指す！| หัว​หิน​", url:"https://youtu.be/MY3UFyxRJ6g", tags:["ホアヒン","絶景・自然"]},
+    {title:"タイの王室リゾートで優雅な休日のはずが…！ホアヒン旅行 | หัวหิน", url:"https://youtu.be/dNe5FvWdSA0", tags:["ホアヒン","ホテル"]},
+    {title:"バンコクから国鉄で35円！魚介溢れる港町で最高の料理と出会う！【タイ・マハーチャイ】[มหาชัย]", url:"https://youtu.be/Ny3nOh0nF2g", tags:["マハーチャイ","グルメ"]},
+  ],
+  north: [
+    {title:"[ walking ] Long Neck Village // mae hong son // north thailand", url:"https://youtu.be/6_Eu1SIaXyE", tags:["メーホンソン","街歩き"], member:true},
+    {title:"【秘境】ジャングルの船旅！目指すは首長族の村｜タイ北部メーホンソンを旅する EP. 7", url:"https://youtu.be/6hCHvolgvJc", tags:["メーホンソン","絶景・自然"]},
+    {title:"Ban Rak Thai - night and morning // for all members", url:"https://youtu.be/tlR6QEJBnZg", tags:["メーホンソン","街歩き"], member:true},
+    {title:"【タイ北部】山間にある国民党の残留部隊が作った小さな村。そこは千と千尋の神隠しの世界でした🏮｜バーンラックタイ EP.6", url:"https://youtu.be/L9QBl5iRZ2Q", tags:["メーホンソン","街歩き"]},
+    {title:"【タイ北部】バックパッカーの聖地🌟パーイを完全攻略｜タイ一周の旅 EP.5", url:"https://youtu.be/tPz-7s0T_Vs", tags:["パーイ","街歩き"]},
+    {title:"【チェンマイ】進化するタイの古都を旅する｜タイ一周の旅 EP.4", url:"https://youtu.be/lrsUlImkgP4", tags:["チェンマイ","街歩き"]},
+    {title:"[ nature🌿 ] タイ最古の街がジブリの世界だった｜タイ北部プレー県｜タイ一周の旅 EP.3", url:"https://youtu.be/k5XAehbKJuU", tags:["プレー","街歩き"]},
+    {title:"日本人が知らないタイの秘境🍃郷愁の地、サパン村｜タイ北部ナーン県｜タイ一周の旅 EP.2", url:"https://youtu.be/h03nNbFdT0s", tags:["ナーン","絶景・自然"]},
+    {title:"タイ一周旅行に挑戦🇹🇭今タイの若者に最も人気のあるナーン県から旅する！EP.1", url:"https://youtu.be/bAAuKH3QvUs", tags:["ナーン","街歩き"]},
+    {title:"タイで最も美しいお祭り！ロイクラトン発祥の地スコータイは別格だった！", url:"https://youtu.be/nG8Vv10cLIo", tags:["スコータイ","お祭り"]},
+    {title:"馬車が公共交通！メルヘンな街ランパーンを旅する｜北タイ旅行", url:"https://youtu.be/otYC0uWAN2Q", tags:["ランパーン","街歩き"]},
+    {title:"タイ北部パヤオ県で激うま料理を食べ歩く｜北タイ旅行", url:"https://youtu.be/Ce2x4XfrJDw", tags:["パヤオ","グルメ"]},
+    {title:"タイの少数民族ラフ族の村に泊まる。そこは電気の通らない、もののけ姫の世界でした｜北タイ旅行｜チェンライ", url:"https://youtu.be/b36RZ3luH8I", tags:["チェンライ","ホテル"]},
+    {title:"タイの山脈で雲の海を泳ぐ｜北タイ旅行｜チェンライ", url:"https://youtu.be/GSdroNPiGKE", tags:["チェンライ","絶景・自然"]},
+    {title:"魔の三角地帯の今｜ゴールデントライアングルを旅する｜北タイ旅行｜チェンライ｜チェンセーン", url:"https://youtu.be/TeVfYyriPsY", tags:["チェンライ","街歩き"]},
+    {title:"【チェンマイ完全版】タイ北部NO.1観光地の定番スポットを楽しく遊ぶ！これ見ればカンペキ✨", url:"https://youtu.be/lQrwJqzyNwM", tags:["チェンマイ","街歩き"]},
+    {title:"【チェンマイ】ゾウと友達になって遊ぶ、大自然のホテル｜タイ旅行", url:"https://youtu.be/f1JeJUbXehE", tags:["チェンマイ","ホテル"]},
+    {title:"チェンマイの穴場観光地メーカンポン村！おすすめ観光スポットを紹介｜แม่กำปอง", url:"https://youtu.be/wCHpfEXOX2Y", tags:["チェンマイ","絶景・自然"]},
+    {title:"タイのリス族の村に泊まったら、まさかのイヌ天国！｜เชียงใหม่・チェンマイ", url:"https://youtu.be/2ZXyxzlr0VY", tags:["チェンマイ","ホテル"]},
+    {title:"チェンマイが幻想に包まれる日。初めてのコムローイに大号泣｜ロイクラトン｜チェンマイ旅行", url:"https://youtu.be/V6QLTe7WLBU", tags:["チェンマイ","お祭り"]},
+    {title:"まるでおとぎ話！旅人の楽園パーイの全てが可愛すぎ！【タイ北部の旅】[ปาย]", url:"https://youtu.be/vvNygO12JZY", tags:["パーイ","街歩き"]},
+    {title:"[เชียงใหม่] 癒しの古都チェンマイの旧市街で世界一のマンゴーチーズケーキに出会う【タイ北部の旅】", url:"https://youtu.be/9oH5FKq9Ysg", tags:["チェンマイ","グルメ"]},
+    {title:"[ท่าตอน] チェンマイ県の桃源郷タートンで圧倒的ノスタルジーを感じる！【タイ北部の旅】", url:"https://youtu.be/fftr8WzsBbU", tags:["チェンマイ","絶景・自然"]},
+    {title:"[แม่สลอง] ここがタイ!?国民党の子孫が暮らす美しい村メーサロン【タイ北部の旅】", url:"https://youtu.be/-rjFMkbE0qQ", tags:["チェンライ","街歩き"]},
+    {title:"[เชียงราย] 最北の街チェンライの週末の夜が楽しすぎてヤバイ！【タイ北部の旅】", url:"https://youtu.be/WCThyWQxwLo", tags:["チェンライ","市場"]},
+  ],
+  isan: [
+    {title:"メコン川の楽園！チェンカーンは旅人を惹きつける不思議な街だった🍃EP.19", url:"https://youtu.be/gfyWEEpWbJc", tags:["ルーイ","街歩き"]},
+    {title:"サッカーの町ブリーラムの遺跡が凄い！インディージョンズ級の遺跡群【南イサーン鉄道旅行記Prat4】[บุรีรัมย์]", url:"https://youtu.be/uTu5DqVkEGI", tags:["ブリーラム","街歩き"]},
+    {title:"象と暮らす村に到着！タイのスリン県【南イサーン鉄道旅行記Prat3】[สุรินทร์]", url:"https://youtu.be/k5I6nj1Jpf4", tags:["スリン","絶景・自然"]},
+    {title:"タイの田舎の原風景に出会う旅【南イサーン鉄道旅行記 Prat2:シーサケート県】[ศรีสะเกษ]", url:"https://youtu.be/65Kq3ip7ldA", tags:["シーサケート","絶景・自然"]},
+    {title:"絶景！タイ最東からラオスを眺める！南イサーン旅行 ウボンラチャタニー│อุบลราชธานี", url:"https://youtu.be/JHdIwXTxM88", tags:["ウボン","絶景・自然"]},
+    {title:"旅の終わりはナコンパノム、メコン川と最高のソムタム【タイ・イサーン地方の旅#5】[นครพนม]", url:"https://youtu.be/INrI2tDxm0U", tags:["ナコンパノム","グルメ"]},
+    {title:"タイの秘境、人生で一度は見たい絶景！神話的世界～クジラに乗って空を飛ぶ～【タイ・イサーン地方の旅#4】[บึงกาฬ]", url:"https://youtu.be/n9LjLlBxuxc", tags:["ブンカーン","絶景・自然"]},
+    {title:"美味しいが溢れてる！北イサーン最大の街ウドンタニー【タイ・イサーン地方の旅#3】[อุดรธานี]", url:"https://youtu.be/15xHKpmVFRU", tags:["ウドンタニ","グルメ"]},
+    {title:"タイ・ウドンタニ県に行くはずが、全く違う村に到着...どうなる!?【タイ・イサーン地方の旅#2】[ขอนแก่น]", url:"https://youtu.be/3ApSG8HwIgQ", tags:["コンケン","街歩き"]},
+    {title:"穏やかでやさしいおとぎの国、コラート【タイ・イサーン地方の旅#1】[โคราช]", url:"https://youtu.be/4h2svxUnY54", tags:["コラート","街歩き"]},
+  ],
+  east: [
+    {title:"タイ旅行🇹🇭人生で一度は行きたい！タイで最も美しい島、クート島", url:"https://youtu.be/SgFnGfHiTT0", tags:["クート島","島・海"]},
+    {title:"海の綺麗な離島の漁村で最高の休日を過ごそう！穴場の美食コテージのすすめ｜タイ・クート島🌴", url:"https://youtu.be/Qv5y4nrJzOk", tags:["クート島","島・海"]},
+    {title:"日本人が知らない秘密の楽園！世界で1番好きな秘島リゾートに週末トリップ｜タイ・クート島", url:"https://youtu.be/Gf0R6iX-Nfg", tags:["クート島","島・海"]},
+    {title:"本当は秘密にしたい…1泊1700円の最強ゲストハウス🏝｜タイ・クート島｜เกาะกูด", url:"https://youtu.be/tN7hO9iqu54", tags:["クート島","ホテル"]},
+    {title:"海の日本人街シラチャで過ごす週末 | ศรีราชา", url:"https://youtu.be/eMer2Jvj5i4", tags:["シラチャ","街歩き"]},
+    {title:"タイの秘島で過ごす最高の休日。人生で一番美しい海を見つけました｜マック島", url:"https://youtu.be/FVlTOZMPj-s", tags:["マック島","島・海"]},
+    {title:"タイの古民家に初めて泊まった結果…│ตราด", url:"https://youtu.be/RAoFZmeIVXk", tags:["トラート","ホテル"]},
+    {title:"バンコクから一番近い海バンセン！バンセンのおすすめ観光スポットを紹介│บางแสน", url:"https://youtu.be/rYSZPFp8jMQ", tags:["バンセン","島・海"]},
+    {title:"タイ・クート島🏝マングローブの森に浮かぶ秘密のリゾート│ เกาะกูด Koh Kood", url:"https://youtu.be/90DK7oWNij8", tags:["クート島","ホテル"]},
+    {title:"タイ・クート島のコスパ最強の箱庭リゾートを紹介！飯・海・雰囲気全てが最高✨│เกาะกูด", url:"https://youtu.be/IOJ59AM5jj0", tags:["クート島","ホテル"]},
+    {title:"日本人が知らないタイ・チャオラオで過ごす週末│เจ้าหลาว", url:"https://youtu.be/wHwZzw0O1uw", tags:["チャンタブリー","島・海"]},
+    {title:"タイにある日本人の街シーラチャ旅行のススメ★世界最大級の動物園がド迫力［ศิริราช​า］", url:"https://youtu.be/Viuy6gzUJvc", tags:["シラチャ","街歩き"]},
+    {title:"神秘的な世界！タイのサグラダファミリアは想像を遥かに超えていた！パタヤ行くなら必見！", url:"https://youtu.be/d3Q4k28ks68", tags:["パタヤ","街歩き"]},
+    {title:"【タイ・パタヤ】バンコクから2時間のリゾート！絶景カフェ・ターミナル21、昼のパタヤ観光スポット【EP1】", url:"https://youtu.be/5LMDg_2Yhsk", tags:["パタヤ","島・海"]},
+    {title:"タイにある大量に魚が寄ってくる不思議な滝【チャンタブリー PART 2】", url:"https://youtu.be/1B2BwoyaS-s", tags:["チャンタブリー","絶景・自然"]},
+    {title:"タイの穴場観光地チャンタブリーのオールドタウンが楽しすぎる!!【チャンタブリー PART 1】", url:"https://youtu.be/0AuJt9vA-K4", tags:["チャンタブリー","街歩き"]},
+    {title:"[ซับไทย]タイの湘南？バンセンにバンコクから日帰り旅行 คนญี่ปุ่นไปเที่ยวที่บางแสน", url:"https://youtu.be/1u57-Cwo3sQ", tags:["バンセン","島・海"]},
+  ],
+  south: [
+    {title:"[ koh tao ] Diving", url:"https://youtu.be/Z10c_RRwU1Y", tags:["タオ島","島・海"], member:true},
+    {title:"【タオ島】死ぬまでに見たい絶景！世界の旅行者が選ぶアジア１位の島｜タイ旅行 EP.18", url:"https://youtu.be/sRUVg7grzbI", tags:["タオ島","島・海"]},
+    {title:"【ホームステイ】タイ南部、チュンポーンの漁村に泊まる✨ここは最高の隠れ家！EP.17", url:"https://youtu.be/UyMB0Esmxjw", tags:["チュンポーン","ホテル"]},
+    {title:"【タイの秘境】海洋民族が住むパヤム島を冒険！大自然の秘島へ行こう！ 🍃EP.16", url:"https://youtu.be/cGEcwGtqzqY", tags:["ラノーン","島・海"]},
+    {title:"【タイ南部】ラノーン県で旧正月のナイトマーケット食べ歩き｜タイ旅行 EP.15", url:"https://youtu.be/Sk3eN1VhZLg", tags:["ラノーン","市場"]},
+    {title:"【カオラック】１万円でプール付き!?海と森を楽しめるコスパ最強のエコリゾートが超おすすめ🍃｜タイ旅行｜Khaolak Merlin Resort　EP.14", url:"https://youtu.be/0QHId0ry1k4", tags:["カオラック","ホテル"]},
+    {title:"【カオラック完全版】海！山！街！全てが楽しいタイのコスパ最強リゾート地カオラックが今熱い！｜LA VELA KHAO LAK EP.13", url:"https://youtu.be/HhdOgV2UqqU", tags:["カオラック","島・海"]},
+    {title:"【プーケットの穴場】素朴でラグジュアリーな不思議な島⁉︎プーケットから５分のナカ島が凄かった｜The Naka iland｜タイ EP.12", url:"https://youtu.be/-7Ay9M6KfFs", tags:["プーケット","ホテル"]},
+    {title:"【ピピ島 】世界で最も美しいビーチ。街歩きも楽しい地上の楽園を旅する｜タイ一周の旅 EP.11", url:"https://youtu.be/F34iWjN_tLc", tags:["ピピ島","島・海"]},
+    {title:"[ koh haa ] Snorkeling", url:"https://youtu.be/gh442LjnHPA", tags:["クラビ","島・海"], member:true},
+    {title:"【タイNO.1リゾート 】タイで1位に選ばれたランタ島のリゾートが最強過ぎた🔥｜ピマライ｜Pimalai Resort & Spa EP.10", url:"https://youtu.be/qe5eUhO9g84", tags:["ランタ島","ホテル"]},
+    {title:"[ koh muk ] beach dog // Muk-chan", url:"https://youtu.be/LDriV5VjDl8", tags:["ムック島","島・海"], member:true},
+    {title:"【タイ南部】イスラムの秘島に異世界トリップ！ここは少年時代に戻れるチルな楽園｜ムック島 EP.9", url:"https://youtu.be/15f5q_8bVJ4", tags:["ムック島","島・海"]},
+    {title:"[ タイ南部 ] アンダマン海の入り口、終着駅のカンタンを散策｜タイ一周の旅 EP.8", url:"https://youtu.be/Fz_yu8BzWTA", tags:["トラン","街歩き"]},
+    {title:"食の都トランで激うまタイ中華を食べ歩き🥞人気の７店舗を紹介｜タイ南部旅行", url:"https://youtu.be/OJyWltRmHtA", tags:["トラン","グルメ"]},
+    {title:"世界が知らないタイの絶景。奇跡の朝へ異世界トリップ｜タイ南部旅行｜パッタルン県", url:"https://youtu.be/sDYWf-5Va50", tags:["パッタルン","絶景・自然"]},
+    {title:"タイ南部の街ハジャイで食べ歩き｜最強の美食タウン🍜", url:"https://youtu.be/PHwgK4dK8xk", tags:["ハジャイ","グルメ"]},
+    {title:"海と湖に囲まれた旧市街🧜🏻‍♀️ソンクラーを旅する｜タイ南部", url:"https://youtu.be/6ugMR9WDj-Y", tags:["ソンクラー","街歩き"]},
+    {title:"【カオラック】タイの宮殿リゾートの世界観がヤバイ！｜デヴァソム・Devasom Khao Lak", url:"https://youtu.be/og4L_BuyaXc", tags:["カオラック","ホテル"]},
+    {title:"懐かしさと秘境感漂う小さな島で過ごす私の夏休み｜タイ・ヤオノイ島・プーケット旅行", url:"https://youtu.be/94je8fUiZTA", tags:["ヤオノイ島","島・海"]},
+    {title:"プーケット旧市街がまるで夢の国、美しすぎるナイトマーケット｜タイ・プーケット旅行", url:"https://youtu.be/Tn7wgQL-nUw", tags:["プーケット","市場"]},
+    {title:"【プーケット】タイを代表するリゾート地で映画みたいなバカンスを過ごしてみよう！｜タイ国政府観光庁", url:"https://youtu.be/ZIA-Ah0zkt4", tags:["プーケット","島・海"]},
+    {title:"【クラビ】死ぬまでに泊まりたい！世界で唯一無二の大自然リゾートが最高すぎた｜タイ旅行｜ラヤバディー Rayavadee", url:"https://youtu.be/jLq06sSBxcw", tags:["クラビ","ホテル"]},
+    {title:"【クラビ】次のタイ旅行はココ！見たことない海を探しに行こう｜タイ旅行", url:"https://youtu.be/QARsL4CYUN0", tags:["クラビ","島・海"]},
+    {title:"海も星もヤバすぎ!! サムイ島の絶景リゾートが天国だった🏖コンラッド サムイ・conrad koh samui｜เกาะสมุย", url:"https://youtu.be/HKLGRccaQk4", tags:["サムイ島","ホテル"]},
+    {title:"日本人が知らないタイの秘境にホームステイ⛰キリウォン村｜คีรีวง", url:"https://youtu.be/5nyE171ngok", tags:["ナコンシータマラート","絶景・自然"]},
+    {title:"南タイ旅行で衝撃の南部料理に出会う😳｜ナコンシータマラート［นครศรีธรรมราช］", url:"https://youtu.be/MDFJ7MHbbbA", tags:["ナコンシータマラート","グルメ"]},
+    {title:"【絶景の旅】タイの秘境、チャオラン湖の水上コテージが凄い！カオソック旅行", url:"https://youtu.be/aFJl5Yk6DUM", tags:["カオソック","絶景・自然"]},
+    {title:"サルが住み着くツリーハウス🌳🐵に泊まってみたら...｜タイ・カオソック［เขาสก］", url:"https://youtu.be/PkefojT2vCc", tags:["カオソック","ホテル"]},
+    {title:"幻の花🌺ラフレシアを探して世界最古のジャングルを探検｜タイ・カオソック", url:"https://youtu.be/vgf5g8BnywQ", tags:["カオソック","絶景・自然"]},
+    {title:"タイの秘境、世界最古のジャングルへ！ワイルドな年越し旅行が最高だった｜カオソック", url:"https://youtu.be/GqfA29mXGGo", tags:["カオソック","絶景・自然"]},
+    {title:"【タイ南部】日本人が立ち寄らない素朴な街、スラタニへの旅🚣‍♀️", url:"https://youtu.be/mIv0Cxi1tlA", tags:["スラタニ","街歩き"]},
+    {title:"伝説の部屋が最高すぎた…サムイ島リゾート・トンサイベイ│เกาะสมุย SAMUI Tongsai Bay", url:"https://youtu.be/e1OC5q2qEyQ", tags:["サムイ島","ホテル"]},
+    {title:"何も知らない彼女を内緒で最高級リゾートに連れていってみか結果...タイ・サムイ島・バンヤンツリー│เกาะสมุย Banyan Tree koh Samui", url:"https://youtu.be/6mD8xZRJEpw", tags:["サムイ島","ホテル"]},
+    {title:"サムイ島のおすすめ観光地を紹介！絶景レストランから人気のビーチまで│เกาะสมุย Koh Samui", url:"https://youtu.be/ebWZrrOyLiU", tags:["サムイ島","島・海"]},
+  ],
+  life: [
+    {title:"ただいま日本🇯🇵チャンネルのこれからとタイ生活を振り返る", url:"https://youtu.be/ngAG-rXE-qM", tags:["振り返り"], member:true},
+    {title:"4年間、本当にありがとうございました🇹🇭", url:"https://youtu.be/Xzis4SdQnFk", tags:["振り返り"]},
+    {title:"MIYAさんとおはなし//ノーカット", url:"https://youtu.be/u5-g4_9SfoA", tags:["トーク"], member:true},
+    {title:"旅中に倒れました//VLOG for Traveler // language 🇯🇵 only", url:"https://youtu.be/DLMOCml4a-c", tags:["VLOG"], member:true},
+    {title:"[ ご報告 ] 今後の活動について。", url:"https://youtu.be/f_ArlZnrcIY", tags:["ご報告"]},
+    {title:"自宅マンションに猫が侵入｜タイの日常ニュース", url:"https://youtu.be/PkNPrHzm_3M", tags:["日常"], member:true},
+    {title:"衝撃！タイの珍料理カイモッデーン！赤アリの卵に挑戦するも、思わず…｜ไข่มดแดง Ant Eggs Spicy Salad 🐜🐜🐜…", url:"https://youtu.be/LYrfrYqhq64", tags:["珍料理"]},
+    {title:"悶絶！タイの珍料理🦐生エビの踊り食いに初挑戦｜クンテン［กุ้งเต้น］", url:"https://youtu.be/196KHVo88F8", tags:["珍料理"]},
+    {title:"まさかの大号泣😭20万人ありがとう！１年の思い出を振り返る名場面集", url:"https://youtu.be/bPOZup-EL80", tags:["振り返り"]},
+    {title:"タイの珍味🦀カニの卵の生漬けがおいし過ぎた｜プーカイドーン［ปูไข่ดอง］", url:"https://youtu.be/xgu5q11qVxM", tags:["珍料理"]},
+    {title:"タイのバンコクで働く、私の休日。", url:"https://youtu.be/2GwtsLnJEws", tags:["日常"]},
+    {title:"タイ移住│一か月の生活費はいくら？", url:"https://youtu.be/RkcKgxxEOXc", tags:["生活費"]},
+    {title:"外出自粛中のタイ・バンコクで寿司を作る【ASMR】", url:"https://youtu.be/LrFmhT6pOEM", tags:["日常"]},
+    {title:"閉鎖中のタイ・バンコクで、外に出れない休日の過ごし方【Stayhome】", url:"https://youtu.be/HILS6WfvTQg", tags:["日常"]},
+    {title:"タイ人に聞いてみた！本物の抹茶知っていますか？[คาเฟ่ญี่ปุ่น]", url:"https://youtu.be/ErYlaqJ6pok", tags:["日常"]},
+    {title:"10万人達成記念!! 過去の動画を振り返る。トラブル、絶景、美味、出会い...", url:"https://youtu.be/_C0vPpzUeFU", tags:["振り返り"]},
+    {title:"タイの好きなところ嫌いなところ！", url:"https://youtu.be/kL1_jBWtomA", tags:["トーク"]},
+    {title:"過去の非公開動画をメンバー限定公開//バンコクで私が一年間暮らした5万円の部屋を紹介するよ", url:"https://youtu.be/NO0tKUPRG-I", tags:["日常"], member:true},
+  ],
+};
+
+/* タイ以外の国（シリーズの続きなどで使う。エリア一覧には出ません） */
+const OTHER_VIDEOS = [
+  {title:"【世界遺産の街🇱🇦】死ぬまでに行きたい！満足度世界１位のルアンパバーンを旅しよう｜ラオス EP.20", url:"https://youtu.be/w2oqUmHnf0Q", tags:["ラオス","街歩き"]},
+  {title:"🇱🇦ラオスVLOG // ヴァンビエン", url:"https://youtu.be/6H-JhC5oZFY", tags:["ラオス","絶景・自然"], member:true},
+  {title:"[ซับไทย]弾丸トラベラー㏌クアラルンプール คนญี่ปุ่นไปเที่ยวประเทศมาเลเซีย", url:"https://youtu.be/xe8O_KK2tF8", tags:["マレーシア","街歩き"]},
+];
+
+/* シリーズ：動画のURL（またはID）を話数の順に並べます */
+const SERIES = [
+  { name:"タイ一周の旅", note:"北部ナーン県から南の島々、そしてラオスへ。全20話の大冒険。", color:"var(--yellow)", label:"EP.", ids:[
+    "bAAuKH3QvUs","h03nNbFdT0s","k5XAehbKJuU","lrsUlImkgP4","tPz-7s0T_Vs","L9QBl5iRZ2Q","6hCHvolgvJc","Fz_yu8BzWTA","15f5q_8bVJ4","qe5eUhO9g84",
+    "F34iWjN_tLc","-7Ay9M6KfFs","HhdOgV2UqqU","0QHId0ry1k4","Sk3eN1VhZLg","cGEcwGtqzqY","UyMB0Esmxjw","sRUVg7grzbI","gfyWEEpWbJc","w2oqUmHnf0Q"] },
+  { name:"タイ・イサーン地方の旅", note:"コラートからメコン川のナコンパノムまで、東北部を縦断。", color:"var(--purple)", label:"#", ids:[
+    "4h2svxUnY54","3ApSG8HwIgQ","15xHKpmVFRU","n9LjLlBxuxc","INrI2tDxm0U"] },
+  { name:"南イサーン鉄道旅行記", note:"タイ最東のウボンから、鉄道で西へ。", color:"var(--orange)", label:"Part ", ids:[
+    "JHdIwXTxM88","65Kq3ip7ldA","k5I6nj1Jpf4","uTu5DqVkEGI"] },
+  { name:"タイ北部の旅", note:"チェンライから山あいの村をめぐり、パーイへ。", color:"var(--green)", label:"#", ids:[
+    "WCThyWQxwLo","-rjFMkbE0qQ","fftr8WzsBbU","9oH5FKq9Ysg","vvNygO12JZY"] },
+  { name:"スラタニ旅行", note:"素朴な街スラタニから、世界最古のジャングル・カオソックへ。年越しの5日間。", color:"var(--teal)", label:"DAY ", ids:[
+    "mIv0Cxi1tlA","GqfA29mXGGo","vgf5g8BnywQ","PkefojT2vCc","aFJl5Yk6DUM"] },
+];
+
+/* 地図に打つ点（動画で訪れた主な街）。数字は地図上の位置です */
+const MAP_CITIES = [
+  [201.7,342.7],[133.6,110.9],[171.7,59.3],[213.8,111.3],[88.3,87.4],[171.2,192.7],[204.8,315.1],[158.2,330.3],
+  [177.5,397.0],[273.4,286.6],[304.3,174.3],[396.7,274.2],[342.9,130.6],[218.7,380.4],[293.6,439.3],[273.4,395.1],
+  [107.1,612.7],[130.4,603.1],[179.7,537.7],[172.1,511.1],[200.3,652.7],[113.4,565.3],[118.3,517.0],
+];
+const MAP_W = 493, MAP_H = 764;
+
+// 背景の色はタイ国旗の3色（赤・白・紺）とグレーだけ
+const FLAG_RED = "#E0213E", FLAG_WHITE = "#fff", FLAG_NAVY = "var(--navy)", SOFT_GREY = "#CFCFD4";
+// 帯ごとの地の色と、その上に置く図形の色
+const BAND_COLORS = {
+  red:   { bg:FLAG_RED,   fg:[FLAG_WHITE, FLAG_NAVY, SOFT_GREY] },
+  white: { bg:FLAG_WHITE, fg:[FLAG_RED, FLAG_NAVY, SOFT_GREY] },
+};
+const TILE_SHAPES = ["s-circle","s-half","s-quarter","s-square","s-bar","s-dots","s-ring","s-arch"];
+const BLANK_RATE = 0.45;   // 何も置かないマスの割合（余白を多めにして静かに見せる）
+
+const MARQUEE_WORDS = ["BANGKOK","CHIANG MAI","PHUKET","PAI","AYUTTHAYA","KOH TAO","CHIANG RAI","KRABI","KOH SAMUI","KOH KOOD","ISAN","HUA HIN"];
+
+/* ------------------------------------------------------------------ */
+
+function extractYouTubeId(url){
+  if(!url) return null;
+  if(/^[\w-]{11}$/.test(url)) return url;
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/|youtube\.com\/embed\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+// 大きいサムネイルから順に試し、無ければ小さいものへ（4:3の画像は黒帯を隠す）
+function setYouTubeThumb(img, id){
+  const names = ["maxresdefault", "hq720", "hqdefault"];
+  let i = 0;
+  const tryNext = () => {
+    if(i >= names.length) return;
+    const name = names[i++];
+    img.classList.toggle("letterbox", name === "hqdefault");
+    img.src = `https://img.youtube.com/vi/${id}/${name}.jpg`;
+  };
+  img.onload = () => { if(img.naturalWidth <= 120 && i < names.length) tryNext(); };
+  img.onerror = tryNext;
+  tryNext();
+}
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const areaByKey = Object.fromEntries(AREAS.map(a => [a.key, a]));
+const allVideos = AREAS.flatMap(a => (THAI_VIDEOS[a.key] || []).map(v => Object.assign({}, v, { area:a.key })));
+const videoById = new Map();
+[...allVideos, ...OTHER_VIDEOS].forEach(v => {
+  const id = extractYouTubeId(v.url);
+  if(id && !videoById.has(id)) videoById.set(id, v);
+});
+
+/* ---------- メインビジュアル ---------- */
+document.getElementById("heroCount").textContent = allVideos.length;
+
+/* 国旗の帯の並び（上から）。pants は紺の帯で、タイパンツ柄になる */
+const FLAG_BANDS = ["red","white","pants","white","red"];
+// タイパンツ柄の帯：進む速さ（秒）と、上下のふちの模様
+const PANTS_BAND = { speed:60,
+  top:{ cls:"b-dots", a:FLAG_WHITE, b:FLAG_NAVY }, bottom:{ cls:"b-dots", a:FLAG_WHITE, b:FLAG_NAVY } };
+// 模様のゾウ（左向き。鼻を高く上げ、背中に飾り布）
+const PANTS_ELEPHANT = `
+  <rect class="pl b far pe-b" x="50" y="56" width="11" height="26" rx="4"/>
+  <rect class="pl a far pe-b" x="90" y="56" width="11" height="26" rx="4"/>
+  <g class="p-top">
+    <path class="pe-line" d="M103,44 C108,50 109,58 106,64" stroke-width="3"/>
+    <ellipse class="pe-b" cx="72" cy="46" rx="34" ry="24"/>
+    <path class="pe-o" d="M58,24 C66,21 80,21 88,24 C91,34 91,44 88,52 L84,48 L80,52 L76,48 L72,52 L68,48 L64,52 L60,48 L56,52 C53,42 54,32 58,24 Z"/>
+    <path class="pe-b" d="M73,30 l6,7 -6,7 -6,-7 Z"/>
+    <circle class="pe-o" cx="58" cy="62" r="2.2"/><circle class="pe-o" cx="68" cy="65" r="2.2"/>
+    <circle class="pe-o" cx="78" cy="65" r="2.2"/><circle class="pe-o" cx="88" cy="62" r="2.2"/>
+    <path class="pe-line" d="M24,40 C12,42 6,34 8,24 C9,19 14,19 14,24" stroke-width="8"/>
+    <circle class="pe-b" cx="34" cy="38" r="18"/>
+    <path class="pe-ear" d="M44,24 C58,22 62,40 56,52 C52,58 44,56 43,50 C42,42 41,32 44,24 Z"/>
+    <circle class="pe-o" cx="51" cy="35" r="1.8"/><circle class="pe-o" cx="53" cy="43" r="1.8"/>
+    <path class="pe-o" d="M24,22 L34,14 L44,22 L34,28 Z"/>
+    <circle class="pe-o" cx="28" cy="36" r="2.6"/>
+  </g>
+  <rect class="pl a pe-b" x="40" y="58" width="12" height="26" rx="4"/>
+  <rect class="pl b pe-b" x="80" y="58" width="12" height="26" rx="4"/>`;
+
+// 国旗の横じまを敷き、赤と白の帯には図形のタイルを並べる（紺の帯はタイパンツ柄）
+const heroEl = document.getElementById("top");
+const mosaicEl = document.getElementById("mosaic");
+const pick = list => list[Math.floor(Math.random() * list.length)];
+let plainTiles = [];
+let mosaicKey = "";
+
+function paintTile(tile){
+  const palette = BAND_COLORS[tile.dataset.band];
+  const shape = Math.random() < BLANK_RATE ? "s-blank" : pick(TILE_SHAPES);
+  tile.className = "tile " + shape;
+  tile.style.setProperty("--fg", pick(palette.fg));
+}
+
+function makePantsBand(bh, w){
+  const band = document.createElement("div");
+  band.className = "band pants";
+  band.setAttribute("aria-hidden", "true");
+  band.style.setProperty("--bg", FLAG_NAVY);
+  band.style.setProperty("--bh", bh + "px");
+  band.style.setProperty("--speed", PANTS_BAND.speed + "s");
+  const border = b => `<div class="pt-b ${b.cls}" style="--a:${b.a};--b:${b.b}"></div>`;
+  // 画面の幅を埋める数のゾウを並べ、同じ並びをもう1回つなげて切れ目なく流す
+  const n = Math.ceil(w / (bh * .8)) + 2;
+  const phases = Array.from({ length:n }, () => Math.random().toFixed(2));  // 足並みを少しずつずらす
+  const one = phases.map(ph => `<svg class="p-el" viewBox="0 0 120 90" style="--ph:${ph}">${PANTS_ELEPHANT}</svg>`).join("");
+  band.innerHTML = border(PANTS_BAND.top) + `<div class="pants-track">${one}${one}</div>` + border(PANTS_BAND.bottom);
+  return band;
+}
+
+// 子ゾウ（親ゾウの絵を小さく複製）
+const parade = document.getElementById("parade");
+const babyElephant = parade.querySelector(".elephant").cloneNode(true);
+babyElephant.classList.add("baby");
+parade.appendChild(babyElephant);
+
+function buildMosaic(){
+  const w = heroEl.clientWidth, h = heroEl.clientHeight;
+  const unit = h / 6;   // 国旗の比率：赤1・白1・紺2・白1・赤1
+  // 帯の高さをタイル何段に分けるか（帯1本＝1〜数段。スマホは細かめ）
+  const target = w < 600 ? w / 6 : w < 900 ? w / 8 : Math.max(110, w / 11);
+  const perBand = Math.max(1, Math.round(unit / target));
+  const t = Math.round(unit / perBand);
+  const cols = Math.ceil(w / t);
+  const key = `${t}x${cols}x${perBand}`;
+  if(key === mosaicKey) return;
+  mosaicKey = key;
+  heroEl.style.setProperty("--t", t + "px");
+  mosaicEl.style.setProperty("--cols", cols);
+  mosaicEl.innerHTML = "";
+
+  plainTiles = [];
+  FLAG_BANDS.forEach(name => {
+    if(name === "pants"){ mosaicEl.appendChild(makePantsBand(unit * 2, w)); return; }
+    const band = document.createElement("div");
+    band.className = "band";
+    band.setAttribute("aria-hidden", "true");
+    band.style.setProperty("--bg", BAND_COLORS[name].bg);
+    for(let i = 0; i < cols * perBand; i++){
+      const tile = document.createElement("div");
+      tile.dataset.band = name;
+      const inner = document.createElement("div");
+      inner.className = "tile-in";
+      inner.dataset.rot = Math.floor(Math.random() * 4) * 90;
+      inner.style.setProperty("--rot", inner.dataset.rot + "deg");
+      tile.appendChild(inner);
+      paintTile(tile);
+      band.appendChild(tile);
+      plainTiles.push(tile);
+    }
+    mosaicEl.appendChild(band);
+  });
+}
+
+buildMosaic();
+window.addEventListener("load", buildMosaic);   // 文字（フォント）が読み込まれて高さが変わった時に作り直す
+let mosaicTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(mosaicTimer);
+  mosaicTimer = setTimeout(buildMosaic, 200);
+});
+
+if(!reduceMotion){
+  // ときどき1枚のタイルがくるっと回って、別の柄に変わる
+  setInterval(() => {
+    if(document.hidden || !plainTiles.length) return;
+    const tile = pick(plainTiles);
+    const inner = tile.firstChild;
+    const rot = Number(inner.dataset.rot) + 90;
+    inner.dataset.rot = rot;
+    inner.style.setProperty("--sc", ".15");
+    inner.style.setProperty("--rot", rot + "deg");
+    setTimeout(() => {
+      paintTile(tile);
+      inner.style.setProperty("--sc", "1");
+    }, 260);
+  }, 1800);   // 落ち着いて見えるよう、入れかわりはゆっくり
+}
+
+const marqueeTrack = document.getElementById("marqueeTrack");
+const marqueeHtml = MARQUEE_WORDS.map(w => `<span>${w}<i>✦</i></span>`).join("");
+marqueeTrack.innerHTML = marqueeHtml + marqueeHtml;   // 2回並べて切れ目なく流す
+
+/* ---------- 動画プレーヤー ---------- */
+// サムネイルを押すと、このページの上でYouTubeの動画を再生する（閉じると止まる）
+const player = document.getElementById("player");
+const playerFrame = document.getElementById("playerFrame");
+const playerTitle = document.getElementById("playerTitle");
+const playerLink = document.getElementById("playerLink");
+const playerClose = document.getElementById("playerClose");
+let playerReturnFocus = null;
+
+function openPlayer(id, title, url){
+  if(!id) return;
+  playerReturnFocus = document.activeElement;
+  playerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+  playerTitle.textContent = title || "";
+  playerLink.href = url || `https://www.youtube.com/watch?v=${id}`;
+  player.hidden = false;
+  document.body.style.overflow = "hidden";
+  playerClose.focus();
+}
+function closePlayer(){
+  if(player.hidden) return;
+  player.hidden = true;
+  playerFrame.src = "about:blank";
+  document.body.style.overflow = "";
+  if(playerReturnFocus) playerReturnFocus.focus();
+}
+playerClose.addEventListener("click", closePlayer);
+player.addEventListener("click", e => { if(e.target === player) closePlayer(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closePlayer(); });
+
+/* ---------- きょうの1本 ---------- */
+// メンバー限定以外の動画からランダムに1本。押すと再生、「ほかの旅」で引き直し
+const pickEl = document.getElementById("pick");
+const pickImg = document.getElementById("pickImg");
+const pickTitle = document.getElementById("pickTitle");
+const pickArea = document.getElementById("pickArea");
+const pickPlay = document.getElementById("pickPlay");
+const pickPool = allVideos.filter(v => !v.member && extractYouTubeId(v.url));
+let pickCurrent = null;
+
+function showPick(animate){
+  let v = pick(pickPool);
+  if(pickPool.length > 1) while(v === pickCurrent) v = pick(pickPool);
+  pickCurrent = v;
+  const apply = () => {
+    const area = areaByKey[v.area];
+    pickImg.src = `https://img.youtube.com/vi/${extractYouTubeId(v.url)}/mqdefault.jpg`;
+    pickTitle.textContent = v.title;
+    pickArea.textContent = area ? area.name : "";
+    pickEl.style.setProperty("--c", area ? area.color : "var(--pink)");
+    pickPlay.setAttribute("aria-label", "動画を再生：" + v.title);
+  };
+  if(!animate || reduceMotion){ apply(); return; }
+  pickEl.classList.remove("flip");
+  void pickEl.offsetWidth;          // アニメーションを最初からやり直す
+  pickEl.classList.add("flip");
+  setTimeout(apply, 220);           // くるっと裏返った瞬間に中身を入れかえる
+}
+pickPlay.addEventListener("click", () => openPlayer(extractYouTubeId(pickCurrent.url), pickCurrent.title, pickCurrent.url));
+document.getElementById("pickShuffle").addEventListener("click", () => showPick(true));
+showPick(false);
+
+/* ---------- 動画カード ---------- */
+function createCard(v, opts = {}){
+  const id = extractYouTubeId(v.url);
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = v.url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  // 押すとこのページの上で再生（メンバー限定はよそのサイトで再生できないので、YouTubeを開く）
+  if(id && !v.member){
+    a.addEventListener("click", e => {
+      if(e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;   // 新しいタブで開く操作はそのまま
+      e.preventDefault();
+      openPlayer(id, v.title, v.url);
+    });
+  }
+  if(v.area) a.style.setProperty("--c", areaByKey[v.area].color);
+  if(opts.color) a.style.setProperty("--c", opts.color);
+  a.dataset.genre = (v.tags || [])[1] || "";
+
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
+  if(id){
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "";
+    // 読み込めない時は別サイズを試し、それもだめなら画像を隠す（壊れたアイコンを出さない）
+    img.onerror = () => {
+      if(!img.dataset.retry){ img.dataset.retry = "1"; img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+      else img.remove();
+    };
+    img.src = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+    thumb.appendChild(img);
+  }
+  if(v.member){
+    const lock = document.createElement("span");
+    lock.className = "lock";
+    lock.textContent = "🔒 メンバー限定";
+    thumb.appendChild(lock);
+  }
+  if(opts.ep){
+    const ep = document.createElement("span");
+    ep.className = "ep";
+    ep.textContent = opts.ep;
+    thumb.appendChild(ep);
+  }
+
+  const body = document.createElement("div");
+  body.className = "card-body";
+  const tags = document.createElement("div");
+  tags.className = "card-tags";
+  (v.tags || []).filter(Boolean).forEach(t => {
+    const s = document.createElement("span");
+    s.textContent = "#" + t;
+    tags.appendChild(s);
+  });
+  const title = document.createElement("p");
+  title.className = "card-title";
+  title.textContent = v.title;
+  body.appendChild(tags);
+  body.appendChild(title);
+
+  a.appendChild(thumb);
+  a.appendChild(body);
+  return a;
+}
+
+// 横スクロールの列と、PC用の左右ボタン
+function createShelf(cards, twoRows){
+  const wrap = document.createElement("div");
+  wrap.className = "shelf-wrap";
+  const shelf = document.createElement("div");
+  shelf.className = "shelf" + (twoRows ? " two-rows" : "");
+  cards.forEach(c => shelf.appendChild(c));
+  const prev = document.createElement("button");
+  prev.className = "shelf-btn prev";
+  prev.type = "button";
+  prev.setAttribute("aria-label", "前へ");
+  prev.textContent = "←";
+  const next = document.createElement("button");
+  next.className = "shelf-btn next";
+  next.type = "button";
+  next.setAttribute("aria-label", "次へ");
+  next.textContent = "→";
+  const step = dir => shelf.scrollBy({ left: dir * shelf.clientWidth * .8, behavior: reduceMotion ? "auto" : "smooth" });
+  prev.addEventListener("click", () => step(-1));
+  next.addEventListener("click", () => step(1));
+  const update = () => {
+    prev.disabled = shelf.scrollLeft < 8;
+    next.disabled = shelf.scrollLeft + shelf.clientWidth >= shelf.scrollWidth - 8;
+  };
+  shelf.addEventListener("scroll", update, { passive:true });
+  window.addEventListener("resize", update);
+  requestAnimationFrame(update);
+  wrap.append(prev, shelf, next);
+  wrap.update = update;
+  wrap.shelf = shelf;
+  return wrap;
+}
+
+/* ---------- エリアごとのセクション ---------- */
+const areasEl = document.getElementById("areas");
+const areaNav = document.getElementById("areaNav");
+
+AREAS.forEach(area => {
+  const list = THAI_VIDEOS[area.key] || [];
+  const sec = document.createElement("section");
+  sec.className = "area";
+  sec.id = "area-" + area.key;
+  sec.style.setProperty("--c", area.color);
+  sec.innerHTML = `
+    <div class="wrap area-head reveal">
+      <div class="area-title">
+        <span class="area-en">${area.en}</span>
+        <h2>${area.name}</h2>
+        <span class="area-count">${list.length}本</span>
+      </div>
+      <p class="area-desc">${area.desc}</p>
+    </div>
+    <div class="wrap chips" role="group" aria-label="${area.name}のジャンルで絞り込む"></div>`;
+
+  // ジャンルの絞り込みボタン（そのエリアにあるジャンルだけ出す）
+  const chips = sec.querySelector(".chips");
+  const genres = GENRES.filter(g => list.some(v => (v.tags || [])[1] === g));
+  const cards = list.map(v => createCard(Object.assign({}, v, { area:area.key })));
+  const shelfWrap = createShelf(cards, list.length > 24);
+  if(genres.length > 1){
+    ["すべて", ...genres].forEach((g, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (i === 0 ? " on" : "");
+      const n = i === 0 ? list.length : list.filter(v => (v.tags || [])[1] === g).length;
+      b.textContent = `${g} ${n}`;
+      b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      b.addEventListener("click", () => {
+        chips.querySelectorAll(".chip").forEach(c => { c.classList.remove("on"); c.setAttribute("aria-pressed","false"); });
+        b.classList.add("on");
+        b.setAttribute("aria-pressed","true");
+        cards.forEach(c => c.classList.toggle("hide", i !== 0 && c.dataset.genre !== g));
+        // 絞り込んで数が少なくなったら1段に戻す
+        const shown = cards.filter(c => !c.classList.contains("hide")).length;
+        shelfWrap.shelf.classList.toggle("two-rows", shown > 24);
+        shelfWrap.shelf.scrollLeft = 0;
+        shelfWrap.update();
+      });
+      chips.appendChild(b);
+    });
+  } else {
+    chips.remove();
+  }
+  sec.appendChild(shelfWrap);
+  areasEl.appendChild(sec);
+
+  const navLink = document.createElement("a");
+  navLink.href = "#" + sec.id;
+  navLink.style.setProperty("--c", area.color);
+  navLink.textContent = area.name;
+  areaNav.appendChild(navLink);
+});
+{
+  const s = document.createElement("a");
+  s.href = "#series";
+  s.style.setProperty("--c", "var(--yellow)");
+  s.textContent = "シリーズ";
+  areaNav.appendChild(s);
+}
+
+/* ---------- シリーズ ---------- */
+const seriesList = document.getElementById("seriesList");
+SERIES.forEach(series => {
+  const block = document.createElement("div");
+  block.className = "series-block";
+  block.innerHTML = `
+    <div class="wrap series-head reveal">
+      <h3>${series.name}</h3>
+      <p>${series.note}（全${series.ids.length}話）</p>
+    </div>`;
+  const cards = series.ids
+    .map((id, i) => {
+      const v = videoById.get(extractYouTubeId(id));
+      return v ? createCard(v, { ep: series.label + (i + 1), color: series.color }) : null;
+    })
+    .filter(Boolean);
+  block.appendChild(createShelf(cards, false));
+  seriesList.appendChild(block);
+});
+
+/* ---------- 地図：点とエリア名 ---------- */
+const mapDots = document.getElementById("mapDots");
+const mapLabels = document.getElementById("mapLabels");
+const NS = "http://www.w3.org/2000/svg";
+const dotEls = MAP_CITIES.map(([x, y]) => {
+  const c = document.createElementNS(NS, "circle");
+  c.setAttribute("cx", x);
+  c.setAttribute("cy", y);
+  c.setAttribute("r", 6);
+  c.setAttribute("class", "map-dot");
+  mapDots.appendChild(c);
+  return c;
+});
+const labelEls = AREAS.filter(a => a.map).map(a => {
+  const el = document.createElement("a");
+  el.className = "map-label";
+  el.href = "#area-" + a.key;
+  el.style.setProperty("--c", a.color);
+  el.style.left = (a.map[0] / MAP_W * 100) + "%";
+  el.style.top = (a.map[1] / MAP_H * 100) + "%";
+  el.innerHTML = `${a.name}<small>${(THAI_VIDEOS[a.key] || []).length}</small>`;
+  mapLabels.appendChild(el);
+  return el;
+});
+
+/* ---------- 地図：スクロールに合わせて大きくなる ---------- */
+const MAP_STAGES = [
+  { h:"タイってどんな形？", p:"ゾウの頭のような形をした国。面積は日本の約1.4倍で、北の山岳地帯から南の島々まで、南北に長く広がっています。" },
+  { h:"4年間で巡った街", p:"バンコクを拠点に、北はゴールデントライアングル、南はマレーシア国境の近くまで。動画で訪れた主な場所を地図に打ちました。" },
+  { h:"6つのエリアから選ぼう", p:"地図のエリア名をタップすると、そのエリアの動画一覧へジャンプします。" },
+];
+const mapSection = document.getElementById("map");
+const mapSticky = document.getElementById("mapSticky");
+const mapInner = document.getElementById("mapInner");
+const mapSwap = document.getElementById("mapSwap");
+const mapHeading = document.getElementById("mapHeading");
+const mapLead = document.getElementById("mapLead");
+const mapStepEls = [...document.querySelectorAll("#mapSteps i")];
+let mapStage = -1;
+
+function setMapStage(n){
+  if(n === mapStage) return;
+  const first = mapStage === -1;
+  mapStage = n;
+  mapStepEls.forEach((el, i) => el.classList.toggle("on", i === n));
+  const apply = () => {
+    mapHeading.textContent = MAP_STAGES[n].h;
+    mapLead.textContent = MAP_STAGES[n].p;
+    mapSwap.classList.remove("out");
+  };
+  if(first || reduceMotion){ apply(); return; }
+  mapSwap.classList.add("out");
+  setTimeout(apply, 250);
+}
+
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const clamp01 = t => Math.min(1, Math.max(0, t));
+
+function updateMap(){
+  const rect = mapSection.getBoundingClientRect();
+  const total = mapSection.offsetHeight - window.innerHeight;
+  const p = total > 0 ? clamp01(-rect.top / total) : 1;
+  mapSticky.style.setProperty("--p", p.toFixed(3));
+
+  // 0〜0.45：小さく傾いた地図が、正面を向きながら大きくなる
+  const g = easeOut(clamp01(p / .45));
+  const scale = .32 + g * .68;
+  const rot = -16 * (1 - g);
+  mapInner.style.transform = `translateY(${(1 - g) * 6}vh) rotate(${rot}deg) scale(${scale})`;
+
+  // 0.3〜0.62：訪れた街の点が順番に現れる
+  dotEls.forEach((d, i) => d.classList.toggle("on", p > .3 + i * (.32 / dotEls.length)));
+  // 0.62〜：エリア名が現れる
+  labelEls.forEach((l, i) => l.classList.toggle("on", p > .62 + i * .035));
+
+  setMapStage(p < .3 ? 0 : p < .62 ? 1 : 2);
+}
+
+if(reduceMotion){
+  dotEls.forEach(d => d.classList.add("on"));
+  labelEls.forEach(l => l.classList.add("on"));
+  setMapStage(2);
+} else {
+  let ticking = false;
+  const onScroll = () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { updateMap(); ticking = false; });
+  };
+  window.addEventListener("scroll", onScroll, { passive:true });
+  window.addEventListener("resize", onScroll);
+  updateMap();
+}
+
+/* ---------- スクロールで現れる・ナビの現在地 ---------- */
+const revealEls = document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window && !reduceMotion){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, k) => {
+      if(!e.isIntersecting) return;
+      e.target.style.transitionDelay = (k * 90) + "ms";
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    });
+  }, { threshold:.15, rootMargin:"0px 0px -8% 0px" });
+  revealEls.forEach(el => io.observe(el));
+
+  const navLinks = [...areaNav.querySelectorAll("a")];
+  const navIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const id = "#" + e.target.id;
+      navLinks.forEach(a => {
+        const on = a.getAttribute("href") === id;
+        a.classList.toggle("active", on);
+        // ナビの中だけを横にずらす（ページ全体のスクロールは止めない）
+        if(on) areaNav.scrollTo({ left: a.offsetLeft - (areaNav.clientWidth - a.offsetWidth) / 2, behavior:"smooth" });
+      });
+    });
+  }, { rootMargin:"-45% 0px -50% 0px" });
+  document.querySelectorAll(".area, #series").forEach(s => navIo.observe(s));
+} else {
+  revealEls.forEach(el => el.classList.add("in"));
+}
+
+const toTop = document.getElementById("toTop");
+const hero = document.getElementById("top");
+window.addEventListener("scroll", () => {
+  toTop.classList.toggle("show", window.scrollY > hero.offsetHeight);
+}, { passive:true });
+</script>
+</body>
+</html>

@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>シリーズ｜タイコレクション｜MAIBARU TRAVEL 非公式ファンサイト</title>
+<meta name="description" content="Maibaru Travel のタイの連続ものの旅動画（タイ一周の旅・イサーン地方の旅など）を、話数の順にまとめた非公式ファンページです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Mochiy+Pop+P+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD23F;
+    --yellow-soft:#FFE07A;
+    --cream:#FFF7E6;
+    --ink:#17142B;
+    --navy:#16206B;
+    --indigo:#2438B8;
+    --pink:#FF4F9A;
+    --orange:#FF6B2C;
+    --green:#11A36C;
+    --teal:#13B5C6;
+    --purple:#8A4FE0;
+    --blue:#2F63F0;
+    --red:#E0213E;
+    --white:#fff;
+    --pop:'Mochiy Pop P One','Zen Kaku Gothic New',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+    overflow-x:hidden;
+  }
+  .en{font-family:'Archivo',sans-serif;}
+  a{color:inherit;}
+  img{display:block;}
+  button{font:inherit;color:inherit;}
+  .wrap{width:min(1240px,100% - 32px);margin-inline:auto;}
+
+  /* ---------- 上部：戻る・Home / 国内 / 海外（タイページと同じ） ---------- */
+  .topbar{
+    position:absolute;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:22px 30px;
+  }
+  .back-link,.top-nav{
+    background:var(--cream);border:3px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink);
+  }
+  .back-link{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:6px 18px 6px 14px;}
+  .bl-arrow{font-size:1.5rem;line-height:1;transition:transform .2s ease;}
+  .bl-kicker{display:block;font-family:'Archivo',sans-serif;font-size:.66rem;letter-spacing:.18em;opacity:.7;margin-bottom:3px;}
+  .bl-main{display:block;font-size:1.15rem;font-weight:900;letter-spacing:.04em;}
+  .back-link:hover .bl-arrow{transform:translateX(-5px);}
+  .top-nav{display:flex;gap:22px;padding:10px 22px 8px;}
+  .top-nav a{
+    font-size:1rem;font-weight:900;letter-spacing:.06em;text-decoration:none;
+    padding-bottom:3px;border-bottom:3px solid transparent;
+  }
+  .top-nav a:hover{color:var(--indigo);}
+  .top-nav a.current{border-bottom-color:var(--ink);}
+
+  /* ---------- 見出しの帯（ピンク系の幾何学タイル＋走るトゥクトゥク） ---------- */
+  .bk-hero{position:relative;overflow:hidden;background:var(--theme);}
+  .mosaic{
+    position:absolute;inset:0;z-index:0;
+    display:grid;grid-template-columns:repeat(var(--cols,12),var(--t,110px));grid-auto-rows:var(--t,110px);
+  }
+  .tile{position:relative;overflow:hidden;background:var(--bg);}
+  .tile-in{
+    position:absolute;inset:0;
+    transform:rotate(var(--rot,0deg)) scale(var(--sc,1));
+    transition:transform .5s cubic-bezier(.3,1.5,.5,1);
+  }
+  .tile-in::before{content:"";position:absolute;}
+  .s-circle  .tile-in::before{inset:14%;border-radius:50%;background:var(--fg);}
+  .s-half    .tile-in::before{left:0;right:0;bottom:0;height:50%;border-radius:50% 50% 0 0 / 100% 100% 0 0;background:var(--fg);}
+  .s-quarter .tile-in::before{inset:0;border-top-left-radius:100%;background:var(--fg);}
+  .s-tri     .tile-in::before{inset:0;clip-path:polygon(0 0,100% 100%,0 100%);background:var(--fg);}
+  .s-diamond .tile-in::before{inset:8%;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--fg);}
+  .s-stripes .tile-in::before{inset:0;background:repeating-linear-gradient(45deg,var(--fg) 0 9%,transparent 9% 18%);}
+  .s-dots    .tile-in::before{inset:0;background:radial-gradient(circle,var(--fg) 0 26%,transparent 27%) 0 0/33.34% 33.34%;}
+  .s-ring    .tile-in::before{inset:14%;border-radius:50%;border:calc(var(--t,110px) * .12) solid var(--fg);}
+  .s-arch    .tile-in::before{left:16%;right:16%;top:14%;bottom:0;border-radius:999px 999px 0 0;background:var(--fg);}
+  .s-leaf    .tile-in::before{inset:12%;border-radius:0 100% 0 100%;background:var(--fg);}
+  .s-flower  .tile-in::before{inset:6%;background:
+      radial-gradient(circle at 50% 50%,var(--cream) 0 12%,transparent 13%),
+      radial-gradient(circle at 50% 26%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 50% 74%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 26% 50%,var(--fg) 0 21%,transparent 22%),
+      radial-gradient(circle at 74% 50%,var(--fg) 0 21%,transparent 22%);}
+
+  .bk-hero-inner{
+    position:relative;z-index:2;
+    width:min(1240px,100% - 32px);margin:0 auto;padding:108px 0 40px;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;
+  }
+  .bk-panel{
+    max-width:720px;
+    background:var(--cream);border:4px solid var(--ink);border-radius:26px;box-shadow:9px 9px 0 var(--ink);
+    padding:22px clamp(20px,3vw,36px) 26px;
+    animation:panelIn .8s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  @keyframes panelIn{from{opacity:0;transform:translateY(30px) rotate(-2deg);}to{opacity:1;transform:none;}}
+  .crumb{margin:0 0 14px;font-weight:900;font-size:.9rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .crumb .flag{  /* タイ国旗（赤・白・青・白・赤） */
+    display:inline-block;width:22px;height:15px;margin-right:6px;vertical-align:-2px;border:2px solid var(--ink);border-radius:3px;
+    background:linear-gradient(180deg,#E0213E 0 16.6%,#fff 16.6% 33.3%,#2438B8 33.3% 66.6%,#fff 66.6% 83.3%,#E0213E 83.3%);
+  }
+  .crumb a{text-decoration:none;padding:3px 12px;border:2.5px solid var(--ink);border-radius:999px;background:var(--white);}
+  .crumb a:hover{background:var(--yellow);}
+  .crumb .sep{opacity:.5;}
+  .bk-lead{margin:16px 0 0;font-weight:700;line-height:1.9;font-size:clamp(.92rem,1.3vw,1.05rem);max-width:34em;}
+
+  /* 荷札（タグ）形の見出し（タイページと同じ形） */
+  .area-title{
+    position:relative;justify-self:start;display:inline-block;padding:14px 34px 12px 50px;
+    transform:rotate(-2deg);filter:drop-shadow(5px 5px 0 var(--ink));
+  }
+  .area-title::before{
+    content:"";position:absolute;inset:0;z-index:0;background:var(--c);
+    clip-path:polygon(24px 0,100% 0,100% 100%,24px 100%,0 calc(100% - 24px),0 24px);
+  }
+  .area-title::after{
+    content:"";position:absolute;left:16px;top:50%;z-index:1;width:16px;height:16px;margin-top:-8px;
+    border-radius:50%;background:var(--hole,var(--cream));border:3px solid var(--ink);
+  }
+  .area-title > *{position:relative;z-index:1;}
+  .area-en{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:.82rem;letter-spacing:.22em;color:var(--white);}
+  .area-title h1,.area-title h2{font-family:var(--pop);font-weight:400;line-height:1.15;margin:2px 0 0;color:var(--white);text-shadow:3px 3px 0 var(--ink);}
+  .area-title h1{font-size:clamp(2.4rem,6vw,4.2rem);}
+  .area-title h2{font-size:clamp(1.6rem,3.4vw,2.4rem);}
+  .area-title.ink-text .area-en,.area-title.ink-text h2{color:var(--ink);text-shadow:2px 2px 0 var(--white);}
+  .area-count{
+    position:absolute;right:-18px;top:-12px;z-index:2;
+    background:var(--white);border:3px solid var(--ink);border-radius:999px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;padding:3px 10px;transform:rotate(8deg);
+  }
+
+  /* 右側：小さなタイの地図（このページの地域が光る） */
+  .mini-map{
+    position:relative;display:block;width:clamp(150px,15vw,200px);text-decoration:none;
+    background:
+      radial-gradient(rgba(255,255,255,.1) 1.4px, transparent 1.5px) 0 0/16px 16px,
+      var(--navy);
+    border:4px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--ink);
+    padding:16px 14px 10px;transform:rotate(2.5deg);
+    animation:panelIn .8s .2s cubic-bezier(.2,1.2,.4,1) both;
+    transition:transform .2s ease;
+  }
+  .mini-map:hover{transform:rotate(0deg) scale(1.03);}
+  .mini-map svg{display:block;width:100%;height:auto;overflow:visible;}
+  .mini-map .map-shadow{fill:var(--ink);transform:translate(7px,8px);}
+  .mini-map .map-thai{fill:var(--yellow);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;}
+  .mini-map .here{fill:var(--theme);stroke:var(--ink);stroke-width:5;}
+  .mini-map .ring{fill:none;stroke:var(--theme);stroke-width:7;transform-box:fill-box;transform-origin:center;animation:ring 1.8s ease-out infinite;}
+  @keyframes ring{from{transform:scale(.4);opacity:1;}to{transform:scale(2.6);opacity:0;}}
+  .mini-tag{
+    position:absolute;left:50%;top:-16px;transform:translateX(-50%) rotate(-4deg);white-space:nowrap;
+    background:var(--theme);color:var(--theme-text,var(--white));border:3px solid var(--ink);border-radius:999px;
+    padding:2px 12px;font-family:'Archivo',sans-serif;font-weight:900;font-size:.76rem;letter-spacing:.14em;
+  }
+  .mini-cap{margin:6px 0 0;text-align:center;color:var(--white);font-weight:900;font-size:.72rem;opacity:.85;}
+
+  /* 帯のいちばん下の道路を、トゥクトゥクが走る */
+  .road{
+    position:relative;z-index:1;height:74px;
+    background:var(--ink);border-top:4px solid var(--ink);
+  }
+  .road::before{  /* 道路のまん中の点線 */
+    content:"";position:absolute;left:0;right:0;top:50%;height:5px;margin-top:-2px;
+    background:repeating-linear-gradient(90deg,var(--yellow) 0 34px,transparent 34px 64px);
+    animation:roadMove 1.2s linear infinite;
+  }
+  @keyframes roadMove{to{background-position:64px 0;}}
+  .tt-run{
+    position:absolute;left:0;bottom:6px;z-index:2;width:150px;
+    animation:drive 16s linear infinite;will-change:transform;
+  }
+  @keyframes drive{from{transform:translateX(100vw);}to{transform:translateX(-180px);}}
+  .tuktuk{display:block;width:100%;height:auto;overflow:visible;}
+  .tt-body{animation:ttBob .32s ease-in-out infinite alternate;}
+  @keyframes ttBob{from{transform:translateY(0);}to{transform:translateY(-2.5px);}}
+  .wheel{transform-box:fill-box;transform-origin:center;animation:wheelSpin .9s linear infinite;}
+  @keyframes wheelSpin{to{transform:rotate(-360deg);}}
+  .puff{transform-box:fill-box;transform-origin:center;animation:puff 1.6s ease-out infinite;}
+  .puff.p2{animation-delay:-.55s;}
+  .puff.p3{animation-delay:-1.1s;}
+  @keyframes puff{
+    0%{transform:translate(0,0) scale(.4);opacity:0;}
+    20%{opacity:1;}
+    100%{transform:translate(22px,-20px) scale(1.5);opacity:0;}
+  }
+
+  /* ---------- エリア切り替え（6ページ） ---------- */
+  .area-nav{background:var(--cream);border-bottom:3px solid var(--ink);}
+  .area-nav-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 16px;justify-content:safe center;}
+  .area-nav-inner::-webkit-scrollbar{display:none;}
+  .area-nav a{
+    flex:none;display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.92rem;text-decoration:none;
+    transition:transform .15s ease;
+  }
+  .area-nav a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c);border:2px solid var(--ink);}
+  .area-nav a:hover{transform:translateY(-2px);}
+  .area-nav a.current{background:var(--c);color:var(--white);box-shadow:3px 3px 0 var(--ink);}
+
+  /* ---------- 地図と動画（PCは左に地図を固定、右に動画） ---------- */
+  .explore{
+    display:grid;grid-template-columns:minmax(0,500px) minmax(0,1fr);gap:20px 36px;align-items:start;
+    padding:40px 0 70px;
+  }
+  .side{position:sticky;top:16px;}
+  .map-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px;}
+  .map-head h2{margin:0;font-family:var(--pop);font-weight:400;font-size:1.35rem;}
+  .map-head p{margin:0;font-size:.8rem;font-weight:700;color:#5a566e;}
+
+  .map-box{
+    position:relative;aspect-ratio:1/1;overflow:hidden;
+    background:#FFE9F2;
+    border:4px solid var(--ink);border-radius:24px;box-shadow:7px 7px 0 var(--ink);
+    --z:1;
+  }
+  .map-layer{
+    position:absolute;inset:0;transform-origin:0 0;
+    transform:translate(var(--tx,0%),var(--ty,0%)) scale(var(--z));
+    transition:transform .7s cubic-bezier(.3,1,.35,1);
+  }
+  .map-layer svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  /* パステル地図（地区の境目・運河・細い道の線は、拡大しても太さが変わらない） */
+  .map-layer svg *{vector-effect:non-scaling-stroke;}
+  .bm-sea{fill:#CFEAF6;}
+  .bm-land path{stroke:#fff;stroke-width:1.6;stroke-linejoin:round;}
+  .bm-park{fill:#BDE8C8;}
+  .bm-canal{fill:none;stroke:#8FD0EE;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-water{fill:#A9DCF2;stroke:#8FCDEB;stroke-width:.8;}
+  /* チャオプラヤー川は、拡大すると川幅も広がる */
+  .map-layer svg #bm-river{vector-effect:none;}
+  .bm-river-c{fill:none;stroke:#5FB6E2;stroke-width:8.5;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-river{fill:none;stroke:#86CDEF;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-minor{fill:none;stroke:#fff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
+  .bm-road-c{fill:none;stroke:#EBDCD2;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-road{fill:none;stroke:#fff;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-hwy-c{fill:none;stroke:#F2CFA8;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-hwy{fill:none;stroke:#FFE8C8;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail-c{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail-c.srt{stroke-width:1.8;}
+  .bm-rail{fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .bm-rail.bts{stroke:#5DBB63;}
+  .bm-rail.mrt{stroke:#4F7FE0;}
+  .bm-rail.arl{stroke:#E85A6E;}
+  .bm-rail.red{stroke:#D9534F;}
+  .bm-rail.srt{stroke:#B7AFC6;stroke-width:1;stroke-dasharray:3 2;}
+  /* 目じるしの名前（王宮・川など） */
+  .mark{
+    position:absolute;transform:translate(-50%,-50%) scale(calc(1 / var(--z)));pointer-events:none;white-space:nowrap;
+    font-weight:900;font-size:.68rem;color:#5a566e;
+    text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;
+  }
+  .mark.river{color:#2C8DBA;font-size:.74rem;letter-spacing:.18em;}
+  .map-box:not(.zoomed) .mark:not(.river){display:none;}
+  /* 郊外（地図全体）を見ている時は、都心の番号ピン・凡例・郊外ボタンを隠して、場所の点を見やすく */
+  .map-box.wide .pin,.map-box.wide .map-legend,.map-box.wide .map-sub{opacity:0 !important;pointer-events:none;}   /* 全体の時は番号ピンと重なるので、目じるしは拡大した時だけ */
+  .mark i{font-style:normal;margin-right:2px;}
+  .map-legend{
+    position:absolute;left:10px;top:10px;z-index:3;display:flex;gap:8px;align-items:center;
+    padding:4px 10px;border-radius:999px;border:2px solid var(--ink);background:rgba(255,255,255,.92);
+    font-weight:900;font-size:.66rem;
+  }
+  .map-legend span{display:inline-flex;align-items:center;gap:4px;}
+  .map-legend span::before{content:"";width:16px;height:4px;border-radius:2px;background:var(--c);}
+
+  /* ゾーンの番号ピン（地図の上のボタン） */
+  .pin{
+    position:absolute;width:34px;height:34px;padding:0;margin:0;cursor:pointer;
+    border:3px solid var(--ink);border-radius:50%;background:var(--c);color:var(--white);
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;line-height:1;
+    transform:translate(-50%,-50%) scale(calc(1 / var(--z)));
+    transition:opacity .3s ease, filter .3s ease;
+  }
+  .pin.ink{color:var(--ink);}
+  .pin:hover{filter:brightness(1.08);}
+  .pin .lbl{
+    position:absolute;white-space:nowrap;pointer-events:none;
+    background:var(--white);color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;
+    padding:2px 10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:.78rem;
+    box-shadow:2px 2px 0 var(--ink);
+    transition:opacity .25s ease;
+  }
+  .pin .lbl small{font-family:'Archivo',sans-serif;font-size:.85em;color:var(--c);margin-left:4px;filter:brightness(.85);}
+  .pin.ink .lbl small{color:#9a7400;}
+  .pin.d-right .lbl{left:calc(100% + 6px);top:50%;transform:translateY(-50%);}
+  .pin.d-left .lbl{right:calc(100% + 6px);top:50%;transform:translateY(-50%);}
+  .pin.d-up .lbl{bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);}
+  .pin.d-down .lbl{top:calc(100% + 6px);left:50%;transform:translateX(-50%);}
+  .pin::after{  /* 押せることが分かるよう、ゆっくり波紋を出す */
+    content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--c);opacity:0;
+    animation:pinPulse 2.6s ease-out infinite;animation-delay:var(--dl,0s);
+  }
+  @keyframes pinPulse{0%{transform:scale(.7);opacity:.9;}70%,100%{transform:scale(1.5);opacity:0;}}
+  /* ゾーンを選んでいる時：選んだゾーンのピンは場所の点に入れかわり、ほかのピンは小さく控えめに */
+  .map-box.zoomed .pin .lbl{opacity:0;}
+  .map-box.zoomed .pin{opacity:.55;}
+  .map-box.zoomed .pin::after{display:none;}
+  .map-box.zoomed .pin:hover{opacity:1;}
+  .map-box.zoomed .pin:hover .lbl{opacity:1;}
+  .pin.active{opacity:0 !important;pointer-events:none;}
+
+  /* 選んだゾーンの中の「場所」の点（押すとその場所の動画だけになる） */
+  .spot{
+    position:absolute;width:18px;height:18px;padding:0;margin:0;cursor:pointer;
+    border:3px solid var(--ink);border-radius:50%;background:var(--white);
+    transform:translate(-50%,-50%) scale(calc(1 / var(--z)));
+    animation:spotIn .45s cubic-bezier(.2,1.6,.4,1) both;animation-delay:var(--dl,0s);
+  }
+  @keyframes spotIn{from{transform:translate(-50%,-50%) scale(0);}}
+  .spot .lbl{
+    position:absolute;left:calc(100% + 4px);top:50%;transform:translateY(-50%);white-space:nowrap;
+    background:var(--white);border:2px solid var(--ink);border-radius:999px;padding:1px 8px;
+    font-weight:900;font-size:.74rem;
+  }
+  .spot.l .lbl{left:auto;right:calc(100% + 4px);}
+  .spot .lbl small{font-family:'Archivo',sans-serif;color:#6b6780;margin-left:3px;}
+  .spot:hover .lbl,.spot:focus-visible .lbl{background:var(--yellow);}
+  .spot.on{background:var(--c);}
+  .spot.on .lbl{background:var(--c);color:var(--white);}
+  .spot.on .lbl small{color:var(--white);}
+
+  .map-back{
+    position:absolute;right:10px;top:10px;z-index:3;
+    padding:6px 14px;border-radius:999px;border:3px solid var(--ink);background:var(--yellow);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.8rem;cursor:pointer;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .map-box:not(.zoomed) .map-back{opacity:0;transform:translateY(-8px);pointer-events:none;}
+  .map-any{  /* 地図に載らない「あちこち」のボタン */
+    position:absolute;left:10px;bottom:10px;z-index:3;
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 12px 5px 6px;border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.8rem;cursor:pointer;
+  }
+  .map-any i{
+    font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+    background:var(--c);color:var(--white);border:2px solid var(--ink);font-family:'Archivo',sans-serif;font-size:.8rem;
+  }
+  .map-any.on{background:var(--c);color:var(--white);}
+  .map-sub{left:auto;right:10px;}
+  .map-sub.ink i{color:var(--ink);}
+  .map-sub.on{color:var(--ink);}
+  .map-note{margin:8px 2px 0;font-size:.72rem;color:#6b6780;}
+
+  /* ゾーンのボタン（PCは地図の下、スマホは画面の上に貼りつく） */
+  .zone-bar{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .zb{
+    flex:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+    padding:4px 11px 4px 4px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.8rem;
+    transition:transform .15s ease;
+  }
+  .zb:hover{transform:translateY(-2px);}
+  .zb i{
+    font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+    background:var(--c);color:var(--white);border:2px solid var(--ink);font-family:'Archivo',sans-serif;font-size:.74rem;
+  }
+  .zb.ink i{color:var(--ink);}
+  .zb.all{padding:4px 12px;}
+  .zb.on{background:var(--ink);color:var(--white);}
+
+  /* 右側：選んだゾーンの見出しと動画 */
+  .list-col{min-width:0;}
+  .zone-head{display:grid;gap:14px;margin:6px 0 18px;}
+  .zone-desc{margin:0;font-size:.98rem;line-height:1.95;font-weight:500;}
+  .intro h2{margin:0 0 6px;font-family:var(--pop);font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);}
+  .intro p{margin:0;font-weight:700;line-height:1.8;}
+  .place-pill{
+    display:inline-flex;align-items:center;gap:8px;justify-self:start;margin:0;
+    padding:5px 6px 5px 14px;border-radius:999px;border:2.5px solid var(--ink);background:var(--yellow);font-weight:900;font-size:.88rem;
+  }
+  .place-pill button{border:2px solid var(--ink);border-radius:999px;background:var(--white);padding:2px 10px;font-weight:900;font-size:.78rem;cursor:pointer;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .chip{
+    font-weight:700;font-size:.86rem;cursor:pointer;
+    padding:5px 13px;border-radius:999px;border:2px solid var(--ink);background:transparent;
+    transition:background .2s ease,color .2s ease;
+  }
+  .chip:hover{background:rgba(23,20,43,.06);}
+  .chip.on{background:var(--ink);color:var(--white);}
+
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 18px;}
+  .card{
+    display:flex;flex-direction:column;text-decoration:none;
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;overflow:hidden;
+    box-shadow:5px 5px 0 var(--c,var(--ink));
+    transition:transform .2s ease, box-shadow .2s ease;
+    animation:cardIn .4s ease both;
+  }
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px);}}
+  .card:hover{transform:translate(-2px,-4px);box-shadow:8px 9px 0 var(--c,var(--ink));}
+  .card:focus-visible{outline:3px solid var(--indigo);outline-offset:4px;}
+  .thumb{position:relative;aspect-ratio:16/9;background:var(--yellow-soft);border-bottom:3px solid var(--ink);overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease;}
+  .card:hover .thumb img{transform:scale(1.05);}
+  .lock{
+    position:absolute;left:8px;top:8px;
+    background:var(--ink);color:var(--yellow);border-radius:999px;padding:3px 10px;
+    font-size:.72rem;font-weight:900;letter-spacing:.04em;
+  }
+  .card-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.74rem;font-weight:700;color:var(--c,#5a566e);filter:brightness(.85);}
+  .card-title{
+    margin:0;font-size:.88rem;font-weight:700;line-height:1.6;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .more{
+    display:block;margin:26px auto 0;padding:12px 28px;cursor:pointer;
+    border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:4px 4px 0 var(--ink);
+    font-weight:900;font-size:.95rem;
+    transition:transform .15s ease;
+  }
+  .more:hover{transform:translateY(-2px);background:var(--yellow);}
+
+  /* 「すべて」のとき：ゾーンごとに数本ずつ見せる */
+  .preview{margin-bottom:34px;}
+  .preview-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:8px;border-bottom:3px dashed rgba(23,20,43,.25);}
+  .preview-head i{
+    font-style:normal;flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;
+    background:var(--c);color:var(--white);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);font-family:'Archivo',sans-serif;font-weight:900;
+  }
+  .preview-head.ink i{color:var(--ink);}
+  .preview-head h3{margin:0;font-family:var(--pop);font-weight:400;font-size:1.2rem;}
+  .preview-head span{font-family:'Archivo',sans-serif;font-weight:900;font-size:.85rem;color:#6b6780;}
+  .preview-head button{
+    margin-left:auto;cursor:pointer;padding:5px 14px;border-radius:999px;border:2.5px solid var(--ink);
+    background:var(--c);color:var(--white);font-weight:900;font-size:.8rem;box-shadow:2px 2px 0 var(--ink);
+  }
+  .preview-head.ink button{color:var(--ink);}
+  .preview-head button:hover{transform:translateY(-1px);}
+
+  /* ---------- 前後のエリアへ ---------- */
+  .pager{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:10px 0 80px;}
+  .pg{
+    display:flex;flex-direction:column;gap:4px;text-decoration:none;
+    padding:22px 26px;border-radius:22px;border:4px solid var(--ink);background:var(--white);box-shadow:6px 6px 0 var(--ink);
+    transition:transform .2s ease;
+  }
+  .pg:hover{transform:translate(-2px,-3px);}
+  .pg small{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:.2em;font-size:.75rem;opacity:.75;}
+  .pg b{font-family:var(--pop);font-weight:400;font-size:clamp(1.2rem,2.6vw,1.8rem);}
+  .pg.next{text-align:right;background:var(--c);color:var(--white);}
+  .pg.next b{text-shadow:2px 2px 0 var(--ink);}
+
+  /* ---------- 動画プレーヤー（タイページと同じ） ---------- */
+  .player{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;padding:16px;
+    background:rgba(23,20,43,.82);
+  }
+  .player[hidden]{display:none;}
+  .player-box{
+    position:relative;width:min(960px,100%);
+    background:var(--cream);border:4px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);
+    padding:14px;animation:panelIn .4s cubic-bezier(.2,1.2,.4,1) both;
+  }
+  .player-frame{aspect-ratio:16/9;min-height:200px;border-radius:12px;overflow:hidden;background:#000;border:3px solid var(--ink);}
+  .player-frame iframe{display:block;width:100%;height:100%;border:0;}
+  .player-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 4px 2px;}
+  .player-title{margin:0;font-weight:900;font-size:.95rem;line-height:1.6;flex:1 1 300px;}
+  .player-link{
+    flex:none;padding:8px 16px;border-radius:999px;border:2.5px solid var(--ink);background:var(--white);
+    font-weight:900;font-size:.85rem;text-decoration:none;
+  }
+  .player-close{
+    position:absolute;top:-20px;right:-20px;width:48px;height:48px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-size:1.5rem;font-weight:900;line-height:1;cursor:pointer;
+  }
+
+  /* ---------- フッター ---------- */
+  .site-footer{background:var(--ink);color:#e9e6f5;padding:70px 0 40px;}
+  .footer-brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.6rem;margin:0 0 4px;color:var(--yellow);}
+  .footer-sub{font-family:'Archivo',sans-serif;font-size:.75rem;letter-spacing:.2em;opacity:.6;margin:0 0 26px;}
+  .site-footer ul{margin:0 0 26px;padding-left:1.2em;font-size:.85rem;line-height:2;opacity:.85;max-width:62em;}
+  .footer-links{display:flex;flex-wrap:wrap;gap:12px;}
+  .footer-links a{
+    display:inline-block;padding:10px 18px;border-radius:999px;border:2px solid rgba(255,255,255,.4);
+    text-decoration:none;font-weight:700;font-size:.9rem;
+  }
+  .footer-links a:hover{background:rgba(255,255,255,.1);}
+
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:40;
+    width:56px;height:56px;border-radius:50%;
+    background:var(--yellow);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.72rem;text-decoration:none;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1.1;
+    opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s ease, transform .3s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+
+  /* ---------- PC（広い画面）：「すべて」では各ゾーン1段（3本）だけ見せる ---------- */
+  @media (min-width:1101px){
+    .preview .card:nth-child(n+4){display:none;}
+  }
+  /* ---------- タブレット ---------- */
+  @media (max-width:1100px){
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .explore{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:20px 26px;}
+  }
+  @media (max-width:900px){
+    .bk-hero-inner{grid-template-columns:1fr;padding-top:96px;}
+    .mini-map{position:absolute;right:4px;top:96px;width:104px;padding:10px 8px 6px;border-radius:16px;box-shadow:5px 5px 0 var(--ink);}
+    .mini-tag{font-size:.62rem;padding:1px 8px;top:-13px;}
+    .mini-cap{display:none;}
+    .bk-panel{margin-right:96px;}
+    /* 1列にして、地図 → ゾーンのボタン（上に貼りつく） → 動画 の順に */
+    .explore{grid-template-columns:minmax(0,1fr);padding-top:26px;}
+    .side{display:contents;}
+    .map-wrap{max-width:560px;width:100%;justify-self:center;}
+    .zone-bar{
+      position:sticky;top:0;z-index:30;margin:0 -16px;
+      flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+      padding:10px 16px;background:rgba(255,247,230,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      border-block:3px solid var(--ink);
+    }
+    .zone-bar::-webkit-scrollbar{display:none;}
+  }
+  /* ---------- スマホ ---------- */
+  @media (max-width:600px){
+    .topbar{padding:14px 16px;}
+    .bl-arrow{font-size:1.2rem;}
+    .bl-kicker{font-size:.56rem;}
+    .bl-main{font-size:.95rem;}
+    .top-nav{gap:12px;padding:8px 14px 6px;}
+    .back-link{padding:4px 12px 4px 10px;gap:8px;}
+    .top-nav a{font-size:.9rem;}
+    .bk-hero-inner{padding:84px 0 30px;}
+    .mini-map{top:92px;right:10px;width:64px;padding:8px 6px 5px;border-width:3px;border-radius:12px;box-shadow:4px 4px 0 var(--ink);}
+    .mini-tag{font-size:.5rem;letter-spacing:.06em;padding:0 6px;top:-11px;border-width:2px;}
+    .bk-panel{margin-right:0;padding:18px 16px 20px;border-radius:20px;box-shadow:6px 6px 0 var(--ink);}
+    .bk-panel .area-title{margin-right:60px;}
+    /* 狭い画面では地図の上の名前を出さない（下のゾーンのボタンに名前がある） */
+    .pin .lbl{display:none;}
+    .crumb{margin-bottom:10px;padding-right:80px;}
+    .area-title{padding:12px 26px 10px 42px;}
+    .area-title::after{left:13px;width:13px;height:13px;margin-top:-6.5px;}
+    .bk-lead{font-size:.9rem;line-height:1.8;}
+    .road{height:62px;}
+    .tt-run{width:118px;}
+    .map-box{border-radius:18px;box-shadow:5px 5px 0 var(--ink);}
+    .pin{width:28px;height:28px;font-size:.85rem;border-width:2.5px;}
+    .pin .lbl{font-size:.66rem;padding:1px 7px;border-width:2px;}
+    .spot{width:15px;height:15px;border-width:2.5px;}
+    .spot .lbl{font-size:.64rem;padding:0 6px;}
+    .map-any{font-size:.7rem;padding:3px 10px 3px 4px;}
+    .map-any i{width:20px;height:20px;}
+    .map-back{font-size:.7rem;padding:4px 10px;}
+    .grid{gap:14px 10px;}
+    .card{border-radius:12px;box-shadow:4px 4px 0 var(--c,var(--ink));}
+    .card-body{padding:8px 9px 10px;gap:4px;}
+    .card-tags{font-size:.64rem;}
+    .card-title{font-size:.78rem;line-height:1.5;}
+    .lock{font-size:.6rem;padding:2px 7px;left:5px;top:5px;}
+    .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;}
+    .chips::-webkit-scrollbar{display:none;}
+    .chip{flex:none;}
+    .preview-head h3{font-size:1.02rem;}
+    .pager{grid-template-columns:1fr;gap:14px;}
+    .pg{padding:16px 20px;}
+    .player-close{top:-14px;right:-8px;}
+    .to-top{width:50px;height:50px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+    .tt-run{left:auto;right:8%;}
+  }
+  .ep{
+    position:absolute;right:8px;bottom:8px;
+    background:var(--yellow);color:var(--ink);border:2.5px solid var(--ink);border-radius:10px;padding:2px 9px;
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;
+  }
+
+  /* ---------- 乗り物（ページごとに違う） ---------- */
+  .tt-run.long{width:300px;animation-name:driveLong;animation-duration:22s;}
+  .tt-run.mid{width:220px;animation-name:driveMid;animation-duration:18s;}
+  .tt-run.cart{width:140px;animation-name:driveMid;animation-duration:17s;}
+  .area-nav a.current[style*="yellow"]{color:var(--ink);}
+  .tt-run.herd{width:auto;animation-name:driveLong;animation-duration:30s;}
+  @keyframes driveLong{from{transform:translateX(100vw);}to{transform:translateX(-340px);}}
+  @keyframes driveMid{from{transform:translateX(100vw);}to{transform:translateX(-250px);}}
+  .parade-run{display:flex;align-items:flex-end;gap:2px;}
+  .elephant{display:block;width:120px;height:auto;overflow:visible;}
+  .elephant.baby{width:76px;}
+  .road.grass::before,.road.sea::before,.road.rail::before{animation:none;}
+  .el-top{animation:elBob .45s ease-in-out infinite alternate;}
+  .leg{transform-box:fill-box;transform-origin:50% 8%;animation:step .9s ease-in-out infinite alternate;}
+  .leg.b{animation-delay:-.9s;}
+  @keyframes elBob{from{transform:translateY(0);}to{transform:translateY(-3px);}}
+  @keyframes step{from{transform:rotate(13deg);}to{transform:rotate(-13deg);}}
+  .train,.boat,.cart,.plane{display:block;width:100%;height:auto;overflow:visible;}
+  .tr-body,.ct-body{animation:ttBob .3s ease-in-out infinite alternate;}
+  .bt-body{transform-box:fill-box;transform-origin:50% 80%;animation:rock 1.6s ease-in-out infinite alternate;}
+  @keyframes rock{from{transform:rotate(-2deg) translateY(0);}to{transform:rotate(2deg) translateY(-3px);}}
+  .prop{transform-box:fill-box;transform-origin:center;animation:wheelSpin .3s linear infinite;}
+  .splash{transform-box:fill-box;transform-origin:center;animation:puff 1s ease-out infinite;}
+  .splash.s2{animation-delay:-.5s;}
+  .pl-body{animation:fly 2.4s ease-in-out infinite alternate;}
+  @keyframes fly{from{transform:translateY(2px);}to{transform:translateY(-6px);}}
+  /* 道のかわり：草の道・線路・海 */
+  .road.grass{background:#3E9B57;}
+  .road.grass::before{top:0;bottom:0;height:auto;margin:0;
+    background:radial-gradient(circle,#FFD23F 0 3px,transparent 4px) 0 8px/46px 30px,radial-gradient(circle,#FF9EC4 0 3px,transparent 4px) 23px 22px/46px 30px;}
+  .road.rail{background:#5B5568;}
+  .road.rail::before{top:auto;bottom:10px;height:12px;margin:0;
+    background:repeating-linear-gradient(90deg,#8B5E3C 0 12px,transparent 12px 30px);}
+  .road.rail::after{content:"";position:absolute;left:0;right:0;bottom:16px;height:5px;background:#C9C3D6;border-block:1px solid var(--ink);}
+  .road.sea{background:#2F9FD8;}
+  .road.sea::before{top:0;bottom:0;height:auto;margin:0;
+    background:radial-gradient(circle at 50% 0,transparent 9px,rgba(255,255,255,.75) 10px 12px,transparent 13px) 0 10px/40px 22px;}
+  .road.sea .tt-run{bottom:2px;}
+  /* 地図の上の国名・海の名前 */
+  .mark.land{color:#8d86a0;letter-spacing:.2em;font-size:.72rem;}
+  .map-box:not(.zoomed) .mark.land{display:block;}
+  .rm-other path{fill:#ECE7E1;stroke:#fff;stroke-width:1.2;}
+  .area-title.ink-text h1{color:var(--ink);text-shadow:3px 3px 0 var(--white);}
+  .area-title.ink-text .area-en{color:var(--ink);text-shadow:none;}
+
+  @media (max-width:600px){
+    .tt-run.long{width:230px;} .tt-run.mid{width:160px;}
+    .elephant{width:88px;} .elephant.baby{width:56px;}
+    .map-head p{display:none;}
+  }
+  /* 地図の代わりのカード（PCではゾーンのボタンの代わりに使う） */
+  @media (min-width:901px){ .zone-bar{display:none;} }
+  .side-cards{display:grid;gap:14px;}
+  .side-card{
+    position:relative;display:grid;text-align:left;cursor:pointer;color:var(--ink);
+    background:var(--white);border:3px solid var(--ink);border-radius:20px;box-shadow:5px 5px 0 var(--c);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .side-card:hover{transform:translate(-2px,-3px);box-shadow:7px 8px 0 var(--c);}
+  .side-card.on{background:var(--c);color:var(--white);box-shadow:5px 5px 0 var(--ink);}
+  .side-card.ink.on{color:var(--ink);}
+  @media (max-width:900px){ .side-cards{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;} }
+
+  /* 搭乗券の形のカード */
+  .side-card{grid-template-columns:1fr auto;padding:0;overflow:visible;border-radius:16px;}
+  .bp-main{display:grid;gap:4px;padding:12px 16px;min-width:0;}
+  .bp-label{font-family:'Archivo',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.2em;opacity:.7;}
+  .bp-route{display:flex;align-items:center;gap:10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:1.2rem;line-height:1.1;flex-wrap:wrap;}
+  .bp-route i{font-style:normal;color:var(--c);font-size:1rem;}
+  .side-card.on .bp-route i{color:inherit;}
+  .bp-name{font-family:var(--pop);font-size:.98rem;}
+  .bp-stub{
+    position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:84px;
+    background:var(--c);color:var(--white);border-left:3px dashed var(--ink);border-radius:0 13px 13px 0;padding:8px;
+  }
+  .side-card.ink .bp-stub{color:var(--ink);}
+  .side-card.on .bp-stub{background:var(--white);color:var(--ink);}
+  .bp-stub small{font-family:'Archivo',sans-serif;font-weight:700;font-size:.56rem;letter-spacing:.16em;}
+  .bp-stub b{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.8rem;line-height:1;}
+  .bp-stub::before,.bp-stub::after{content:"";position:absolute;left:-11px;width:18px;height:18px;border-radius:50%;background:var(--cream);border:3px solid var(--ink);}
+  .bp-stub::before{top:-12px;} .bp-stub::after{bottom:-12px;}
+  .mini-map .here{fill:var(--pink);} .mini-map .ring{stroke:var(--pink);} .side-card:nth-child(even){transform:rotate(.8deg);}
+  @media (max-width:900px){
+    .side-cards{grid-template-columns:1fr;}
+    .bp-route{font-size:.95rem;} .bp-name{font-size:.86rem;} .bp-stub{min-width:64px;} .bp-stub b{font-size:1.4rem;}
+  }
+
+  /* ===================================================================
+     搭乗券を押した後：空色に染まる → 飛行機が通り抜けて、ページが次々に出てくる
+     （飛行機・雲・地図はこのサイト用に描いたオリジナル）
+  =================================================================== */
+  :root{--sky:#7FD0F5;--sky-deep:#3FA9E8;--sky-pale:#D4F0FD;}
+  .fl-sky,.fl-page,.fl-plane,.fl-boom{position:fixed;inset:0;pointer-events:none;}
+  .fl-sky{z-index:91;background:var(--sky);}
+  .fl-page{z-index:92;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .fl-page.p2{z-index:93;}
+  .fl-plane{z-index:96;display:flex;align-items:center;}
+  .fl-boom{z-index:95;display:flex;align-items:center;justify-content:center;}
+  .fl-sky[hidden],.fl-page[hidden],.fl-plane[hidden],.fl-boom[hidden]{display:none;}
+  /* 1枚目：大きな搭乗券 */
+  .fl-page.p1{background:var(--sky-pale);}
+  .fl-page.p1::before{
+    content:"";position:absolute;inset:-20%;
+    background:repeating-linear-gradient(-12deg,transparent 0 46px,rgba(63,169,232,.14) 46px 50px);
+  }
+  .fp-pass{
+    position:relative;display:grid;grid-template-columns:1fr auto;width:min(760px,88vw);
+    background:var(--white);border:5px solid var(--ink);border-radius:26px;box-shadow:12px 12px 0 var(--ink);
+    transform:rotate(-3deg);
+  }
+  .fp-pass .bp-main{padding:clamp(18px,3vw,34px);gap:10px;}
+  .fp-pass .bp-label{font-size:clamp(.7rem,1.4vw,.95rem);}
+  .fp-pass .bp-route{font-size:clamp(1.6rem,5vw,3.4rem);gap:16px;}
+  .fp-pass .bp-route i{font-size:.7em;}
+  .fp-pass .bp-name{font-size:clamp(1.1rem,2.6vw,1.7rem);}
+  .fp-pass .bp-stub{min-width:clamp(90px,15vw,150px);border-left-width:4px;border-radius:0 20px 20px 0;}
+  .fp-pass .bp-stub b{font-size:clamp(2.2rem,6vw,4rem);}
+  .fp-pass .bp-stub small{font-size:clamp(.6rem,1.2vw,.8rem);}
+  .fp-pass .bp-stub::before,.fp-pass .bp-stub::after{background:var(--sky-pale);}
+  .fp-pass.ink .bp-stub{color:var(--ink);}
+  /* 2枚目：シリーズの色に、大きな文字が流れる */
+  .fl-page.p2{flex-direction:column;gap:0;background:var(--c);color:var(--white);}
+  .fl-page.p2.ink{color:var(--ink);}
+  .fp-line{
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(3rem,12vw,10rem);line-height:.95;white-space:nowrap;
+    letter-spacing:-.02em;
+  }
+  .fp-line.o{color:transparent;-webkit-text-stroke:3px currentColor;}
+  .fl-page.p2 .fp-line:nth-child(1){transform:translateX(-12%);color:var(--white);}
+  .fl-page.p2.ink .fp-line:nth-child(1){color:var(--ink);}
+  .fl-page.p2 .fp-line:nth-child(2){transform:translateX(8%);-webkit-text-stroke-color:var(--ink);}
+  .fl-page.p2 .fp-line:nth-child(3){transform:translateX(-4%);font-family:var(--pop);font-weight:400;font-size:clamp(1.6rem,5vw,3.6rem);margin-top:18px;}
+  /* 飛行機（左から右へ）と、音速をこえた時の白い輪 */
+  .fl-craft{position:relative;width:min(560px,74vw);transform:translateX(-120%);}
+  .fl-craft .plane{transform:scaleX(-1);}
+  .fl-cone{
+    position:absolute;left:38%;top:50%;width:46%;aspect-ratio:1/1.5;transform:translate(-50%,-50%);
+    border-radius:50%;opacity:0;
+    background:radial-gradient(ellipse at 70% 50%,rgba(255,255,255,0) 0 38%,rgba(255,255,255,.95) 46%,rgba(255,255,255,.35) 60%,rgba(255,255,255,0) 70%);
+    filter:blur(1.5px);
+  }
+  .fl-trail{
+    position:absolute;right:70%;top:46%;width:120vw;height:16%;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.9) 0 4px,transparent 4px 14px);
+    -webkit-mask:linear-gradient(90deg,transparent,#000 70%);mask:linear-gradient(90deg,transparent,#000 70%);
+  }
+  .fl-ring{
+    position:absolute;width:30vmin;height:30vmin;border-radius:50%;
+    border:clamp(6px,1.4vmin,14px) solid #fff;opacity:0;
+  }
+  /* 旅の画面 */
+  .journey{
+    position:fixed;inset:0;z-index:94;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+    background:
+      radial-gradient(rgba(255,255,255,.35) 1.6px,transparent 1.7px) 0 0/22px 22px,
+      linear-gradient(180deg,var(--sky) 0%,#A8E0F8 60%,var(--sky-pale) 100%);
+    background-attachment:local;
+    color:var(--ink);
+  }
+  .journey[hidden]{display:none;}
+  /* 上の帯：すりガラス。線で区切らず、下に何かが重なった時だけうっすら影を出す */
+  .jy-bar{
+    position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;
+    padding:10px clamp(12px,3vw,28px);
+    background:rgba(255,255,255,.62);
+    backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+    border-top:1px solid rgba(255,255,255,.5);
+  }
+  .jy-bar::after{
+    content:"";position:absolute;left:0;right:0;top:100%;height:14px;pointer-events:none;
+    background:linear-gradient(rgba(23,20,43,.14),rgba(23,20,43,0));
+    opacity:0;transition:opacity .2s ease;
+  }
+  .journey.scrolled .jy-bar::after{opacity:1;}
+  /* どこまで旅したか（スクロールと1:1で伸びる） */
+  .jy-meter{
+    position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--c);
+    transform-origin:0 50%;transform:scaleX(0);
+  }
+  .jy-close{
+    flex:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    padding:7px 16px 7px 12px;border-radius:999px;border:3px solid var(--ink);background:var(--cream);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.9rem;
+  }
+  .jy-close:hover{background:var(--yellow);}
+  /* 押した瞬間に沈む（離すのを待たない） */
+  .side-card:active,.jy-close:active,.jy-end-btns button:active{transform:scale(.97);transition:transform .1s ease-out;}
+  .fl-sky{pointer-events:auto;cursor:pointer;}   /* 演出中は、どこを押しても飛ばせる */
+  .jy-name{flex:1;min-width:0;margin:0;font-family:var(--pop);font-size:clamp(.85rem,1.8vw,1.1rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .jy-name small{font-family:'Archivo',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.14em;margin-right:8px;color:#4c6b80;}
+  .jy-prog{
+    flex:none;padding:5px 14px;border-radius:999px;border:3px solid var(--ink);background:var(--c);color:var(--white);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.9rem;white-space:nowrap;
+  }
+  .journey.ink .jy-prog{color:var(--ink);}
+  .jy-intro{position:relative;text-align:center;padding:clamp(40px,8vh,90px) 16px clamp(30px,6vh,60px);}
+  .jy-kicker{
+    display:inline-block;margin:0 0 14px;padding:4px 14px;border-radius:999px;border:3px solid var(--ink);background:var(--white);
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.16em;
+  }
+  .jy-intro h2{
+    margin:0;font-family:var(--pop);font-weight:400;font-size:clamp(2rem,6vw,4.4rem);line-height:1.08;letter-spacing:-.02em;
+    color:var(--white);text-shadow:4px 4px 0 var(--ink);
+    -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;
+  }
+  .jy-route{margin:14px 0 0;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.1rem,2.6vw,1.6rem);}
+  .jy-route i{font-style:normal;margin:0 10px;color:var(--c);-webkit-text-stroke:1px var(--ink);}
+  .jy-desc{max-width:34em;margin:14px auto 0;font-weight:700;line-height:1.9;}
+  .jy-hint{
+    display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin-top:22px;
+    font-weight:900;font-size:.9rem;animation:hintBob 1.4s ease-in-out infinite;
+  }
+  .jy-hint b{font-size:1.4rem;line-height:1;}
+  @keyframes hintBob{50%{transform:translateY(8px);}}
+
+  .jy-grid{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(20px,4vw,56px);
+    width:min(1240px,100% - 32px);margin:0 auto;align-items:start;
+  }
+  .jy-map{
+    position:sticky;top:76px;height:calc(100vh - 100px);height:calc(100dvh - 100px);
+    border:4px solid var(--ink);border-radius:26px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;
+    background:
+      radial-gradient(rgba(255,255,255,.55) 1.4px,transparent 1.5px) 0 0/18px 18px,
+      #9EDBF7;
+  }
+  .jy-map svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+  .jy-land-sh{fill:rgba(23,20,43,.22);}
+  .jy-land{fill:var(--cream);stroke:var(--ink);stroke-width:calc(var(--k,1) * 3px);stroke-linejoin:round;}
+  .jy-path-all{fill:none;stroke:rgba(255,255,255,.95);stroke-width:calc(var(--k,1) * 3px);stroke-linecap:round;stroke-dasharray:calc(var(--k,1) * 1px) calc(var(--k,1) * 9px);}
+  .jy-path-case{fill:none;stroke:var(--ink);stroke-width:calc(var(--k,1) * 9px);stroke-linecap:round;}
+  .jy-path{fill:none;stroke:var(--c);stroke-width:calc(var(--k,1) * 5px);stroke-linecap:round;}
+  .jy-dot{cursor:pointer;}
+  .jy-dot circle{fill:var(--white);stroke:var(--ink);stroke-width:2.5;transition:fill .3s ease;}
+  .jy-dot circle.hit{fill:transparent;stroke:none;}   /* 指で押しやすいよう、見えない大きめの当たり判定 */
+  .jy-dot.past circle{fill:var(--c);}
+  .jy-now circle{fill:none;stroke:var(--ink);stroke-width:3;transform-box:fill-box;transform-origin:center;animation:jyRing 1.6s ease-out infinite;}
+  @keyframes jyRing{from{transform:scale(.6);opacity:1;}to{transform:scale(2.4);opacity:0;}}
+  .jy-label{
+    font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:calc(var(--k,1) * 16px);
+    fill:var(--ink);stroke:var(--white);stroke-width:calc(var(--k,1) * 5px);stroke-linejoin:round;paint-order:stroke fill;
+  }
+  .jy-other{font-family:'Archivo',sans-serif;font-weight:900;font-size:calc(var(--k,1) * 13px);letter-spacing:.2em;fill:rgba(23,20,43,.35);}
+  .jy-plane path{fill:var(--white);stroke:var(--ink);stroke-width:2;stroke-linejoin:round;}
+  .jy-plane .tip{fill:var(--c);}
+  /* 地図の上をゆっくり流れる雲 */
+  .jy-cloud{
+    position:absolute;z-index:2;width:var(--w,120px);height:calc(var(--w,120px) * .32);pointer-events:none;
+    background:rgba(255,255,255,.6);border-radius:999px;
+    animation:cloudDrift var(--d,40s) linear infinite;animation-delay:var(--dl,0s);
+  }
+  .jy-cloud::before,.jy-cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;}
+  .jy-cloud::before{width:46%;aspect-ratio:1;left:14%;bottom:30%;}
+  .jy-cloud::after{width:34%;aspect-ratio:1;left:48%;bottom:38%;}
+  @keyframes cloudDrift{from{transform:translateX(-160px);}to{transform:translateX(calc(100vw));}}
+
+  .jy-stops{list-style:none;margin:0;padding:0 0 18vh;}
+  .stop{min-height:38vh;display:flex;flex-direction:column;justify-content:center;gap:10px;}
+  .stop:first-child{min-height:30vh;justify-content:flex-start;}
+  .stop-tag{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:10px;
+    padding:6px 16px 6px 8px;border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:3px 3px 0 var(--ink);
+    font-weight:900;font-size:.95rem;
+  }
+  .stop-tag b{
+    padding:2px 10px;border-radius:999px;border:2.5px solid var(--ink);background:var(--c);color:var(--white);
+    font-family:'Archivo',sans-serif;font-size:.9rem;
+  }
+  .journey.ink .stop-tag b{color:var(--ink);}
+  .stop .card{
+    animation:none;opacity:0;transform:translateY(46px) rotate(var(--tilt,1.5deg));
+    transition:opacity .4s ease, transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease;   /* はね返らずにすっと止まる */
+    box-shadow:7px 7px 0 var(--ink);border-width:4px;border-radius:20px;
+  }
+  .stop:nth-child(even) .card{--tilt:-1.5deg;}
+  .stop.in .card{opacity:1;transform:rotate(var(--tilt));}
+  .stop.now .card{box-shadow:9px 9px 0 var(--c),9px 9px 0 3px var(--ink);}
+  .stop .card:hover{transform:rotate(0deg) translateY(-4px);}
+  /* 旅の画面のカードは横長でコンパクトに（サムネイル左・タイトル右） */
+  .stop .card{flex-direction:row;max-width:560px;border-width:3px;border-radius:16px;box-shadow:5px 5px 0 var(--ink);}
+  .stop.now .card{box-shadow:6px 6px 0 var(--c),6px 6px 0 3px var(--ink);}
+  .stop .thumb{flex:none;width:44%;border-bottom:0;border-right:3px solid var(--ink);}
+  .stop .card-title{font-size:.88rem;-webkit-line-clamp:3;}
+  .stop .card-body{padding:10px 12px;justify-content:center;}
+  .stop .ep{font-size:.8rem;padding:1px 7px;right:6px;bottom:6px;}
+  .stop-play{font-size:.8rem;font-weight:900;color:#4c6b80;}
+
+  .jy-end{text-align:center;padding:40px 16px 120px;}
+  .jy-end h3{margin:0;font-family:var(--pop);font-weight:400;font-size:clamp(2rem,5vw,3.4rem);color:var(--white);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink);}
+  .jy-end p{font-weight:700;margin:12px 0 26px;}
+  .jy-end-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;}
+  .jy-end-btns button{
+    cursor:pointer;padding:14px 26px;border-radius:999px;border:3px solid var(--ink);background:var(--white);box-shadow:5px 5px 0 var(--ink);
+    font-weight:900;font-size:1rem;transition:transform .15s ease;
+  }
+  .jy-end-btns button:hover{transform:translate(-2px,-2px);}
+  .jy-end-btns .go{background:var(--c2,var(--yellow));}
+  .jy-end-btns .go.light{color:var(--white);}
+
+  @media (max-width:900px){
+    .jy-grid{grid-template-columns:minmax(0,1fr);}
+    .jy-map{top:58px;height:40vh;height:40dvh;z-index:3;border-radius:20px;box-shadow:5px 5px 0 var(--ink);}
+    .jy-stops{padding-top:24px;}
+    .stop{min-height:30vh;}
+    .stop:first-child{min-height:24vh;}
+    .jy-name small{display:none;}
+    .jy-cloud{width:calc(var(--w,120px) * .55);height:calc(var(--w,120px) * .18);opacity:.75;}
+  }
+  @media (max-width:600px){
+    .jy-close{padding:5px 12px 5px 9px;font-size:.8rem;}
+    .jy-close span{display:none;}
+    .jy-prog{font-size:.78rem;padding:4px 10px;}
+    .stop-tag{font-size:.85rem;}
+    .stop .card-title{font-size:.76rem;line-height:1.5;}
+    .stop .card-body{padding:7px 9px;}
+    .stop .card-tags{font-size:.62rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .stop .card{opacity:1;transform:none;}
+  }
+  @media (prefers-reduced-transparency: reduce){
+    .jy-bar{background:var(--white);backdrop-filter:none;-webkit-backdrop-filter:none;}
+  }
+
+</style>
+</head>
+<body style="--theme:var(--yellow);--theme-text:var(--ink)">
+
+<header class="topbar">
+  <a class="back-link" href="thailand.html">
+    <span class="bl-arrow">←</span>
+    <span>
+      <span class="bl-kicker en">BACK TO</span>
+      <span class="bl-main">タイのトップへ</span>
+    </span>
+  </a>
+  <nav class="top-nav" aria-label="サイト">
+    <a href="index.html">Home</a>
+    <a href="japan.html">国内</a>
+    <a href="world.html" class="current">海外</a>
+  </nav>
+</header>
+
+<!-- ===== 見出しの帯 ===== -->
+<!-- イラスト（タイル・乗り物など）はすべてこのサイト用に描いたオリジナルです -->
+<section class="bk-hero" id="top">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="bk-hero-inner">
+    <div class="bk-panel">
+      <p class="crumb"><a href="thailand.html"><span class="flag" aria-hidden="true"></span>タイ</a><span class="sep">＞</span><span>シリーズ</span></p>
+      <div class="area-title ink-text" style="--c:var(--theme)">
+        <span class="area-en">SERIES</span>
+        <h1>シリーズ</h1>
+        <span class="area-count" id="heroCount">0本</span>
+      </div>
+      <p class="bk-lead">北の果てから南の島、そしてラオスへ。何話も続く旅のシリーズを、1話から順番に見られるようにまとめました。搭乗券を選んで、旅に出発しましょう。</p>
+    </div>
+    <a class="mini-map" href="thailand.html#map" aria-label="タイの地図（タイのトップページへ）">
+      <span class="mini-tag">YOU ARE HERE</span>
+      <svg viewBox="0 0 493 764" aria-hidden="true">
+        <path class="map-shadow" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+        <path class="map-thai" d="M296.1,438.1L295.3,442.9L292.9,440.9L293.4,438.5L294.5,437.4L296.1,438.1ZM288.0,423.7L288.2,424.8L285.9,424.0L285.1,424.4L282.4,424.1L281.1,417.7L281.4,416.2L283.2,416.7L285.9,419.9L287.2,422.0L288.0,423.7ZM108.0,611.7L107.5,615.1L105.7,615.0L103.8,617.2L101.3,610.6L103.1,601.0L104.1,599.5L105.4,602.1L109.1,603.3L107.5,608.8L108.0,611.7ZM184.8,40.6L184.4,43.3L185.6,43.9L187.0,42.7L189.1,39.6L191.2,37.8L193.5,37.4L196.1,39.6L198.6,44.1L201.4,46.8L202.5,47.0L203.5,49.1L203.6,51.2L202.4,55.4L200.3,60.3L197.0,66.4L198.2,71.5L202.4,75.8L207.4,78.2L212.7,77.5L215.4,76.3L217.7,74.3L219.9,73.4L222.5,73.1L231.1,74.6L233.7,76.0L234.0,78.8L233.0,86.1L234.3,91.5L236.7,97.1L236.9,102.3L234.0,110.7L231.6,118.8L228.8,122.6L226.9,125.2L226.2,126.9L226.4,128.5L228.3,130.9L230.3,134.0L230.8,137.0L230.6,140.7L229.1,145.6L224.1,156.6L219.9,166.3L222.2,168.3L226.1,169.7L228.8,171.2L231.6,170.2L237.5,164.5L242.7,160.2L249.0,155.8L255.0,152.3L257.4,149.4L258.8,145.6L260.8,144.2L263.4,145.1L266.6,143.5L270.5,139.4L273.5,137.5L275.6,137.8L279.3,140.4L284.7,145.1L289.5,147.9L293.7,148.8L295.8,150.6L295.6,153.2L296.6,154.9L298.5,155.6L299.2,154.0L301.1,152.2L305.1,149.7L309.2,148.3L313.4,147.9L316.1,145.9L317.9,140.8L320.5,137.0L322.7,135.2L325.5,134.4L326.3,133.2L324.8,131.6L325.0,130.1L326.6,128.4L330.2,127.7L335.6,128.0L341.9,129.6L349.2,132.6L354.0,133.6L356.3,132.5L360.8,137.2L367.4,147.7L373.1,155.7L377.8,161.0L382.8,165.2L387.9,168.1L391.8,172.0L395.2,179.4L392.6,189.6L392.0,198.5L392.3,209.4L395.3,217.7L401.2,223.6L404.5,228.3L405.5,231.8L410.0,234.9L418.3,237.5L421.6,239.8L420.2,241.9L420.2,244.2L421.3,247.0L424.1,249.3L428.6,251.1L431.3,253.0L432.1,255.0L432.0,258.2L431.0,262.8L429.1,266.2L426.3,268.6L426.0,270.5L425.4,273.4L425.4,279.3L427.3,283.3L427.9,288.3L426.8,292.4L425.8,300.8L425.7,304.1L424.7,306.8L422.3,309.5L418.7,312.0L414.4,314.3L411.6,315.2L409.1,318.3L406.6,320.7L404.9,320.7L403.6,319.5L402.6,317.9L402.0,314.4L397.9,312.6L393.4,311.5L384.4,313.2L376.9,314.2L368.7,313.0L361.0,314.5L357.7,314.8L354.0,314.5L350.5,314.5L346.9,314.0L340.6,311.8L338.2,312.0L333.1,313.8L327.7,315.0L322.7,315.9L315.1,319.6L309.7,324.9L308.0,328.7L305.3,332.5L301.6,338.5L296.8,344.2L293.4,346.9L294.3,348.4L293.4,350.3L288.2,351.1L284.0,351.4L283.2,352.4L283.7,364.0L285.1,368.3L287.9,373.6L289.7,376.5L290.9,385.1L291.3,392.4L297.1,397.0L300.5,400.5L302.7,403.6L301.9,405.6L300.6,411.5L301.9,419.1L310.1,435.5L310.8,436.7L308.5,433.7L304.3,428.3L303.0,422.6L298.2,416.3L295.6,413.9L294.7,415.9L293.2,418.2L288.4,415.0L284.3,411.5L280.6,405.1L280.1,406.6L279.2,408.0L275.0,402.8L270.5,398.8L266.4,397.3L264.0,395.9L261.6,393.7L256.6,391.5L244.0,394.7L228.2,392.2L222.0,394.6L219.5,393.1L218.0,390.3L219.5,385.6L219.8,375.6L221.7,368.6L220.8,363.2L221.7,360.8L222.4,357.3L219.9,356.0L208.7,353.3L206.2,351.1L203.3,353.6L189.8,354.9L184.8,357.0L180.1,360.9L178.8,366.0L181.5,369.3L183.3,375.1L178.5,387.7L177.7,391.4L179.6,406.9L178.8,415.4L176.2,421.0L172.0,426.1L170.2,434.8L167.0,438.8L162.5,447.9L159.6,459.3L157.5,464.6L156.2,474.3L147.2,489.0L145.1,497.3L141.8,500.5L143.0,503.0L143.1,507.1L142.0,518.2L141.7,527.4L143.0,532.4L147.3,542.1L146.4,545.0L145.9,549.0L149.4,550.8L152.2,551.4L166.9,546.7L171.9,547.9L173.8,552.3L175.1,556.0L177.5,576.3L178.8,580.1L181.9,583.7L185.1,587.5L186.2,586.8L186.4,585.4L186.5,583.8L189.6,587.6L191.9,594.8L199.6,632.8L201.9,637.7L203.6,642.7L199.0,640.3L197.7,631.9L196.4,628.3L194.6,627.8L192.0,627.8L191.9,626.4L193.8,623.6L193.5,620.3L190.7,617.6L186.4,619.7L186.5,625.6L188.5,630.2L195.9,640.3L198.3,644.6L201.2,645.8L205.6,645.1L210.7,649.4L214.8,653.4L224.9,659.6L231.1,658.9L237.7,657.4L242.1,657.8L246.4,659.4L251.6,664.5L260.0,677.4L273.5,688.1L272.1,690.7L271.4,694.7L266.1,700.1L265.3,703.3L263.2,707.3L259.5,709.3L256.4,709.7L254.5,709.4L253.2,708.6L251.1,704.9L250.0,703.7L249.0,703.4L242.2,706.1L235.6,708.9L234.5,711.5L232.7,714.4L230.8,715.6L229.1,715.9L227.7,714.1L225.3,711.9L223.3,709.7L223.8,706.3L227.5,701.2L228.0,697.7L227.5,691.5L226.6,688.0L225.4,687.9L223.7,687.4L218.5,687.9L215.9,683.9L214.8,679.6L213.2,678.0L211.4,677.1L207.5,678.6L204.6,677.7L194.8,673.9L191.1,667.8L189.0,667.6L187.2,668.3L186.5,669.7L185.4,676.7L184.6,678.9L173.5,664.7L165.7,658.9L166.7,648.3L164.4,646.2L161.5,646.1L159.3,643.1L161.2,636.8L158.1,638.0L154.0,637.8L150.6,636.1L148.0,627.4L146.2,624.8L142.7,620.1L138.0,620.1L136.4,618.0L136.7,612.4L133.3,609.0L128.8,606.1L125.1,604.5L121.2,595.4L118.1,593.1L115.5,591.4L112.0,592.6L110.9,595.9L108.4,599.0L105.9,598.6L103.3,596.8L100.4,587.7L99.7,582.2L100.5,571.9L104.3,562.6L106.4,547.9L109.6,538.5L111.7,535.4L114.9,522.7L121.2,506.4L121.8,503.0L123.1,499.1L124.1,495.4L124.4,489.6L123.6,486.5L123.6,484.8L124.9,482.6L129.4,478.9L135.6,472.9L143.0,464.3L150.6,451.3L154.3,443.7L155.9,441.0L157.5,440.2L160.1,437.6L161.9,434.7L162.0,433.3L157.8,419.1L155.2,414.4L153.8,409.0L153.1,405.0L152.2,401.4L152.7,398.0L151.2,395.9L147.8,393.2L144.3,389.2L142.2,382.6L142.2,379.0L140.1,375.8L139.3,372.4L140.6,369.2L142.3,366.5L142.2,354.4L141.5,350.7L140.6,344.2L138.3,339.4L135.1,333.6L131.5,328.9L122.0,320.4L115.2,314.7L111.8,309.4L107.6,303.5L104.6,299.2L100.7,293.8L98.8,286.3L97.6,278.4L98.3,275.8L100.1,274.1L102.5,272.7L104.4,272.4L109.9,268.8L113.8,269.1L114.6,268.3L114.9,266.6L114.4,259.4L114.7,249.8L115.4,242.0L116.2,236.9L126.4,230.9L128.5,228.3L129.4,225.5L129.4,223.0L128.6,221.1L127.2,220.0L120.6,225.2L119.3,224.0L116.2,215.5L114.9,212.9L113.1,209.8L111.0,205.5L110.7,198.0L109.3,194.3L101.2,186.4L97.5,182.2L92.5,176.1L86.5,168.7L80.4,161.8L77.5,157.5L76.5,156.6L76.2,154.9L78.0,150.2L77.1,145.5L74.1,139.2L72.8,135.3L73.1,133.8L71.7,133.2L68.3,133.6L65.0,130.7L61.8,124.5L61.7,123.3L66.5,124.5L67.9,124.3L70.7,122.9L74.9,121.3L77.5,120.9L78.3,120.2L78.6,118.6L76.5,104.3L76.8,101.4L80.9,95.2L80.4,89.0L81.5,80.1L85.9,73.9L89.2,71.1L90.4,66.7L91.8,65.8L94.6,66.2L100.4,69.4L102.8,69.6L106.4,69.5L110.1,69.3L111.8,69.0L123.8,65.8L126.4,65.4L128.9,65.8L130.7,65.6L132.7,64.2L133.9,61.5L135.4,53.3L136.2,51.8L137.8,50.6L140.4,49.8L143.3,49.9L147.2,51.5L149.6,51.6L152.3,50.9L154.8,49.7L156.2,48.3L157.0,46.5L156.4,43.2L154.6,39.0L158.3,39.4L163.1,40.5L166.7,40.2L169.1,39.5L171.4,37.5L174.4,35.7L177.2,36.1L179.4,37.7L184.8,40.6ZM182.7,529.2L182.2,529.9L180.4,528.5L179.1,526.8L178.5,524.7L181.2,524.8L182.5,526.8L182.7,529.2ZM182.5,534.2L182.7,536.8L181.7,540.0L177.7,541.8L176.2,539.3L176.5,535.4L177.2,534.4L181.2,534.7L182.5,534.2ZM164.1,675.2L161.7,671.7L163.8,666.4L165.9,672.9L164.1,675.2ZM116.2,610.2L115.7,611.0L113.5,602.2L116.7,604.6L116.2,610.2ZM103.4,558.8L100.9,559.4L101.2,556.8L101.8,555.2L103.1,554.8L103.6,557.5L103.4,558.8ZM138.0,626.0L139.1,631.6L137.5,630.4L136.2,628.0L136.2,624.4L138.0,626.0Z"/>
+        <circle class="ring" cx="213.9" cy="111.3" r="16"/>
+        <circle class="here" cx="213.9" cy="111.3" r="16"/>
+        <circle class="ring" cx="273.5" cy="286.1" r="16"/>
+        <circle class="here" cx="273.5" cy="286.1" r="16"/>
+        <circle class="ring" cx="397.3" cy="274.6" r="16"/>
+        <circle class="here" cx="397.3" cy="274.6" r="16"/>
+        <circle class="ring" cx="172.2" cy="59.3" r="16"/>
+        <circle class="here" cx="172.2" cy="59.3" r="16"/>
+        <circle class="ring" cx="148.9" cy="554.8" r="16"/>
+        <circle class="here" cx="148.9" cy="554.8" r="16"/>
+      </svg>
+      <p class="mini-cap">タイ全体の地図へ</p>
+    </a>
+  </div>
+  <div class="road" aria-hidden="true">
+    <div class="tt-run mid">
+      <svg class="plane" viewBox="0 0 260 120">
+        <g class="pl-body">
+          <path d="M150,62 L196,26 H214 L186,62 Z" fill="#FF4F9A" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M24,64 C24,52 40,46 60,46 H220 L246,22 H258 L250,64 C250,74 240,80 226,80 H52 C34,80 24,74 24,64 Z" fill="#FFFFFF" stroke="#17142B" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M60,70 H238" stroke="#FF4F9A" stroke-width="6"/>
+          <path d="M34,58 C38,54 44,52 50,52 L50,60 H34 Z" fill="#CFF3F7" stroke="#17142B" stroke-width="3" stroke-linejoin="round"/>
+          <g fill="#CFF3F7" stroke="#17142B" stroke-width="2.5">
+            <circle cx="72" cy="58" r="4"/><circle cx="88" cy="58" r="4"/><circle cx="104" cy="58" r="4"/><circle cx="120" cy="58" r="4"/>
+            <circle cx="136" cy="58" r="4"/><circle cx="152" cy="58" r="4"/><circle cx="168" cy="58" r="4"/><circle cx="184" cy="58" r="4"/>
+          </g>
+          <path d="M120,72 L160,108 H178 L158,72 Z" fill="#FFD23F" stroke="#17142B" stroke-width="4" stroke-linejoin="round"/>
+          <rect x="118" y="82" width="30" height="13" rx="6" fill="#8B94AC" stroke="#17142B" stroke-width="3.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== エリア切り替え ===== -->
+<nav class="area-nav" aria-label="タイのエリア">
+  <div class="area-nav-inner" id="areaNav"></div>
+</nav>
+
+<!-- ===== 地図と動画 ===== -->
+<section class="explore wrap" id="explore">
+  <div class="side">
+    <div class="map-wrap">
+      <div class="map-head">
+        <h2>搭乗券をえらぶ</h2>
+        <p>押すと、そのシリーズの旅へ出発</p>
+      </div>
+      <div class="side-cards" id="sideCards" role="group" aria-label="シリーズをえらぶ"></div>
+      <div class="map-box" id="mapBox" hidden>
+        <div class="map-layer" id="mapLayer"><svg viewBox="0 0 1 1"></svg><div id="marks"></div><div id="pins"></div><div id="spots"></div></div>
+        <button type="button" class="map-back" id="mapBack">↩</button>
+      </div>
+    </div>
+    <div class="zone-bar" id="zoneBar" role="group" aria-label="ゾーンをえらぶ"></div>
+  </div>
+
+  <div class="list-col" id="listCol">
+    <div class="zone-head" id="zoneHead"></div>
+    <div class="chips" id="chips" role="group" aria-label="ジャンルで絞り込む"></div>
+    <div id="list"></div>
+  </div>
+</section>
+
+<!-- ===== 前後のエリアへ ===== -->
+<nav class="pager wrap" aria-label="ほかのエリアへ">
+  <a class="pg prev" href="thailand-life.html"><small>← PREV</small><b>タイ暮らし</b></a>
+  <a class="pg next" href="thailand.html" style="--c:var(--pink)"><small>BACK TO TOP →</small><b>タイのトップへ</b></a>
+</nav>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">MAIBARU TRAVEL</p>
+    <p class="footer-sub">THAILAND COLLECTION / SERIES / UNOFFICIAL FAN SITE</p>
+    <ul>
+      <li>本サイトは Maibaru Travel の非公式ファンサイトです。ご本人・運営とは関係ありません。</li>
+      <li>動画・サムネイル・タイトルの著作権は Maibaru Travel に帰属します。サムネイルとタイトルは公式YouTubeチャンネルのものを、各動画へのリンクとして表示しています。</li>
+      <li>メンバー限定の動画は、タイトルとリンクのみを掲載しています。視聴にはYouTubeのメンバーシップ登録が必要です。</li>
+      <li>本サイトは YouTube および Google LLC とは関係がなく、承認も受けていません。YouTube は Google LLC の商標です。</li>
+      <li>地図は Natural Earth（パブリックドメイン）のデータをもとに、このサイト用に色をつけて作成しています。</li>
+    </ul>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">▶ 公式YouTubeチャンネル</a>
+      <a href="thailand.html">← タイのトップへ</a>
+      <a href="world.html">海外の旅マップへ</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+</footer>
+
+<div class="player" id="player" role="dialog" aria-modal="true" aria-labelledby="playerTitle" hidden>
+  <div class="player-box">
+    <button type="button" class="player-close" id="playerClose" aria-label="閉じる">×</button>
+    <div class="player-frame"><iframe id="playerFrame" title="YouTube動画" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="player-foot">
+      <p class="player-title" id="playerTitle"></p>
+      <a class="player-link" id="playerLink" href="https://www.youtube.com/c/maibaru" target="_blank" rel="noopener">YouTubeで見る ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 搭乗券を押した後の演出（空 → 飛行機 → ページ） ===== -->
+<div class="fl-sky" id="flSky" hidden aria-hidden="true"></div>
+<div class="fl-page p1" id="flP1" hidden aria-hidden="true"></div>
+<div class="fl-page p2" id="flP2" hidden aria-hidden="true"></div>
+<div class="fl-boom" id="flBoom" hidden aria-hidden="true"><span class="fl-ring"></span><span class="fl-ring"></span><span class="fl-ring"></span></div>
+<div class="fl-plane" id="flPlane" hidden aria-hidden="true">
+  <div class="fl-craft" id="flCraft"><span class="fl-trail"></span><span class="fl-cone" id="flCone"></span></div>
+</div>
+
+<!-- ===== 旅の画面：スクロールすると、地図の上を飛行機が進み、動画が話数の順に出てくる ===== -->
+<div class="journey" id="journey" role="dialog" aria-modal="true" aria-labelledby="jyTitle" hidden>
+  <div class="jy-bar">
+    <button type="button" class="jy-close" id="jyClose">← <span>シリーズ一覧へ</span></button>
+    <p class="jy-name" id="jyName"></p>
+    <span class="jy-prog" id="jyProg"></span>
+    <span class="jy-meter" id="jyMeter" aria-hidden="true"></span>
+  </div>
+  <div class="jy-intro">
+    <p class="jy-kicker" id="jyKicker"></p>
+    <h2 id="jyTitle"></h2>
+    <p class="jy-route" id="jyRoute"></p>
+    <p class="jy-desc" id="jyDesc"></p>
+    <span class="jy-hint" aria-hidden="true">スクロールで出発<b>↓</b></span>
+  </div>
+  <div class="jy-grid">
+    <div class="jy-map" id="jyMapBox">
+      <svg id="jyMap" aria-label="旅のルートの地図" role="img"></svg>
+    </div>
+    <ol class="jy-stops" id="jyStops"></ol>
+  </div>
+  <div class="jy-end">
+    <h3>到着！</h3>
+    <p id="jyEndText"></p>
+    <div class="jy-end-btns">
+      <button type="button" id="jyBack">← ほかのシリーズを選ぶ</button>
+      <button type="button" class="go" id="jyNext"></button>
+    </div>
+  </div>
+</div>
+
+<a class="to-top en" id="toTop" href="#top" aria-label="ページの先頭へ">▲<br>TOP</a>
+
+<script>
+/* ===================================================================
+   編集ガイド
+   - 動画は VIDEOS に1本1行で入れます（タイページと同じ書き方＋ zone）
+   - zone ：下の ZONES の key
+   - tags ：["場所","ジャンル"]。場所が SPOTS にあると、地図に点が出て、押すとその場所だけ表示されます
+   - member ：メンバー限定の動画には member:true を付けます（🔒マークが付きます）
+   - ゾーンの名前・色・説明文・地図の位置は ZONES、場所の点の位置は SPOTS で編集できます
+     （位置は [緯度, 経度]。Googleマップで場所を右クリックすると出る数字をそのまま使えます）
+   - at ：旅の画面の地図に打つ場所 [緯度, 経度]、where ：地図に出す地名（話数の順に飛行機が進みます）
+=================================================================== */
+const GENRES = ["グルメ","市場","街歩き","ホテル","島・海","絶景・自然","お祭り"];
+
+// シリーズ（thailand.html の SERIES から作っています）　from・to：搭乗券に書く行き先
+const ZONES = [
+  { key:"s1", no:1, name:"タイ一周の旅", en:"TOUR AROUND THAILAND", color:"var(--yellow)", ink:true, from:"NAN", to:"LAOS", eps:20,
+    desc:"北部ナーン県から南の島々、そしてラオスへ。全20話の大冒険。" },
+  { key:"s2", no:2, name:"タイ・イサーン地方の旅", en:"ISAN JOURNEY", color:"var(--purple)", from:"KORAT", to:"NAKHON PHANOM", eps:5,
+    desc:"コラートからメコン川のナコンパノムまで、東北部を縦断。" },
+  { key:"s3", no:3, name:"南イサーン鉄道旅行記", en:"SOUTHERN ISAN BY TRAIN", color:"var(--orange)", from:"UBON", to:"BURIRAM", eps:4,
+    desc:"タイ最東のウボンから、鉄道で西へ。" },
+  { key:"s4", no:4, name:"タイ北部の旅", en:"NORTHERN JOURNEY", color:"var(--green)", from:"CHIANG RAI", to:"PAI", eps:5,
+    desc:"チェンライから山あいの村をめぐり、パーイへ。" },
+  { key:"s5", no:5, name:"スラタニ旅行", en:"SURAT THANI & KHAO SOK", color:"var(--teal)", from:"SURAT THANI", to:"KHAO SOK", eps:5,
+    desc:"素朴な街スラタニから、世界最古のジャングル・カオソックへ。年越しの5日間。" },
+];
+const DEFAULT_VIEW = { focus:[0,0], zoom:1 };
+const CORNERS = [];
+const SPOTS = {};
+const MARKS = [];
+function cardHtml(z, n){
+  return `<span class="bp-main"><span class="bp-label">BOARDING PASS · SERIES ${z.no}</span>`
+    + `<span class="bp-route"><b>${z.from}</b><i aria-hidden="true">✈</i><b>${z.to}</b></span>`
+    + `<span class="bp-name">${z.name}</span></span>`
+    + `<span class="bp-stub"><small>EPISODES</small><b>${n}</b></span>`;
+}
+
+const VIDEOS = [
+  {title:"タイ一周旅行に挑戦🇹🇭今タイの若者に最も人気のあるナーン県から旅する！EP.1", url:"https://youtu.be/bAAuKH3QvUs", tags:["ナーン","街歩き"], zone:"s1", ep:"EP.1", at:[18.78,100.78], where:"ナーン"},
+  {title:"日本人が知らないタイの秘境🍃郷愁の地、サパン村｜タイ北部ナーン県｜タイ一周の旅 EP.2", url:"https://youtu.be/h03nNbFdT0s", tags:["ナーン","絶景・自然"], zone:"s1", ep:"EP.2", at:[19.15,101.1], where:"サパン村"},
+  {title:"[ nature🌿 ] タイ最古の街がジブリの世界だった｜タイ北部プレー県｜タイ一周の旅 EP.3", url:"https://youtu.be/k5XAehbKJuU", tags:["プレー","街歩き"], zone:"s1", ep:"EP.3", at:[18.14,100.14], where:"プレー"},
+  {title:"【チェンマイ】進化するタイの古都を旅する｜タイ一周の旅 EP.4", url:"https://youtu.be/lrsUlImkgP4", tags:["チェンマイ","街歩き"], zone:"s1", ep:"EP.4", at:[18.79,98.98], where:"チェンマイ"},
+  {title:"【タイ北部】バックパッカーの聖地🌟パーイを完全攻略｜タイ一周の旅 EP.5", url:"https://youtu.be/tPz-7s0T_Vs", tags:["パーイ","街歩き"], zone:"s1", ep:"EP.5", at:[19.36,98.44], where:"パーイ"},
+  {title:"【タイ北部】山間にある国民党の残留部隊が作った小さな村。そこは千と千尋の神隠しの世界でした🏮｜バーンラックタイ EP.6", url:"https://youtu.be/L9QBl5iRZ2Q", tags:["メーホンソン","街歩き"], zone:"s1", ep:"EP.6", at:[19.79,97.81], where:"バーンラックタイ"},
+  {title:"【秘境】ジャングルの船旅！目指すは首長族の村｜タイ北部メーホンソンを旅する EP. 7", url:"https://youtu.be/6hCHvolgvJc", tags:["メーホンソン","絶景・自然"], zone:"s1", ep:"EP.7", at:[19.22,97.88], where:"首長族の村"},
+  {title:"[ タイ南部 ] アンダマン海の入り口、終着駅のカンタンを散策｜タイ一周の旅 EP.8", url:"https://youtu.be/Fz_yu8BzWTA", tags:["トラン","街歩き"], zone:"s1", ep:"EP.8", at:[7.4,99.51], where:"カンタン"},
+  {title:"【タイ南部】イスラムの秘島に異世界トリップ！ここは少年時代に戻れるチルな楽園｜ムック島 EP.9", url:"https://youtu.be/15f5q_8bVJ4", tags:["ムック島","島・海"], zone:"s1", ep:"EP.9", at:[7.37,99.3], where:"ムック島"},
+  {title:"【タイNO.1リゾート 】タイで1位に選ばれたランタ島のリゾートが最強過ぎた🔥｜ピマライ｜Pimalai Resort & Spa EP.10", url:"https://youtu.be/qe5eUhO9g84", tags:["ランタ島","ホテル"], zone:"s1", ep:"EP.10", at:[7.5,99.05], where:"ランタ島"},
+  {title:"【ピピ島 】世界で最も美しいビーチ。街歩きも楽しい地上の楽園を旅する｜タイ一周の旅 EP.11", url:"https://youtu.be/F34iWjN_tLc", tags:["ピピ島","島・海"], zone:"s1", ep:"EP.11", at:[7.74,98.77], where:"ピピ島"},
+  {title:"【プーケットの穴場】素朴でラグジュアリーな不思議な島⁉︎プーケットから５分のナカ島が凄かった｜The Naka iland｜タイ EP.12", url:"https://youtu.be/-7Ay9M6KfFs", tags:["プーケット","ホテル"], zone:"s1", ep:"EP.12", at:[8.0,98.46], where:"ナカ島"},
+  {title:"【カオラック完全版】海！山！街！全てが楽しいタイのコスパ最強リゾート地カオラックが今熱い！｜LA VELA KHAO LAK EP.13", url:"https://youtu.be/HhdOgV2UqqU", tags:["カオラック","島・海"], zone:"s1", ep:"EP.13", at:[8.67,98.25], where:"カオラック"},
+  {title:"【カオラック】１万円でプール付き!?海と森を楽しめるコスパ最強のエコリゾートが超おすすめ🍃｜タイ旅行｜Khaolak Merlin Resort　EP.14", url:"https://youtu.be/0QHId0ry1k4", tags:["カオラック","ホテル"], zone:"s1", ep:"EP.14", at:[8.58,98.27], where:"カオラック"},
+  {title:"【タイ南部】ラノーン県で旧正月のナイトマーケット食べ歩き｜タイ旅行 EP.15", url:"https://youtu.be/Sk3eN1VhZLg", tags:["ラノーン","市場"], zone:"s1", ep:"EP.15", at:[9.96,98.64], where:"ラノーン"},
+  {title:"【タイの秘境】海洋民族が住むパヤム島を冒険！大自然の秘島へ行こう！ 🍃EP.16", url:"https://youtu.be/cGEcwGtqzqY", tags:["ラノーン","島・海"], zone:"s1", ep:"EP.16", at:[9.74,98.4], where:"パヤム島"},
+  {title:"【ホームステイ】タイ南部、チュンポーンの漁村に泊まる✨ここは最高の隠れ家！EP.17", url:"https://youtu.be/UyMB0Esmxjw", tags:["チュンポーン","ホテル"], zone:"s1", ep:"EP.17", at:[10.49,99.18], where:"チュンポーン"},
+  {title:"【タオ島】死ぬまでに見たい絶景！世界の旅行者が選ぶアジア１位の島｜タイ旅行 EP.18", url:"https://youtu.be/sRUVg7grzbI", tags:["タオ島","島・海"], zone:"s1", ep:"EP.18", at:[10.09,99.84], where:"タオ島"},
+  {title:"メコン川の楽園！チェンカーンは旅人を惹きつける不思議な街だった🍃EP.19", url:"https://youtu.be/gfyWEEpWbJc", tags:["ルーイ","街歩き"], zone:"s1", ep:"EP.19", at:[17.9,101.67], where:"チェンカーン"},
+  {title:"【世界遺産の街🇱🇦】死ぬまでに行きたい！満足度世界１位のルアンパバーンを旅しよう｜ラオス EP.20", url:"https://youtu.be/w2oqUmHnf0Q", tags:["ラオス","街歩き"], zone:"s1", ep:"EP.20", at:[19.89,102.13], where:"ルアンパバーン"},
+  {title:"穏やかでやさしいおとぎの国、コラート【タイ・イサーン地方の旅#1】[โคราช]", url:"https://youtu.be/4h2svxUnY54", tags:["コラート","街歩き"], zone:"s2", ep:"#1", at:[14.97,102.1], where:"コラート"},
+  {title:"タイ・ウドンタニ県に行くはずが、全く違う村に到着...どうなる!?【タイ・イサーン地方の旅#2】[ขอนแก่น]", url:"https://youtu.be/3ApSG8HwIgQ", tags:["コンケン","街歩き"], zone:"s2", ep:"#2", at:[16.44,102.83], where:"コンケン"},
+  {title:"美味しいが溢れてる！北イサーン最大の街ウドンタニー【タイ・イサーン地方の旅#3】[อุดรธานี]", url:"https://youtu.be/15xHKpmVFRU", tags:["ウドンタニ","グルメ"], zone:"s2", ep:"#3", at:[17.41,102.79], where:"ウドンタニ"},
+  {title:"タイの秘境、人生で一度は見たい絶景！神話的世界～クジラに乗って空を飛ぶ～【タイ・イサーン地方の旅#4】[บึงกาฬ]", url:"https://youtu.be/n9LjLlBxuxc", tags:["ブンカーン","絶景・自然"], zone:"s2", ep:"#4", at:[18.36,103.65], where:"ブンカーン"},
+  {title:"旅の終わりはナコンパノム、メコン川と最高のソムタム【タイ・イサーン地方の旅#5】[นครพนม]", url:"https://youtu.be/INrI2tDxm0U", tags:["ナコンパノム","グルメ"], zone:"s2", ep:"#5", at:[17.4,104.78], where:"ナコンパノム"},
+  {title:"絶景！タイ最東からラオスを眺める！南イサーン旅行 ウボンラチャタニー│อุบลราชธานี", url:"https://youtu.be/JHdIwXTxM88", tags:["ウボン","絶景・自然"], zone:"s3", ep:"Part 1", at:[15.24,104.85], where:"ウボン"},
+  {title:"タイの田舎の原風景に出会う旅【南イサーン鉄道旅行記 Prat2:シーサケート県】[ศรีสะเกษ]", url:"https://youtu.be/65Kq3ip7ldA", tags:["シーサケート","絶景・自然"], zone:"s3", ep:"Part 2", at:[15.12,104.32], where:"シーサケート"},
+  {title:"象と暮らす村に到着！タイのスリン県【南イサーン鉄道旅行記Prat3】[สุรินทร์]", url:"https://youtu.be/k5I6nj1Jpf4", tags:["スリン","絶景・自然"], zone:"s3", ep:"Part 3", at:[15.26,103.49], where:"スリン"},
+  {title:"サッカーの町ブリーラムの遺跡が凄い！インディージョンズ級の遺跡群【南イサーン鉄道旅行記Prat4】[บุรีรัมย์]", url:"https://youtu.be/uTu5DqVkEGI", tags:["ブリーラム","街歩き"], zone:"s3", ep:"Part 4", at:[14.53,102.94], where:"ブリーラム"},
+  {title:"[เชียงราย] 最北の街チェンライの週末の夜が楽しすぎてヤバイ！【タイ北部の旅】", url:"https://youtu.be/WCThyWQxwLo", tags:["チェンライ","市場"], zone:"s4", ep:"#1", at:[19.91,99.83], where:"チェンライ"},
+  {title:"[แม่สลอง] ここがタイ!?国民党の子孫が暮らす美しい村メーサロン【タイ北部の旅】", url:"https://youtu.be/-rjFMkbE0qQ", tags:["チェンライ","街歩き"], zone:"s4", ep:"#2", at:[20.16,99.62], where:"メーサロン"},
+  {title:"[ท่าตอน] チェンマイ県の桃源郷タートンで圧倒的ノスタルジーを感じる！【タイ北部の旅】", url:"https://youtu.be/fftr8WzsBbU", tags:["チェンマイ","絶景・自然"], zone:"s4", ep:"#3", at:[19.98,99.07], where:"タートン"},
+  {title:"[เชียงใหม่] 癒しの古都チェンマイの旧市街で世界一のマンゴーチーズケーキに出会う【タイ北部の旅】", url:"https://youtu.be/9oH5FKq9Ysg", tags:["チェンマイ","グルメ"], zone:"s4", ep:"#4", at:[18.79,98.98], where:"チェンマイ"},
+  {title:"まるでおとぎ話！旅人の楽園パーイの全てが可愛すぎ！【タイ北部の旅】[ปาย]", url:"https://youtu.be/vvNygO12JZY", tags:["パーイ","街歩き"], zone:"s4", ep:"#5", at:[19.36,98.44], where:"パーイ"},
+  {title:"【タイ南部】日本人が立ち寄らない素朴な街、スラタニへの旅🚣‍♀️", url:"https://youtu.be/mIv0Cxi1tlA", tags:["スラタニ","街歩き"], zone:"s5", ep:"DAY 1", at:[9.14,99.33], where:"スラタニ"},
+  {title:"タイの秘境、世界最古のジャングルへ！ワイルドな年越し旅行が最高だった｜カオソック", url:"https://youtu.be/GqfA29mXGGo", tags:["カオソック","絶景・自然"], zone:"s5", ep:"DAY 2", at:[8.91,98.53], where:"カオソック"},
+  {title:"幻の花🌺ラフレシアを探して世界最古のジャングルを探検｜タイ・カオソック", url:"https://youtu.be/vgf5g8BnywQ", tags:["カオソック","絶景・自然"], zone:"s5", ep:"DAY 3", at:[8.85,98.64], where:"ジャングル"},
+  {title:"サルが住み着くツリーハウス🌳🐵に泊まってみたら...｜タイ・カオソック［เขาสก］", url:"https://youtu.be/PkefojT2vCc", tags:["カオソック","ホテル"], zone:"s5", ep:"DAY 4", at:[8.97,98.48], where:"ツリーハウス"},
+  {title:"【絶景の旅】タイの秘境、チャオラン湖の水上コテージが凄い！カオソック旅行", url:"https://youtu.be/aFJl5Yk6DUM", tags:["カオソック","絶景・自然"], zone:"s5", ep:"DAY 5", at:[8.98,98.8], where:"チャオラン湖"},
+];
+
+// 6ページの切り替え（まだ作っていないページは、今はタイページの該当エリアへ）
+// 6ページの切り替え
+const AREA_LINKS = [
+  { name:"バンコク", color:"var(--pink)", href:"thailand-bangkok.html" },
+  { name:"北部・イサーン", color:"var(--green)", href:"thailand-north.html" },
+  { name:"中部・東部", color:"var(--orange)", href:"thailand-central-east.html" },
+  { name:"南部・島", color:"var(--blue)", href:"thailand-south.html" },
+  { name:"タイ暮らし", color:"var(--indigo)", href:"thailand-life.html" },
+  { name:"シリーズ", color:"var(--yellow)", href:"thailand-series.html", current:true },
+];
+
+const TILE_COLORS = ["var(--yellow)","#FFE58A","#FFF4C2","var(--pink)","var(--orange)","var(--cream)","var(--navy)","var(--teal)"];
+const TILE_SHAPES = ["s-circle","s-half","s-quarter","s-tri","s-diamond","s-stripes","s-dots","s-ring","s-arch","s-leaf","s-flower"];
+
+/* ------------------------------------------------------------------ */
+
+function extractYouTubeId(url){
+  if(!url) return null;
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/|youtube\.com\/embed\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const zoneByKey = Object.fromEntries(ZONES.map(z => [z.key, z]));
+const pick = list => list[Math.floor(Math.random() * list.length)];
+const zoneVideos = key => VIDEOS.filter(v => v.zone === key);
+const placeOf = v => (v.tags || [])[0];
+const genreOf = v => (v.tags || [])[1];
+
+document.getElementById("heroCount").textContent = VIDEOS.length + "本";
+
+
+/* ---------- 見出しの帯：幾何学タイル ---------- */
+const heroEl = document.getElementById("top");
+const mosaicEl = document.getElementById("mosaic");
+let plainTiles = [], mosaicKey = "";
+
+function paintTile(tile){
+  tile.className = "tile " + pick(TILE_SHAPES);
+  const bg = pick(TILE_COLORS);
+  let fg = pick(TILE_COLORS);
+  while(fg === bg) fg = pick(TILE_COLORS);
+  tile.style.setProperty("--bg", bg);
+  tile.style.setProperty("--fg", fg);
+}
+function buildMosaic(){
+  const w = heroEl.clientWidth, h = heroEl.clientHeight;
+  const t = w < 600 ? Math.ceil(w / 5) : w < 900 ? Math.ceil(w / 7) : Math.max(100, Math.ceil(w / 13));
+  const cols = Math.ceil(w / t), rows = Math.ceil(h / t) + 1;
+  const key = `${t}x${cols}x${rows}`;
+  if(key === mosaicKey) return;
+  mosaicKey = key;
+  heroEl.style.setProperty("--t", t + "px");
+  mosaicEl.style.setProperty("--cols", cols);
+  mosaicEl.innerHTML = "";
+  plainTiles = [];
+  for(let i = 0; i < cols * rows; i++){
+    const tile = document.createElement("div");
+    tile.setAttribute("aria-hidden", "true");
+    const inner = document.createElement("div");
+    inner.className = "tile-in";
+    inner.dataset.rot = Math.floor(Math.random() * 4) * 90;
+    inner.style.setProperty("--rot", inner.dataset.rot + "deg");
+    tile.appendChild(inner);
+    paintTile(tile);
+    mosaicEl.appendChild(tile);
+    plainTiles.push(tile);
+  }
+}
+buildMosaic();
+window.addEventListener("load", buildMosaic);
+let mosaicTimer = null;
+window.addEventListener("resize", () => { clearTimeout(mosaicTimer); mosaicTimer = setTimeout(buildMosaic, 200); });
+if(!reduceMotion){
+  setInterval(() => {
+    if(document.hidden || !plainTiles.length) return;
+    const tile = pick(plainTiles);
+    const inner = tile.firstChild;
+    const rot = Number(inner.dataset.rot) + 90;
+    inner.dataset.rot = rot;
+    inner.style.setProperty("--sc", ".15");
+    inner.style.setProperty("--rot", rot + "deg");
+    setTimeout(() => { paintTile(tile); inner.style.setProperty("--sc", "1"); }, 260);
+  }, 650);
+}
+
+/* ---------- エリア切り替え ---------- */
+const areaNav = document.getElementById("areaNav");
+AREA_LINKS.forEach(a => {
+  const link = document.createElement("a");
+  link.href = a.href;
+  link.textContent = a.name;
+  link.style.setProperty("--c", a.color);
+  if(a.current){ link.className = "current"; link.setAttribute("aria-current", "page"); }
+  areaNav.appendChild(link);
+});
+
+/* ---------- 動画プレーヤー ---------- */
+const player = document.getElementById("player");
+const playerFrame = document.getElementById("playerFrame");
+const playerTitle = document.getElementById("playerTitle");
+const playerLink = document.getElementById("playerLink");
+const playerClose = document.getElementById("playerClose");
+let playerReturnFocus = null;
+
+function openPlayer(id, title, url){
+  if(!id) return;
+  playerReturnFocus = document.activeElement;
+  playerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+  playerTitle.textContent = title || "";
+  playerLink.href = url || `https://www.youtube.com/watch?v=${id}`;
+  player.hidden = false;
+  document.body.style.overflow = "hidden";
+  playerClose.focus();
+}
+function closePlayer(){
+  if(player.hidden) return;
+  player.hidden = true;
+  playerFrame.src = "about:blank";
+  document.body.style.overflow = "";
+  if(playerReturnFocus) playerReturnFocus.focus();
+}
+playerClose.addEventListener("click", closePlayer);
+player.addEventListener("click", e => { if(e.target === player) closePlayer(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closePlayer(); });
+
+/* ---------- 動画カード ---------- */
+function createCard(v, delay){
+  const id = extractYouTubeId(v.url);
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = v.url;
+  a.target = "_blank";
+  a.rel = "noopener";
+  if(id && !v.member){
+    a.addEventListener("click", e => {
+      if(e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      openPlayer(id, v.title, v.url);
+    });
+  }
+  a.style.setProperty("--c", zoneByKey[v.zone].color);
+  if(delay) a.style.animationDelay = delay + "s";
+
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
+  if(id){
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "";
+    img.onerror = () => {
+      if(!img.dataset.retry){ img.dataset.retry = "1"; img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+      else img.remove();
+    };
+    img.src = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+    thumb.appendChild(img);
+  }
+  if(v.ep){
+    const ep = document.createElement("span");
+    ep.className = "ep";
+    ep.textContent = v.ep;
+    thumb.appendChild(ep);
+  }
+  if(v.member){
+    const lock = document.createElement("span");
+    lock.className = "lock";
+    lock.textContent = "🔒 メンバー限定";
+    thumb.appendChild(lock);
+  }
+  const body = document.createElement("div");
+  body.className = "card-body";
+  const tags = document.createElement("div");
+  tags.className = "card-tags";
+  (v.tags || []).filter(Boolean).forEach(t => {
+    const s = document.createElement("span");
+    s.textContent = "#" + t;
+    tags.appendChild(s);
+  });
+  const title = document.createElement("p");
+  title.className = "card-title";
+  title.textContent = v.title;
+  body.append(tags, title);
+  a.append(thumb, body);
+  return a;
+}
+
+/* ---------- 地図のピン ---------- */
+const mapBox = document.getElementById("mapBox");
+const mapLayer = document.getElementById("mapLayer");
+const pinsEl = document.getElementById("pins");
+const spotsEl = document.getElementById("spots");
+// [緯度, 経度] → 地図の上の位置（%）。数字は地図を作った時の決まり（make_bkk_map.py と同じ）
+const MAP = {"W": 1, "H": 1, "LON0": 0, "LAT1": 0, "COS": 1, "K": 1};
+const pct = ([lat, lon]) => [(lon - MAP.LON0) * MAP.COS * MAP.K / MAP.W * 100, (MAP.LAT1 - lat) * MAP.K / MAP.H * 100];
+
+// 目じるしの名前
+const marksEl = document.getElementById("marks");
+MARKS.forEach(([name, lat, lon, kind]) => {
+  const m = document.createElement("span");
+  m.className = "mark" + (kind ? " " + kind : "");
+  const [l, t] = pct([lat, lon]);
+  m.style.left = l + "%";
+  m.style.top = t + "%";
+  m.textContent = name;
+  marksEl.appendChild(m);
+});
+
+const pinEls = {};
+ZONES.filter(z => z.pos).forEach((z, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = `pin d-${z.dir}` + (z.ink ? " ink" : "");
+  const [l, t] = pct(z.pos);
+  b.style.left = l + "%";
+  b.style.top = t + "%";
+  b.style.setProperty("--c", z.color);
+  b.style.setProperty("--dl", (i * .3) + "s");
+  b.innerHTML = `${z.no}<span class="lbl">${z.short || z.name}<small>${zoneVideos(z.key).length}</small></span>`;
+  b.setAttribute("aria-label", `${z.no} ${z.name}（${zoneVideos(z.key).length}本）`);
+  b.addEventListener("click", () => setZone(z.key));
+  pinsEl.appendChild(b);
+  pinEls[z.key] = b;
+});
+// 地図の角のボタン（地図の上に置きにくいゾーン用。CORNERS で決める）
+const cornerEls = {};
+CORNERS.forEach(c => {
+  const z = zoneByKey[c.key];
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "map-any" + (c.side === "right" ? " map-sub" : "") + (z.ink ? " ink" : "");
+  b.style.setProperty("--c", z.color);
+  b.innerHTML = `<i>${z.no}</i>${z.short || z.name}` + (c.arrow ? " →" : ` <small>${zoneVideos(z.key).length}</small>`);
+  b.addEventListener("click", () => setZone(z.key));
+  mapBox.appendChild(b);
+  cornerEls[z.key] = b;
+});
+document.getElementById("mapBack").addEventListener("click", () => setZone(null));
+
+/* ---------- ゾーンのボタン ---------- */
+const zoneBar = document.getElementById("zoneBar");
+const zbEls = {};
+{
+  const all = document.createElement("button");
+  all.type = "button";
+  all.className = "zb all";
+  all.textContent = `すべて ${VIDEOS.length}`;
+  all.addEventListener("click", () => setZone(null));
+  zoneBar.appendChild(all);
+  zbEls.all = all;
+}
+ZONES.forEach(z => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "zb" + (z.ink ? " ink" : "");
+  b.style.setProperty("--c", z.color);
+  b.innerHTML = `<i>${z.no}</i>${z.short || z.name}`;
+  b.addEventListener("click", () => setZone(z.key));
+  zoneBar.appendChild(b);
+  zbEls[z.key] = b;
+});
+
+/* ---------- 表示の切り替え ---------- */
+const zoneHead = document.getElementById("zoneHead");
+const chipsEl = document.getElementById("chips");
+const listEl = document.getElementById("list");
+const PAGE = 12;
+const state = { zone:null, place:null, genre:null, shown:PAGE };
+
+function setZone(key, opts = {}){
+  state.zone = key;
+  state.place = null;
+  state.genre = null;
+  state.shown = PAGE;
+  render();
+  if(opts.scroll){
+    const target = window.innerWidth <= 900 && mapBox.offsetParent ? mapBox : document.getElementById("explore");
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block:"start" });
+  }
+}
+
+function renderMap(){
+  const z = state.zone ? zoneByKey[state.zone] : null;
+  const view = z && z.focus ? z : DEFAULT_VIEW;
+  const zoom = view.zoom;
+  let tx = 0, ty = 0;
+  if(zoom > 1){
+    const [fx, fy] = pct(view.focus);
+    tx = Math.min(0, Math.max(100 - 100 * zoom, 50 - zoom * fx));
+    ty = Math.min(0, Math.max(100 - 100 * zoom, 50 - zoom * fy));
+  }
+  mapBox.style.setProperty("--z", zoom);
+  mapLayer.style.setProperty("--tx", tx + "%");
+  mapLayer.style.setProperty("--ty", ty + "%");
+  mapBox.classList.toggle("zoomed", !!z);
+  mapBox.classList.toggle("wide", !!z && zoom < 1.5);
+  Object.entries(pinEls).forEach(([k, el]) => el.classList.toggle("active", k === state.zone));
+  Object.entries(cornerEls).forEach(([k, el]) => el.classList.toggle("on", k === state.zone));
+
+  // 選んだゾーンの「場所」の点（同じゾーンのままなら作り直さず、選んだ点の色だけ変える）
+  if(spotsEl.dataset.zone === (state.zone || "")){
+    spotsEl.querySelectorAll(".spot").forEach(b => {
+      const on = b.dataset.place === state.place;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    return;
+  }
+  spotsEl.dataset.zone = state.zone || "";
+  spotsEl.innerHTML = "";
+  if(!z) return;
+  const counts = {};
+  zoneVideos(z.key).forEach(v => { const p = placeOf(v); if(SPOTS[p]) counts[p] = (counts[p] || 0) + 1; });
+  Object.keys(counts).forEach((p, i) => {
+    const [x, y, side] = SPOTS[p];
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "spot" + (side === "l" ? " l" : "") + (state.place === p ? " on" : "");
+    b.dataset.place = p;
+    const [l, t] = pct([x, y]);
+    b.style.left = l + "%";
+    b.style.top = t + "%";
+    b.style.setProperty("--c", z.color);
+    b.style.setProperty("--dl", (.35 + i * .06) + "s");
+    b.innerHTML = `<span class="lbl">${p}<small>${counts[p]}</small></span>`;
+    b.setAttribute("aria-pressed", state.place === p ? "true" : "false");
+    b.addEventListener("click", () => {
+      state.place = state.place === p ? null : p;
+      state.genre = null;
+      state.shown = PAGE;
+      render();
+    });
+    spotsEl.appendChild(b);
+  });
+}
+
+function renderBar(){
+  Object.entries(zbEls).forEach(([k, el]) => {
+    const on = (k === "all" && !state.zone) || k === state.zone;
+    el.classList.toggle("on", on);
+    el.setAttribute("aria-pressed", on ? "true" : "false");
+    if(on && el.scrollIntoView && zoneBar.scrollWidth > zoneBar.clientWidth){
+      zoneBar.scrollTo({ left: el.offsetLeft - 16, behavior: reduceMotion ? "auto" : "smooth" });
+    }
+  });
+}
+
+function renderAll(){
+  zoneHead.innerHTML = `
+    <div class="intro">
+      <h2>どの旅に出る？</h2>
+      <p>続きものの旅を、1話から順番に並べました。搭乗券を押すと、空へ飛び立って、地図の上を1話ずつ旅できます。下の「見る」では、そのシリーズの動画をまとめて見られます。</p>
+    </div>`;
+  chipsEl.innerHTML = "";
+  chipsEl.hidden = true;
+  listEl.innerHTML = "";
+  ZONES.forEach(z => {
+    const list = zoneVideos(z.key);
+    if(!list.length) return;
+    const box = document.createElement("div");
+    box.className = "preview";
+    box.style.setProperty("--c", z.color);
+    box.innerHTML = `
+      <div class="preview-head${z.ink ? " ink" : ""}">
+        <i>${z.no}</i><h3>${z.name}</h3><span>${list.length}本</span>
+        <button type="button">見る →</button>
+      </div>`;
+    box.querySelector("button").addEventListener("click", () => setZone(z.key, { scroll:true }));
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    list.slice(0, 4).forEach(v => grid.appendChild(createCard(v)));
+    box.appendChild(grid);
+    listEl.appendChild(box);
+  });
+}
+
+function renderZone(){
+  const z = zoneByKey[state.zone];
+  const all = zoneVideos(z.key);
+  const inPlace = state.place ? all.filter(v => placeOf(v) === state.place) : all;
+  const list = state.genre ? inPlace.filter(v => genreOf(v) === state.genre) : inPlace;
+
+  zoneHead.innerHTML = `
+    <div class="area-title${z.ink ? " ink-text" : ""}" style="--c:${z.color}">
+      <span class="area-en">ZONE ${z.no} · ${z.en}</span>
+      <h2>${z.name}</h2>
+      <span class="area-count">${all.length}本</span>
+    </div>
+    <p class="zone-desc">${z.desc}</p>`;
+  if(state.place){
+    const pill = document.createElement("p");
+    pill.className = "place-pill";
+    pill.innerHTML = `📍 ${state.place} の動画 ${inPlace.length}本 <button type="button">× 解除</button>`;
+    pill.querySelector("button").addEventListener("click", () => { state.place = null; state.shown = PAGE; render(); });
+    zoneHead.appendChild(pill);
+  } else if(Object.keys(SPOTS).some(p => all.some(v => placeOf(v) === p))){
+    const hint = document.createElement("p");
+    hint.className = "zone-desc";
+    hint.style.cssText = "font-size:.85rem;font-weight:700;color:#6b6780;margin-top:-6px";
+    hint.textContent = "📍 地図の白い点を押すと、その場所の動画だけになります。";
+    zoneHead.appendChild(hint);
+  }
+
+  // ジャンルの絞り込み（今の一覧にあるジャンルだけ）
+  chipsEl.innerHTML = "";
+  const genres = GENRES.filter(g => inPlace.some(v => genreOf(v) === g));
+  chipsEl.hidden = genres.length < 2;
+  [null, ...genres].forEach(g => {
+    const b = document.createElement("button");
+    b.type = "button";
+    const on = state.genre === g;
+    b.className = "chip" + (on ? " on" : "");
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    const n = g ? inPlace.filter(v => genreOf(v) === g).length : inPlace.length;
+    b.textContent = `${g || "すべて"} ${n}`;
+    b.addEventListener("click", () => { state.genre = g; state.shown = PAGE; render(); });
+    chipsEl.appendChild(b);
+  });
+
+  listEl.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  list.slice(0, state.shown).forEach((v, i) => grid.appendChild(createCard(v, Math.min(i, 12) * .03)));
+  listEl.appendChild(grid);
+  const rest = list.length - state.shown;
+  if(rest > 0){
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "more";
+    more.textContent = `もっと見る（あと${rest}本）`;
+    more.addEventListener("click", () => { state.shown += PAGE; render(); });
+    listEl.appendChild(more);
+  }
+}
+
+function render(){
+  renderMap();
+  renderBar();
+  if(state.zone) renderZone(); else renderAll();
+  if(typeof afterRender === "function") afterRender();
+}
+render();
+
+/* ---------- TOPボタン ---------- */
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", () => {
+  toTop.classList.toggle("show", window.scrollY > heroEl.offsetHeight);
+}, { passive:true });
+
+/* ---------- 左のカード（地図の代わり） ---------- */
+const sideCards = document.getElementById("sideCards");
+ZONES.forEach(z => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "side-card" + (z.ink ? " ink" : "");
+  b.dataset.key = z.key;
+  b.style.setProperty("--c", z.color);
+  b.innerHTML = cardHtml(z, zoneVideos(z.key).length);
+  b.addEventListener("click", () => openJourney(z.key, b));
+  sideCards.appendChild(b);
+});
+function afterRender(){
+  document.querySelectorAll(".side-card").forEach(el => {
+    const on = el.dataset.key === state.zone;
+    el.classList.toggle("on", on);
+    el.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+}
+afterRender();
+
+/* ===================================================================
+   搭乗券を押した後：空色に染まる → 飛行機が左から通り抜け、
+   ドンと白い輪が広がって、ページが次々に出てくる → 旅の画面
+   旅の画面では、スクロールに合わせて地図の上を飛行機が進み、動画が話数の順に出てくる
+=================================================================== */
+const SVGNS = "http://www.w3.org/2000/svg";
+// [緯度, 経度] → タイの地図（viewBox 0 0 493 764）の上の位置。上の小さな地図と同じ図法
+const toMap = ([lat, lon]) => [133.6 + (lon - 98.98) * 44.6, 110.9 + (18.79 - lat) * 46.1];
+const LAND_D = document.querySelector(".mini-map .map-thai").getAttribute("d");
+const NEIGHBORS = [["MYANMAR",[16.6,97.2]],["LAOS",[18.9,102.7]],["CAMBODIA",[13.0,104.3]],["MALAYSIA",[5.2,101.2]],["GULF OF THAILAND",[11.0,101.0]],["ANDAMAN SEA",[9.3,97.1]]];
+// 上から見た飛行機（右向き）
+const PLANE_D = "M16,0 L7,-2.6 L-1,-13 L-6,-13 L-2.5,-2.6 L-10,-2.6 L-13.5,-7.5 L-16.5,-7.5 L-15,0 L-16.5,7.5 L-13.5,7.5 L-10,2.6 L-2.5,2.6 L-6,13 L-1,13 L7,2.6 Z";
+
+const journey = document.getElementById("journey");
+const jyMap = document.getElementById("jyMap");
+const jyMapBox = document.getElementById("jyMapBox");
+const jyStops = document.getElementById("jyStops");
+const jyProg = document.getElementById("jyProg");
+const jyNext = document.getElementById("jyNext");
+const fl = {
+  sky: document.getElementById("flSky"), p1: document.getElementById("flP1"), p2: document.getElementById("flP2"),
+  boom: document.getElementById("flBoom"), plane: document.getElementById("flPlane"),
+  craft: document.getElementById("flCraft"), cone: document.getElementById("flCone"),
+};
+fl.craft.prepend(document.querySelector(".road .plane").cloneNode(true));
+[[90,"10%",36,-4],[150,"34%",52,-30],[110,"60%",44,-12],[72,"84%",30,-22]].forEach(([w, top, d, dl]) => {
+  const c = document.createElement("span");
+  c.className = "jy-cloud";
+  c.style.cssText = `--w:${w}px;top:${top};--d:${d}s;--dl:${dl}s`;
+  jyMapBox.appendChild(c);
+});
+
+let jy = null;            // いま開いている旅
+let jyCam = null;         // 地図のカメラ { x, y, s }（中心と横幅）
+let jyRaf = 0, jyLast = 0, jyFlying = false, jyClosing = false, jyFromLoad = false, jyReturnFocus = null;
+let flAnims = [];
+const jyMeter = document.getElementById("jyMeter");
+const clamp01 = t => Math.max(0, Math.min(1, t));
+const mix = (a, b, t) => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, s: a.s + (b.s - a.s) * t });
+
+function svgEl(tag, attrs, parent){
+  const e = document.createElementNS(SVGNS, tag);
+  for(const k in attrs) e.setAttribute(k, attrs[k]);
+  if(parent) parent.appendChild(e);
+  return e;
+}
+// 2つの街を、ゆるい弧で結ぶ（飛行機の航路のように）
+function arc([ax, ay], [bx, by], i){
+  const dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy);
+  if(d < 2) return `M${ax},${ay} C${ax + 16},${ay - 20} ${bx + 16},${by + 20} ${bx},${by}`;
+  const s = i % 2 ? .2 : -.2;
+  return `M${ax.toFixed(1)},${ay.toFixed(1)} Q${((ax + bx) / 2 - dy * s).toFixed(1)},${((ay + by) / 2 + dx * s).toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`;
+}
+// いくつかの点が入る四角（地図の単位）。小さすぎる時は minSpan まで広げる
+function boxOf(points, minSpan){
+  const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const W = jyMap.clientWidth || 1, H = jyMap.clientHeight || 1;
+  const w = Math.max(minSpan, (x1 - x0) * 1.45), h = Math.max(minSpan, (y1 - y0) * 1.45);
+  return { x: (x0 + x1) / 2, y: (y0 + y1) / 2, s: Math.max(w, h * W / H) };
+}
+
+function buildJourney(key){
+  const z = zoneByKey[key];
+  const vids = zoneVideos(key);
+  const n = vids.length;
+  journey.style.setProperty("--c", z.color);
+  journey.classList.toggle("ink", !!z.ink);
+  document.getElementById("jyKicker").textContent = `SERIES ${z.no} · ${z.en}`;
+  document.getElementById("jyTitle").textContent = z.name;
+  document.getElementById("jyRoute").innerHTML = `${z.from}<i aria-hidden="true">✈</i>${z.to}`;
+  document.getElementById("jyDesc").textContent = z.desc;
+  document.getElementById("jyName").innerHTML = `<small>SERIES ${z.no}</small>${z.name}`;
+  document.getElementById("jyEndText").textContent = `${z.name}、全${n}話の旅はここまで。おつかれさまでした！`;
+  const next = ZONES[(ZONES.indexOf(z) + 1) % ZONES.length];
+  jyNext.textContent = `次の旅へ ✈ ${next.name}`;
+  jyNext.style.setProperty("--c2", next.color);
+  jyNext.classList.toggle("light", !next.ink);
+  jyNext.onclick = () => openJourney(next.key, jyNext);
+
+  // 地図
+  jyMap.innerHTML = "";
+  const pts = vids.map(v => toMap(v.at || [13.75, 100.5]));
+  const shadow = svgEl("path", { d: LAND_D, class: "jy-land-sh" }, jyMap);
+  svgEl("path", { d: LAND_D, class: "jy-land" }, jyMap);
+  NEIGHBORS.forEach(([name, ll]) => {
+    const [x, y] = toMap(ll);
+    svgEl("text", { x, y, class: "jy-other", "text-anchor": "middle" }, jyMap).textContent = name;
+  });
+  const segD = pts.slice(1).map((p, i) => arc(pts[i], p, i));
+  svgEl("path", { d: segD.join(" "), class: "jy-path-all" }, jyMap);
+  const segs = segD.map(d => {
+    const cs = svgEl("path", { d, class: "jy-path-case" }, jyMap);
+    const co = svgEl("path", { d, class: "jy-path" }, jyMap);
+    const len = co.getTotalLength();
+    [cs, co].forEach(p => { p.style.strokeDasharray = `${len} ${len + 1}`; p.style.strokeDashoffset = len; });
+    return { cs, co, len };
+  });
+  const dots = pts.map((_, j) => {
+    const g = svgEl("g", { class: "jy-dot" }, jyMap);
+    svgEl("circle", { r: 15, class: "hit" }, g);
+    svgEl("circle", { r: 5.5 }, g);
+    g.addEventListener("click", () => jyGoTo(j));
+    return g;
+  });
+  const ring = svgEl("g", { class: "jy-now" }, jyMap);
+  svgEl("circle", { r: 7 }, ring);
+  const label = svgEl("text", { class: "jy-label" }, jyMap);
+  const plane = svgEl("g", { class: "jy-plane" }, jyMap);
+  svgEl("path", { d: PLANE_D }, plane);
+
+  // 右側（スマホは下）：話数の順の動画
+  jyStops.innerHTML = "";
+  const stopEls = vids.map((v, i) => {
+    const li = document.createElement("li");
+    li.className = "stop";
+    li.innerHTML = `<span class="stop-tag"><b>${v.ep || "#" + (i + 1)}</b>📍 ${v.where || placeOf(v)}</span>`;
+    const card = createCard(v);
+    const id = extractYouTubeId(v.url);
+    const img = card.querySelector("img");
+    if(img && id){ img.loading = "eager"; img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
+    li.appendChild(card);
+    jyStops.appendChild(li);
+    return li;
+  });
+
+  jy = { z, vids, pts, segs, dots, ring, label, plane, shadow, stopEls, cur: -1, n,
+         full: null, segBox: [] };
+  measureBoxes();
+}
+function measureBoxes(){
+  if(!jy) return;
+  const { pts, n } = jy;
+  jy.full = boxOf(pts, 170);
+  jy.segBox = pts.map((p, i) => boxOf(i < n - 1 ? [p, pts[i + 1]] : [p], 120));
+}
+
+// スクロールの位置から、いま何話目のあたりにいるか（i 話目から次の話へ f だけ進んだ）
+function jyTick(){
+  jyRaf = 0;
+  if(!jy || journey.hidden) return;
+  const { pts, segs, n, stopEls } = jy;
+  const vh = window.innerHeight;
+  const anchor = jyAnchor();
+  const cs = stopEls.map(el => {
+    const r = el.querySelector(".card").getBoundingClientRect();
+    if(r.top < vh * .92) el.classList.add("in");   // 画面に入ってきたカードをふわっと出す
+    return r.top + r.height / 2;
+  });
+  let i = 0, f = 0, target, started = true;
+  if(anchor < cs[0]){
+    started = false;
+    target = mix(jy.full, jy.segBox[0], clamp01(1 - (cs[0] - anchor) / (vh * .5)));
+  }else if(anchor >= cs[n - 1]){
+    i = n - 1;
+    target = mix(jy.segBox[n - 1], jy.full, clamp01((anchor - cs[n - 1]) / (vh * .5)));
+  }else{
+    while(i < n - 2 && anchor >= cs[i + 1]) i++;
+    f = clamp01((anchor - cs[i]) / (cs[i + 1] - cs[i]));
+    target = mix(jy.segBox[i], jy.segBox[i + 1], f);
+  }
+
+  // 航路を、進んだところまで描く
+  segs.forEach((s, j) => {
+    const t = j < i ? 1 : j === i ? f : 0;
+    s.cs.style.strokeDashoffset = s.co.style.strokeDashoffset = s.len * (1 - t);
+  });
+
+  // カメラ：横・縦・ズームをそれぞれ別のばねで追いかける（はね返らない「臨界減衰」、反応 0.4 秒）。
+  // 途中でスクロールの向きが変わっても、いまの位置と速さからそのままつながる
+  const now = performance.now();
+  const dt = Math.min(1 / 30, (now - (jyLast || now)) / 1000);
+  jyLast = now;
+  let moving = false;
+  if(!jyCam || reduceMotion){
+    jyCam = { x: target.x, y: target.y, s: target.s, vx: 0, vy: 0, vs: 0 };
+  }else{
+    const w = 2 * Math.PI / .4;
+    [["x", "vx"], ["y", "vy"], ["s", "vs"]].forEach(([p, v]) => {
+      jyCam[v] += (w * w * (target[p] - jyCam[p]) - 2 * w * jyCam[v]) * dt;
+      jyCam[p] += jyCam[v] * dt;
+      if(Math.abs(target[p] - jyCam[p]) > .1 || Math.abs(jyCam[v]) > .5) moving = true;
+      else { jyCam[p] = target[p]; jyCam[v] = 0; }
+    });
+  }
+  jyMeter.style.transform = `scaleX(${started ? (i + f) / Math.max(1, n - 1) : 0})`;
+  journey.classList.toggle("scrolled", journey.scrollTop > 4);
+  const W = jyMap.clientWidth || 1, H = jyMap.clientHeight || 1;
+  const vw = jyCam.s, vhh = jyCam.s * H / W, k = vw / W;
+  jyMap.setAttribute("viewBox", `${(jyCam.x - vw / 2).toFixed(2)} ${(jyCam.y - vhh / 2).toFixed(2)} ${vw.toFixed(2)} ${vhh.toFixed(2)}`);
+  jyMap.style.setProperty("--k", k.toFixed(4));
+  jy.shadow.setAttribute("transform", `translate(${6 * k},${7 * k})`);
+
+  // 飛行機の位置と向き
+  let px, py, ang = 0;
+  const seg = segs[Math.min(i, n - 2)];
+  if(seg){
+    const L = i < n - 1 ? seg.len * f : seg.len;
+    const p = seg.co.getPointAtLength(L);
+    const a = seg.co.getPointAtLength(Math.max(0, L - 1)), b = seg.co.getPointAtLength(Math.min(seg.len, L + 1));
+    px = p.x; py = p.y;
+    ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+  }else [px, py] = pts[0];
+  jy.plane.setAttribute("transform", `translate(${px.toFixed(2)},${py.toFixed(2)}) rotate(${ang.toFixed(1)}) scale(${(k * 1.5).toFixed(4)})`);
+
+  // いまの話（近いほう）
+  const cur = started && f > .5 ? i + 1 : i;
+  jy.dots.forEach((g, j) => {
+    g.setAttribute("transform", `translate(${pts[j][0]},${pts[j][1]}) scale(${k.toFixed(4)})`);
+    g.classList.toggle("past", started && j <= i);
+  });
+  jy.ring.setAttribute("transform", `translate(${pts[cur][0]},${pts[cur][1]}) scale(${k.toFixed(4)})`);
+  const v = jy.vids[cur];
+  const right = pts[cur][0] > jyCam.x + vw * .18;
+  jy.label.setAttribute("x", pts[cur][0] + (right ? -22 : 22) * k);
+  jy.label.setAttribute("y", pts[cur][1] - 16 * k);
+  jy.label.setAttribute("text-anchor", right ? "end" : "start");
+  if(jy.cur !== cur){
+    jy.cur = cur;
+    jy.label.textContent = `${v.ep || "#" + (cur + 1)}  ${v.where || placeOf(v)}`;
+    jyProg.textContent = `✈ ${cur + 1} / ${n}`;
+    stopEls.forEach((el, j) => el.classList.toggle("now", j === cur));
+  }
+  if(moving) jyRaf = requestAnimationFrame(jyTick);
+}
+function jyAnchor(){
+  const vh = window.innerHeight;
+  const mr = jyMapBox.getBoundingClientRect();
+  return window.innerWidth <= 900 ? mr.bottom + (vh - mr.bottom) * .45 : vh * .5;
+}
+// 地図の点を押すと、その話までスクロールで飛んでいく
+function jyGoTo(j){
+  const el = jy.stopEls[j];
+  const r = el.querySelector(".card").getBoundingClientRect();
+  const lift = el.classList.contains("in") || reduceMotion ? 0 : 46;   // まだ出てきていないカードは46px下にずれている
+  journey.scrollTo({ top: journey.scrollTop + r.top + r.height / 2 - lift - jyAnchor(), behavior: reduceMotion ? "auto" : "smooth" });
+}
+const jyKick = () => { if(!jyRaf) jyRaf = requestAnimationFrame(jyTick); };
+journey.addEventListener("scroll", jyKick, { passive: true });
+window.addEventListener("resize", () => { if(jy){ measureBoxes(); jyCam = null; jyKick(); } });
+
+/* ---------- 空 → 飛行機 → ページ の演出 ---------- */
+const HIDE_POLY = "polygon(0% 0%, 0% 0%, -18% 100%, 0% 100%)";
+const SHOW_POLY = "polygon(0% 0%, 118% 0%, 100% 100%, 0% 100%)";
+function fly(z, fromEl, fromSky){
+  const r = fromEl ? fromEl.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0, height: 0 };
+  const ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+  const R = Math.hypot(Math.max(ox, innerWidth - ox), Math.max(oy, innerHeight - oy)) + 10;
+  fl.p1.innerHTML = `<div class="fp-pass${z.ink ? " ink" : ""}" style="--c:${z.color}">${cardHtml(z, zoneVideos(z.key).length)}</div>`;
+  fl.p2.className = "fl-page p2" + (z.ink ? " ink" : "");
+  fl.p2.style.setProperty("--c", z.color);
+  fl.p2.innerHTML = `<span class="fp-line">${z.from}</span><span class="fp-line o">✈ ${z.to}</span><span class="fp-line">${z.name}</span>`;
+  ["sky", "p1", "p2", "boom", "plane"].forEach(k => fl[k].hidden = false);
+
+  const anims = flAnims = [];
+  const A = (el, kf, o) => { const a = el.animate(kf, Object.assign({ fill: "both" }, o)); anims.push(a); return a; };
+  const T = fromSky ? -300 : 0;   // 次のシリーズへ進む時は、もう空の中なので少し早く
+  // 1. 押した搭乗券から、空色が広がる
+  if(!fromSky) A(fl.sky, [{ clipPath: `circle(0px at ${ox}px ${oy}px)` }, { clipPath: `circle(${R}px at ${ox}px ${oy}px)` }],
+    { duration: 620, easing: "cubic-bezier(.7,0,.3,1)" });
+  // 2. 飛行機が左から。まん中でいったん粘って、ドンと加速して右へ抜ける
+  const fly0 = 380 + T, flyDur = 1400;
+  A(fl.craft, [
+    { transform: "translateX(-120%) rotate(4deg)", easing: "cubic-bezier(.15,.7,.35,1)" },
+    { transform: "translateX(calc(50vw - 50%)) rotate(-2deg)", offset: .5, easing: "cubic-bezier(.7,0,.95,.5)" },
+    { transform: "translateX(calc(100vw + 30%)) rotate(-6deg)" },
+  ], { delay: fly0, duration: flyDur });
+  A(fl.cone, [
+    { opacity: 0, transform: "translate(-50%,-50%) scale(.3)" },
+    { opacity: 0, transform: "translate(-50%,-50%) scale(.3)", offset: .46 },
+    { opacity: 1, transform: "translate(-50%,-50%) scale(1)", offset: .54 },
+    { opacity: .9, transform: "translate(-50%,-50%) scale(1.1)", offset: .85 },
+    { opacity: 0, transform: "translate(-50%,-50%) scale(1.3)" },
+  ], { delay: fly0, duration: flyDur });
+  // 3. 音の壁をこえた瞬間の白い輪
+  const boomAt = fly0 + flyDur * .52;
+  [...fl.boom.children].forEach((ring, i) => A(ring, [
+    { opacity: 1, transform: "scale(.2)" }, { opacity: 0, transform: "scale(5)" },
+  ], { delay: boomAt + i * 110, duration: 760, easing: "cubic-bezier(.2,.7,.3,1)" }));
+  // 4. ページが次々に出てくる（搭乗券 → シリーズの色 → 旅の画面）
+  const wipe = (el, at, dur) => A(el, [{ clipPath: HIDE_POLY }, { clipPath: SHOW_POLY }], { delay: at, duration: dur, easing: "cubic-bezier(.65,0,.3,1)" });
+  wipe(fl.p1, 620 + T, 520);
+  A(fl.p1.firstElementChild, [{ transform: "rotate(-14deg) scale(.6)" }, { transform: "rotate(-3deg) scale(1)" }],
+    { delay: 680 + T, duration: 560, easing: "cubic-bezier(.2,.8,.2,1)" });
+  A(fl.p1, [{ translate: "0 0" }, { translate: "-10px 6px" }, { translate: "8px -4px" }, { translate: "0 0" }],
+    { delay: boomAt, duration: 260, fill: "none" });
+  wipe(fl.p2, boomAt - 60, 480);
+  [...fl.p2.children].forEach((line, i) => A(line, [{ translate: `${i % 2 ? 40 : -40}vw 0` }, { translate: "0 0" }],
+    { delay: boomAt - 40 + i * 70, duration: 620, easing: "cubic-bezier(.2,1,.3,1)" }));
+  const last = wipe(journey, boomAt + 420, 560);
+
+  return last.finished.then(() => {
+    journey.style.clipPath = "";
+    anims.forEach(a => a.cancel());
+    ["sky", "p1", "p2", "boom", "plane"].forEach(k => fl[k].hidden = true);
+  });
+}
+
+async function openJourney(key, fromEl, opts = {}){
+  if(jyFlying || !zoneByKey[key]) return;
+  const first = journey.hidden;
+  const animate = !reduceMotion && opts.animate !== false;
+  if(opts.history !== false){
+    if(first) history.pushState({ jy: key }, "", "#" + key);
+    else history.replaceState(history.state, "", "#" + key);
+  }
+  if(first){
+    jyReturnFocus = document.activeElement;
+    document.documentElement.style.overflow = "hidden";
+  }
+  jyFlying = true;
+  if(animate) journey.style.clipPath = HIDE_POLY;
+  journey.hidden = false;
+  buildJourney(key);
+  journey.scrollTop = 0;
+  jyCam = null;
+  jyTick();
+  if(animate) await fly(zoneByKey[key], fromEl, !first);
+  else if(reduceMotion) await journey.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: "ease" }).finished;
+  jyFlying = false;
+  document.getElementById("jyClose").focus({ preventScroll: true });
+}
+
+// 演出の途中で押す・Escを押すと、すぐ最後まで飛ばす
+function skipFlight(){
+  if(jyFlying) flAnims.forEach(a => a.finish());
+}
+fl.sky.addEventListener("pointerdown", skipFlight);
+
+function hideJourney(){
+  if(journey.hidden || jyClosing) return;
+  jyClosing = true;
+  let anim;
+  const done = () => {
+    journey.hidden = true;
+    if(anim) anim.cancel();
+    jy = null;
+    jyClosing = false;
+    document.documentElement.style.overflow = "";
+    if(jyReturnFocus && jyReturnFocus.isConnected) jyReturnFocus.focus({ preventScroll: true });
+  };
+  if(reduceMotion){
+    anim = journey.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: "ease", fill: "forwards" });
+  }else{
+    // 開いた時と同じ道を戻る：押した搭乗券に吸い込まれるように閉じる
+    const src = jy && sideCards.querySelector(`[data-key="${jy.z.key}"]`);
+    const r = src ? src.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0, height: 0 };
+    const ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+    const R = Math.hypot(Math.max(ox, innerWidth - ox), Math.max(oy, innerHeight - oy)) + 10;
+    anim = journey.animate([{ clipPath: `circle(${R}px at ${ox}px ${oy}px)` }, { clipPath: `circle(0px at ${ox}px ${oy}px)` }],
+      { duration: 520, easing: "cubic-bezier(.7,0,.3,1)", fill: "forwards" });
+  }
+  anim.finished.then(done);
+}
+function closeJourney(){
+  if(journey.hidden || jyFlying) return;
+  if(history.state && history.state.jy && !jyFromLoad) return history.back();   // 戻ると popstate で閉じる
+  jyFromLoad = false;
+  history.replaceState(null, "", location.pathname + location.search);
+  hideJourney();
+}
+window.addEventListener("popstate", () => {
+  const key = history.state && history.state.jy;
+  if(key && journey.hidden) openJourney(key, null, { history: false, animate: false });
+  else if(!key) hideJourney();
+});
+document.getElementById("jyClose").addEventListener("click", closeJourney);
+document.getElementById("jyBack").addEventListener("click", closeJourney);
+document.addEventListener("keydown", e => {
+  if(e.key !== "Escape" || !player.hidden || journey.hidden) return;
+  if(jyFlying) skipFlight(); else closeJourney();
+}, true);
+// URLの最後が #s1 などなら、そのシリーズの旅をすぐに開く
+{
+  const key = location.hash.slice(1);
+  if(zoneByKey[key]){
+    jyFromLoad = true;
+    openJourney(key, null, { history: false, animate: false });
+  }
+}
+
+</script>
+</body>
+</html>
